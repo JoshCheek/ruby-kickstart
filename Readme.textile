@@ -1,0 +1,67 @@
+h2. Told a friend I could teach her everything she learned in her Java class... in Ruby, in a week.
+
+So, this follows the Java book: *Absolute Java* by Walter Savitch
+(I have the 3rd edition, b/c I took it a few years ago -- btw, this is a fantastic book if you are new to programming, I gave it 10 stars on Amazon)
+
+It doesn't focus on teaching newbies Ruby, but rather builds on the knowledge that you should have after going through the Java book.
+
+I also exclude things that obviously don't belong in Ruby, or that I don't know much about.
+
+I'm also going to look through *Beginning Ruby* by Peter Cooper, and possibly the *Well Grounded Rubyist* by David A. Black, to get an idea of what additional information I should include.
+
+
+h3. Chapters
+
+
+# *Getting Started*
+## Introduction to Ruby
+## Expressions and Assignment Statements
+## The Class String
+## Program Style
+# *Console Input and Output*
+## Screen Output
+## Console Input
+# *Flow of Control*
+## Branching Mechanism
+## Boolean Expressions
+## Loops
+## Debugging
+# *Defining Classes 1*
+## Class Definitions
+## Information Hiding and Encapsulation
+## Overloading
+## Constructors
+# *Defining Classes 2*
+## Static Methods and Static Variables
+## References and Class Parameters
+## Using and Misusing References
+## Packages and RDoc
+# *Arrays*
+## Introduction to Arrays
+## Arrays and References
+## Programming with Arrays
+## Multidimensional Arrays
+# *Inheritance*
+## Inheritance Basics
+## Encapsulation and Inheritance
+## Programming With Inheritance
+# *Polymorphism And Abstract Classes*
+## Polymorphism
+## Abstract Classes
+# *Exception Handling*
+## Exception Handling Basics
+## Raising Exceptions in Methods
+## More Programming Techniques For Exception Handling
+# *File I/O*
+## Introduction to FILE I/O
+## Text Files
+## The File Class
+## Binary Files
+## Random Access to Binary Files
+# *Modules*
+## Simple Uses of Modules
+## More About Modules
+# *Collections, Maps, and Iterators*
+## Collections
+## Maps
+## Iterators
