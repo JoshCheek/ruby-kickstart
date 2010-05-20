@@ -1,3 +1,5 @@
+* CURRENTLY INCOMPLETE, PLACING ON GITHUB SO I CAN COLLABORATE WITH A FRIEND *
+
 h2. Told a friend I could teach her everything she learned in her Java class... in Ruby, in a week.
 
 So, this follows the Java book: *Absolute Java* by Walter Savitch
