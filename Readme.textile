@@ -6,3 +6,6 @@ Initially, I was going to try to follow the Java book: *Absolute Java* by Walter
 (I have the 3rd edition, b/c I took it a few years ago -- btw, this is a fantastic book if you are new to programming, I gave it 10 stars on Amazon)
 
 However, I found that it was causing me to get caught up in details that I feel will become obvious with use. So, instead, I am going to write this based off notes I took while I was learning Ruby.
+
+
+# Introduction and basics
