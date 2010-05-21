@@ -1,0 +1,40 @@
+Constructors
+"Can interpolate #{1+1}"            # => "Can interpolate 2"
+'Cannot interpolate #{1+1}'         # => "Cannot interpolate \#{1+1}"
+%q(Can use ' and ")                 # => "Can use ' and \""
+%q.delimit with whatever you like.  # => "delimit with whatever you like"
+string = <<END_OF_DOC.upcase
+  This is a here document, I can interpolate #{1}
+  It will continue until it finds, the line END_OF_DOC by itself.
+  Notice I can continue doing things on the line the here document is defined in.
+  here I called String#upcase on it.
+END_OF_DOC
+string                              # => "  THIS IS A HERE DOCUMENT, I CAN INTERPOLATE 1\n  IT WILL CONTINUE UNTIL IT FINDS, THE LINE END_OF_DOC BY ITSELF.\n  NOTICE I CAN CONTINUE DOING THINGS ON THE LINE THE HERE DOCUMENT IS DEFINED IN.\n  HERE I CALLED STRING#UPCASE ON IT.\n"
+
+
+
+Method Comparison
+Java                  Ruby            Example                                         Notes
++                     +               'hello ' + 'world'      # => "hello world"      Creates a new concatenated String. Converting to String is NOT automatic
+                      <<              'hello ' << 'world'     # => "hello world"      Appends the second string to the first. (much more efficient)
+length                .length         'abc'.length            # => 3
+equals                ==              'abc' == 'abc'          # => true
+                                      'abc' == 'def'          # => false
+toLowerCase           downcase        'AbCd'.downcase         # => "abcd"
+toUpperCase           upcase          'AbCd'.upcase           # => "ABCD"
+trim                  strip           " \t abc   ".strip      # => "abc"
+charAt                []              'hello'[1]              # => 'e'                In older versions of Ruby, returns the ascii value of the char
+substring             []              'aardvark'[2..4]        # => "rdv"              Can use negative values to refer to indexes from the end ie 'aardvark'[4..-1] # => "vark"
+indexOf               index           'hello'.index('ll')     # => 2                  Can also pass regex
+compareTo             <=>             'a' <=> 'b'             # => -1                 Called the "spaceship operator" it is defined for any comparable class, and behaves like this
+
+
+
+
+Other Useful Methods                                                                                      NOTES
+"abc" * 3                                     # => "abcabcabc"                                            
+" abc \n".chomp                               # => " abc "                                                Removes trailing newlines, ie use after gets
+'trite'.gsub('t','b')                         # => "bribe"                                                Can also pass a regex, and even a block for complex replacements
+"Their IDs are 11, and 492".scan(/\d+/)       # => ["11", "492"]                                          
+"Jack and Jill ran up the hill".split         # => ["Jack", "and", "Jill", "ran", "up", "the", "hill"]    Can also pass a regex
+"/usr/bin:/opt/local:/Users/josh".split(':')  # => ["/usr/bin", "/opt/local", "/Users/josh"]              

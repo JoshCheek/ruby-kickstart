@@ -15,6 +15,8 @@
 # get Ruby installed on all their computers (1.9 if possible)
 # get their text editor / IDE set up to be able to work with Ruby without necessarily having to go to the command line
 # have them download this repo and put it in some directory to work in
+# show how to use ri
+# show where docs are
 
 
 # =====  Conventions  =====
@@ -101,8 +103,14 @@
 # then show example 2
 
 
-# =====  Arithematic Operators =====
+# =====  Arithematic Operators  =====
 # behave the same as normal
 # have them complete challenge 1
 
 
+# =====  Strings  =====
+# regular operators work with Strings, don't need complicated methods
+# **STRINGS ARE MUTABLE**
+# ask how to test if two strings are the same
+# give cheetsheat
+# show example 3
