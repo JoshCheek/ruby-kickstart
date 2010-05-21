@@ -1,14 +1,15 @@
 def run_spec(chapter,problem)
-  # sh "spec ch#{chapter}/specs/#{problem}.rb"
-  puts "spec ch#{chapter}/specs/#{problem}.rb"
+  root_dir     = "ch#{chapter}"
+  problem_dir  =  ENV['solved'] && "#{root_dir}/solved/#{problem}" || Dir["#{root_dir}/challenge/#{problem}*"].first
+  
+  sh "spec -cr #{problem_dir} #{root_dir}/specs/#{problem}.rb"
 end
 
 
 # each key is the chapter to test
 # each value is a range indicating the problems available for this chapter
 chapters = {
-  1 => 1..4  ,
-  2 => 1..5 ,
+  1 => 1..9
 }
 
 chapters.each do |chapter,problems|
