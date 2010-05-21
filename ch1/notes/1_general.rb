@@ -113,7 +113,7 @@
 
 # =====  Arithematic Operators  =====
 # behave the same as normal
-# have them complete challenge 1
+# have them complete challenge 1 , 2 , 3
 
 
 # =====  Strings  =====
@@ -121,4 +121,8 @@
 # **STRINGS ARE MUTABLE**
 # ask how to test if two strings are the same
 # give cheetsheat
-# show example 4
+# show example 3
+
+
+# =====  First Homework Assginment  =====
+# Complete all challenges for ch1
