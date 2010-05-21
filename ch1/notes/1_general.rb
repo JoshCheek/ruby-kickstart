@@ -108,6 +108,7 @@
 # true  = everything else
 # if ; elsif ; else ; end
 # expression if condition
+# ask them how to do challenge 2
 
 
 # =====  Arithematic Operators  =====
@@ -120,4 +121,4 @@
 # **STRINGS ARE MUTABLE**
 # ask how to test if two strings are the same
 # give cheetsheat
-# show example 3
+# show example 4
