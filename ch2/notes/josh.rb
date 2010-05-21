@@ -10,4 +10,8 @@
 # show example 1
 
 
-# ====
+# ====  Input  =====
+#
+# 
+
+p $stdout
