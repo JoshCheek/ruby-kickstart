@@ -14,7 +14,6 @@ one_two_or_three 2 # => "two"
 one_two_or_three 3 # => "three"
 
 
-
 # =====  Ternary / inline  =====
     1 == 1  ?     'one'  :     'five'        # => "one"
     1 == 5  ?     'one'  :     'five'        # => "five"
@@ -26,8 +25,25 @@ if  1 == 5  then  'one'  else  'five'  end   # => "five"
 result = 'set'
 result = 'modified once' if 1 == 1
 result                                    # => "modified once"
-result = 'modified twice' if 1 == 2
+result = 'modified twice' if 1 != 1
 result                                    # => "modified once"
+
+
+# =====  ! to negate  =====
+result = 'set'
+result = 'modified once' if !false
+result                                    # => "modified once"
+result = 'modified twice' if !true
+result                                    # => "modified once"
+
+
+# =====  False and nil are false, everything else is true  =====
+!!false           # => false
+!!true            # => true
+!!nil             # => false
+!!Array.new       # => true
+!!String.new      # => true
+!!Regexp.new('')  # => true
 
 
 # =====  Unless  =====
