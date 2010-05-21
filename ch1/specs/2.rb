@@ -11,15 +11,17 @@ describe 'arithmetic2' do
   it 'should return -3.5 when given -6 , -7' do
     arithmetic2(-6,-7).should == -3.5
   end
-  
-  it 'should pass other tests' do
-    arithmetic2(-7,-6).should == -3.5
-    arithmetic2(1,-1).should == -0.5
-    arithmetic2(-1,1).should == -0.5
-    arithmetic2(-1,-1).should == -0.5
-    arithmetic2(0,0).should == 0
-    arithmetic2(0,100).should == 0
+   
+  [  -7 ,  -6 , -3.5 ,
+     1  ,  -1 , -0.5 ,  
+    -1  ,   1 , -0.5 ,   
+    -1  ,  -1 , -0.5 ,  
+     0  ,   0 ,    0 ,      
+     0  , 100 ,    0 ].each_slice 3 do |a,b,result|
+    it "should return #{result} when given #{a} , #{b}" do
+      arithmetic2(a,b).should == result
+    end
   end
-  
+
 end
 

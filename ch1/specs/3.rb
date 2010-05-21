@@ -8,10 +8,19 @@ describe 'ten_twenty' do
     ten_twenty(6).should == 10
   end
   
-  it 'should pass other tests' do
-    10.downto -10 do |i|
-      ten_twenty(i).should == 10 if i.even?
-      ten_twenty(i).should == 20 if i.odd?
+  it 'should return 10 when passed 0' do
+    ten_twenty(0).should == 10
+  end
+  
+  1_000_000.step -1_000_000 , -101_275 do |i|
+    if i.even?
+      it "should return #{10} when passed #{i}" do
+        ten_twenty(i).should == 10
+      end
+    else
+      it "should return #{20} when passed #{i}" do
+        ten_twenty(i).should == 20
+      end
     end
   end
   
