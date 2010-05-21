@@ -1,2 +1,2 @@
-"abc" == "abc" # => true
-"Abc" == "abc" # => false
+"abc" == "abc" # => 
+"Abc" == "abc" # => 
