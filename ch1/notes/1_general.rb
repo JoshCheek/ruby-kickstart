@@ -96,10 +96,5 @@
 
 # =====  Assignment Compatibility  =====
 # You _CAN_ store an object of one type in a variable of another type, because Ruby is dynamically typed
-# Example:
-count           # => 1
-count = "abc"
-count           # => "abc"
-count = /def/   # => /def/
-# Don't do this superfluously, it can make sense in some cases (ie normalize a parameter by converting to a String), but otherwise is bad practice
-
+# Ask them to come up with an example on their own to show this
+# then show example 2
