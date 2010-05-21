@@ -103,6 +103,13 @@
 # then show example 2
 
 
+# =====  Logic  =====
+# false = { false , nil }
+# true  = everything else
+# if ; elsif ; else ; end
+# expression if condition
+
+
 # =====  Arithematic Operators  =====
 # behave the same as normal
 # have them complete challenge 1
