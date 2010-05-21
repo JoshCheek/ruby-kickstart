@@ -9,7 +9,7 @@ end
 # each key is the chapter to test
 # each value is a range indicating the problems available for this chapter
 chapters = {
-  1 => 1..9
+  1 => 1..8
 }
 
 chapters.each do |chapter,problems|
