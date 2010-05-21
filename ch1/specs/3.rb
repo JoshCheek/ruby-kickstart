@@ -11,7 +11,7 @@ describe 'ten_twenty' do
   it 'should pass other tests' do
     10.downto -10 do |i|
       ten_twenty(i).should == 10 if i.even?
-      ten_twenty(i).should == 20 unless i.even?
+      ten_twenty(i).should == 20 if i.odd?
     end
   end
   
