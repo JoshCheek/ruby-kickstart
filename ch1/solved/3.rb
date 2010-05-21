@@ -5,9 +5,3 @@ def ten_twenty(n)
     20
   end
 end
-
-
-# A slicker solution
-# def ten_twenty(n)
-#   n.even? && 10 || 20
-# end

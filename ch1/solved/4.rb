@@ -10,9 +10,3 @@ def has_teen( a , b , c )
   c =  ( 13 <= c   &&   c <= 19 )
   return a || b || c
 end
-
-
-# A slicker solution
-# def has_teen(*params)
-#   params.any? { |param| (13..19).include? param }
-# end

@@ -9,9 +9,3 @@ def arithmetic2(a,b)
   return min / 2.0
   
 end
-
-
-# A slicker solution:
-# def arithmetic2(*args)
-#   args.min / 2.0
-# end
