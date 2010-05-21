@@ -6,12 +6,17 @@
 # System.out.print      print
 # System.out.printf     printf
 #
-# all IO have these methods, not just stdout
+# all IO have these methods (ie files)
 # show example 1
 
 
-# ====  Input  =====
-#
-# 
+# =====  Stdlib  =====
+# I never use most of this stuff (maybe b/c it's out of the way?)
+# explain require
+# have require strscan
 
-p $stdout
+# ====  Input  =====
+# Java's scanner.nextLine() is Ruby's gets
+# Read all lines into array with readlines
+# Read everything until eof into a string with read
+# for more complicated usage, you can use strscan, 
