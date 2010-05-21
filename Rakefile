@@ -1,6 +1,6 @@
 def run_spec(chapter,problem)
   root_dir     = "ch#{chapter}"
-  problem_dir  =  ENV['solved'] && "#{root_dir}/solved/#{problem}" || Dir["#{root_dir}/challenge/#{problem}*"].first
+  problem_dir  =  ENV['solved'] && "#{root_dir}/solved/#{problem}.rb" || Dir["#{root_dir}/challenge/#{problem}*"].first
   
   sh "spec -cr #{problem_dir} #{root_dir}/specs/#{problem}.rb"
 end
