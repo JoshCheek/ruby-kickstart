@@ -57,7 +57,7 @@ task :default => get_chapters.map { |chapter| "#{chapter}:all" }
 
 desc 'create chapter skeleton'
 task :add_ch do
-  ch = "ch#{get_chapters.size.next}"
+  ch = "ch#{ENV['ch']||get_chapters.size.next}"
   makedirs 'challenge' , 'examples' , 'notes' , 'solved' , 'specs' , :path => ch
   touch "#{ch}/notes/josh.rb"
 end
