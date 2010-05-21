@@ -113,7 +113,7 @@
 
 # =====  Arithematic Operators  =====
 # behave the same as normal
-# have them complete challenge 1 , 2 , 3
+# have them complete challenge 1..4
 
 
 # =====  Strings  =====
