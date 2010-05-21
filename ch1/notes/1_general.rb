@@ -14,6 +14,7 @@
 # ===== Installation  =====
 # get Ruby installed on all their computers (1.9 if possible)
 # get their text editor / IDE set up to be able to work with Ruby without necessarily having to go to the command line
+# have them download this repo and put it in some directory to work in
 
 
 # =====  Conventions  =====
@@ -98,3 +99,10 @@
 # You _CAN_ store an object of one type in a variable of another type, because Ruby is dynamically typed
 # Ask them to come up with an example on their own to show this
 # then show example 2
+
+
+# =====  Arithematic Operators =====
+# behave the same as normal
+# have them complete challenge 1
+
+
