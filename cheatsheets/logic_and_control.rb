@@ -1,11 +1,11 @@
 # =====  General syntax of an if statement  =====
 def one_two_or_three(n)
   if n == 1
-    'one'
+    return 'one'
   elsif n == 2
-    'two'
+    return 'two'
   else
-    'three'
+    return 'three'
   end
 end
 
