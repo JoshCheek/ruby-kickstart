@@ -9,3 +9,7 @@
 
 def sum_limit( a , b )
 end
+
+
+# when you're done, try testing all of your solutions with
+#   $ rake 1:all
