@@ -14,6 +14,7 @@
 # ===== Installation  =====
 # get Ruby installed on all their computers (1.9 if possible)
 # get their text editor / IDE set up to be able to work with Ruby without necessarily having to go to the command line
+# install rspec
 # have them download this repo and put it in some directory to work in
 # show how to use ri
 # show where docs are
