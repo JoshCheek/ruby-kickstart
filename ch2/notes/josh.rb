@@ -15,8 +15,15 @@
 # explain require
 # have require strscan
 
+
 # ====  Input  =====
 # Java's scanner.nextLine() is Ruby's gets
 # Read all lines into array with readlines
 # Read everything until eof into a string with read
 # for more complicated usage, you can use strscan, 
+
+
+# ===== Arrays  =====
+# initializing with [ 1 , 2 , 3 , ... ]
+# iterating with ary.each { |e| ... }
+# 
