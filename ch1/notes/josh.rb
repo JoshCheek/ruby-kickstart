@@ -2,7 +2,7 @@
 
 # =====  Introduction to Ruby  =====
 # Origins of the Ruby Language:
-# Written By: Mats (Yukihiro Matsumoto)
+# Written By: Matz (Yukihiro Matsumoto)
 # First Public Release: 1995
 # Ruby is dynamic (interpreted), strongly typed (mostly), dynamically typed (known as duck typing)
 # Paradigms:
