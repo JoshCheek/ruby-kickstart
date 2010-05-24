@@ -109,7 +109,6 @@
 # true  = everything else
 # if ; elsif ; else ; end
 # expression if condition
-# ask them how to do challenge 2
 
 
 # =====  Arithematic Operators  =====
