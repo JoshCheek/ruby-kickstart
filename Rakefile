@@ -18,7 +18,7 @@ def run_spec(chapter,problem)
   else
     problem_dir = Dir["#{ch}/challenge/#{problem}*"].first
   end  
-  sh "spec -cr #{problem_dir} #{ch}/specs/#{problem}.rb"
+  sh "spec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"
 end
 
 
