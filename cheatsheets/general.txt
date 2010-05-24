@@ -1,0 +1,11 @@
+Terminal:
+  Make Directory:           mkdir directory_name
+  Change Directories:       cd directory_name
+  Go to Parent Directory:   cd ..
+  List Directory Contents:  ls
+  Print Working Directory:  pwd
+  Check for Program:        which program_name
+
+Ruby:
+  Run a Ruby Script:        ruby program_name.rb
+
