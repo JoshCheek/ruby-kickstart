@@ -3,6 +3,8 @@
 Array.new(2)                        # => [nil, nil]
 Array.new(5) { |i| i * 5 }          # => [0, 5, 10, 15, 20]
 Array.new(2) { Array.new(2) }       # => [[nil, nil], [nil, nil]]
+a = [ ]                             # => []
+a = Array.new                       # => []
 
 a = ['a','b','c']
 b = a.dup
@@ -66,7 +68,7 @@ ary       # => [-3, 0, 3, 3, 6, 8, 235]
 
 # you can sort based on your own criteria, your block must simply evaluate to -1 , 0 , or 1
 # This is the same as Java's compareTo method. We have a method like that already, our spaceship operator
-ary.sort! do |a,b|
+ary.sort! do |a,b| # !> shadowing outer local variable - b
   b <=> a
 end
 ary # => [235, 8, 6, 3, 3, 0, -3]
