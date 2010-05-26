@@ -7,4 +7,5 @@
 # string_yak("yak123ya")  # => "123ya"
 
 def string_yak(str)
+  str.gsub("yak", "")
 end

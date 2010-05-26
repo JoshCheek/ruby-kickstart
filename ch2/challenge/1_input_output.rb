@@ -5,5 +5,16 @@
 # and outputs their sum, difference, and product
 
 def sum_difference_product
-  # your code goes here
+  line = gets.split
+  
+  a = line[0]
+  b = line[1]
+  
+  a = a.to_i
+  b = b.to_i
+  
+  puts a + b
+  puts a - b
+  puts a * b
+  
 end

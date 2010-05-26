@@ -5,4 +5,11 @@
 # alt_pairs("CodingHorror") # => "Congrr"
 
 def alt_pairs(str)
+  return_string = ""
+  str.length.times do |i|
+    if i / 2 % 2 == 0
+      return_string += str[i..i]
+    end
+  end
+  return return_string
 end
