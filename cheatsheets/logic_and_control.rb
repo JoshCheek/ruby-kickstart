@@ -127,7 +127,7 @@ end
 ary # => [0, 2, 4, 6, 8]
 
 
-# break out of a loop
+  # break out of a loop
 ary = Array.new
 10.times do |i|
   break if i >= 5
