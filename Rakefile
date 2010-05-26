@@ -47,7 +47,7 @@ chapters_with_problems.each do |chapter,problems|
       desc "Test chapter#{chapter} problem#{problem}"
       task(problem) { run_spec chapter , problem }
     end
-    desc "Test all problems for chapter#{chapter}"
+    desc "Test chapter#{chapter} all problems"
     task :all => problems.to_a
   end
 end
