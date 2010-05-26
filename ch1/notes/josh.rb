@@ -2,7 +2,7 @@
 
 # =====  Introduction to Ruby  =====
 # Origins of the Ruby Language:
-# Written By: Mats (Yukihiro Matsumoto)
+# Written By: Matz (Yukihiro Matsumoto)
 # First Public Release: 1995
 # Ruby is dynamic (interpreted), strongly typed (mostly), dynamically typed (known as duck typing)
 # Paradigms:
@@ -16,7 +16,6 @@
 # get their text editor / IDE set up to be able to work with Ruby without necessarily having to go to the command line
 # install rspec
 # have them download this repo and put it in some directory to work in
-# show how to use ri
 # show where docs are
 
 
@@ -109,7 +108,6 @@
 # true  = everything else
 # if ; elsif ; else ; end
 # expression if condition
-# ask them how to do challenge 2
 
 
 # =====  Arithematic Operators  =====

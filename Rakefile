@@ -18,7 +18,8 @@ def run_spec(chapter,problem)
   else
     problem_dir = Dir["#{ch}/challenge/#{problem}*"].first
   end  
-  sh "spec -cr #{problem_dir} #{ch}/specs/#{problem}.rb"
+  sh "ruby -c #{problem_dir}"                                             # check syntax
+  sh "spec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
 end
 
 
@@ -46,7 +47,7 @@ chapters_with_problems.each do |chapter,problems|
       desc "Test chapter#{chapter} problem#{problem}"
       task(problem) { run_spec chapter , problem }
     end
-    desc "Test all problems for chapter#{chapter}"
+    desc "Test chapter#{chapter} all problems"
     task :all => problems.to_a
   end
 end

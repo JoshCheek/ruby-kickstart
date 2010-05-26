@@ -93,16 +93,16 @@ ary             # => [1, 2, 3]
 
 # removing items
 ary = Array(1..10)
-ary                         # => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ary                            # => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ary.delete 5
-ary                         # => [1, 2, 3, 4, 6, 7, 8, 9, 10]
-ary.reject { |i| i.even? }  # => [1, 3, 7, 9]
-ary                         # => [1, 2, 3, 4, 6, 7, 8, 9, 10]
-ary.reject! { |i| i.even? }
-ary                         # => [1, 3, 7, 9]
+ary                            # => [1, 2, 3, 4, 6, 7, 8, 9, 10]
+ary.reject { |i| i % 2 == 0 }  # => [1, 3, 7, 9]
+ary                            # => [1, 2, 3, 4, 6, 7, 8, 9, 10]
+ary.reject! { |i| i % 2 == 0 }
+ary                            # => [1, 3, 7, 9]
 
 ary = Array(1..10)
-ary.select { |i| i.even? }  # => [2, 4, 6, 8, 10]
+ary.select { |i| i % 2 == 0 }  # => [2, 4, 6, 8, 10]
 
 # checking for an object
 ary = Array(3..10)    # => [3, 4, 5, 6, 7, 8, 9, 10]

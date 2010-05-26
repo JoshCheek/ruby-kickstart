@@ -1,3 +1,10 @@
+# =====  Logical Operators  =====
+a , b , c = 1 , 2 , 3
+a == b && a == c          # logical and
+a == b || a == c          # logical or
+a == b ^ a == c           # logical exclusive or
+
+
 # =====  General syntax of an if statement  =====
 def one_two_or_three(n)
   if n == 1
