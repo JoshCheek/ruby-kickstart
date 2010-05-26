@@ -19,7 +19,7 @@ def run_spec(chapter,problem)
     problem_dir = Dir["#{ch}/challenge/#{problem}*"].first
   end  
   sh "ruby -c #{problem_dir}"                                             # check syntax
-  sh "spec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"    # run spec (c for colour, r to require the files)
+  sh "spec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
 end
 
 
