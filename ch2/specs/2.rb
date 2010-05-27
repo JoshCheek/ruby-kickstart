@@ -35,7 +35,7 @@ def hi_hi_goodbye_tester( inputs = Array.new )
   (!!output[BYE_REGEX]).should be_true
 end
 
-describe '2 input output control' do
+describe 'hi_hi_goodbye' do
   
   it 'should immediately quit if the first submission is bye' do
     hi_hi_goodbye_tester

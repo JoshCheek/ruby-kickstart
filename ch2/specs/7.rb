@@ -1,4 +1,4 @@
-describe '7 array' do
+describe 'have_three' do
   
   [
     [3, 1, 3, 1, 3]           , true  ,		    

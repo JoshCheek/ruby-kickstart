@@ -1,5 +1,4 @@
-
-describe '6 array' do
+describe 'zero_front' do
   [
     [1, 0, 0, 1]       , [0, 0, 1, 1]       ,
     [0, 1, 1, 0, 1]    , [0, 0, 1, 1, 1]    ,

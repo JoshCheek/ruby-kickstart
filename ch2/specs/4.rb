@@ -1,4 +1,4 @@
-describe '4 array' do
+describe 'make2' do
   
   it 'should return [4, 5] when given [4, 5] , [1, 2, 3]' do
     make2( [4,5] , [1,2,3] ).should == [4,5]

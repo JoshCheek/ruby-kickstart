@@ -8,7 +8,7 @@
 # make_ends( %w[the quick brown fox] )          # =>  ['the', 'fox']
 # make_ends( [/r/ , /e/ , /g/ , /e/ , /x/] )    # =>  [/r/, /x/]
 
-describe '3 array' do
+describe 'make_ends' do
   
   it 'should return [1,3] when given [1,2,3]' do
     make_ends([1,2,3]).should == [1,3]

@@ -1,6 +1,6 @@
 require File.join( File.dirname(__FILE__) , 'helper' )
 
-describe '1 input and output' do
+describe 'sum_difference_product' do
   [     9 ,     2 ,
         4 ,     9 ,
         8 ,     7 ,

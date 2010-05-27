@@ -1,4 +1,4 @@
-describe '5 array' do
+describe 'max_triple' do
   [
     [1, 2, 3]              , 3 ,     
     [1, 5, 3]              , 5 ,     
