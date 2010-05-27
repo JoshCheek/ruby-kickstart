@@ -1,16 +1,4 @@
-require 'stringio'
-
-def input_output(a,b)
-  ARGV.clear                            # fucking most annoying bug ever, why the fuck does $stdin.gets give a shit about ARGV?
-  stdout , stdin = $stdout , $stdin
-  $stdin  = StringIO.new "#{a} #{b}"
-  to_return = $stdout = StringIO.new
-  sum_difference_product
-  $stdout , $stdin = STDOUT , $stdin
-  to_return.rewind
-  to_return.read.split
-end
-
+require File.join( File.dirname(__FILE__) , 'helper' )
 
 describe '1 input and output' do
   [     9 ,     2 ,
@@ -44,7 +32,7 @@ describe '1 input and output' do
         0 ,     5 ,
   ].each_slice 2 do |a,b|
     it "should output #{a+b} , #{a-b} , #{a*b} when given #{a} , #{b}" do
-      input_output(a,b).should == [a+b , a-b , a*b].map { |n| n.to_s }
+      input_output("#{a} #{b}"){ sum_difference_product }.split.should == [a+b , a-b , a*b].map { |n| n.to_s }
     end
   end
 end
