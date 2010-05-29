@@ -12,3 +12,8 @@ h3. Chapters
 #* Basic IO
 #* Arrays
 #* Basic Classes
+# 
+#* Symbols
+#* Hashes
+#* Blocks
+#* Method Signatures
