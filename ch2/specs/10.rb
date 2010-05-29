@@ -1,4 +1,11 @@
-describe Person do
+describe 'Person' do
+  
+  it 'should be a class called Person' do
+    the_classes = Module.constants.map { |c| c.to_s }.grep('Person')
+    the_classes.first.should == 'Person'
+    the_classes.size.should == 1
+    Person.class.should == Class
+  end
   
   it 'should have a name getter' do
     jim = Person.new 'Jim' , 45
