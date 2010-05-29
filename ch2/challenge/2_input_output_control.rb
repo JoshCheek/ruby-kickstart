@@ -39,6 +39,5 @@ end
 
 
 
-# a little magic so that you can run your file, but it will still work for our tests
-# you can disregard it :)
-hi_hi_goodbye if $0 == __FILE__  
+
+hi_hi_goodbye if $0 == __FILE__  # a little magic so that you can run with "$ ruby 2_input_output_control.rb" but it will still work for our tests

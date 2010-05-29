@@ -1,3 +1,48 @@
+# overriding Rake method that displays tasks so that -T will dispaly in the correct order
+module Rake
+  class Application
+    def display_tasks_and_comments
+      displayable_tasks = tasks.select { |t| t.comment && t.name =~ options.show_task_pattern }.sort do 
+        |t1,t2| 
+        one_is_ch = t1.name[/^\d+:(\d+|all)$/]
+        two_is_ch = t2.name[/^\d+:(\d+|all)$/]
+        if one_is_ch && two_is_ch
+          ch1 , prb1 = t1.name.split ':'
+          ch2 , prb2 = t2.name.split ':'
+          if ch1 == ch2
+            if prb1 == 'all' then 1 elsif prb2 == 'all' then -1 else prb1.to_i <=> prb2.to_i end
+          else
+            ch1.to_i <=> ch2.to_i
+          end
+        elsif one_is_ch
+          -1
+        elsif two_is_ch
+          1
+        else
+          t1.name <=> t2.name
+        end
+      end
+      if options.full_description
+        displayable_tasks.each do |t|
+          puts "rake #{t.name_with_args}"
+          t.full_comment.split("\n").each do |line|
+            puts "    #{line}"
+          end
+          puts
+        end
+      else
+        width = displayable_tasks.collect { |t| t.name_with_args.length }.max || 10
+        max_column = truncate_output? ? terminal_width - name.size - width - 7 : nil
+        displayable_tasks.each do |t|
+          printf "#{name} %-#{width}s  # %s\n",
+            t.name_with_args, max_column ? truncate(t.comment, max_column) : t.comment
+        end
+      end
+    end
+  end
+end
+
+
 # overriding makedirs so that I can pass a path to make them from
 # pass the path in a hash at the end if desired
 # ie makedirs 'abc' , 'def' , :path => 'ghi'

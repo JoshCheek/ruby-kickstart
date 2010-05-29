@@ -19,11 +19,12 @@ paths_ary[0] # => "/usr/been"
 paths_ary[0] = "/usr/bin"
 
 
-# well, we aren't on Michael's computer, so lets reject them from the array
+# well, Unix won't know what to do with Windows style file paths, so lets reject them from the array
+# if the block is "true" then that element will be removed, so we just check the path for 'c:\\'
 paths_ary.reject! { |path| path['c:\\'] }
 
 
-# lets print each one of them out
+# lets display each one of the paths
 paths_ary.each do |path|
   puts path
 end
