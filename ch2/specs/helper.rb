@@ -1,6 +1,6 @@
 require 'stringio'
 
-def input_output(mock_stdin_with_this_str)
+def input_output( mock_stdin_with_this_str = String.new )
   ARGV.clear                            # fucking most annoying bug ever, why the fuck does $stdin.gets give a shit about ARGV?
   stdout , stdin = $stdout , $stdin
   $stdin  = StringIO.new mock_stdin_with_this_str

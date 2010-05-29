@@ -37,19 +37,25 @@
 #
 # Person would be a class
 # josh would be an instance of it. Other instances might be daniel, lissa, kevin, kris, and michael
-#
+
+
+# =====  Class and Instance Variables  =====
 # Instances have instance variables, a variable that is unique to each instance
-# they begin with an @
+# they begin with an @, and can be accessed from any instance method in the object
 @my_ivar = 'hi'
+instance_variables # => [:@my_ivar]
 
 # Variables that should be the same across all instances are called class variables (static variables in Java)
-# They begin with @@
+# They begin with @@, 
 @@my_class_var = 'hi'
+self.class.class_variables # => [:@@my_class_var]
 
 # You instantiate (create a new instance) a class with the new method
-Array.new # => []
+Array.new  # => []
 String.new # => ""
 
+
+# =====  Initializing An Object  =====
 # When the new method is invoked, the class creates the new variable, and calls the method "initialize" if it exists
 # You can then define how the instance is initialized by overriding this method. Any arguments you pass to the new method
 # will be passed in to the instance's initialize method
@@ -60,14 +66,15 @@ class Person
   end
 end
 josh = Person.new 'Josh Cheek' , 27
-josh  # => #<Person:0x00000100916a18 @name="Josh Cheek", @age=27>
+josh  # => #<Person:0x00000100914948 @name="Josh Cheek", @age=27>
 
 
+# =====  Setters and Getters  =====
 # All variables are private, this means that you can't access them directly, you must create a method to return them
 begin
   josh.name # => 
 rescue => e
-  e # => #<NoMethodError: undefined method `name' for #<Person:0x00000100916a18 @name="Josh Cheek", @age=27>>
+  e # => #<NoMethodError: undefined method `name' for #<Person:0x00000100914948 @name="Josh Cheek", @age=27>>
 end
 
 class Person
@@ -93,14 +100,33 @@ josh.name # => "Joshua Jay Cheek"
 
 
 # That pattern is pretty common, a variable, with a setter and getter named after it. It is so common that Ruby gives you some
-# black magic to make it easier. When you are defining a class's instance methods, you can say attr_accessor 'method_name' and
+# black magic to make it easier. When you are defining a class's instance methods, you can say attr_accessor :method_name and
 # it will create the setter and getter for you
 Person.instance_methods(false) # => [:name, :name=]
 class Person
-  attr_accessor 'age'
+  attr_accessor :age
 end
 Person.instance_methods(false) # => [:name, :name=, :age, :age=]
 josh.age = 28
-josh # => #<Person:0x00000100916a18 @name="Joshua Jay Cheek", @age=28>
+josh                           # => #<Person:0x00000100914948 @name="Joshua Jay Cheek", @age=28>
 
 # COMPLETE CHALLENGE 10
+
+
+# =====  Example of Difference Between Instance Variables and Class Variables  =====
+# Lets say we wanted to know what planet people are from. Well, that information is the same across every instance of Person
+# so we can keep it in a class variable
+class Person
+  @@planet = 'Earth'
+  def planet
+    return @@planet
+  end
+end
+kate = Person.new 'Kate Beckinsale' , 36
+kate.planet # => "Earth"
+josh.planet # => "Earth"
+kate.age    # => 36
+josh.age    # => 28
+
+Person.class_variables # => [:@@planet]
+josh.instance_variables # => [:@name, :@age]
