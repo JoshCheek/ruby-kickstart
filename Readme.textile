@@ -5,9 +5,9 @@ h2. Code and tests to help me teach Ruby to some friends
 h3. Chapters
 
 # 
-#* arithmetic
-#* logic
-#* string
+#* Arithmetic
+#* Logic
+#* String
 # 
 #* Basic IO
 #* Arrays
@@ -16,4 +16,4 @@ h3. Chapters
 #* Symbols
 #* Hashes
 #* Blocks
-#* Method Signatures
+#* Method Parameters
