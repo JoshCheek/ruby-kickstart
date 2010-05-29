@@ -10,18 +10,18 @@ class BeerSong
   
   def print_song
     beers.downto 1 do |i|
-      puts stanza(i)
+      print_stanza i
     end
   end
   
-  def stanza(n)
+  def print_stanza(n)
     if n.zero?
       String.new
     else
-      "#{translate n} #{bottle n} of beer on the wall,"       "\n"\
-      "#{translate n} #{bottle n} of beer,"                   "\n"\
-      "Take one down, pass it around,"                        "\n"\
-      "#{translate n - 1} #{bottle n-1} of beer on the wall."
+      puts "#{translate n} #{bottle n} of beer on the wall,"        ,
+           "#{translate n} #{bottle n} of beer,"                    ,
+           "Take one down, pass it around,"                         ,
+           "#{translate n - 1} #{bottle n-1} of beer on the wall."
     end
   end
 
