@@ -1,11 +1,14 @@
 *CURRENTLY INCOMPLETE, PLACING ON GITHUB SO I CAN COLLABORATE WITH A FRIEND*
 
-h2. Told a friend I could teach her everything she learned in her Java class... in Ruby, in a week.
+h2. Code and tests to help me teach Ruby to some friends
 
-Initially, I was going to try to follow the Java book: *Absolute Java* by Walter Savitch
-(I have the 3rd edition, b/c I took it a few years ago -- btw, this is a fantastic book if you are new to programming, I gave it 10 stars on Amazon)
+h3. Chapters
 
-However, I found that it was causing me to get caught up in details that I feel will become obvious with use. So, instead, I am going to write this based off notes I took while I was learning Ruby.
-
-
-# Introduction and basics
+# 
+#* arithmetic
+#* logic
+#* string
+# 
+#* Basic IO
+#* Arrays
+#* Basic Classes
