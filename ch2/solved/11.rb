@@ -5,7 +5,7 @@ class BeerSong
   def initialize(beers)
     beers = 0  if beers < 0
     beers = 99 if beers > 99
-    self.beers = if beers
+    self.beers = beers
   end
   
   def print_song
