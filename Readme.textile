@@ -15,5 +15,5 @@ h3. Chapters
 # 
 #* Symbols
 #* Hashes
-#* Blocks
+#* Blocks / Procs
 #* Method Parameters

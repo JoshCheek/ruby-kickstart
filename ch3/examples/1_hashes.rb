@@ -1,0 +1,48 @@
+class HTMLTag
+  
+  FONTS = { 
+    :serif        => '"Times New Roman", "Georgia"'     ,
+    :sans_serif   => '"Arial", "Verdana"'               ,
+    :monospace    => '"Courier New", "Lucida Console"' 
+  }
+  
+  attr_accessor :name , :innerHTML , :options
+  
+  # options: :color , :multiline
+  def initialize(name,innerHTML,options)
+    @name , @innerHTML , @options = name , innerHTML , options
+  end
+  
+  def font
+    font = options[:font]  #  one of :serif , :sans_serif , or :monospace
+    FONTS[font]
+  end
+
+  def style
+    return nil unless options[:font]
+    "style='font-family:#{font}'"
+  end
+  
+  def to_s
+    line_end = if options[:multiline] then "\n" else "" end
+    "<#{name} #{style}>#{line_end}"  \
+    "#{innerHTML.chomp}#{line_end}"  \
+    "</#{name}>\n"
+  end
+  
+end
+
+
+# let us create a list of sports we like
+# they will have no options
+sports = [
+  HTMLTag.new( 'li' , 'baseball' , { :multiline => false } ) ,
+  HTMLTag.new( 'li' , 'soccer'   , { :multiline => false } ) ,
+  HTMLTag.new( 'li' , 'football' , { :multiline => false } ) ,
+]
+
+# remember, join will convert each element in the Array to a string
+ordered_list = HTMLTag.new 'ol' , sports.join , { :font => :sans_serif , :multiline => true }
+
+# puts will also convert the tag to a string by invoking the to_s method
+puts ordered_list
