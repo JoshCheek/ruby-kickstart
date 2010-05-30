@@ -66,7 +66,7 @@ class Person
   end
 end
 josh = Person.new 'Josh Cheek' , 27
-josh  # => #<Person:0x100186248 @name="Josh Cheek", @age=27>
+josh  # => #<Person:0x1001862c0 @name="Josh Cheek", @age=27>
 
 
 # =====  Setters and Getters  =====
@@ -74,7 +74,7 @@ josh  # => #<Person:0x100186248 @name="Josh Cheek", @age=27>
 begin
   josh.name # => 
 rescue => e
-  e # => #<NoMethodError: undefined method `name' for #<Person:0x100186248 @name="Josh Cheek", @age=27>>
+  e # => #<NoMethodError: undefined method `name' for #<Person:0x1001862c0 @name="Josh Cheek", @age=27>>
 end
 
 class Person
@@ -106,9 +106,9 @@ Person.instance_methods(false) # => ["name=", "name"]
 class Person
   attr_accessor :age
 end
-Person.instance_methods(false) # => ["name=", "age", "age=", "name"]
+Person.instance_methods(false) # => ["name=", "name", "age=", "age"]
 josh.age = 28
-josh                           # => #<Person:0x100186248 @name="Joshua Jay Cheek", @age=28>
+josh                           # => #<Person:0x1001862c0 @name="Joshua Jay Cheek", @age=28>
 
 # COMPLETE CHALLENGE 10
 
