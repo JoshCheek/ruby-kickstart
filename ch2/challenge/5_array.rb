@@ -14,4 +14,6 @@
 # max_triple( [2, 2, 5, 1, 1]        ) # => 5
 
 def max_triple( ary )
+  first, last, middle = ary.first, ary.last, ary[(ary.length / 2)]
+  return [first, last, middle].max
 end
