@@ -12,7 +12,7 @@
 def zero_front( ary )
   ary.sort! do |a,b|
     if a == 0
-      -1
+     -1
     elsif a == b
       0
     else
