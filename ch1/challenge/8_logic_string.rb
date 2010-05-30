@@ -8,9 +8,6 @@
 # sum_limit(8, 1) # =>  9
 
 def sum_limit( a , b )
-  sum = a + b
-  return sum if sum.to_s.length == a.to_s.length
-  a
 end
 
 

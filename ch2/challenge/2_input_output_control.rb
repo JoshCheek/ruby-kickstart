@@ -20,14 +20,20 @@
 # and when you think it is correct, you can test it with  $ rake 2:2
 
 def hi_hi_goodbye
-  puts "Enter a number"
+
+
+  
+  puts "Hello, start typing!"
 
   while line = gets
-    line.chomp!
-    break if line == 'bye'
-    puts ("hi " * line.to_i).chomp(" "), "Enter a number"
+    puts "You submitted #{line.inspect}"
+    break if line.chomp == 'exit'
   end
+
   puts "Goodbye!"
+  
+  
+  
 end
 
 

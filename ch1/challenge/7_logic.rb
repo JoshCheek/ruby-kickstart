@@ -13,15 +13,4 @@
 # caught_speeding(65, true)  # => 0
 
 def caught_speeding( speed , is_birthday )
-  if is_birthday
-    extra_speed = 5
-  else
-    extra_speed = 0
-  end
-  
-  return 0 if speed <= (60 + extra_speed)
-  return 1 if ((speed >= (61 + extra_speed)) && (speed <= (80 + extra_speed)))
-  2
 end
-
-

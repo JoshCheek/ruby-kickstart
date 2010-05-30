@@ -18,8 +18,6 @@ class Person
     @age  = age
   end
   
-  def birthday
-    @age += 1
-  end
+  # your code goes here
   
 end

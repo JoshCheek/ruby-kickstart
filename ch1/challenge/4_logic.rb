@@ -5,15 +5,4 @@
 # has_teen(20, 10, 13) # => true
 
 def has_teen( a , b , c )
-  if (a >= 13 && a <= 19)
-    return true 
-  end
-  if (b >= 13 && b <= 19) 
-    return true 
-  end
-  if (c >= 13 && c <= 19) 
-    return true 
-  end
-  
-  return false
 end

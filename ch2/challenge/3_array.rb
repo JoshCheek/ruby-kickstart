@@ -9,5 +9,4 @@
 # make_ends( [/r/ , /e/ , /g/ , /e/ , /x/] )    # =>  [/r/, /x/]
 
 def make_ends(ary)
-  [ary[0], ary[-1]] if ary
 end
