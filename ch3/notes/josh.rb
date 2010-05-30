@@ -16,8 +16,8 @@
 :this_is_a_symbol.object_id # => 212668
 
 # whereas each String is a new object, notice they have different object ids
-'this is a string'.object_id # => 2148258700
-'this is a string'.object_id # => 2148257720
+'this is a string'.object_id # => 2148219000
+'this is a string'.object_id # => 2148218020
 
 # this makes them easy to test equality, for a symbol you just check if it is the same object
 # for a String, you must check that each character is the same character (iterate through the entire string)
@@ -140,20 +140,87 @@ block_caller { |str| str.upcase + ' and modified by the block' } # => "PASSED FR
 # =====  Procs  =====
 # procs are basically the same thing as blocks, but you have to explicitly create them
 fav_number_proc = proc { my_favourite_number }
-fav_number_proc         # => #<Proc:0x0000000100181ab8@-:141>
+fav_number_proc         # => #<Proc:0x0000000100181a90@-:142>
 fav_number_proc.call    # => 12
 
 # there are several different ways to create them, with sublte binding differences
 # I have found that the proc method is the best, but you can also do
-Proc.new { }  # => #<Proc:0x0000000000000000@-:147>
-lambda { }    # => #<Proc:0x0000000000000000@-:148>
-proc { }      # => #<Proc:0x0000000000000000@-:149>
+Proc.new { }  # => #<Proc:0x0000000000000000@-:148>
+lambda { }    # => #<Proc:0x0000000000000000@-:149>
+proc { }      # => #<Proc:0x0000000000000000@-:150>
 
 # they are useful, because you can assign them to variables and pass them as arguments
 # to use a block in that way, you can convert it to a proc
 
 
 
-# =====  Method Parameters  =====
-# **********FILL ME OUT ******************
+# =====  Optional Arguments (default values)  =====
+# you have already seen ordinal arguments, they have a name and are mandatory
+# but you can make them optional by giving them an equal sign, and listing a default value
+def same_case( str , upcase = true )
+  return str.upcase if upcase
+  str.downcase
+end
+
+same_case 'UPPER lower'          # => "UPPER LOWER"
+same_case 'UPPER lower' , false  # => "upper lower"
+
+
+# optional arguments must go to the right of ordinal arguments, and are filled in from the left
+def what_are_filled_in( a=5 , b=4 , c=3 , d=2 , e=1 )
+  "#{a} #{b} #{c} #{d} #{e}"
+end
+
+what_are_filled_in                         # => "5 4 3 2 1"
+what_are_filled_in :A                      # => "A 4 3 2 1"
+what_are_filled_in :A , :B                 # => "A B 3 2 1"
+what_are_filled_in :A , :B , :C            # => "A B C 2 1"
+what_are_filled_in :A , :B , :C , :D       # => "A B C D 1"
+what_are_filled_in :A , :B , :C , :D , :E  # => "A B C D E"
+
+
+# =====  Variable Length Arguments  =====
+# you can take a variable length of arguments. To do this, you use '*' before the argument
+# it must be the last param (in 1.8, but in 1.9 you can place other arguments after it, which is really fucking convenient)
+def variable_length( *args )
+  return args
+end
+variable_length :abc , :def , 'ghi' , /jkl/ , 1 , 2 # => [:abc, :def, "ghi", /jkl/, 1, 2]
+
+# how might we use it?
+def minimum( *numbers )
+  min = numbers.first
+  numbers.each { |number| min = number if number < min }
+  min
+end
+minimum 2 , 1                 # => 1
+minimum 2 , 1 , 5 , -3 , 16   # => -3
+
+
+# =====  Hash Arguments  =====
+# In example 1, we saw how we might pass a hash of arguments to an Array but the syntax was really ugly.
+# Fortunately, people like to do this enough that some syntactic sugar was added. 
+# You can now place hash arguments at the end of your regular list, and they will be collected into the last argument
+
+def same_case( str , options = Hash.new ) # !> method redefined; discarding old same_case
+  return str.upcase if options[:upcase] || !options[:downcase]
+  str.downcase
+end
+same_case 'UPPER lower'                       # => "UPPER LOWER"
+same_case 'UPPER lower' , :upcase   => false  # => "UPPER LOWER"
+same_case 'UPPER lower' , :downcase => true   # => "upper lower"
+same_case 'UPPER lower' , :downcase => false  # => "UPPER LOWER"
+same_case 'UPPER lower' , :upcase   => true   # => "UPPER LOWER"
+
+
+# =====  Block Arguments  =====
+# When a block is passed to an argument, it goes into a special spot just for it
+# we can check if it is there with block_given? and we can invoke it with yield
+# There are examples of this above
+# Or, we can convert it to a Proc, then it is in an object that we can pass around
+# to convert it to a proc, we use & on the last argument in the list. This is the one argument
+# in 1.8 that can go after a variable length array
+# see example 2
+
+
 

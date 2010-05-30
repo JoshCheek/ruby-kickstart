@@ -8,7 +8,7 @@ class HTMLTag
   
   attr_accessor :name , :innerHTML , :options
   
-  # options: :color , :multiline
+  # options: :multiline should be true or false
   def initialize(name,innerHTML,options)
     @name , @innerHTML , @options = name , innerHTML , options
   end
@@ -24,6 +24,7 @@ class HTMLTag
   end
   
   def to_s
+    # remember, if options[:multiline] doesn't exist, it will return nil, and nil is false
     line_end = if options[:multiline] then "\n" else "" end
     "<#{name} #{style}>#{line_end}"  \
     "#{innerHTML.chomp}#{line_end}"  \
