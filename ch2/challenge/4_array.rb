@@ -16,4 +16,14 @@
 # make2(  [5, 4]    , [2, 3, 7]   ) # => [5, 4]
 
 def make2( a , b )
+  ary = []
+  
+  a.each do |element|
+    ary << element if ary.length < 2
+  end
+  
+  b.each do |element|
+    ary << element if ary.length < 2
+  end
+  ary
 end
