@@ -14,8 +14,8 @@
 
 # ====  Input  =====
 # Java's scanner.nextLine() is Ruby's gets
-# Read all lines into array with readlines
-# Read everything until eof into a string with read
+# You can read all lines into array with readlines
+# You can read everything until eof into a string with read
 # for more complicated usage, you can use strscan, its in the stdlib (I never use it)
 
 
