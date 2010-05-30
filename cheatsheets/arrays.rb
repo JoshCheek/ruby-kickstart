@@ -9,7 +9,6 @@ ary = Array.new                     # => []
 %w(this that, and the other)        # => ["this", "that,", "and", "the", "other"]
 
 
-
 # =====  Accessing and assigning  =====
 ary = %w(ruby python perl php javascript c)
 ary[0]                # => "ruby"
@@ -172,4 +171,16 @@ b = %w(one two three)
 [ a , b ].transpose             # => [[1, "one"], [2, "two"], [3, "three"]]
 a.zip b                         # => [[1, "one"], [2, "two"], [3, "three"]]
   
+  # assigning to variables
+a = [1,2,3]
+num1 , num2 , num3 = a
+num1                            # => 1
+num2                            # => 2
+num3                            # => 3
 
+  # "removing" the brackets to feed as arguments
+def sum( x , y , z )
+  x + y + z
+end
+a = [1,2,3]
+sum(*a)                         # => 6
