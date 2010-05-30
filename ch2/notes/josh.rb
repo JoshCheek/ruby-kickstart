@@ -128,5 +128,5 @@ josh.planet # => "Earth"
 kate.age    # => 36
 josh.age    # => 28
 
-Person.class_variables # => ["@@planet", "@@my_class_var"]
+Person.class_variables  # => ["@@planet", "@@my_class_var"]
 josh.instance_variables # => ["@name", "@age"]

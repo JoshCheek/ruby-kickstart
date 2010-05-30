@@ -32,7 +32,9 @@ describe 'sum_difference_product' do
         0 ,     5 ,
   ].each_slice 2 do |a,b|
     it "should output #{a+b} , #{a-b} , #{a*b} when given #{a} , #{b}" do
-      input_output("#{a} #{b}"){ sum_difference_product }.split.should == [a+b , a-b , a*b].map { |n| n.to_s }
+      [a+b , a-b , a*b].map { |n| n.to_s }.each do |result|
+        input_output("#{a} #{b}"){ sum_difference_product }[result].should == result
+      end
     end
   end
 end
