@@ -22,7 +22,7 @@
 # lissa.username                  # => "QTSort"
 # lissa.blogs                     # => []
 #
-# lissa.add_blog Date.parse("2010-05-28") , "Sailor Venus is my favourite"
+# lissa.add_blog Date.parse("2010-05-28") , "Sailor Mars is my favourite"
 # lissa.blogs                     # => [ blog1 ]
 # 
 # blog1 = lissa.blogs.first

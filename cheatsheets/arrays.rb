@@ -146,6 +146,10 @@ ary.map { |num| %w(zero one two three)[num] }   # => ["zero", "one", "one", "one
   # difference
 [1,2,3,4] - [3,5]               # => [1, 2, 4]
 
+  # max and min
+[3, 4, 13, 2, -3, 7].max        # => 13
+[3, 4, 13, 2, -3, 7].min        # => -3
+
   # union
 [1,3,4] & [0,3,4,5]             # => [3, 4]
 
@@ -167,4 +171,5 @@ a = [1,2,3]
 b = %w(one two three)
 [ a , b ].transpose             # => [[1, "one"], [2, "two"], [3, "three"]]
 a.zip b                         # => [[1, "one"], [2, "two"], [3, "three"]]
+  
 
