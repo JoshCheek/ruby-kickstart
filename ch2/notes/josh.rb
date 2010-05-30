@@ -33,7 +33,7 @@
 # "hello" is an instance of String
 # "boats" is an instance of String
 #
-# BaseBallTeam would be a class, and yankees would be an instance of of it
+# Between "yankees" and "baseball team" which is a class and which is an instance? Ask for another instance.
 #
 # Person would be a class
 # josh would be an instance of it. Other instances might be daniel, lissa, kevin, kris, and michael
