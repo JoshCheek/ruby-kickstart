@@ -40,7 +40,7 @@
 
 
 # =====  Class and Instance Variables  =====
-# Instances have instance variables, a variable that is unique to each instance
+# Instances have instance variables, a variable that is unique to each instance (for Person, an instance variable might be @name)
 # they begin with an @, and can be accessed from any instance method in the object
 @my_ivar = 'hi'
 instance_variables # => [:@my_ivar]
