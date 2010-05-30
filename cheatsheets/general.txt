@@ -1,15 +1,16 @@
 Terminal:
-  Make Directory:             mkdir directory_name
-  Change Directories:         cd directory_name
-  Go to Parent Directory:     cd ..
-  List Directory Contents:    ls -l
-  Print Working Directory:    pwd
-  Check for Program:          which program_name
-  Display Contents of File:   cat file_name
+  Make Directory:                 mkdir directory_name
+  Change Directories:             cd directory_name
+  Go to Parent Directory:         cd ..
+  List Directory Contents:        ls -l
+  Print Working Directory:        pwd
+  Check for Program:              which program_name
+  Display Contents of File:       cat file_name
 
 Ruby:
-  Run a Ruby Script:          ruby program_name.rb
-  See Command Line Options:   ruby -h
-  Install a Gem:              [sudo] gem install gem_name
-  See All Rake Tasks:         rake -T
+  Run a Ruby Script:              ruby program_name.rb
+  See Command Line Options:       ruby -h
+  Install a Gem:                  [sudo] gem install gem_name
+  See All Rake Tasks:             rake -T
+  See All Rake Tasks For Ch 2:    rake -T ^2
   
