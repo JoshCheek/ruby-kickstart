@@ -9,6 +9,7 @@ Terminal:
 
 Ruby:
   Run a Ruby Script:              ruby program_name.rb
+  Stop a Ruby Script:             Control + c
   See Command Line Options:       ruby -h
   Install a Gem:                  [sudo] gem install gem_name
   See All Rake Tasks:             rake -T
