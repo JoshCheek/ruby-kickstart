@@ -56,7 +56,7 @@ String.new # => ""
 
 
 # =====  Initializing An Object  =====
-# When the new method is invoked, the class creates the new variable, and calls the method "initialize" if it exists
+# When the new method is invoked, the class creates the new variable, and calls the method "initialize"
 # You can then define how the instance is initialized by overriding this method. Any arguments you pass to the new method
 # will be passed in to the instance's initialize method
 class Person
