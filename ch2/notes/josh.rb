@@ -43,12 +43,12 @@
 # Instances have instance variables, a variable that is unique to each instance (for Person, an instance variable might be @name)
 # they begin with an @, and can be accessed from any instance method in the object
 @my_ivar = 'hi'
-instance_variables # => [:@my_ivar]
+instance_variables # => ["@my_ivar"]
 
 # Variables that should be the same across all instances are called class variables (static variables in Java)
 # They begin with @@, 
 @@my_class_var = 'hi'
-self.class.class_variables # => [:@@my_class_var]
+self.class.class_variables # => ["@@my_class_var"]
 
 # You instantiate (create a new instance) a class with the new method
 Array.new  # => []
@@ -66,7 +66,7 @@ class Person
   end
 end
 josh = Person.new 'Josh Cheek' , 27
-josh  # => #<Person:0x00000100914948 @name="Josh Cheek", @age=27>
+josh  # => #<Person:0x100186248 @name="Josh Cheek", @age=27>
 
 
 # =====  Setters and Getters  =====
@@ -74,7 +74,7 @@ josh  # => #<Person:0x00000100914948 @name="Josh Cheek", @age=27>
 begin
   josh.name # => 
 rescue => e
-  e # => #<NoMethodError: undefined method `name' for #<Person:0x00000100914948 @name="Josh Cheek", @age=27>>
+  e # => #<NoMethodError: undefined method `name' for #<Person:0x100186248 @name="Josh Cheek", @age=27>>
 end
 
 class Person
@@ -100,15 +100,15 @@ josh.name # => "Joshua Jay Cheek"
 
 
 # That pattern is pretty common, a variable, with a setter and getter named after it. It is so common that Ruby gives you some
-# black magic to make it easier. When you are defining a class's instance methods, you can say attr_accessor :method_name and
-# it will create the setter and getter for you
-Person.instance_methods(false) # => [:name, :name=]
+# black magic to make it easier. When you are defining a class's instance methods, you can say attr_accessor :method_name
+# and it will create the setter and getter for you
+Person.instance_methods(false) # => ["name=", "name"]
 class Person
   attr_accessor :age
 end
-Person.instance_methods(false) # => [:name, :name=, :age, :age=]
+Person.instance_methods(false) # => ["name=", "age", "age=", "name"]
 josh.age = 28
-josh                           # => #<Person:0x00000100914948 @name="Joshua Jay Cheek", @age=28>
+josh                           # => #<Person:0x100186248 @name="Joshua Jay Cheek", @age=28>
 
 # COMPLETE CHALLENGE 10
 
@@ -128,5 +128,5 @@ josh.planet # => "Earth"
 kate.age    # => 36
 josh.age    # => 28
 
-Person.class_variables # => [:@@planet]
-josh.instance_variables # => [:@name, :@age]
+Person.class_variables # => ["@@planet", "@@my_class_var"]
+josh.instance_variables # => ["@name", "@age"]
