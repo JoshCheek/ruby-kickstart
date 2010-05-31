@@ -56,7 +56,7 @@ String.new # => ""
 
 
 # =====  Initializing An Object  =====
-# When the new method is invoked, the class creates the new variable, and calls the method "initialize"
+# When the new method is invoked, the class creates the new instance, and calls the method "initialize"
 # You can then define how the instance is initialized by overriding this method. Any arguments you pass to the new method
 # will be passed in to the instance's initialize method
 class Person
@@ -66,15 +66,15 @@ class Person
   end
 end
 josh = Person.new 'Josh Cheek' , 27
-josh  # => #<Person:0x1001862c0 @name="Josh Cheek", @age=27>
+josh  # => #<Person:0x100185258 @name="Josh Cheek", @age=27>
 
 
 # =====  Setters and Getters  =====
-# All variables are private, this means that you can't access them directly, you must create a method to return them
+# All instance variables are private, this means that you can't access them directly, you must create a method to return them
 begin
   josh.name # => 
 rescue => e
-  e # => #<NoMethodError: undefined method `name' for #<Person:0x1001862c0 @name="Josh Cheek", @age=27>>
+  e # => #<NoMethodError: undefined method `name' for #<Person:0x100185258 @name="Josh Cheek", @age=27>>
 end
 
 class Person
@@ -106,9 +106,10 @@ Person.instance_methods(false) # => ["name=", "name"]
 class Person
   attr_accessor :age
 end
-Person.instance_methods(false) # => ["name=", "name", "age=", "age"]
+Person.instance_methods(false) # => ["name=", "age", "age=", "name"]
+josh                           # => #<Person:0x100185258 @name="Joshua Jay Cheek", @age=27>
 josh.age = 28
-josh                           # => #<Person:0x1001862c0 @name="Joshua Jay Cheek", @age=28>
+josh                           # => #<Person:0x100185258 @name="Joshua Jay Cheek", @age=28>
 
 # COMPLETE CHALLENGE 10
 
