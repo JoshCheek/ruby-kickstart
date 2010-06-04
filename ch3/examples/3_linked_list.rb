@@ -1,5 +1,7 @@
 class LinkedList
   
+  # a nested class, from the outside we can access it with LinkedList::Node
+  # from inside, of LinkedList, we can just say Node
   class Node
     attr_accessor :next , :data
     def initialize( options = Hash.new )
@@ -35,9 +37,12 @@ class LinkedList
     end
     self.first_node = first_node.next if block[first_node]
   end
-  
+
 private
 
+  # we are making these methods private, because they are for internal implementation
+  # we don't want outside users to have to worry about our implementation (encapsulation)
+  # really, the Node class should go in here as well, but then I couldn't have told you about LinkedList::Node :)
   attr_accessor :first_node
   
   def each_node
