@@ -12,12 +12,12 @@
 # and used internally in Ruby to refer to things like method names
 
 # every instance of the symbol is the same object, notice they have the same object id
-:this_is_a_symbol.object_id # => 212668
-:this_is_a_symbol.object_id # => 212668
+:this_is_a_symbol.object_id # => 213148
+:this_is_a_symbol.object_id # => 213148
 
 # whereas each String is a new object, notice they have different object ids
-'this is a string'.object_id # => 2148219000
-'this is a string'.object_id # => 2148218020
+'this is a string'.object_id # => 2148071780
+'this is a string'.object_id # => 2148070680
 
 # this makes them easy to test equality, for a symbol you just check if it is the same object
 # for a String, you must check that each character is the same character (iterate through the entire string)
@@ -42,11 +42,21 @@ hash                      # => {:number=>12, :colour=>"black"}
 hash[:number]             # => 12
 hash[:colour]             # => "black"
 
-# symbols are commonly used as keys because of their efficiency, but you can use any object you like
+# symbols are commonly used as keys because of their efficiency, but you can use any object you like, including your own objects
+
+class Person
+  def initialize(name)
+    @name = name
+  end
+end
+
+josh = Person.new "Josh"
+
 hash[0]        =  'zero'
 hash['nine']   =  9
+hash[josh]     =  'ruby'
 hash[/regex/]  =  %w(array of strings)
-hash                      # => {0=>"zero", /regex/=>["array", "of", "strings"], "nine"=>9, :number=>12, :colour=>"black"}
+hash                      # => {0=>"zero", :number=>12, /regex/=>["array", "of", "strings"], :colour=>"black", #<Person:0x10011c528 @name="Josh">=>"ruby", "nine"=>9}
 
 # you can change a value by changing it's key
 hash[:number]             # => 12
@@ -59,11 +69,10 @@ hash[:number] = 13        # => 13
 { :number => 12 , :colour => 'black' } # => {:number=>12, :colour=>"black"}
 
 # hashes return nil if the key does not exist
-hash['josh'] # => nil
+hash['kevin'] # => nil
 
 
 # check out example 1
-
 
 
 # =====  Blocks  =====
@@ -86,6 +95,7 @@ ary # => [12, 8, 4]
 def times_two(num)
   num * 2
 end
+
 ary.map do |num|
   num * 2
 end
@@ -97,6 +107,7 @@ my_favourite_number = 12
 
 ary.map { my_favourite_number } # => [12, 12, 12]
 
+# But a method can't see its containing scope
 def as_method
   my_favourite_number
 end
@@ -140,14 +151,14 @@ block_caller { |str| str.upcase + ' and modified by the block' } # => "PASSED FR
 # =====  Procs  =====
 # procs are basically the same thing as blocks, but you have to explicitly create them
 fav_number_proc = proc { my_favourite_number }
-fav_number_proc         # => #<Proc:0x0000000100181a90@-:142>
+fav_number_proc         # => #<Proc:0x000000010013b1d0@-:153>
 fav_number_proc.call    # => 12
 
 # there are several different ways to create them, with sublte binding differences
 # I have found that the proc method is the best, but you can also do
-Proc.new { }  # => #<Proc:0x0000000000000000@-:148>
-lambda { }    # => #<Proc:0x0000000000000000@-:149>
-proc { }      # => #<Proc:0x0000000000000000@-:150>
+Proc.new { }  # => #<Proc:0x0000000000000000@-:159>
+lambda { }    # => #<Proc:0x0000000000000000@-:160>
+proc { }      # => #<Proc:0x0000000000000000@-:161>
 
 # they are useful, because you can assign them to variables and pass them as arguments
 # to use a block in that way, you can convert it to a proc
@@ -193,6 +204,7 @@ def minimum( *numbers )
   numbers.each { |number| min = number if number < min }
   min
 end
+
 minimum 2 , 1                 # => 1
 minimum 2 , 1 , 5 , -3 , 16   # => -3
 
