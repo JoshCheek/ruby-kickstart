@@ -20,7 +20,7 @@ artist = Person.new do |person|
 end
 
 artist.name           # => "Prince"
-artist.name = 'The Artist Formarly Known As Prince'
+artist.name = 'The Artist Formerly Known As Prince'
 artist.name          # => "The Artist Formarly Known As Prince"
 artist.reinit
 artist.name          # => "Prince"
