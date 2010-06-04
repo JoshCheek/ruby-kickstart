@@ -10,5 +10,14 @@
 # zero_front( [1, 0]            ) # => [0, 1]
 
 def zero_front( ary )
-  ary.select { |e| e == 0 } + ary.reject { |e| e == 0 }
+  ary.sort! do |a,b|
+    if a == 0
+     -1
+    elsif a == b
+      0
+    else
+      1
+    end
+  end
+  ary
 end
