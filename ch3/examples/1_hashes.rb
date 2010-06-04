@@ -38,12 +38,21 @@ end
 # they will have no options
 sports = [
   HTMLTag.new( 'li' , 'baseball' , { :multiline => false } ) ,
-  HTMLTag.new( 'li' , 'soccer'   , { :multiline => false } ) ,
+  HTMLTag.new( 'li' , 'soccer'   , {} ) ,
   HTMLTag.new( 'li' , 'football' , { :multiline => false } ) ,
 ]
 
-# remember, join will convert each element in the Array to a string
+# join will use the to_s method of each object in the Array to convert it into a string
+
+sports[0].to_s # => "<li >baseball</li>\n"
+
+# let's turn the entire array of list elements into the inner HTML for an ordered list tag
 ordered_list = HTMLTag.new 'ol' , sports.join , { :font => :sans_serif , :multiline => true }
 
 # puts will also convert the tag to a string by invoking the to_s method
 puts ordered_list
+# >> <ol style='font-family:"Arial", "Verdana"'>
+# >> <li >baseball</li>
+# >> <li >soccer</li>
+# >> <li >football</li>
+# >> </ol>
