@@ -15,3 +15,9 @@ Ruby:
   See All Rake Tasks:             rake -T
   See All Rake Tasks For Ch 2:    rake -T ^2
   
+git:
+  pull down most recent code:     
+    git add -A
+    git commit -m "getting ready to pull"
+    git pull origin master
+    ( if there is a problem, call me and I'll walk you through it )
