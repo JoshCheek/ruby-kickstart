@@ -48,8 +48,8 @@ sports = [
 ]
 
 # join will use the to_s method of each object in the Array to convert it into a string
-
-sports[0].to_s # => "<li >baseball</li>\n"
+sports[0].to_s    # => "<li >baseball</li>\n"
+sports.join       # => "<li >baseball</li>\n<li >soccer</li>\n<li >football</li>\n"
 
 # let's turn the entire array of list elements into the inner HTML for an ordered list tag
 ordered_list = HTMLTag.new 'ol' , sports.join , { :font => :sans_serif , :multiline => true }
