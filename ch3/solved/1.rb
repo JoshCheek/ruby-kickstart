@@ -37,25 +37,18 @@ class HTMLTag
     :blue   =>  '#0000FF' ,
   }
   
-  attr_accessor :name , :innerHTML , :options
+  attr_accessor :name , :innerHTML , :font , :color , :multiline
   
   # options: :multiline should be true or false
   def initialize( name , innerHTML , options = Hash.new )
-    @name , @innerHTML , @options = name , innerHTML , options
+    @name , @innerHTML = name , innerHTML
+    self.font       = FONTS[  options[:font]  ]
+    self.color      = COLORS[ options[:color] ]
+    self.multiline  = options.fetch :multiline  , false
   end
   
-  def font
-    font = options[:font]  #  one of :serif , :sans_serif , or :monospace
-    FONTS[font]
-  end
-
-  def color
-    color = options[:color]
-    COLORS[color]
-  end
-
   def style
-    return nil unless options[:font] || options[:color]
+    return nil unless font || color
     to_return = "style='"
     to_return << "font-family:#{font};"   if font
     to_return << "color:#{color};"        if color
@@ -65,7 +58,7 @@ class HTMLTag
   
   def to_s
     # remember, if options[:multiline] doesn't exist, it will return nil, and nil is false
-    line_end = if options[:multiline] then "\n" else "" end
+    line_end = if multiline then "\n" else "" end
     "<#{name} #{style}>#{line_end}"  \
     "#{innerHTML.chomp}#{line_end}"  \
     "</#{name}>\n"

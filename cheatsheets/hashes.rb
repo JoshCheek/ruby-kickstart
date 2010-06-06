@@ -25,12 +25,120 @@ aliases         # => {:josh=>[]}
 aliases[:jeff] << 'the dude' << 'his dudeness' << 'duder' << 'el duderino'
 aliases         # => {:jeff=>["the dude", "his dudeness", "duder", "el duderino"], :josh=>[]}
 
-# you can alternatively pass as a parameter whatever object you would like, and it will be returned if there is no key.
+# you can alternatively set the default return value, and it will be returned if there is no key (instead of nil).
 # Be careful, though, it is the same object every time, so if you mutate it, it won't do what you expect
+# you don't really use this often.
 sums = Hash.new 5
-sums                 # => {}
-sums[:evens]         # => 5
-sums                 # => {}
+hash.default          # => nil
+sums.default          # => 5
+
+sums                  # => {}
+sums[:evens]          # => 5
+sums                  # => {}
 sums[:evens] += 1
-sums                 # => {:evens=>6}
+sums                  # => {:evens=>6}
+
+
+
+# =====  Access and Assign  =====
+# generally access and assign like ths
+hash = Hash.new
+hash                          # => {}
+hash["my key"] = "my value"
+hash                          # => {"my key"=>"my value"}
+hash["my key"]                # => "my value"
+
+# access multiple values at once
+hash = Hash[ *[ Array('a'..'j') , Array(1..10) ].transpose.flatten ]
+hash                                  # => {"a"=>1, "b"=>2, "c"=>3, "d"=>4, "e"=>5, "f"=>6, "g"=>7, "h"=>8, "i"=>9, "j"=>10}
+hash.values_at 'j' , 'e' , 'i' , :x   # => [10, 5, 9, nil]
+
+# more interesting options with fetch (think how this might be helpful in param default values)
+hash = { "a" => 100, "b" => 200 }
+hash.fetch "a"                              # => 100
+hash.fetch "z" , "go fish"                  # => "go fish"
+hash.fetch("z") { |el| "go fish, #{el}"}    # => "go fish, z"
+
+# sometimes you might use has_key to check for a key, instead of dealing with default values
+hash = { :a => :b }
+hash.default = true
+hash[1000]                                  # => true
+hash.has_key? 1000                          # => false
+
+hash = { 12 => nil }
+hash[12]                                    # => nil
+hash[13]                                    # => nil
+hash.has_key? 12                            # => true
+hash.has_key? 13                            # => false
+
+# and the converse
+hash = { "a" => 100, "b" => 200 }
+hash.has_value?(100)                        # => true
+hash.has_value?(999)                        # => false
+
+
+# =====  Removal  =====
+# delete accepts a key and returns its value. You can give a block that will be invoked and returned
+# in the event that the keyt o delete was not seen
+hash = Hash[*Array(1..10)]                  # => {5=>6, 1=>2, 7=>8, 3=>4, 9=>10}
+hash.delete 1                               # => 2
+hash.delete 100                             # => nil
+hash                                        # => {5=>6, 7=>8, 3=>4, 9=>10}
+hash.delete(3)   { |n| "#{n} not found" }   # => 4
+hash.delete(100) { |n| "#{n} not found" }   # => "100 not found"
+
+# delete_if to remove all pairs from a hash 
+# that cause the block to evaluate to true
+hash = Hash[*Array(1..10)]                  # => {5=>6, 1=>2, 7=>8, 3=>4, 9=>10}
+hash.delete_if do |key,value|
+  key % 5 == 0 || value % 5 == 0
+end
+hash                                        # => {1=>2, 7=>8, 3=>4}
+
+
+# =====  Iterating  =====
+# pass a block that receives the key and the value
+cities = { :Chicago => :USA , :Paris => :France , :Ramstein => :Germany }
+results = Array.new
+cities.each do |city,country|
+  results << "#{city} is in #{country}"
+end
+results # => ["Paris is in France", "Ramstein is in Germany", "Chicago is in USA"]
+
+
+# =====  Other Useful Methods  =====
+
+# there is also a self mutator version: merge!
+defaults = { :color => :red , :city => 'Wichita' }
+custom   = { :city => 'Boston' }
+merged   = defaults.merge custom
+defaults                      # => {:color=>:red, :city=>"Wichita"}
+custom                        # => {:city=>"Boston"}
+merged                        # => {:color=>:red, :city=>"Boston"}
+
+cities = { :Chicago => :USA , :Paris => :France , :Ramstein => :Germany }
+cities.keys                   # => [:Paris, :Ramstein, :Chicago]
+cities.values                 # => [:France, :Germany, :USA]
+cities.length                 # => 3
+cities.size                   # => 3
+cities.empty?                 # => false
+Hash.new.empty?               # => true
+
+
+hash = Hash[*Array(1..10)]
+hash                          # => {5=>6, 1=>2, 7=>8, 3=>4, 9=>10}
+hash.clear
+hash                          # => {}
+
+# get a key for a given value (remember, there could be more than one key with the same value)
+hash = { "a" => 100, "b" => 200 }
+hash.index(200)               # => "b"
+hash.index(999)               # => nil
+
+# swap keys with values values
+hash = { :n => 1, :m => 1, :o => 2 }  # n and m have the same value, m ends up getting squashed
+hash.invert                   # => {1=>:n, 2=>:o}
+
+# convert to an array
+{ :Chicago => :USA , :Paris => :France , :Ramstein => :Germany }.to_a # => [[:Paris, :France], [:Ramstein, :Germany], [:Chicago, :USA]]
 

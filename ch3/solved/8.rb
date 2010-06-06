@@ -1,9 +1,10 @@
 def problem_8( *params )
 
   # note that if you are on 1.9, you can get rid of most of this weird param juggling
-  # check if hash was submitted, if so, remove it, and assign it to the var
+  # check if hash was submitted, if so, remove it, and assign it to the var 
+  # (if they submitted a hash, but not the right key, fetch will allow it to still go to :count_clumps)
   # if not, default to :count_clumps
-  problem = if params.last.is_a?(Hash) then params.pop[:problem] else :count_clumps end
+  problem = if params.last.is_a?(Hash) then params.pop.fetch(:problem,:count_clumps) else :count_clumps end
   
   # forward the params to the actual problem
   if problem == :count_clumps

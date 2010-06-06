@@ -4,10 +4,10 @@ class Person
   
   def initialize( options = Hash.new , &initializer )
     
-    # man, what a bunch of boiler plate, I hope we learn some ways to simplify this ^^
-    self.name   =  options[:name]   if  options[:name]
-    self.age    =  options[:age]    if  options[:age]
-    self.quote  =  options[:quote]  if  options[:quote]
+    # man, what a bunch of boiler plate, I hope we learn some ways to simplify this ;)
+    self.name   =  options[:name]
+    self.age    =  options[:age]
+    self.quote  =  options[:quote]
     
     @initializer = initializer
     reinit
