@@ -1,29 +1,20 @@
 class LinkedList
   
-  # a nested class, from the outside we can access it with LinkedList::Node
-  # from inside, of LinkedList, we can just say Node
-  class Node
-    attr_accessor :next , :data
-    def initialize( options = Hash.new )
-      self.next , self.data = options[:next] , options[:data]
-    end
-  end
-
-  include Enumerable
-  
-  def initialize(*params)
+  def initialize(*values)
     self.first_node = nil
-    params.each { |param| self << param }
+    add *values
   end
 
   def each(&block)
-    each_node { |node| block.call node.data }
+    each_node { |node| block.call node[:data] }
     self
   end
   
-  def <<(data)
-    new_node = Node.new :next => first_node , :data => data
-    self.first_node = new_node
+  def add(*datas)
+    datas.each do |data|
+      new_node = { :next => first_node , :data => data }
+      self.first_node = new_node
+    end
     self
   end
   
@@ -32,10 +23,10 @@ class LinkedList
     return Array.new unless first_node
     block ||= lambda { |data| data == data_to_delete }
     each_node do |node|
-      next_node = node.next
-      node.next = next_node.next if next_node && block[next_node.data]
+      next_node = node[:next]
+      node[:next] = next_node[:next] if next_node && block[next_node.data]
     end
-    self.first_node = first_node.next if block[first_node]
+    self.first_node = first_node[:next] if block[first_node]
   end
 
 private
@@ -49,7 +40,7 @@ private
     node = first_node
     while node
       yield node
-      node = node.next
+      node = node[:next]
     end
   end
   
@@ -57,10 +48,7 @@ end
 
 
 ll = LinkedList.new 77,90,"jkl",[67,90],{0=>8,:acv=>98}
-ll << 5 << 6 << 9 << 10 << 'abc'
+ll.add(5).add(6).add(9).add(10).add('abc')
+ll.add 1 , 2 , 3 , 4 , 5
 
-ll.each { |data| p data }
-p ll.select { |data| data.is_a?(Numeric) && data % 2 == 0 }
-puts
-ll.delete { |data| data == 5 || data == 10 }
 ll.each { |data| p data }
