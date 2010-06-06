@@ -52,5 +52,5 @@
 
 
 
-def your_sort( array , &orderer )
+def your_sort
 end

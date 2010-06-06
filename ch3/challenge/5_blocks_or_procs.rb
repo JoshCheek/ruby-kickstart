@@ -28,3 +28,7 @@
 #     i * -5
 #   end
 # end
+
+
+def array_init
+end

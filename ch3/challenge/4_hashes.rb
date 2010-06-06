@@ -27,3 +27,7 @@
 #
 #
 # create it from scratch :)
+
+
+def pathify
+end
