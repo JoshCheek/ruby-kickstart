@@ -15,9 +15,9 @@
 #
 # You decide to name it pay_by.
 #
-# Create the pay_by method, and refactor each of the four methods below such that they
+# **Create the pay_by method, and refactor each of the four methods below such that they
 # invoke the pay_by method, and pass it the order, to take care of the code that is all the same
-# Let them pass a block to take care of the code that is unique.
+# Let them pass a block to take care of the code that is unique.**
 #
 # NOTE: This code will only work with the rake tests, which will define the order and current_user
 # you will not be able to run this code outside of the test
