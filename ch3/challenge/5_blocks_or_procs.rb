@@ -2,7 +2,7 @@
 # it receives one parameter, which is 5 by default, but can be overridden by the user
 # The parameter determines the size of the Array to initialize
 #
-# If a block is submitted, use that block to initialize ach index in the Array (pass it the current index)
+# If a block is submitted, use that block to initialize each index in the Array (pass it the current index)
 #
 # If a block is not submitted, initialize the Array to 100 times the array's index, as a String
 #

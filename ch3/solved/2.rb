@@ -27,7 +27,7 @@
 
 class Person
   
-  attr_accessor :name
+  attr_accessor :name , :age , :quote
   
   def initialize( &initializer )
     @initializer = initializer

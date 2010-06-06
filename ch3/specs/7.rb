@@ -29,11 +29,8 @@ describe 'your_sort' do
     result = your_sort %w(The quick brown fox jumps over the lazy dog) do |a,b|
       a[1] <=> b[1]
     end
-    previous_element = result.first[1]
-    result.each do |crnt_string|
-      crnt_element = crnt_string[1]
-      previous_element.should <= crnt_element
-      previous_element = crnt_element
+    result.each_cons 2 do |a,b| 
+      a[1].should <= b[1]
     end
   end
   
