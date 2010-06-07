@@ -1,14 +1,14 @@
 # You have software to take payment from a customer
 # There are 4 ways to pay, and they are all very similar.
 # One day, you are paying by cash, and you realize you never calculated the tax!
-# So you went in to your code and added order.compute_tax to the pay_by_visa method.
+# So you went in to your code and added order.compute_tax to the pay_by_cash method.
 # Everything was great, until you realized you forgot to add it to pay_by_check also!
 #
 # You fixed this bug already, but the same code is duplicated in many places,
 # so the bug fix didn't get everything. Frustrated, you decide to refactor your code.
 # 
 # You see a lot of duplciation, but unfortunately, right in the middle of each of these
-# pieces of code, is some piece of code that changes every time.
+# pieces of code, is a line or two that changes every time.
 #
 # Thinking a little bit, you realize that you could create a method that performs this
 # boiler plate code, then yields to a block which does the custom code.
