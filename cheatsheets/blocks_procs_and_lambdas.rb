@@ -1,4 +1,5 @@
-# 
+# http://ruby-doc.org/core/classes/Proc.html
+# you might also check the notes from ch3 for of an explanation of what a block / proc is
 
 # =====  Initializing A Proc  =====
 # the differences are subtle, and I'm not even sure completely any more
@@ -53,6 +54,13 @@ block_receiver('')                        # => "no block"
 block_receiver('') { |num| num * 100 }    # => 500
 
 
+# =====  Binding  =====
+# blocks and procs bind to the environment that they are defined in
+# other than that, and some fudgy arity rules, they are exactly the same as methods
+# it means that you can access elements from the surrounding environment
+x = 'outside'
+[1,2,3].map { x } # => ["outside", "outside", "outside"]
+
 
 # =====  Putting a Block / Proc / Method into a Block Slot  =====
 def happy()  'happy! happy! happy!'  end
@@ -70,7 +78,7 @@ i_feel                                  # => "I don't know how I feel :/"
 i_feel { 'mediocre' }                   # => "I feel mediocre today."
 
 # place a proc into the block slot
-troublemaker = proc { 'mischievous' }   # => #<Proc:0x000000010018ab68@-:73>
+troublemaker = proc { 'mischievous' }   # => #<Proc:0x00000001001897b8@-:80>
 i_feel(&troublemaker)                   # => "I feel mischievous today."
 
 # a method into the block slot
@@ -136,7 +144,7 @@ class Person
     @name = name 
   end
 end
-%w(Jill Jim Josh).map(&Person.method(:new)) # => [#<Person:0x100163b08 @name="Jill">, #<Person:0x100163ab8 @name="Jim">, #<Person:0x100163a68 @name="Josh">]
+%w(Jill Jim Josh).map(&Person.method(:new)) # => [#<Person:0x1001600c0 @name="Jill">, #<Person:0x100160070 @name="Jim">, #<Person:0x100160020 @name="Josh">]
 
 
 class Person
@@ -151,6 +159,6 @@ class Person
   end
   
 end
-sam = Person.new 'Samantha'      # => #<Person:0x100163018 @name="Samantha">
+sam = Person.new 'Samantha'      # => #<Person:0x10015f4e0 @name="Samantha">
 %w(Paris New\ York Sydney).each(&sam.method(:visit))
-sam                              # => #<Person:0x100163018 @name="Samantha", @visited=["Paris", "New York", "Sydney"]>
+sam                              # => #<Person:0x10015f4e0 @name="Samantha", @visited=["Paris", "New York", "Sydney"]>
