@@ -10,7 +10,14 @@ class HTMLTag
   # notice that attr_accessor uses symbols
   attr_accessor :name , :innerHTML , :options
   
-  # options: :multiline should be true or false
+  # options is a hash tag that allows the user to specify whether they want this tag to span multiple lines
+  # example when args are: 'p' , 'hello world' , { :multiline => false }
+  # <p >hello world</p>
+  # 
+  # example when args are: 'p' , 'hello world' , { :multiline => true }
+  # <p >
+  # hello world
+  # </p>
   def initialize( name , innerHTML , options )
     @name , @innerHTML , @options = name , innerHTML , options
   end
@@ -28,6 +35,7 @@ class HTMLTag
   end
   
   # convert our HTMLTag to a String (in this case, it is represented as HTML)
+  # in Java, this would be like myInstance.toString(), in ruby it's my_instance.to_s
   def to_s
     # remember, if options[:multiline] doesn't exist, it will return nil, and nil is false
     line_end = if options[:multiline] then "\n" else "" end
@@ -42,9 +50,9 @@ end
 # let us create a list of sports we like
 # they will have no options
 sports = [
-  HTMLTag.new( 'li' , 'baseball' , { :multiline => false } ) ,
-  HTMLTag.new( 'li' , 'soccer'   , {                     } ) ,  # no multiline here, but the default is false... why is this?
-  HTMLTag.new( 'li' , 'football' , { :multiline => false } ) ,
+  HTMLTag.new( 'li' , 'baseball' , { :multiline => false }  ) ,
+  HTMLTag.new( 'li' , 'soccer'   , { }                      ) ,  # no multiline here, but the default is false... why is this?
+  HTMLTag.new( 'li' , 'football' , { :multiline => false }  ) ,
 ]
 
 # join will use the to_s method of each object in the Array to convert it into a string
@@ -52,7 +60,8 @@ sports[0].to_s    # => "<li >baseball</li>\n"
 sports.join       # => "<li >baseball</li>\n<li >soccer</li>\n<li >football</li>\n"
 
 # let's turn the entire array of list elements into the inner HTML for an ordered list tag
-ordered_list = HTMLTag.new 'ol' , sports.join , { :font => :sans_serif , :multiline => true }
+# note that the hash at the end does not have brackets around it, we'll talk about that at the end of the josh.rb notes
+ordered_list = HTMLTag.new 'ol' , sports.join , :font => :sans_serif , :multiline => true
 
 # puts will also convert the tag to a string by invoking the to_s method
 puts ordered_list

@@ -22,8 +22,8 @@ end
 :this_is_a_symbol.object_id # => 212668
 
 # whereas each String is a new object, notice they have different object ids
-'this is a string'.object_id # => 2149415420
-'this is a string'.object_id # => 2149414320
+'this is a string'.object_id # => 2149403240
+'this is a string'.object_id # => 2149402020
 
 # this makes them easy to test equality, for a symbol you just check if it is the same object
 # for a String, you must check that each character is the same character (iterate through the entire string)
@@ -68,7 +68,7 @@ hash[0]        =  'zero'
 hash['nine']   =  9
 hash[josh]     =  'ruby'
 hash[/regex/]  =  %w(array of strings)
-hash                      # => {0=>"zero", :number=>12, :colour=>"black", /regex/=>["array", "of", "strings"], #<Person:0x1003ab2d0 @name="Josh">=>"ruby", "nine"=>9}
+hash                      # => {0=>"zero", :number=>12, :colour=>"black", /regex/=>["array", "of", "strings"], "nine"=>9, #<Person:0x1003a4d18 @name="Josh">=>"ruby"}
 
 # you can change a value by changing it's key
 hash[:number]             # => 12
@@ -105,13 +105,16 @@ ary # => [12, 8, 4]
 def block_checker(param) 
   [ param , block_given? ]
 end
+
 # their only difference is prescidence, a curly brace will bind to the method invocation immediately to its left
 # in this case, the block is a param to the map method, not the block_checker method
-block_checker [1,2,3].map { |i| i * 2 }            # => [[2, 4, 6], false]
+block_checker [1,2,3].map    { |i| i * 2 }            # => [[2, 4, 6], false]
+block_checker( [1,2,3].map ) { |i| i * 2 }            # => [[1, 2, 3], true]
+
 
 # and a do ... end block will map to the furthest left method invocation
 # in this case, the block is a param to the block_checker method, not the reverse method
-block_checker [1,2,3].reverse do |i| i * 2 end     # => [[3, 2, 1], true]
+block_checker [1,2,3].map do |i| i * 2 end     # => [[1, 2, 3], true]
 
 
 
@@ -183,14 +186,16 @@ block_caller { |str| str.upcase + ' and modified by the block' } # => "PASSED FR
 # =====  Procs  =====
 # procs are basically the same thing as blocks, but you have to explicitly create them
 fav_number_proc = proc { my_favourite_number }
-fav_number_proc         # => #<Proc:0x0000000100178fd0@-:185>
+fav_number_proc         # => #<Proc:0x0000000100177c70@-:188>
 fav_number_proc.call    # => 12
+my_favourite_number     # => 12
+
 
 # there are several different ways to create them, with sublte binding differences
 # I have found that the proc method is the best, but you can also do
-Proc.new { }  # => #<Proc:0x0000000000000000@-:191>
-lambda { }    # => #<Proc:0x0000000000000000@-:192>
-proc { }      # => #<Proc:0x0000000000000000@-:193>
+Proc.new { }  # => #<Proc:0x0000000000000000@-:196>
+lambda { }    # => #<Proc:0x0000000000000000@-:197>
+proc { }      # => #<Proc:0x0000000000000000@-:198>
 
 # they are useful, because you can assign them to variables and pass them as arguments
 # to use a block in that way, you can convert it to a proc (explained in example 2, but we'll get there later)
@@ -222,7 +227,7 @@ what_are_filled_in :A , :B , :C , :D       # => "A B C D 1"
 what_are_filled_in :A , :B , :C , :D , :E  # => "A B C D E"
 
 # what will this return?
-what_are_filled_in :A , :E
+what_are_filled_in :A ,                :E  #
 
 
 # =====  Variable Length Arguments  =====
@@ -243,18 +248,22 @@ end
 minimum 2 , 1                 # => 1
 minimum 2 , 1 , 5 , -3 , 16   # => -3
 
+ruby_kickstart_favourite_numbers = [ 12 , 13 , 3 , 43 , 7 ]
+minimum(    12 , 13 , 3 , 43 , 7   )          # => 3
+minimum( *[ 12 , 13 , 3 , 43 , 7 ] )          # => 3
+minimum( *ruby_kickstart_favourite_numbers )  # => 3
 
 # =====  Hash Arguments  =====
-# In example 1, we saw how we might pass a hash of arguments to an Array but the syntax was really ugly.
+# In example 1, we saw how we might pass a hash of arguments to an method but the syntax was really ugly.
 # Fortunately, people like to do this enough that some syntactic sugar was added. 
 # You can now place hash arguments at the end of your regular list, and they will be collected into the last argument
 
-def same_case( str , options = Hash.new ) # !> method redefined; discarding old same_case
+def same_case( str , options = Hash.new )
   return str.upcase   if options[:upcase] || options[:downcase] == false
   str.downcase
 end
-same_case 'UPPER lower'                       # => "UPPER LOWER"
-same_case 'UPPER lower' , :upcase   => false  # => "UPPER LOWER"
+same_case 'UPPER lower'                       # => "upper lower"
+same_case 'UPPER lower' , :upcase   => false  # => "upper lower"
 same_case 'UPPER lower' , :downcase => true   # => "upper lower"
 same_case 'UPPER lower' , :downcase => false  # => "UPPER LOWER"
 same_case 'UPPER lower' , :upcase   => true   # => "UPPER LOWER"
