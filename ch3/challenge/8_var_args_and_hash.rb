@@ -31,11 +31,35 @@
 # same_ends 3, 5, 6, 45, 99, 13, 5, 6    # => false
 
 
-def problem_8
+def problem_8(*args)
+  hash    = if args[-1].is_a? Hash then args.pop else nil end
+  problem = if hash then hash[:problem] else :count_clumps end
+
+  return count_clumps *args if problem == :count_clumps
+  return same_ends *args    if problem == :same_ends
 end
 
-def same_ends
+def same_ends(count, *numbers)
+  start  = []
+  finish = []
+  
+  count.times do |i|
+    start  << numbers[i]
+    finish << numbers[-1 - i]
+  end
+  
+  start == finish.reverse
 end
 
-def count_clumps
+def count_clumps(*numbers)
+  clumps     = 0
+  previous   = nil
+  two_before = nil
+
+  numbers.each do |number|
+    clumps += 1 if (previous == number) && !(previous == two_before)
+    two_before = previous
+    previous = number
+  end
+  clumps
 end

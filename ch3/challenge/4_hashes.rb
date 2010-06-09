@@ -29,5 +29,13 @@
 # create it from scratch :)
 
 
-def pathify
+def pathify(filesystem = {})
+  return filesystem.map{|file| '/' + file} if filesystem.is_a? Array
+  return_array = []
+  filesystem.each do |key, value|
+    (pathify value).each {|path| return_array << "/#{key}#{path}"}
+  end
+  return_array
 end
+
+

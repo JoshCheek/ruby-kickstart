@@ -52,5 +52,13 @@
 
 
 
-def your_sort
+def your_sort(array, &sort_block)
+  sort_proc = if sort_block then sort_block else proc {|a, b| a <=> b} end
+  
+  array.each_index do |i|
+    array.each_index do |j|
+      array[i], array[j] = array[j], array[i] if sort_proc.call(array[i], array[j]) == -1
+    end
+  end
+  array
 end
