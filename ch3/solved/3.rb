@@ -1,26 +1,16 @@
 def shared( a , b )
-
-  # a hash table whose keys will be [nil,nil] the first time they are accessed
-  track_seen = Hash.new do |hash,missing_key| 
-    hash[missing_key] = Array.new 2
-  end
-
-  # set each element from a to be true for the first index
-  a.each do |element|
-    track_seen[element][0] = true
+  union = Hash.new do |hash, key|
+    hash[key] = Array.new
+    if a.include? key then hash[key] << true else hash[key] << nil end
+    if b.include? key then hash[key] << true else hash[key] << nil end
   end
   
-  # set each element from b to be true for the second index
-  b.each do |element|
-    track_seen[element][1] = true
-  end
+  a.each { |element| union[element] }
+  b.each { |element| union[element] }
   
-  # each element that was seen by both is added to the union Array
-  union = Array.new
-  track_seen.each do |element,seen|
-    union << element if seen[0] && seen[1]
-  end
+  ary = Array.new
   
-  # an alternative syntax here would be [track_seen,union.sort] on the last line
-  return track_seen , union.sort
+  union.each { |key, value| ary << key if union[key] == [true, true] }
+  
+  return union, ary.sort
 end
