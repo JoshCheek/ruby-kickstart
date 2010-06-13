@@ -38,3 +38,5 @@ Other Useful Methods                                                            
 "Their IDs are 11, and 492".scan(/\d+/)       # => ["11", "492"]                                          
 "Jack and Jill ran up the hill".split         # => ["Jack", "and", "Jill", "ran", "up", "the", "hill"]    Can also pass a regex
 "/usr/bin:/opt/local:/Users/josh".split(':')  # => ["/usr/bin", "/opt/local", "/Users/josh"]              
+"abcdefg hi".split(//)                        # => ["a", "b", "c", "d", "e", "f", "g", " ", "h", "i"]     Regex that matches everything: split between each character
+
