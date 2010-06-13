@@ -1,3 +1,7 @@
+# http://ruby-doc.org/core/classes/Range.html
+# http://ruby-doc.org/core/classes/Enumerable.html
+
+
 # =====  PERSPECTIVE  =====
 # I wouldn't spend much time in this cheatsheet
 # I don't think you'll use Range that often, mostly as params to other things like strings or arrays
