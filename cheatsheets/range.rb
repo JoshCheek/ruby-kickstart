@@ -80,6 +80,14 @@ Array(1...5)          # => [1, 2, 3, 4]
 
 
 # =====  Iteration From Enumerable Module =====
+# skips however many items in the range before passing the next one
+nums = Array.new
+(-10..10).step 5 do |i|
+  nums << i
+end
+nums # => [-10, -5, 0, 5, 10]
+  
+
 # returns true if the block is true for every element iterated over
 (1..5).all?  { |i| i < 10 }             # => true
 (1..15).all? { |i| i < 10 }             # => false
@@ -90,7 +98,7 @@ Array(1...5)          # => [1, 2, 3, 4]
 
 # each element iterated over is passed to the block, the result is appended to an Array
 (1..5).map { |i| i * 10 }               # => [10, 20, 30, 40, 50]
-(1..5).map { rand 100   }               # => [32, 20, 11, 74, 70]
+(1..5).map { rand 100   }               # => [89, 8, 65, 7, 59]
 ('a'..'e').map { |c| c * 3 }            # => ["aaa", "bbb", "ccc", "ddd", "eee"]
 
 # each element iterated over is passed to the block. If the block evaluates truthily for that element, it is returned
