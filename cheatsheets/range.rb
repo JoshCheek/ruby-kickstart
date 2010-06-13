@@ -38,8 +38,16 @@ ary[3..-1]                  # => [4, 5]
 # =====  Caution with Strings  =====
 # Be careful using this with Strings, their rules are not always consistent, and can be very confusing
 # generally, I would only use it within 1 char Strings
+'a'.succ          # => "b"
+'a' < 'b'         # => true
+
 'z'.succ          # => "aa"
 'z' < 'aa'        # => false
+
+# I only use blatantly consecutive elements
+'a'..'z'
+'A'..'Z'
+'1'..'9'
 
 
 # =====  Two Dots Vs Three Dots  =====
@@ -70,6 +78,10 @@ Array(1...5)          # => [1, 2, 3, 4]
 (1..5).include? 5       # => true
 (1..5).include? 6       # => false
 
+('1'..'5').include? 'a' # => false
+('1'..'5').include? '3' # => true
+('1'..'5').include? '9' # => false
+
 # Note the answer for 2.5, it checks the first and last elements
 # But, 2.5 will never be traversed if we iterate over this range
 # Because it goes in discrete quantities
@@ -98,7 +110,7 @@ nums # => [-10, -5, 0, 5, 10]
 
 # each element iterated over is passed to the block, the result is appended to an Array
 (1..5).map { |i| i * 10 }               # => [10, 20, 30, 40, 50]
-(1..5).map { rand 100   }               # => [89, 8, 65, 7, 59]
+(1..5).map { rand 100   }               # => [69, 53, 72, 10, 6]
 ('a'..'e').map { |c| c * 3 }            # => ["aaa", "bbb", "ccc", "ddd", "eee"]
 
 # each element iterated over is passed to the block. If the block evaluates truthily for that element, it is returned
