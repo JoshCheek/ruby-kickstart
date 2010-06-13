@@ -57,12 +57,57 @@ username  # => "Kris"
 
 
 # =====  Ranges  =====
+# ranges look like this
+1..5      # => 1..5
+1...5     # => 1...5
+
+# 2 dots includes the end
+# 3 dots excludes the end
+# they are iterable, using the methods mixed in by Enumerable class
+
+
+# =====  Simple File IO  =====
+# docs: http://ruby-doc.org/core/classes/File.html
+#       http://ruby-doc.org/core/classes/IO.html
+#
+#
+# file output basically works the same way as regular output, because a File object is an IO object
+# and $stdout and $stdin, are also IO objects.
+
+# you can do this in a non block form, but it is easy to forget to close it, 
+# or cause an exception which bypasses it, so unless you have some very specific reason, you should use the block form
+
+# Writing to a file
+File.open "names" , "w" do |file|
+  file.puts   "sally"
+  file.puts   "sam"
+  file.print  "billy"
+  file.print  "bob"
+  file.puts
+end
+
+# Read the entire file at once
+contents = Array.new
+File.open("names") { |file| contents << file.read }
+contents  # => ["sally\nsam\nbillybob\n"]
+
+# Iterate over the lines of the file
+contents = Array.new
+File.open "names" do |file|
+  file.each { |line| contents << line }  # files are iterable too
+end
+contents # => ["sally\n", "sam\n", "billybob\n"]
+
+# Read each line from the file into an array
+File.readlines "names" # => ["sally\n", "sam\n", "billybob\n"]
+
+# Cleaning up
+File.exist? "names" # => true
+File.delete "names"
+File.exist? "names" # => false
 
 
 
-# ranges
-# file io
-# inject
 
 # =====  Singleton Methods  =====
 # You can open an *individual object* and add methods to it
@@ -87,14 +132,14 @@ kevin                               # => "Kevin Griffin"
 kevin.class                         # => String
 kevin.greet                         # => "What's going on?"
 kevin.farewell                      # => "See you later."
-kevin.singleton_methods             # => ["greet", "farewell"]
+kevin.singleton_methods             # => ["farewell", "greet"]
 
 class << kevin
   attr_accessor :test
 end
 kevin.test = 100
 kevin.test                          # => 100
-kevin.singleton_methods             # => ["greet", "test=", "farewell", "test"]
+kevin.singleton_methods             # => ["farewell", "test=", "greet", "test"]
 kevin                               # => "Kevin Griffin"
 "Kevin Griffin".singleton_methods   # => []
 
@@ -190,7 +235,7 @@ class Person
     
   include JoshEnum
     
-  def initialize(age) # !> method redefined; discarding old initialize
+  def initialize(age)
     @age = age
   end
 
