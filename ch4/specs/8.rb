@@ -24,7 +24,7 @@ resource_dir = Pathname.new(__FILE__).parent.parent + 'resources'
 
 
 describe 'line_sums' do
-  Dir[ resource_dir + '*.template' ].each do |template_path|
+  Dir[ (resource_dir + '*.template').to_s ].each do |template_path|
     
     real_path = template_path.sub /\.template$/ , ''
     

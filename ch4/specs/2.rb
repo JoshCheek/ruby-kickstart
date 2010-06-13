@@ -49,7 +49,7 @@ describe 'passthrough' do
       people + full_names
     end
 
-     people.should == ["Will Jones", "Robert Jones", "John Smith", "Sally Smith"]
+     people.sort.should == ["Will Jones", "Robert Jones", "John Smith", "Sally Smith"].sort
   end
   
 end
