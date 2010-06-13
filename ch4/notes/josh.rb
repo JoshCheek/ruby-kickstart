@@ -1,4 +1,4 @@
-# =====  Boolean Methods  =====
+# =====  Boolean Return Values  =====
 # **REMEMBER: Everything is considered true in Ruby, except false and nil**
 #
 # you've already seen basic boolean methods
@@ -53,10 +53,31 @@ username  # => "Kris"
 
 
 # =====  Introspection / Reflection  =====
-# take a look at the cheatsheet
+# see the cheatsheet for more info
+
+# the most important ones are:
+"abc".class       # => String
+String.ancestors  # => [String, Enumerable, Comparable, Object, Kernel]
+
+# puts calls to_s, p calls inspect, it returns a String representation that represents
+# the object and its state in a way that is hopefully easy to understand and unambiguous
+# Strings for example, get quotes placed around them.
+"abc"                                   # => "abc"
+"abc".inspect                           # => "\"abc\""
+"abc".to_s                              # => "abc"
+
+[1,2,3]                                 # => [1, 2, 3]
+[1,2,3].inspect                         # => "[1, 2, 3]"
+[1,2,3].to_s                            # => "123"
+
+{ 1 => 2 , :three => [4,5,6] }          # => {1=>2, :three=>[4, 5, 6]}
+{ 1 => 2 , :three => [4,5,6] }.inspect  # => "{1=>2, :three=>[4, 5, 6]}"
+{ 1 => 2 , :three => [4,5,6] }.to_s     # => "12three456"
 
 
 # =====  Ranges  =====
+# see the cheatsheet for more info
+
 # ranges look like this
 1..5      # => 1..5
 1...5     # => 1...5
@@ -64,6 +85,12 @@ username  # => "Kris"
 # 2 dots includes the end
 # 3 dots excludes the end
 # they are iterable, using the methods mixed in by Enumerable class
+iterated = Array.new
+(1..5).each { |n| iterated << n }
+iterated                            # => [1, 2, 3, 4, 5]
+
+(1..5).map { |n| n * 5 }            # => [5, 10, 15, 20, 25]
+('a'..'z').to_a                     # => ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 
 # =====  Simple File IO  =====
@@ -139,9 +166,10 @@ class << kevin
 end
 kevin.test = 100
 kevin.test                          # => 100
-kevin.singleton_methods             # => ["farewell", "test=", "greet", "test"]
+kevin.singleton_methods             # => ["test=", "farewell", "greet", "test"]
 kevin                               # => "Kevin Griffin"
 "Kevin Griffin".singleton_methods   # => []
+
 
 
 # =====  Inheritence  =====
@@ -191,9 +219,8 @@ end
 
 # well each of these classes has methods for dollars_per_hour
 Employee.methods.grep(/dollars/)  # => ["dollars_per_hour", "dollars_per_hour="]
-Employee.singleton_methods        # => ["dollars_per_hour", "dollars_per_hour="]
-Clerk.singleton_methods           # => ["dollars_per_hour", "dollars_per_hour="]
-Engineer.singleton_methods        # => ["dollars_per_hour", "dollars_per_hour="]
+Clerk.methods.grep(/dollars/)     # => ["dollars_per_hour", "dollars_per_hour="]
+Engineer.methods.grep(/dollars/)  # => ["dollars_per_hour", "dollars_per_hour="]
 
 # Where did Engineer get it from? We never defined dollars_per_hour for Engineer
 Engineer.method(:dollars_per_hour).owner  # => #<Class:Employee>
@@ -218,58 +245,109 @@ ayaan = Engineer.new 160
 ayaan.wages # => 5300
 
 
+
+
 # =====  Modules  =====
-# Comparable
-module JoshEnum
-  def map
-    result = Array.new
-    each do |obj|
-      result << yield(obj)
+# Generally, inheriting classes is becoming less embraced by the Ruby community
+# Now, people usually prefer to use modules instead of inheritence.
+# A class can only inherit from one other class, but it can include as many modules as it likes (this is commonly called a mix-in)
+#
+# Modules have the feel of a class in that they have methods on them. But they cannot be instantiated.
+# Instead, you declare that the methods in the module should extend an object, or be included in a class
+# and all the methods the module contains will be magically dropped into the class.
+module Threes
+  
+  def threes_r0
+    select { |i| i % 3 == 0 }
+  end
+  
+  def threes_r1
+    select { |i| i % 3 == 1 }
+  end
+  
+  def threes_r2
+    select { |i| i % 3 == 2 }
+  end
+  
+end
+
+# Extending an object with a module
+sequence = 0...30
+sequence.extend Threes
+
+# if we look in sequence's singleton class, we see that Threes is now an ancestor of it
+# but this has only affected our one object
+(class << sequence; self; end).ancestors # => [Threes, Range, Enumerable, Object, Kernel]
+(class << Range.new(0,0); self; end).ancestors # => [Range, Enumerable, Object, Kernel]
+
+sequence.threes_r0 # => [0, 3, 6, 9, 12, 15, 18, 21, 24, 27]
+sequence.threes_r1 # => [1, 4, 7, 10, 13, 16, 19, 22, 25, 28]
+sequence.threes_r2 # => [2, 5, 8, 11, 14, 17, 20, 23, 26, 29]
+
+sequence                          # => 0...30
+0...30                            # => 0...30
+sequence.methods.grep(/threes/)   # => ["threes_r0", "threes_r1", "threes_r2"]
+(0...30).methods.grep(/threes/)   # => []
+
+# Questions: Where did the select come from in threes_rn?
+#            Can you think of another object we could extend with this module?
+
+
+
+# Including a module in a class' instance methods
+# A class has lots of instance methods that its instances are able to use
+# You can include the module's methods in them as well
+Range.ancestors                   # => [Range, Enumerable, Object, Kernel]
+class Range
+  include Threes
+end
+Range.ancestors                   # => [Range, Threes, Enumerable, Object, Kernel]
+
+sequence                          # => 0...30
+0...30                            # => 0...30
+sequence.methods.grep(/threes/)   # => ["threes_r0", "threes_r1", "threes_r2"]
+(0...30).methods.grep(/threes/)   # => ["threes_r0", "threes_r1", "threes_r2"]
+
+
+
+# Modules are also commonly used for namespacing
+# maybe you want to try the same problem several days in a row, to see how your approach changes
+module Day1Solutions
+  class MinFinder
+    def initialize(a,b)
+      @a , @b = a , b
     end
-    result
+    def solve
+      if @a < @b then @a else @b end
+    end
   end
 end
 
-
-class Person
-    
-  include JoshEnum
-    
-  def initialize(age)
-    @age = age
+module Day2Solutions
+  class MinFinder
+    def initialize(a,b)
+      @elements = [ a , b ]
+    end
+    def solve
+      @elements.min
+    end
   end
-
-  def age
-    @age
-  end
-  
-  def each
-    0.upto(age) { |i| yield i }
-  end
-  
 end
 
-josh = Person.new 10
+day1 = Day1Solutions::MinFinder.new 10 , 5
+day2 = Day2Solutions::MinFinder.new 10 , 5
+day1                                          # => #<Day1Solutions::MinFinder:0x100343388 @a=10, @b=5>
+day2                                          # => #<Day2Solutions::MinFinder:0x1003432c0 @elements=[10, 5]>
+day1.solve                                    # => 5
+day2.solve                                    # => 5
 
-birthdays = josh.map do |age|
-  "has been alive for #{age} years"
-end
+# that is a lot to type, though, I think I like Day2Solutions better, it's easier to read
+# that is the one I want to use from no on, but I don't want to have to keep typing Day2Solutions::MinFinder.new
+# we can include day2 solutions into our main
+include Day2Solutions
+MinFinder.new 10 , 5                          # => #<Day2Solutions::MinFinder:0x10033db40 @elements=[10, 5]>
 
-require 'pp'
+# This is a common way to get nicer functionality
+# For example, the FileUtils module (http://ruby-doc.org/core/classes/FileUtils.html), which is in the Ruby standard library
+# is included when working with rake files, this lets you say things like "cd 'ch4'" instead of "FileUtils.cd 'ch4'"
 
-pp birthdays
-
-
-
-# rubygems
-# >> ["has been alive for 0 years",
-# >>  "has been alive for 1 years",
-# >>  "has been alive for 2 years",
-# >>  "has been alive for 3 years",
-# >>  "has been alive for 4 years",
-# >>  "has been alive for 5 years",
-# >>  "has been alive for 6 years",
-# >>  "has been alive for 7 years",
-# >>  "has been alive for 8 years",
-# >>  "has been alive for 9 years",
-# >>  "has been alive for 10 years"]
