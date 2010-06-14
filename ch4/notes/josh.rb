@@ -40,8 +40,9 @@ false || "abc"    # => "abc"
 
 
 # This opens the way for some interesting uses of boolean values: 
-# name1 is falsy, so it returns the evaluation of (session[:name] || DEFAULT_NAME)
-# session[:name] returns 'Kris', which is truthy, short circuiting the || so that DEFAULT_NAME never gets evaluated
+# login_name is falsy, so it returns the evaluation of (session[:name] || DEFAULT_NAME)
+# session[:name] returns 'Kris', 
+# which is truthy, short circuiting the || so that DEFAULT_NAME never gets evaluated
 
 def login_name() nil end        # code to check if user logged in and return their name or nil
 session = { :name => 'Kris' }   # hash of user info stored in cookie on user's browser
@@ -89,7 +90,7 @@ iterated = Array.new
 (1..5).each { |n| iterated << n }
 iterated                            # => [1, 2, 3, 4, 5]
 
-(1..5).map { |n| n * 5 }            # => [5, 10, 15, 20, 25]
+(1...5).map { |n| n * 5 }           # => [5, 10, 15, 20]
 ('a'..'z').to_a                     # => ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 
@@ -258,7 +259,7 @@ ayaan.wages # => 5300
 module Threes
   
   def threes_r0
-    select { |i| i % 3 == 0 }
+    self.select { |i| i % 3 == 0 }
   end
   
   def threes_r1
@@ -271,9 +272,11 @@ module Threes
   
 end
 
+
 # Extending an object with a module
 sequence = 0...30
 sequence.extend Threes
+
 
 # if we look in sequence's singleton class, we see that Threes is now an ancestor of it
 # but this has only affected our one object
@@ -291,7 +294,6 @@ sequence.methods.grep(/threes/)   # => ["threes_r0", "threes_r1", "threes_r2"]
 
 # Questions: Where did the select come from in threes_rn?
 #            Can you think of another object we could extend with this module?
-
 
 
 # Including a module in a class' instance methods
@@ -336,8 +338,8 @@ end
 
 day1 = Day1Solutions::MinFinder.new 10 , 5
 day2 = Day2Solutions::MinFinder.new 10 , 5
-day1                                          # => #<Day1Solutions::MinFinder:0x100343388 @a=10, @b=5>
-day2                                          # => #<Day2Solutions::MinFinder:0x1003432c0 @elements=[10, 5]>
+day1                                          # => #<Day1Solutions::MinFinder:0x1003498a0 @b=5, @a=10>
+day2                                          # => #<Day2Solutions::MinFinder:0x1003497d8 @elements=[10, 5]>
 day1.solve                                    # => 5
 day2.solve                                    # => 5
 
@@ -345,7 +347,7 @@ day2.solve                                    # => 5
 # that is the one I want to use from no on, but I don't want to have to keep typing Day2Solutions::MinFinder.new
 # we can include day2 solutions into our main
 include Day2Solutions
-MinFinder.new 10 , 5                          # => #<Day2Solutions::MinFinder:0x10033db40 @elements=[10, 5]>
+MinFinder.new 10 , 5                          # => #<Day2Solutions::MinFinder:0x100345520 @elements=[10, 5]>
 
 # This is a common way to get nicer functionality
 # For example, the FileUtils module (http://ruby-doc.org/core/classes/FileUtils.html), which is in the Ruby standard library
