@@ -13,12 +13,11 @@ module OperatorGeneratorFromSpace
   end
 
   def <=(other)
-    self < other || self == other
+    !( self > other )
   end
   
   def >=(other)
-    self > other || self == other
+    !( self < other )
   end
-  
   
 end
