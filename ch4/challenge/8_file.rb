@@ -1,4 +1,4 @@
-# you will be given a filen name
+# you will be given a file name
 # inside the file will be a series of numbers
 # find the largest number on each line
 # return their sum
