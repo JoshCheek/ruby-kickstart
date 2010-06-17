@@ -1,5 +1,3 @@
-# Josh's speaker notes
-
 # =====  Introduction to Ruby  =====
 # Origins of the Ruby Language:
 # Written By: Matz (Yukihiro Matsumoto)
@@ -10,118 +8,211 @@
 #   OO (except for some operators, _everything_ is an object)
 #   Functional
 
+# ==== Conventions =====
 
-# ===== Installation  =====
-# get Ruby installed on all their computers (1.9 if possible)
-# get their text editor / IDE set up to be able to work with Ruby without necessarily having to go to the command line
-# install rspec
-# have them download this repo and put it in some directory to work in
-# show where docs are
+# In the notes, examples and cheatsheets provided, we use a few conventions in our code to make it easy
+# to see the results of expressions. To show the results of a line, we use the following notation
 
+3 + 9       # => 12
+my_var = 4
+my_var      # => 4
 
-# =====  Conventions  =====
-# show how the comment hash rocket works
-# explain that if their text editor doesn't do this, they can use p
-# show how to run from the command line if they wish to
-#   there will be no class file, no object file, MRI is not compiled to bytecode, it just interprets the file
-# show that challenges are in chx/challenge/y
-# show how to run rake tasks to test that challenge
+# This shows what that line evaluates to, and in the case of a line with just a variable on it, shows the value
+# of the object it refers to.
+
+# For more complicated output, such as from a print statement, it'll be placed below the code.
 
 
-# =====  Objects and Methods  =====
-# ruby is a purely Object Oriented programming language.
-# there are no primitives
-# everything is an object: Classes are objects, methods are objects, operators are objects, integers are objects
-# all instances of a class do not necessarily share the same methods, because Ruby is dynamic.
-# you can add and remove methods at run time to both classes as well as individual objects
+# ===== Ruby Basics ====
+
+# Ruby is dynamic, so there's no need to declare variables ahead of time
+my_num    = 15532
+my_string = "Welcome to Ruby"
+
+# Notice that a variable isn't bound to holding one type of object, even after it's been assigned:
+my_num    = "Now a string"
+
+# Arithmetic operators work similar to other languages
+
+3 + 5        # => 8
+2 - 4        # => -2
+10 / 3       # => 3
+10 % 3       # => 1
+             
+my_var = 4   # => 4
+
+my_var += 10 # => 14
+my_var       # => 14
+
+# =====  Objects  =====
+
+# Ruby is a purely Object-Oriented programming language.
+# there are no primitives; everything is an object: 
+# Classes are objects, methods are objects, operators are objects, integers are objects
+# Where other languages might use a function, objects in Ruby have a method to perform the action themselves:
+
+# Java: postive_num = Math.abs(-4)
+
+# Ruby:
+
+positive_num = -47.abs    # => 47
+
+# Conversions to string and float                          
+6457.to_s                 # => "6457"
+-98.to_f                  # => -98.0
+
+# Note here that the '?' is part of the method name, 'even?'
+(91 + 2).even?            # => false
 
 
-# =====  A Sample Ruby Application  =====
-# Show first example
+# ===== Output and Strings ====
+
+# Ruby has several methods for output, the most common of which is 'puts':
+
+puts "Welcome to the program!"
+
+# Output:
+# Welcome to the program!
 # 
-# you can name your files whatever you want, unlike Java, it does not need to be named after a class
+
+# Notice that puts places a newline after whatever it prints. And puts can print any object, not just strings:
+
+puts 45
+
+# Output:
+# 45
 #
-# you do not need to use classes if you do not wish to (procedural paradigm)
+
+# puts can output other objects by using their to_s method to convert them into Strings 
+# and then outputs the strings. It works like this:
+
+number = 56
+thing_to_print = number.to_s
+puts thing_to_print
+
+# Output:
+# 56
 #
-# show that puts is a method (some things feel like functions, but they are really methods)
-# show that parens are optional , 
-#   semicolons are optoinal
-#   it converts whatever method it receives to a String
-#   show #to_s
-#   puts will output to $stdout
-#
-# variables do not need to be declared
-# creates a local variable called answer, and sets it equal to the Integer 4
-#
-# string Interpolation
+
+# There are two ways to represent a literal String in Ruby: with double quotes ( "" ) or single quotes ( '' )
+# With double quotes, you can place special sequences, like newlines (\n) in the string that will be converted
+# With single quotes, the string comes out just as it's typed.
+
+puts "Here's\nTwo lines."
+puts 'This will\nonly be one line'
+
+# Output:
+# Here's
+# Two lines.
+# This will\nonly be one line
+
+# You can use basic operators on Strings, just like other objects:
+
+my_string   = "Face"
+your_string = "book"
+
+my_string + your_string  # => "Facebook"
+
+my_string == your_string # => false
+my_string = "book"
+my_string == your_string # => true
 
 
-# =====  Expressions And Assignment Statements  =====
-# Variables are references to objects, they basically behave exactly like Java's
-# Set a variable like this: my_var = 123
-# The variable does not have a type, the type is based on the object it is referencing, this is dynamic typing
-# As long as an object is referenced by a variable, the garbage collector will not take it
-# You cannot reference a variable, only the object it is pointing to (no double pointers like in C)
+# Double quotes have even more power. By using a special sequence of characters, you can interpolate code
+# into your String. That code will be ran and its results placed into the string.
 
+small_number = 5
+neg_number   = -97
 
+puts "1 + 3 is #{1 + 3}"
+puts "My two numbers are #{small_number} and #{neg_number.abs} (all positive here)"
+
+# Output:
+# 1 + 3 is 4
+# My two numbers are 5 and 97 (all positive here)
+
+# Notice we can do anything inside of the #{} we want, including referencing objects and calling methods on them.
+
+# One other important output method is the 'p' method. p outputs an object's internal representation:
+# think of it as how the object looks in code. This kind of output is what we've been putting to the right of 
+# lines of code in these notes.
+
+puts "Rain and lightning"
+p    "Rain and lightning"
+
+# Output:
+
+# puts
+# Rain and lightning
+
+# p
+# "Rain and lightning"
+
+# Notice how the p method puts quote ( "" ) around the string. Here's one more example using arrays
+# (We'll talk about arrays themselves later on)
+
+my_array = [1, 2, 3]
+
+puts my_array
+p    my_array
+
+# Output:
+
+# puts
+# 1
+# 2
+# 3
+
+# p
+# [1, 2, 3]
 
 # =====  Identifiers and Variables  =====
-# Refer to the current object with "self" instead of "this"
-# Standard naming rules apply (ie don't begin a var name with a number)
-# INSTANCE VARIABLES
-#   Variables that begin with @ are instance variables (in Java, to directly access a variable, you might say this.myVar, 
-#     in Ruby you would say @my_var. Notice Ruby uses snake_case instead of CamelCase. Ruby's self.my_var would be a method call, remember parentheses are optional)
-# STATIC / CLASS VARIABLES 
-#   Variables that begin with @@ are class variables (In Java you would call them static variables ie MyClass.myVar translates to @@my_var
-#   All instance and static variables are private and outside of the class, can only be accessed through methods. There is no MyClass.@@my_var 
-# GLOBAL VARIABLES
-#   Variables that begin with $ are global (there are a few nuanced exceptions) You are strongly discouraged from using these
-# CONSTANTS
-#   Constants begin with capital letters. Unlike Java, you can still change them (but the interpreter will give you a warning, unless you explicitly use methods designed for that purpose)
-#   Their scope should cascade down such that anything defined in a scope nested in the defined scope, will be able to access them. ie
-    MyConstant  = 12
-    my_variable = 13
-    class Example
-      begin
-        MyConstant        # => 12
-        my_variable 
-      rescue => exception
-        exception         # => #<NameError: undefined local variable or method `my_variable' for Example:Class>
-      end
-    end
-# LOCAL VARIABLES
-# All variables that don't begin with @, @@, and $, are local variables, they will go away as soon as you leave scope
+
+# The standard naming conventions for variable names (identifiers) apply in Ruby, like not starting with a number.
+# However, in Ruby, naming conventions are important: constants always start with capital letters, and
+# instance variables start with the '@' symbol, for example.
+
+# The scope of constants scope should cascade down such that anything defined 
+# in a scope nested in the defined scope, will be able to access them. ie
+
+MyConstant  = 12
+my_variable = 13
+class Example
+  begin
+    MyConstant        # => 12
+    my_variable 
+  rescue => exception
+    exception         # => #<NameError: undefined local variable or method `my_variable' for Example:Class>
+  end
+end
 
 
 # =====  Keywords  ====
-# mostly obvious, but if your text editor highlights it, then don't use it.
-
-
-# =====  Assignment Compatibility  =====
-# You _CAN_ store an object of one type in a variable of another type, because Ruby is dynamically typed
-# Ask them to come up with an example on their own to show this
-# then show example 2
+# If your text editor highlights it, don't use it. :)
 
 
 # =====  Logic  =====
-# false = { false , nil }
-# true  = everything else
-# if ; elsif ; else ; end
-# expression if condition
 
+# In Ruby, there are two things that are false: false and nil. Everything else (including 0) is true.
 
-# =====  Arithematic Operators  =====
-# behave the same as normal
-# have them complete challenge 1..4
+# Ruby has standard if-else constructs
 
+if 4 == (2 + 2)
+  puts "I get to execute!"
+else
+  puts "I don't :("
+end
 
-# =====  Strings  =====
-# regular operators work with Strings, don't need complicated methods
-# **STRINGS ARE MUTABLE**
-# ask how to test if two strings are the same
-# give cheetsheat
-# show example 3
+my_number = 56
 
+if my_number < 12
+  puts "Fewer than a dozen"
+elsif my_number < 64
+  puts "You could hold me in 6 bits"
+else
+  puts "That's a pretty big number"
+end
 
-# =====  First Homework Assginment  =====
-# Complete all challenges for ch1
+# Ruby also has a nice syntax for one-line conditionals, by placing the 'if' at the end of the line:
+
+puts "Here we go" if 120.even?

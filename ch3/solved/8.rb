@@ -1,38 +1,25 @@
-def problem_8( *params )
+# This can be handled in a much cleaner way in 1.9, without the params fiddling
 
-  # note that if you are on 1.9, you can get rid of most of this weird param juggling
-  # check if hash was submitted, if so, remove it, and assign it to the var 
-  # (if they submitted a hash, but not the right key, fetch will allow it to still go to :count_clumps)
-  # if not, default to :count_clumps
-  problem = if params.last.is_a?(Hash) then params.pop.fetch(:problem,:count_clumps) else :count_clumps end
-  
-  # forward the params to the actual problem
-  if problem == :count_clumps
-    count_clumps *params # !> `*' interpreted as argument prefix
-  else
-    same_ends *params # !> `*' interpreted as argument prefix
-  end
-  
+def problem_8(*params)
+  hash    = if params[-1].is_a? Hash then params.pop else nil end
+  problem = if hash then hash[:problem] else :count_clumps end
+
+  return count_clumps *params if problem == :count_clumps
+  return same_ends *params    if problem == :same_ends
 end
 
+def count_clumps(*numbers)
+  clumps     = 0
+  previous   = nil
+  two_before = nil
 
-def count_clumps(*params)
-  
-  count , last , clump = 0 , nil , false
-  
-  params.each do |crnt|
-    clump = if last == crnt
-      true
-    elsif clump
-      count += 1
-      false
-    end
-    last = crnt
+  numbers.each do |number|
+    clumps += 1 if (previous == number) && !(previous == two_before)
+    two_before = previous
+    previous = number
   end
-  
-  count + if clump then 1 else 0 end
+  clumps
 end
-
 
 
 def same_ends( n , *params )

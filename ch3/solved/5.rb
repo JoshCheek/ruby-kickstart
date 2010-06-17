@@ -1,9 +1,7 @@
-def array_init( indexes = 5 )
-  Array.new indexes do |index|
-    if block_given?
-      yield index
-    else
-      ( 100 * index ).to_s
-    end
+def array_init(size = 5)
+  if block_given?
+    ary = Array.new(size) { |i| yield i }
+  else
+    ary = Array.new(size) { |i| (100 * i).to_s }
   end
 end

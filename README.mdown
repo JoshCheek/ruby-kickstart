@@ -1,0 +1,57 @@
+Welcome to RubyKickstart!
+=
+
+    http://github.com/JoshCheek/JoshsRubyKickstart
+
+RubyKickstart is an interactive guide to learning the Ruby programming language.
+By providing all of our notes and examples in real Ruby program files, you can see exactly how
+everything looks and works in the code itself.
+
+How it works
+=
+
+RubyKickstart is downloaded onto your computer as a folder full of files and folders, which can be later
+updated from our github website using the git version control software. It consists of chapters, all which
+have common features:
+
+  Notes
+  ---
+Each chapter has a notes file, which is just a Ruby program that's heavily commented to walk
+through the material of that chapter. It's where you should start each time you open a new chapter.
+
+  Examples
+  ---
+Examples are full Ruby programs that demonstrate the material taught in the notes. You can run them
+on your own and modify them to experiment with the ideas they demonstrate.
+
+  Challenges
+  ---
+Challenges are found in each chapter. They provide fun programming exercises for you to work through,
+in order to give you something to write with all of your new knowledge from the chapter.
+
+  Solved & Specs 
+  ---
+Along with challenges, each chapter provides solutions to its challenges and 
+a suite of automated tests you can use to test your solutions.
+
+  Cheatsheets
+  ---
+Although not part of the chapters, RubyKickstart has a number of cheatsheets which contain all the syntax
+for various topics. Some of the material in the cheatsheets is not covered in the notes or examples for chapters,
+so make sure you check out the cheatsheets before diving into the challenges.
+
+
+What you'll need to use it 
+=
+
+ To use RubyKickstart, you'll need several tools:
+
+   The Ruby programming language
+   ---
+
+   RSpec
+   ---
+
+   git
+   ---
+   

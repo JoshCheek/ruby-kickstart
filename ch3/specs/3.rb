@@ -25,7 +25,27 @@ describe 'shared' do
   end
   
   it "should return [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] when given [1,2,3] , [3,2,1]" do
-   shared( [1,2,3] , [3,2,1] ).should == [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] 
+    shared( [1,2,3] , [3,2,1] ).should == [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] 
   end
-  
+ 
+  it 'should handle arrays of different lengths' do
+    shared( Array(1..10) , Array(9..15) ).should == [ { 
+        1   =>  [ true , nil  ], 
+        2   =>  [ true , nil  ], 
+        3   =>  [ true , nil  ], 
+        4   =>  [ true , nil  ], 
+        5   =>  [ true , nil  ], 
+        6   =>  [ true , nil  ], 
+        7   =>  [ true , nil  ], 
+        8   =>  [ true , nil  ], 
+        9   =>  [ true , true ], 
+        10  =>  [ true , true ],
+        11  =>  [ nil  , true ], 
+        12  =>  [ nil  , true ], 
+        13  =>  [ nil  , true ], 
+        14  =>  [ nil  , true ], 
+        15  =>  [ nil  , true ], 
+      } , [9,10]
+    ]
+  end 
 end

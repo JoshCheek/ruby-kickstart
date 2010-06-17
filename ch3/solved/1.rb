@@ -1,4 +1,4 @@
-# This challenge is based off of problem 1
+# This challenge is based off of example 1
 # modify it such that it also accepts in the hash, a color (whose values are red("#FF0000"), green("#00FF00"), and blue(#0000FF) )
 # if the color is set, then it should show up in the style
 #
