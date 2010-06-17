@@ -28,5 +28,13 @@
 
 class ApplicationController  
   def body_class
+    @class_string ||= ""
+    class << @class_string
+      def <<(input)
+        self.concat " " unless self == ""
+        self.concat input
+      end
+    end
+    @class_string
   end
 end

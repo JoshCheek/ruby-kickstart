@@ -80,6 +80,17 @@ class Stack
     !first_node
   end
   
+  def inspect
+    return '()' unless first_node
+    return_string = '('
+    node = first_node
+    while node
+      return_string += node.data.inspect + ')'
+      node = node.next
+    end
+    return_string
+  end
+  
 private
 
   # we are making these methods private, because they are for internal implementation

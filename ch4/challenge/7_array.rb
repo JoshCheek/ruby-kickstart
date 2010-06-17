@@ -15,5 +15,10 @@
 # more14(4, 1, 4, 6, 1)       # =>  false
 # more14(1, 4, 1, 4, 1, 6)    # =>  true
 
-def more14
+def more14(*params)
+  counts = Hash.new 0
+  params.each do |number|
+    counts[number] += 1
+  end
+  counts[1] > counts[4]
 end

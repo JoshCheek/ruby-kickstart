@@ -18,5 +18,9 @@
 # same_star_char("*")           # => true
 # same_star_char("**")          # => true
 
-def same_star_char
+def same_star_char(string)
+  string.each_char.each_cons 3 do |previous_char, current_char, next_char|
+    return false if current_char == '*' && previous_char != next_char
+  end
+  true
 end

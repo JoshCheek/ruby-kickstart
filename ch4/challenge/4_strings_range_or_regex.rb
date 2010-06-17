@@ -14,5 +14,6 @@
 # sum_digits("X1z9b2")        # =>  12
 # sum_digits("5432a")         # =>  14
 
-def sum_digits
+def sum_digits(string)
+  string.each_char.inject(0) {|sum, char| sum + char.to_i unless sum =~ /[^0-9]/}
 end

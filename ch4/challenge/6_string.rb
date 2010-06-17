@@ -14,5 +14,10 @@
 # count_triple("122abhhh2")       # => 1
 
 
-def count_triple
+def count_triple(string)
+  count = 0
+  string.each_char.each_cons 3 do |previous_char, current_char, next_char|
+    count += 1 if previous_char == current_char && current_char == next_char
+  end
+  count
 end

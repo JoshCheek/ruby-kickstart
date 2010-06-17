@@ -44,5 +44,11 @@
 # 
 # should return ["Will Jones", "Robert Jones", "John Smith", "Sally Smith"]
 
-def passthrough
+# Added in real inject behavior ;)
+def passthrough(enum, initial = enum.first)
+  enum = enum.reject {|element| element.object_id == enum.first.object_id} if initial == enum.first
+  enum.each do |element|
+    initial = yield initial, element
+  end
+  initial
 end
