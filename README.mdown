@@ -1,3 +1,5 @@
+**CURRENTLY INCOMPLETE, PLACING ON GITHUB SO I CAN COLLABORATE WITH A FRIEND**
+
 Welcome to RubyKickstart!
 =
 
@@ -11,7 +13,7 @@ How it works
 =
 
 RubyKickstart is downloaded onto your computer as a folder full of files and folders, which can be later
-updated from our github website using the git version control software. It consists of chapters, all which
+updated from our github webpage using the git version control software. It consists of chapters, all which
 have common features:
 
   Notes
@@ -55,3 +57,20 @@ What you'll need to use it
    git
    ---
    
+   
+Chapters
+=
+
+- 1
+    * Arithmetic
+    * Logic
+    * String
+- 2 
+    * Basic IO
+    * Arrays
+    * Basic Classes
+- 3 
+    * Symbols
+    * Hashes
+    * Blocks / Procs
+    * Method Parameters
