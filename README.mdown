@@ -48,7 +48,7 @@ What you'll need to use it
 
  To use RubyKickstart, you'll need several tools:
 
-   **The Ruby programming language**
+   **Ruby**
    ---
 
    **RSpec**
