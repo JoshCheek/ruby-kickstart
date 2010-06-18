@@ -21,6 +21,7 @@
 #   Module#private_instance_methods
 #   Module#protected_instance_methods
 #   Module#public_instance_methods
+#
 
 
 # examples

@@ -37,7 +37,7 @@
 # s.push /abc/                                
 # s.inspect                                 # => "(/abc/)3)2)1)"
 # Stack.new.inspect                         # => "()"
-# Stack.new(nil,false,true,"abc",[1,2,3])   # => "(nil)false)true)\"abc\")[1,2,3])"
+# Stack.new(nil,false,true,"abc",[1,2,3])   # => "([1, 2, 3])"abc")true)false)nil)"
 
 class Stack
 
