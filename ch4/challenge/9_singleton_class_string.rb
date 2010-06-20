@@ -1,8 +1,8 @@
-# In Ruby on Rails, when a person goes to a URL on your site, your applicaiton looks at the url, 
+# In Ruby on Rails, when a person goes to a URL on your site, your application looks at the url, 
 # and maps it to a controller method to handle the request
 #
 # Last week, my boss wanted to be able to specify what CSS class the body of the HTML output should have,
-# based on which controller method was being accessing.
+# based on which controller method was being accessed.
 # It fell to me to provide a method, which, when invoked, would return a String that could handle the request
 # 
 # There are a few nuances, though.

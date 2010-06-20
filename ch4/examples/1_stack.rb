@@ -1,7 +1,7 @@
 class Stack
 
   # a nested class, from the outside we can access it with Stack::Node
-  # from inside, of LinkedList, we can just say Node
+  # from inside, of Stack, we can just say Node
   class Node
     attr_accessor :next , :data
     def initialize( next_node , data )
