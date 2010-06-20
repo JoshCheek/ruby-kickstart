@@ -77,12 +77,38 @@ show_exception { get_names 'Josh Cheek' } # => ["Josh", "Cheek"]
 # Notice that it has highlighted "bob", "bab", and "bub"
 # These are the areas where your regular expression matches the String.
 
+# you can match specific characters by typing them out, and a single character against a set by placing them in brackets (negate by beginning with a caret)
+# The dot will match any character except newlines
+"proud pink pandas".scan(/pr/)            # => ["pr"]
+"proud pink pandas".scan(/pi/)            # => ["pi"]
+"proud pink pandas".scan(/pa/)            # => ["pa"]
+"proud pink pandas".scan(/p./)            # => ["pr", "pi", "pa"]
+"proud pink pandas".scan(/p[aeiou]/)      # => ["pi", "pa"]
+"proud pink pandas".scan(/p[^aeiou]/)     # => ["pr"]
+
+# you can give ranges inside of brackets
+alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphabet.scan(/[a-cmnoy-z]/)              # => ["a", "b", "c", "m", "n", "o", "y", "z"]
+
+# to match the beginning of a line, use the caret (outside of the brackets) and to match the end, use the dollar sign.
+# to match "zero or more" use a splat, to match "one or more" use a plus
+"hello world"[/[a-z]+/]                   # => "hello"
+"hello world"[/^[a-z]+$/]                 # => nil
+"helloworld"[/^[a-z]+$/]                  # => "helloworld"
+
+# you can logically group multiple characters with parentheses, a pipe acts as an "or"
+# whatever the parentheses sourround, it will be captured in the global variables $1 , $2 , ... 
+regex = /big (dog|boy)/
+"He is a big boy now."[regex]             # => "big boy"
+"That is one big dog over there."[regex]  # => "big dog"
+"I bought a big truck today"[regex]       # => nil
+
+
 
 
 # =====  Require  =====
 # when you are in one Ruby file, and you want to load another one in, you use the key word require
 require '../examples/1_load_me'
-
 
 # now we can use methods that are defined in that file
 say_hello # => "hello"

@@ -128,9 +128,12 @@ str.scan(/b[oa]b/)  # => ["bob", "bab"]
 
 # you can also give ranges when inside of brackets by specifying a start and end character
 # this is the same as /b[abcdefghijklmnopqrst]b/
-str.scan(/b[a-t]b/)     # => ["bob", "bab"]
+str.scan(/b[a-t]b/)                                                 # => ["bob", "bab"]
 # this is the same as /b[abcnop]b/
-str.scan(/b[a-cn-p]b/)  # => ["bob", "bab"]
+str.scan(/b[a-cn-p]b/)                                              # => ["bob", "bab"]
+alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphabet.scan(/[a-cmnoy-z]/)                                        # => ["a", "b", "c", "m", "n", "o", "y", "z"]
+
 
 # To match anything NOT in the set, put a caret at the beginning of the brackets
 str.scan(/b[^o]b/) # => ["bub", "bab"]
