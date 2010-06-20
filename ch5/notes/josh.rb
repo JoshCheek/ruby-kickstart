@@ -194,8 +194,77 @@ end
 
 # The paths that Sinatra takes get turned into regular expressions, and matched against the url of the http request
 # you can pull certain parts out of the url, and have them available in a hash table. Here is an example:
-get '/greet/:name' do
-  "Hello, #{ params[:name].capitalize }, a pleasure to meet you!"
+get '/greet/:firstname' do
+  "Hello, #{ params[:firstname].capitalize }, a pleasure to meet you!"
 end
 
-# Lets create a simple app that 
+# When you post form data to the server, the information that was posted is also available through the params hash.
+# Lets look at example 4 to see how this works.
+
+
+# =====  Shotgun  =====
+# Now we have a problem. When we modify our data, we have to restart our server
+# That is really annoying -.- What if there was a gem out there that knew how to reload our information
+# each time we made a request? Then changes would be seen immediately.
+# If you can't see where this is going, you deserve to get shot. With a shotgun. 
+# Which, is coincidentally the name of the gem you need to go install... RIGHT NOW!
+
+# Okay, welcome back, hope you have shotgun installed. If not, you need to be doing, not reading.
+# Now, run the file with "$ shotgun sinatra_file.rb" instead of "$ ruby sinatra_file.rb"
+# make a change to the file, save it, and see if you can see it in your browser without having to restart your server
+# (you will need to reload the page, though)
+
+# one thing to notice is that shotgun hosts your server on port 9393 instead of 4567
+
+
+# =====  Our First App!  =====
+
+# Lets go create our first app. We will create it in the examples 5 directory.
+#
+# Once we are done and satisfied that our app is running, we want to put it on the internet for the world to see.
+# We will use Heroku, because heroku is simple, easy to use, and free.
+# First, go make your accounts
+# Then install the heroku gem (you should be gettin the hang of this by now ;)
+
+# Now, Heroku works with git. It sets itself up as a repote repository for your code. Then you can just use git to push your code to Heroku.
+# It is as easy as that! Well... almost. We need to do one tiny bit of configuration
+
+# =====  Rack  =====
+# There is a gem sitting underneat of Sinatra called Rack. You may have noticed Sinatra installed it when you installed Sinatra.
+# Rack is sort of a convention for how ruby web frameworks might choose to do their business. Lots of people recognized the benefits of this
+# and so now tons of web frameworks sit on top of Rack. Ruby on Rails is another Ruby web framework that sits on top of Rack.
+#
+# Heroku supports all rack based applications. Since our application is on Sinatra, it is a rack based application.
+# Heroku expects our rack configuration information to be inside of a file called config.ru
+# So we need to make that file
+# 
+# Inside the file, we just need to require our actual sinatra file, and pass the Sinatra::Application class to rack.
+# When new request come in, rack will then create an instance of the Sinatra::Application that we defined in the other file
+# and then pass the requests to it 
+#
+# require '5_calculator'
+# run Sinatra::Application
+
+
+# =====  Git and Heroku As a Remote Repo  =====
+# Now we have to place our code under git version control
+#
+# # initialize a new git repo
+# $ git init
+#
+# # add the files to it that we want in our application to the staging area
+# $ git add 5_calculator.rb
+# $ git add config.ru
+#
+# # commit the staging area into the repository
+# $ git commit -m "making our application"
+
+# # now our git is set up, lets set up our heroku
+# # if this is your first time making a heroku application, you may need to do a little more to identify yourself to heroku
+# $ heroku create
+#
+# # so now heroku is a repote repo, we can just use git to push our code ot it
+# $ git push heroku master
+#
+# # our code is now on heroku, lets open it up in our browser and take a look
+# $ heroku open
