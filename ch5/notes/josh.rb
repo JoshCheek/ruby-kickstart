@@ -12,7 +12,7 @@ begin
 rescue => e
   e                 # => #<ArgumentError: wrong number of arguments (3 for 1)>
   e.class           # => ArgumentError
-  e.class.ancestors # => [ArgumentError, StandardError, Exception, Object, Kernel]
+  e.class.ancestors # => [ArgumentError, StandardError, Exception, Object, Kernel, BasicObject]
 end
 
 # You can rescue specific exceptions if you like
@@ -99,10 +99,36 @@ alphabet.scan(/[a-cmnoy-z]/)              # => ["a", "b", "c", "m", "n", "o", "y
 # you can logically group multiple characters with parentheses, a pipe acts as an "or"
 # whatever the parentheses sourround, it will be captured in the global variables $1 , $2 , ... 
 regex = /big (dog|boy)/
-"He is a big boy now."[regex]             # => "big boy"
-"That is one big dog over there."[regex]  # => "big dog"
 "I bought a big truck today"[regex]       # => nil
+"He is a big boy now."[regex]             # => "big boy"
+$1                                        # => "boy"
+"That is one big dog over there."[regex]  # => "big dog"
+$1                                        # => "dog"
 
+# you can use regular expressions to check user input in a smarter, more tolerant way
+# (when taking in user input, remember to use chomp to remove the newline)
+
+user_input = "quit"
+true if user_input =~ /^q(uit)?$/i # => true
+
+user_input = "q"
+true if user_input =~ /^q(uit)?$/i # => true
+
+user_input = "QUIT"
+true if user_input =~ /^q(uit)?$/i # => true
+
+user_input = "quip"
+true if user_input =~ /^q(uit)?$/i # => nil
+
+# let's get a number and a word from the user, and capture them to use later
+
+user_input = "60 cat_5"
+user_input =~ /^(\d+) (\w+)$/
+
+number = $1.to_i # => 60
+word   = $2      # => "cat_5"
+
+number * 400     # => 24000
 
 
 
@@ -116,7 +142,7 @@ say_hello # => "hello"
 # we can also load files from the standard library this way
 Module.constants.grep(/erb/i) # => []
 require 'erb'
-Module.constants.grep(/erb/i) # => ["ERB"]
+Module.constants.grep(/erb/i) # => [:ERB]
 
 
 
