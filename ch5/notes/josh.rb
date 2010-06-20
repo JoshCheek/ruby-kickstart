@@ -122,6 +122,54 @@ Module.constants.grep(/erb/i) # => ["ERB"]
 
 
 
-# rubygems
-# haml
-# sinatra
+# =====  Rubygems / Installing Sinatra  =====
+# Sometimes you need to use third party libraries with Ruby, because that is where al the fun stuff is ^_^
+# In Ruby, third party libraries are called gems
+# You can see a giant repository of gems at rubygems.org
+# 
+# We are interested in the minimalist web framework Sinatra, so type "sinatra" into the search box, and press return
+# Then click the link to the Sinatra gem
+# At the top it gives you a description of what it does
+# Then in green it shows you how to install the gem
+# And it also gives you links to where the code is hosted, the project's homepage, and other useful things
+#
+# Lets install Sinatra, we will use the command that rubygems told us about
+# $ gem install sinatra            
+# (note that on Mac OSX, the path to your local gem dir is not in your $PATH, you can either add it, or use $ sudo gem install sinatra)
+#
+# Now we want the Sinatra gem available to us.
+# For some reason that I don't really understand, but involves the path again,
+# We have to require rubygems before we can do anything with our gem.
+require 'rubygems'
+
+# and now that we have rubygems, we can require the Sinatra library
+# example 3 shows how we require Sinatra, as well as a very simple Sinatra program
+#
+# run the file and go to http://localhost:4567/
+
+
+# =====  Sinatra  =====
+# There are different ways that you can connect to a server with http, they are get, put, post, and delete
+# When you type a URL into your web browser and hit return, that is a get request
+# In Sinatra, those are method names that you can give to indicate that you want to define some code 
+# that will respond to some particular http method
+#
+# So we tell Sinatra that we want to respond to get methods, then we pass it the string '/'
+# Sinatra uses this to identify the url your code should respond to. In this case, localhost:4567/ <-- the slash from above
+# if we had said '/hello' then it would respond to localhost:4567/hello
+#
+# And the last thing we pass is a block.
+# whatever this block returns will be what the server returns when we visit that url in our browser.
+# In this case, we go to localhost:4567/ and it return "Hello world!" just like we told it to
+
+class << self # faking the Sinatra methods so that I can show without requiring the actual gem
+  %w(get put post delete).each { |method_name| define_method(method_name){|arg,&block|} }
+end
+
+# The paths that Sinatra takes get turned into regular expressions, and matched against the url of the http request
+# you can pull certain parts out of the url, and have them available in a hash table. Here is an example:
+get '/greet/:name' do
+  "Hello, #{ params[:name].capitalize }, a pleasure to meet you!"
+end
+
+# Lets create a simple app that 
