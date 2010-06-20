@@ -26,7 +26,7 @@
 #
 # The problem, is that there are several of these of these filters he wants to apply,
 # and he wants to do it in _every_ controller. There are many controllers, and many classes
-# and so this amounts to lots and lots of very redundant and simple code. So he called me over
+# and so this amounts to lots and lots of very redundant and simple code (called "boiler plate"). So he called me over
 # and says that he would like to be able to accomplish the same thing with just one line of code:
 #
 # css_classes 'admin' , :except => [ :show , :index ]
@@ -40,8 +40,66 @@
 # end
 #
 #
-# Write the css_classes method.
+# YOUR TASK: Write the css_classes method.
+#
 #
 # EXAMPLE INVOCATIONS:
+# 
+# class ProductsController < ApplicationController
+#   css_classes 'product'   , :only => %w(show)
+#   css_classes 'secondary' , 'admin_form' , :only => %w(new edit index) 
+#   ...
+#
+# is the same as 
+# class ProductsController < ApplicationController
+#   
+#   before_filter :only => %w(show) do |controller|
+#     controller.body_class << 'product'
+#   end
+#   
+#   before_filter :only => %w(new edit index) do |controller|
+#     controller.body_class << 'secondary' << 'admin_form'
+#   end
+#   ...
+#
+# ---------------
+#
+# class CategoriesController < ApplicationController
+#   css_classes 'no_header' , 'secondary' , :only => [ :sitemap , :search ]
+#   ...
+#
+# is the same as
+# class CategoriesController < ApplicationController
+#   before_filter :only => [ :sitemap , :search ] do |controller|
+#      controller.body_class << 'no_header' << 'secondary'
+#   end
+#   ...
+#
+#
+# HINTS:
+#   * Don't bother requiring the other file. To avoid relative require issues, the test will explicitly do it for you.
+#   * First think about where you need to put this method
+#   * You are going to need to combine variable length parameters with an options hash. This can't be done in the method signature
 
-#  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
