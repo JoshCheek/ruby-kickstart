@@ -1,7 +1,7 @@
 **CURRENTLY INCOMPLETE, PLACING ON GITHUB SO I CAN COLLABORATE WITH A FRIEND**
 
 Welcome to RubyKickstart!
-=
+=========================
 
     http://github.com/JoshCheek/JoshsRubyKickstart
 
@@ -9,57 +9,51 @@ RubyKickstart is an interactive guide to learning the Ruby programming language.
 By providing all of our notes and examples in real Ruby program files, you can see exactly how
 everything looks and works in the code itself.
 
+
+
 How it works
-=
+============
 
 RubyKickstart is downloaded onto your computer as a folder full of files and folders, which can be later
 updated from our github webpage using the git version control software. It consists of chapters, all which
 have common features:
 
   **Notes**
-  ---
-Each chapter has a notes file, which is just a Ruby program that's heavily commented to walk
-through the material of that chapter. It's where you should start each time you open a new chapter.
+  ---------
+  Each chapter has a notes file, which is just a Ruby program that's heavily commented to walk
+  through the material of that chapter. It's where you should start each time you open a new chapter.
 
   **Examples**
-  ---
-Examples are full Ruby programs that demonstrate the material taught in the notes. You can run them
-on your own and modify them to experiment with the ideas they demonstrate.
+  ------------
+  Examples are full Ruby programs that demonstrate the material taught in the notes. You can run them
+  on your own and modify them to experiment with the ideas they demonstrate.
 
   **Challenges**
-  ---
-Challenges are found in each chapter. They provide fun programming exercises for you to work through,
-in order to give you something to write with all of your new knowledge from the chapter.
+  --------------
+  Challenges are found in each chapter. They provide fun programming exercises for you to work through,
+  in order to give you something to write with all of your new knowledge from the chapter. Challenges are taken
+  from many different places. About half of them are taken from <http://codingbat.com> (if you would like to work through many
+  small problems in Java or Python, this is a wonderful site, and gave me a lot of inspiration regarding how I wanted my challenges to work)
+  several are taken from different books that I have enjoyed, including the third edition of Absolute Java by Walter Savitch, 
+  which is probably my favourite CS book, it was exceptionally well done, though would probably be boring for a more advanced 
+  programmer, and Learn to Program by Chris Pine, a book to teach programming to absolute beginners, using Ruby. 
+  I'm hoping to add some projecteuler.net problems into here they also helped me develop a knack for problem solving. 
+  And lastly, many are made up out of my head, or are taken from real world situations that I have found myself in.
 
   **Solved & Specs **
-  ---
-Along with challenges, each chapter provides solutions to its challenges and 
-a suite of automated tests you can use to test your solutions.
+  -------------------
+  Along with challenges, each chapter provides solutions to its challenges and 
+  a suite of automated tests you can use to test your solutions.
 
   **Cheatsheets**
-  ---
-Although not part of the chapters, RubyKickstart has a number of cheatsheets which contain all the syntax
-for various topics. Some of the material in the cheatsheets is not covered in the notes or examples for chapters,
-so make sure you check out the cheatsheets before diving into the challenges.
+  ---------------
+  Although not part of the chapters, RubyKickstart has a number of cheatsheets which contain all the syntax
+  for various topics. Some of the material in the cheatsheets is not covered in the notes or examples for chapters,
+  so make sure you check out the cheatsheets before diving into the challenges.
 
-
-What you'll need to use it 
-=
-
- To use RubyKickstart, you'll need several tools:
-
-   **Ruby**
-   ---
-
-   **RSpec**
-   ---
-
-   **git**
-   ---
-   
    
 Chapters
-=
+========
 
 - 1
     * Arithmetic
@@ -74,3 +68,33 @@ Chapters
     * Hashes
     * Blocks / Procs
     * Method Parameters
+- 4
+    * Boolean Return Values
+    * Introspection / Reflection
+    * Ranges
+    * Simle File IO
+    * Singleton Methods
+    * Inheritance
+    * Modules
+- 5
+    * Exceptions
+    * Regular Expressions
+    * Ruby gems
+    * Sinatra
+    * Heroku
+
+
+    
+What you'll need to use it 
+==========================
+
+ To use RubyKickstart, you'll need several tools:
+
+   - [**Ruby**](http://www.ruby-lang.org/en/) the happy programming language :)
+   - [**Rake** version 0.8.7+](http://rubygems.org/gems/rake) see if you have it by typing "gem list" at the command line, we use it to apply the tests
+   - [**RSpec**](http://rubygems.org/gems/rspec) currently we use this for testing
+   - [**git**](http://help.github.com/git-installation-redirect) good installation instructions at (http://help.github.com/git-installation-redirect)
+   - [A text editor](http://texteditors.org/cgi-bin/wiki.pl) Our Recommendations: 
+     * [SciTE](http://www.scintilla.org/SciTE.html) should come with the one click installer
+     * [SciTE](http://www.scintilla.org/SciTE.html) also works great on linux :)
+     * [TextMate](http://macromates.com/) costs $60 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
