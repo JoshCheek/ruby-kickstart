@@ -11,7 +11,7 @@
 # $ git commit -m "my calculator works!"
 #
 # Push them to heroku with
-# git push heroku mater
+# git push heroku master
 #
 # Go check out your app with
 # heroku open
