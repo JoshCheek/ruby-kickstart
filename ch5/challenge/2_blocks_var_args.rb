@@ -77,7 +77,7 @@
 #
 #
 # HINTS:
-#   * Don't bother requiring the other file. To avoid relative require issues, the test will explicitly do it for you.
+#   * Don't bother requiring the other file. To avoid relative require issues, the test will do it for you.
 #   * First think about where you need to put this method
 #   * You are going to need to combine variable length parameters with an options hash. This can't be done in the method signature
 
