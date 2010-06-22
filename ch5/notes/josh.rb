@@ -11,9 +11,9 @@ begin
   method_with_one_parameter(1,2,3)
   1 + 2             # => 
 rescue => e
-  e                 # => 
-  e.class           # => 
-  e.class.ancestors # => 
+  e                 # => #<ArgumentError: wrong number of arguments (3 for 1)>
+  e.class           # => ArgumentError
+  e.class.ancestors # => [ArgumentError, StandardError, Exception, Object, Kernel]
 end
 
 # You can rescue specific exceptions if you like
@@ -22,13 +22,13 @@ begin
 rescue ZeroDivisionError => e
   e # => 
 rescue ArgumentError => e
-  e # => 
+  e # => #<ArgumentError: wrong number of arguments (3 for 1)>
 end
 
 begin
   1 / 0
 rescue ZeroDivisionError => e
-  e # => 
+  e # => #<ZeroDivisionError: divided by 0>
 rescue ArgumentError => e
   e # => 
 end
@@ -42,8 +42,8 @@ rescue ZeroDivisionError => e
   denominator += 1
   retry
 end
-result        # => 
-denominator   # => 
+result        # => 100
+denominator   # => 1
 
 # You can raise your own exceptions
 def show_exception
@@ -59,8 +59,8 @@ def get_names(full_name)
   full_name.split
 end
 
-show_exception { get_names 'josh cheek' } # => 
-show_exception { get_names 'Josh Cheek' } # => 
+show_exception { get_names 'josh cheek' } # => #<ArgumentError: you need to submit the name as 'Firstname Lastname'>
+show_exception { get_names 'Josh Cheek' } # => ["Josh", "Cheek"]
 
 # QUESTION: Why did our program return an ArgumentError? We caught an Exception
 
@@ -80,56 +80,56 @@ show_exception { get_names 'Josh Cheek' } # =>
 
 # you can match specific characters by typing them out, and a single character against a set by placing them in brackets (negate by beginning with a caret)
 # The dot will match any character except newlines
-"proud pink pandas".scan(/pr/)            # => 
-"proud pink pandas".scan(/pi/)            # => 
-"proud pink pandas".scan(/pa/)            # => 
-"proud pink pandas".scan(/p./)            # => 
-"proud pink pandas".scan(/p[aeiou]/)      # => 
-"proud pink pandas".scan(/p[^aeiou]/)     # => 
+"proud pink pandas".scan(/pr/)            # => ["pr"]
+"proud pink pandas".scan(/pi/)            # => ["pi"]
+"proud pink pandas".scan(/pa/)            # => ["pa"]
+"proud pink pandas".scan(/p./)            # => ["pr", "pi", "pa"]
+"proud pink pandas".scan(/p[aeiou]/)      # => ["pi", "pa"]
+"proud pink pandas".scan(/p[^aeiou]/)     # => ["pr"]
 
 # you can give ranges inside of brackets
 alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-alphabet.scan(/[a-cmnoy-z]/)              # => 
+alphabet.scan(/[a-cmnoy-z]/)              # => ["a", "b", "c", "m", "n", "o", "y", "z"]
 
 # to match the beginning of a line, use the caret (outside of the brackets) and to match the end, use the dollar sign.
 # to match "zero or more" use a splat, to match "one or more" use a plus
-"hello world"[/[a-z]+/]                   # => 
-"hello world"[/^[a-z]+$/]                 # => 
-"helloworld"[/^[a-z]+$/]                  # => 
+"hello world"[/[a-z]+/]                   # => "hello"
+"hello world"[/^[a-z]+$/]                 # => nil
+"helloworld"[/^[a-z]+$/]                  # => "helloworld"
 
 # you can logically group multiple characters with parentheses, a pipe acts as an "or"
 # whatever the parentheses sourround, it will be captured in the global variables $1 , $2 , ... 
 regex = /big (dog|boy)/
-"I bought a big truck today"[regex]       # => 
-"He is a big boy now."[regex]             # => 
-$1                                        # => 
-"That is one big dog over there."[regex]  # => 
-$1                                        # => 
+"I bought a big truck today"[regex]       # => nil
+"He is a big boy now."[regex]             # => "big boy"
+$1                                        # => "boy"
+"That is one big dog over there."[regex]  # => "big dog"
+$1                                        # => "dog"
 
 # you can use regular expressions to check user input in a smarter, more tolerant way
 # (when taking in user input, remember to use chomp to remove the newline)
 
 user_input = "quit"
-true if user_input =~ /^q(uit)?$/i # => 
+true if user_input =~ /^q(uit)?$/i # => true
 
 user_input = "q"
-true if user_input =~ /^q(uit)?$/i # => 
+true if user_input =~ /^q(uit)?$/i # => true
 
 user_input = "QUIT"
-true if user_input =~ /^q(uit)?$/i # => 
+true if user_input =~ /^q(uit)?$/i # => true
 
 user_input = "quip"
-true if user_input =~ /^q(uit)?$/i # => 
+true if user_input =~ /^q(uit)?$/i # => nil
 
 # let's get a number and a word from the user, and capture them to use later
 
 user_input = "60 cat_5"
 user_input =~ /^(\d+) (\w+)$/
 
-number = $1.to_i # => 
-word   = $2      # => 
+number = $1.to_i # => 60
+word   = $2      # => "cat_5"
 
-number * 400     # => 
+number * 400     # => 24000
 
 
 
@@ -138,12 +138,12 @@ number * 400     # =>
 require '../examples/1_load_me'
 
 # now we can use methods that are defined in that file
-say_hello # => 
+say_hello # => "hello"
 
 # we can also load files from the standard library this way
-Module.constants.grep(/erb/i) # => 
+Module.constants.grep(/erb/i) # => []
 require 'erb'
-Module.constants.grep(/erb/i) # => 
+Module.constants.grep(/erb/i) # => ["ERB"]
 
 
 
@@ -190,7 +190,7 @@ require 'rubygems'
 # In this case, we go to localhost:4567/ and it return "Hello world!" just like we told it to
 
 class << self # faking the Sinatra methods so that I can show without requiring the actual gem
-  define_method('get'){|arg,&block|} }
+  define_method('get'){|arg,&block|}
 end
 
 # The paths that Sinatra takes get turned into regular expressions, and matched against the url of the http request
@@ -254,6 +254,7 @@ end
 # .../JoshsRubyKickstart/ch5/examples/5_calculator
 #
 # $ ls
+
 # calculator.rb config.ru
 #
 # initialize a new git repo
@@ -274,5 +275,3 @@ end
 #
 # our code is now on heroku, lets open it up in our browser and take a look
 # $ heroku open
-# ~> -:193: syntax error, unexpected '}', expecting kEND
-# ~> -:276: syntax error, unexpected $end, expecting kEND
