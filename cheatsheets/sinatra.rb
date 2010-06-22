@@ -1,3 +1,6 @@
+# a good book http://sinatra-book.gittr.com/       (note that most of it appears to be good, but some of it appears to be outdated)
+# docs http://www.sinatrarb.com/documentation
+
 require 'rubygems'
 require 'sinatra/base'
 include Sinatra::Delegator
@@ -83,13 +86,33 @@ post '/actors' , &actor_acknowledgment
 # Whatever your block returns is what will be displayed to the user
 
 
+# ===========================================
+# =====  Things You Can Do In The Block =====
+# ===========================================
 
-__END__
-redirect '/'
-redirect '/posts/1'
-redirect 'http://www.google.com'
-The redirect actually sends back a Location header to the browser, and the browser makes a followup request to the location indicated. Since the browser makes that followup request, you can redirect to any page, in your application, or another site entirely.
-The flow of requests during a redirect is: Browser –> Server (redirect to ’/’) –> Browser (request ’/’) –> Server (result for ’/’)
-To force Sinatra to send a different response code, it’s very simple:
-redirect '/', 303 # forces the 303 return code
-redirect '/', 307 # forces the 307 return code
+# =====  Redirect  =====
+# You can send an HTTP redirect with the redirect method
+get '/invalid' do
+  redirect '/valid'
+end
+
+get '/ruby' do
+  redirect 'http://www.ruby-lang.org/'
+end
+
+
+# =====  Cookie Sessions  =====
+# Sessions are a way that you can remember a user between HTTP requests (remember, HTTP is inherently stateless)
+# The easiest way is to use cookies. Cookies are very small (<4kb) text files that sit on the client's computer
+# Also because they are stored on the client's computer, they can be edited by the client, so be careful what you put in there
+
+# To use cookies for sessions, you need to specify so outside the block (ie at the top of your file)
+set :sessions, true
+
+# Sessions are implemented with a simple hash
+get '/' do
+  session["thing"] ||= 0
+  session["thing"] += 1
+  "Thing is now: #{session["thing"]}"
+end
+
