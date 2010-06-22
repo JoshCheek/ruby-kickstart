@@ -1,4 +1,4 @@
-# overriding Rake method that displays tasks so that -T will dispaly in the correct order
+# overriding Rake method that displays tasks so that -T will display in the correct order
 module Rake
   class Application
     def display_tasks_and_comments
