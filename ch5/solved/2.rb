@@ -10,7 +10,7 @@ class ApplicationController
       
       # invoke the before filter and pass it the options
       before_filter options do |controller|
-        
+  
         # for each of the css classes passed in, add them to the controller's body_class method that you wrote in challenge 1
         body_classes.each do |css_body_class|
           controller.body_class << css_body_class
