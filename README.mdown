@@ -56,6 +56,7 @@ Chapters
 ========
 
 - 1
+    * Introduction
     * Arithmetic
     * Logic
     * String
@@ -93,8 +94,8 @@ What you'll need to use it
    - [**Ruby**](http://www.ruby-lang.org/en/) the happy programming language :)
    - [**Rake** version 0.8.7+](http://rubygems.org/gems/rake) see if you have it by typing "gem list" at the command line, we use it to apply the tests
    - [**RSpec**](http://rubygems.org/gems/rspec) currently we use this for testing
-   - [**git**](http://help.github.com/git-installation-redirect) good installation instructions at (http://help.github.com/git-installation-redirect)
+   - [**git**](http://help.github.com/git-installation-redirect) lets you download our changes without overwriting your work. Good installation instructions at (http://help.github.com/git-installation-redirect)
    - [**A text editor**](http://texteditors.org/cgi-bin/wiki.pl) Our Recommendations: 
-     * [SciTE](http://www.scintilla.org/SciTE.html) should come with the one click installer
-     * [SciTE](http://www.scintilla.org/SciTE.html) also works great on linux :)
-     * [TextMate](http://macromates.com/) costs $60 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
+     * Windows: [SciTE](http://www.scintilla.org/SciTE.html) should come with the one click installer
+     * Linux: [SciTE](http://www.scintilla.org/SciTE.html) also works great on linux :)
+     * Mac: [TextMate](http://macromates.com/) costs $60 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
