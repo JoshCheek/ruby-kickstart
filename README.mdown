@@ -98,4 +98,4 @@ What you'll need to use it
    - [**A text editor**](http://texteditors.org/cgi-bin/wiki.pl) Our Recommendations: 
      * Windows: [SciTE](http://www.scintilla.org/SciTE.html) should come with the one click installer
      * Linux: [SciTE](http://www.scintilla.org/SciTE.html) also works great on linux :)
-     * Mac: [TextMate](http://macromates.com/) costs $60 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
+     * Mac: [TextMate](http://macromates.com/) costs $50 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
