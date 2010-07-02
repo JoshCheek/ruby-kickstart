@@ -1,0 +1,20 @@
+body {
+  background-color:green;
+}
+
+.post_title {
+  color: red;
+  background-color: blue;
+  padding: 20px;
+  text-align: center;
+}
+
+.post_subtitle {
+  font-size: 10px;
+}
+
+.post_body , .post_subtitle {
+  background-color: #BBB;
+  color: #333;
+  padding: 10px;
+}

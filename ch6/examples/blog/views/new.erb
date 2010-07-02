@@ -1,0 +1,22 @@
+<form name="blog_post" action="/create" method="post">
+
+  <% ( @post.errors rescue Array.new ).each do |error| %>
+    <p class="error">
+      <%= error %>
+    </p>
+  <% end %>
+  
+  
+  <p>
+    Title: <input type="text" name="blog_post[title]" value="<%= h @post.title %>" />
+  </p>
+
+  <p>
+    Body: <textarea name="blog_post[body]" cols="40"><%= h @post.body %></textarea>
+  </p>
+
+  <p>
+    <input type="submit" value="Submit" />
+  </p>
+
+</form>
