@@ -1,4 +1,21 @@
+def tableize(str)
+  if str !~ /^([^,]*), which ships at ([^,]*), cost:? (.*)$/
+    puts "FAILED ON #{line}"
+  end
+  name , size , price = $1 , $2 , $3
+  id = name.to_s.gsub(' ','')
+  <<-END_OF_ROW.gsub(/^    /,'')
+    <tr>
+      <td>#{name}</td>
+      <td>#{size}</td>
+      <td align="right">#{price}</td>
+      <td><input type="text" id="#{id}" size="2" value="0" /></td>
+    </tr>
+  END_OF_ROW
+end
 
+
+__END__
 elements = Array.new
 
 DATA.each do |line|
