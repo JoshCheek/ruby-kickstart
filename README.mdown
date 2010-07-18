@@ -1,4 +1,17 @@
-**CURRENTLY INCOMPLETE, PLACING ON GITHUB SO I CAN COLLABORATE AND DISTRIBUTE WEEKLY**
+> This is mostly complete, there is only one challenge that I know is wrong (ch5, challenge 9)
+> Generally, I don't know how useful the notes are going to be without the presentation. You
+> will notice they are named after me, that is because they were my notes that we went through
+> together, and the others put their own notes in that dir as well (at least, hypothetically).
+>
+> You will probably enjoy the challenges, regardless of whether you go through the notes and examples.
+>
+> If anyone does decide to try it out or go through it, let me know, and I'll fix that problem
+> If you find anything else clearly wrong, let me know and I'll fix it. (or you can patch it)
+> **I don't have specific plans to work on this in the future.** But I have already put quite a
+> bit of work into it, and consider education to be very important, so if anyone does decide to
+> go through it, or does want to patch it, let me know and I'll give a schedule of how much time I 
+> have to work on it. 
+
 
 Welcome to RubyKickstart!
 =========================
