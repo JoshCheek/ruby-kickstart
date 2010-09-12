@@ -11,6 +11,9 @@
 > bit of work into it, and consider education to be very important, so if anyone does decide to
 > go through it, or does want to patch it, let me know and I'll give a schedule of how much time I 
 > have to work on it. 
+>
+> Also, I tried to update it to work with 1.9.2, which made significant weird changes to how paths
+> work, breaking rspec's ability to find all the files I tell it to require, but I couldn't figure it out.
 
 
 Welcome to RubyKickstart!
@@ -112,3 +115,5 @@ What you'll need to use it
      * Windows: [SciTE](http://www.scintilla.org/SciTE.html) should come with the one click installer
      * Linux: [SciTE](http://www.scintilla.org/SciTE.html) also works great on linux :)
      * Mac: [TextMate](http://macromates.com/) costs $50 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
+
+
