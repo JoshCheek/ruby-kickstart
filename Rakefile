@@ -64,7 +64,7 @@ def run_spec(chapter,problem)
     problem_dir = Dir["#{ch}/challenge/#{problem}_*"].first
   end  
   sh "ruby -c #{problem_dir}"                                              # check syntax
-  sh "rspec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
+  sh "rspec -cr #{problem_dir} -r enumerator #{ch}/spec/#{problem}.rb"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
 end
 
 
@@ -104,6 +104,6 @@ task :default => get_chapters.map { |chapter| "#{chapter}:all" }
 desc 'create chapter skeleton'
 task :add_ch do
   ch = "ch#{ENV['ch']||get_chapters.size.next}"
-  makedirs 'challenge' , 'examples' , 'notes' , 'solved' , 'specs' , :path => ch
+  makedirs 'challenge' , 'examples' , 'notes' , 'solved' , 'spec' , :path => ch
   touch "#{ch}/notes/josh.rb"
 end
