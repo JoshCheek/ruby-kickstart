@@ -12,8 +12,7 @@
 > go through it, or does want to patch it, let me know and I'll give a schedule of how much time I 
 > have to work on it. 
 >
-> Also, I tried to update it to work with 1.9.2, which made significant weird changes to how paths
-> work, breaking rspec's ability to find all the files I tell it to require, but I couldn't figure it out.
+> This Project requires Ruby version 1.8.7 or higher
 
 
 Welcome to RubyKickstart!

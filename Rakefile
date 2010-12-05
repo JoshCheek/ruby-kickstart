@@ -57,14 +57,14 @@ end
 # if the environment variable 'solved' has been set,
 # then it runs them against the solved challenge instead
 def run_spec(chapter,problem)
-  ch = "ch#{chapter}"
+  ch = "#{File.dirname(__FILE__)}/ch#{chapter}"
   if ENV['solved']
     problem_dir = "#{ch}/solved/#{problem}.rb"
   else
     problem_dir = Dir["#{ch}/challenge/#{problem}_*"].first
   end  
-  sh "ruby -c #{problem_dir}"                                             # check syntax
-  sh "spec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
+  sh "ruby -c #{problem_dir}"                                              # check syntax
+  sh "rspec -cr #{problem_dir} -r enumerator #{ch}/specs/#{problem}.rb"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
 end
 
 
