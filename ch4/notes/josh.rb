@@ -115,14 +115,13 @@ File.open "names" , "w" do |file|
 end
 
 # Read the entire file at once
-contents = Array.new
-File.open("names") { |file| contents << file.read }
-contents  # => ["sally\nsam\nbillybob\n"]
+contents = File.read "names"
+contents  # => "sally\nsam\nbillybob\n"
 
 # Iterate over the lines of the file
 contents = Array.new
-File.open "names" do |file|
-  file.each { |line| contents << line }  # files are iterable too
+File.foreach "names" do |line|
+  contents << line
 end
 contents # => ["sally\n", "sam\n", "billybob\n"]
 
@@ -160,22 +159,20 @@ kevin                               # => "Kevin Griffin"
 kevin.class                         # => String
 kevin.greet                         # => "What's going on?"
 kevin.farewell                      # => "See you later."
-kevin.singleton_methods             # => ["farewell", "greet"]
+kevin.singleton_methods             # => ["greet", "farewell"]
 
 class << kevin
   attr_accessor :test
 end
 kevin.test = 100
 kevin.test                          # => 100
-kevin.singleton_methods             # => ["test=", "farewell", "greet", "test"]
+kevin.singleton_methods             # => ["greet", "test=", "farewell", "test"]
 kevin                               # => "Kevin Griffin"
 "Kevin Griffin".singleton_methods   # => []
 
 
 
 # =====  Inheritence  =====
-# Note: Breeze through this shit, mostly doing it b/c I feel an OO obligation
-# 
 # Sometimes you have a generic idea of your class, but it can be realized in several specific ways
 # Commonly, in Object Oriented Programming, we will subclass the generic class, and write more specific implementations.
 class Employee
@@ -226,7 +223,7 @@ Engineer.methods.grep(/dollars/)  # => ["dollars_per_hour", "dollars_per_hour="]
 # Where did Engineer get it from? We never defined dollars_per_hour for Engineer
 Engineer.method(:dollars_per_hour).owner  # => #<Class:Employee>
 
-# It came from Employee's singleton class (the class that stores methods that are defined on objects)
+# It came from Employee's singleton class (the class that stores methods that are defined on one given object)
 # How do we have access to Employee's Singleton class? We inherit from Employee
 Engineer.superclass               # => Employee
 
@@ -338,16 +335,16 @@ end
 
 day1 = Day1Solutions::MinFinder.new 10 , 5
 day2 = Day2Solutions::MinFinder.new 10 , 5
-day1                                          # => #<Day1Solutions::MinFinder:0x1003498a0 @b=5, @a=10>
-day2                                          # => #<Day2Solutions::MinFinder:0x1003497d8 @elements=[10, 5]>
+day1                                          # => #<Day1Solutions::MinFinder:0x1011dcf20 @b=5, @a=10>
+day2                                          # => #<Day2Solutions::MinFinder:0x1011dce58 @elements=[10, 5]>
 day1.solve                                    # => 5
 day2.solve                                    # => 5
 
 # that is a lot to type, though, I think I like Day2Solutions better, it's easier to read
-# that is the one I want to use from no on, but I don't want to have to keep typing Day2Solutions::MinFinder.new
+# that is the one I want to use from now on, but I don't want to have to keep typing Day2Solutions::MinFinder.new
 # we can include day2 solutions into our main
 include Day2Solutions
-MinFinder.new 10 , 5                          # => #<Day2Solutions::MinFinder:0x100345520 @elements=[10, 5]>
+MinFinder.new 10 , 5                          # => #<Day2Solutions::MinFinder:0x1011d77c8 @elements=[10, 5]>
 
 # This is a common way to get nicer functionality
 # For example, the FileUtils module (http://ruby-doc.org/core/classes/FileUtils.html), which is in the Ruby standard library
