@@ -4,10 +4,6 @@ describe 'ApplicationController#body_class' do
     @ac = ApplicationController.new
   end
   
-  it 'should not have its own initialize method' do
-    ApplicationController.new.method(:initialize).owner.should == if RUBY_VERSION =~ /1\.9/ then BasicObject else Object end
-  end
-  
   it 'should return an empty string on first invocation' do
     ApplicationController.new.body_class.should == ""
   end
