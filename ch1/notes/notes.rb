@@ -144,11 +144,11 @@ p    "Rain and lightning"
 
 # Output:
 
-# puts
-# Rain and lightning
+  # puts:
+  # Rain and lightning
 
-# p
-# "Rain and lightning"
+  # p:
+  # "Rain and lightning"
 
 # Notice how the p method puts quote ( "" ) around the string. Here's one more example using arrays
 # (We'll talk about arrays themselves later on)
