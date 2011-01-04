@@ -160,13 +160,13 @@ p    my_array
 
 # Output:
 
-# puts
-# 1
-# 2
-# 3
+  # puts:
+  # 1
+  # 2
+  # 3
 
-# p
-# [1, 2, 3]
+  # p:
+  # [1, 2, 3]
 
 # =====  Identifiers and Variables  =====
 
