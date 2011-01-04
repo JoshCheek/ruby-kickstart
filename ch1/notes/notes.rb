@@ -26,8 +26,8 @@ my_var      # => 4
 # ===== Ruby Basics ====
 
 # Ruby is dynamic, so there's no need to declare variables ahead of time
-my_num    = 15532
 my_string = "Welcome to Ruby"
+my_num    = 15532
 
 # Notice that a variable isn't bound to holding one type of object, even after it's been assigned:
 my_num    = "Now a string"
