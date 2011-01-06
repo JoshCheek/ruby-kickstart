@@ -17,6 +17,7 @@
 # You can read all lines into array with readlines
 # You can read everything until eof into a string with read
 # for more complicated usage, you can use strscan, its in the stdlib (I never use it)
+# show example 2
 
 
 # =====  Arrays  =====
