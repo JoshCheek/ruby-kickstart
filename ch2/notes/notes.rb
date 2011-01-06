@@ -38,6 +38,8 @@
 #
 # Person would be a class
 # josh would be an instance of it. Other instances might be daniel, lissa, kevin, kris, and michael
+#
+# Ask them to each give an example of a class and three instances.
 
 
 # =====  Class and Instance Variables  =====
