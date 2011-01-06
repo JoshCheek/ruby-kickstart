@@ -88,7 +88,7 @@ end
 josh.name # => "Josh Cheek"
 
 
-# Whoops, my full name is "Joshua Jay Cheek", we need to change that instance variable, but instance variabels are private
+# Whoops, my full name is "Joshua Jay Cheek", we need to change that instance variable, but instance variables are private
 # We can create a "setter" method (Absolute Java would call this a "mutator")
 class Person
   def name=(new_name)
