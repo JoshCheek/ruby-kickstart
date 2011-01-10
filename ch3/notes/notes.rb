@@ -174,7 +174,7 @@ block_caller { 'passed from block' }    # => "passed from block"
 # since it is the last line, it is what the block returns
 # so it is what yield (which invoked the block) returns, and stores in the variable result_of_block
 # the block_caller method then returns result_of_block
-def block_caller # !> method redefined; discarding old block_caller
+def block_caller
   result_of_block = yield 'passed from block_caller'
   return result_of_block
 end
