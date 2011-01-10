@@ -149,7 +149,7 @@ end
 
 
 # When inside of a method, you can check to see if a block was passed to it by using block_given?
-def block_checker # !> method redefined; discarding old block_checker
+def block_checker
   block_given?
 end
 block_checker     # => false
