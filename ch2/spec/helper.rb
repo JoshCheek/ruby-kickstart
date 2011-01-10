@@ -6,7 +6,7 @@ def input_output( mock_stdin_with_this_str = String.new )
   $stdin  = StringIO.new mock_stdin_with_this_str
   to_return = $stdout = StringIO.new
   yield
-  $stdout , $stdin = STDOUT , $stdin
+  $stdout , $stdin = stdout , stdin
   to_return.rewind
   to_return.read
 end
