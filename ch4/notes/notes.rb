@@ -172,6 +172,35 @@ kevin                               # => "Kevin Griffin"
 
 
 
+
+# =====  Singleton Class  =====
+# Methods are defined on classes and modules. For an object to be able to use a method,
+# it must be an instance of the class, or have the module in its ancestor chain.
+# To make methods available to one specific object, what class should you define it on?
+# On its singleton class. This is a class that exists only for the given object.
+# Any methods you put on it will be available to that object only.
+
+josh = "josh"
+zac  = "zac"
+
+# josh and zac's actual class
+class String
+  def this_is_on_all_strings
+  end
+end
+
+# josh's singleton class
+class << josh
+  def this_is_available_only_to_josh
+  end
+end
+
+josh.methods.grep(/this/) # => ["this_is_on_all_strings", "this_is_available_only_to_josh"]
+zac.methods.grep(/this/)  # => ["this_is_on_all_strings"]
+
+
+
+
 # =====  Inheritence  =====
 # Sometimes you have a generic idea of your class, but it can be realized in several specific ways
 # Commonly, in Object Oriented Programming, we will subclass the generic class, and write more specific implementations.
