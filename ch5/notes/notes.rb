@@ -150,7 +150,7 @@ Module.constants.grep(/erb/i) # => ["ERB"]
 
 
 # =====  Rubygems / Installing Sinatra  =====
-# Sometimes you need to use third party libraries with Ruby, because that is where al the fun stuff is ^_^
+# Sometimes you need to use third party libraries with Ruby, because that is where all the fun stuff is ^_^
 # In Ruby, third party libraries are called gems
 # You can see a giant repository of gems at rubygems.org
 # 
