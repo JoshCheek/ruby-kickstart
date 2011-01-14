@@ -131,6 +131,7 @@ word   = $2      # => "cat_5"
 
 number * 400     # => 24000
 
+# check out example 2
 
 
 # =====  Require  =====
