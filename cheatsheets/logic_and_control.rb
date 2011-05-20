@@ -3,6 +3,25 @@ a , b , c = 1 , 2 , 3
 a == b && a == c          # logical and
 a == b || a == c          # logical or
 
+# less than, greater than
+4 <  5  # => true
+4 <  3  # => false
+
+4 >  3  # => true
+4 >  5  # => false
+
+# less/greater than or equal to
+4 <= 3  # => false
+4 <= 4  # => true
+4 <= 5  # => true
+
+4 >= 3  # => true
+4 >= 4  # => true
+4 >= 5  # => false
+
+# equal to
+4 == 3  # => false
+4 == 4  # => true
 
 # =====  General syntax of an if statement  =====
 def one_two_or_three(n)
@@ -88,7 +107,7 @@ end
 ary # => [0, 2, 4, 6, 8]
 
 
-  # break out of a loop
+# break out of a loop
 ary = Array.new
 10.times do |current|
   break if current >= 5
