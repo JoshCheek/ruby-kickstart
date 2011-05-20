@@ -3,10 +3,6 @@
 
 
 # Given two numbers, a and b, return half of whichever is smallest, as a float
-# 
-# Hint: the return keyword is the same as Java and comparisons are the same as Java
-# Hint: 10 * 10   # => 100
-#       10 * 10.0 # => 100.0
 #
 # arithmetic2(1,2)    # => 0.5
 # arithmetic2(19,10)  # => 5.0

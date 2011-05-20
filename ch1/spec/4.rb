@@ -1,32 +1,38 @@
-describe 'has_teen' do
+describe 'grade' do
   
-  it 'should return true for 13 , 20 , 10' do
-    has_teen(13,20,10).should be_true
-  end
-  
-  it 'should return true for 20 , 19 , 10' do
-    has_teen(20,19,10).should be_true
-  end
-  
-  it 'should return true for 20 , 10 , 13' do
-    has_teen(20,10,13).should be_true
-  end
-    
-    
-  [ 12          ,          12 ,      12 ,
-    29          ,          20 ,      20 ,
-    113         ,        1015 ,      25 ,
-    10000000000 , -1000000000 , 8932475
-  ].each_slice 3 do |a,b,c|
-    it "should return false for #{a} , #{b} , #{c}" do
-      has_teen(a,b,c).should be_false
+  context 'for non book reader' do
+    0.upto 9 do |num_books|
+      it "should return \"D\" when given #{num_books} books" do
+        grade(num_books,false).should == "D"
+      end
     end
-  end
-
-  (13..19).zip( *Array.new(2) {1..7} ).each do |a,b,c|
-    it "should return true for #{a} , #{b} , #{c}" do
-      has_teen(a,b,c).should be_true
+    10.upto 20 do |num_books|
+      it "should return \"C\" when given #{num_books} books" do
+        grade(num_books,false).should == "C"
+      end
+    end
+    [21,30,500].each do |num_books|
+      it "should return \"B\" when given #{num_books} books" do
+        grade(num_books,false).should == "B"
+      end
     end
   end
   
+  context 'for book reader' do
+    0.upto 9 do |num_books|
+      it "should return \"C\" when given #{num_books} books" do
+        grade(num_books,true).should == "C"
+      end
+    end
+    10.upto 20 do |num_books|
+      it "should return \"B\" when given #{num_books} books" do
+        grade(num_books,true).should == "B"
+      end
+    end
+    [21,30,500].each do |num_books|
+      it "should return \"A\" when given #{num_books} books" do
+        grade(num_books,true).should == "A"
+      end
+    end
+  end
 end

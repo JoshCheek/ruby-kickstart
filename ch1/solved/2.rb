@@ -6,6 +6,6 @@ def arithmetic2(a,b)
     b
   end
   
-  return min / 2.0
+  min / 2.0
   
 end
