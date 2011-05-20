@@ -2,7 +2,6 @@
 a , b , c = 1 , 2 , 3
 a == b && a == c          # logical and
 a == b || a == c          # logical or
-(a == b) ^ (a == c)       # logical exclusive or
 
 
 # =====  General syntax of an if statement  =====
@@ -19,13 +18,6 @@ end
 one_two_or_three 1 # => "one"
 one_two_or_three 2 # => "two"
 one_two_or_three 3 # => "three"
-
-
-# =====  Ternary / inline  =====
-    1 == 1  ?     'one'  :     'five'        # => "one"
-    1 == 5  ?     'one'  :     'five'        # => "five"
-if  1 == 1  then  'one'  else  'five'  end   # => "one"
-if  1 == 5  then  'one'  else  'five'  end   # => "five"
 
 
 # =====  Single line  =====
@@ -71,67 +63,36 @@ end
 ary # => [0, 1, 2, 3, 4]
 
 
-# =====  Until  =====
-i = 10
-ary = Array.new
-until i > 14
-  ary << i
-  i += 1
-end
-ary # => [10, 11, 12, 13, 14]
-
-
 # =====  Loops  =====
 ary = Array.new
-5.times do |i|
-  ary << i
+5.times do |current|
+  ary << current
 end
 ary # => [0, 1, 2, 3, 4]
 
 
 ary = Array.new
-for i in 10..14
-  ary << i
-end
-ary # => [10, 11, 12, 13, 14]
-
-
-ary = Array.new
-5.upto 10 do |i|
-  ary << i
-end
-ary # => [5, 6, 7, 8, 9, 10]
-
-
-ary = Array.new
-10.downto 5 do |i|
-  ary << i
-end
-ary # => [10, 9, 8, 7, 6, 5]
-
-
-ary = Array.new
-1.step 10 , 2 do |i|
-  ary << i
+1.step 10 , 2 do |current|
+  ary << current
 end
 ary # => [1, 3, 5, 7, 9]
 
 
 
-# =====  Java's continue is called next in Ruby  =====
+# =====  Skip this iteration / Stop iterating  =====
 ary = Array.new
-10.times do |i|
-  next if i % 2 == 1
-  ary << i
+10.times do |current|
+  next if current % 2 == 1
+  ary << current
 end
 ary # => [0, 2, 4, 6, 8]
 
 
   # break out of a loop
 ary = Array.new
-10.times do |i|
-  break if i >= 5
-  ary << i
+10.times do |current|
+  break if current >= 5
+  ary << current
 end
 ary # => [0, 1, 2, 3, 4]
 
