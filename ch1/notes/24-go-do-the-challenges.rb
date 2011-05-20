@@ -11,3 +11,24 @@
 # 
 # Did you pass? Yeah? 
 # Great! No go finish the rest :D
+
+
+
+# !!!!!!!!!!DON'T FORGET!!!!!!!!!
+# There are cheatsheets to help you. You will need to reference them!
+#
+# How should you use the cheatsheets?
+# Read them once so you know what kinds of things they contain.
+# Then when you need to use something, first try to remember what it was.
+# If you can't remember, then go look it up. 
+# Make a point of focusing on the answer, and try to recall it again immediately.
+# This will help you quickly learn the things you want to use.
+# 
+# You don't need to sit down and try to memorize the whole sheet (if you want to, you can)
+# It's mostly important to know what general things they contain, and begin to memorize
+# the parts that you use frequently.
+#
+
+# For this section, you'll need:
+# https://github.com/JoshCheek/ruby-kickstart/blob/master/cheatsheets/logic_and_control.rb
+# https://github.com/JoshCheek/ruby-kickstart/blob/master/cheatsheets/strings.rb
