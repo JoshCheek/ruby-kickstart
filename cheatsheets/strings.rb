@@ -19,13 +19,22 @@ string  # => "  THIS IS A HERE DOCUMENT, I CAN INTERPOLATE 1\n  IT WILL CONTINUE
 
 
 # Useful methods
-'hello' + 'world'   # => "helloworld"
 'abc'.length        # => 3
 'abc' == 'abc'      # => true
 'abc' == 'def'      # => false
 'AbCd'.downcase     # => "abcd"
 'AbCd'.upcase       # => "ABCD"
 " abc   ".strip     # => "abc"
+
+# concatenation
+'hello' + 'world'   # => "helloworld"
+'hello' << 'world'  # => "helloworld"
+# wait O.o why two methods for this?
+s = "abc"
+s + "def"       # => "abcdef"
+s               # => "abc"
+s << "def"      # => "abcdef"
+s               # => "abcdef"
 
 # Access parts of the string (-1 counts backwards from the end)
 "abc"[-1]           # => "c"
@@ -43,6 +52,7 @@ message             # => "dom said"
 message += ' "Howdy"'
 message             # => "dom said \"Howdy\""
 message.capitalize  # => "Dom said \"howdy\""
+message             # => "dom said \"Howdy\""
 
 # Other useful methods (some of these use regular expressions, we'll talk about them more later)
 "abc" * 3                                     # => "abcabcabc"
