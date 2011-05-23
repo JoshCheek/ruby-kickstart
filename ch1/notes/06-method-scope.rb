@@ -9,8 +9,8 @@ def my_own_little_world
   defined? twelve # => nil
 end
 
-my_own_little_world
-defined? twelve # => "local-variable"
+my_own_little_world # => nil
+defined? twelve     # => "local-variable"
 
 
 

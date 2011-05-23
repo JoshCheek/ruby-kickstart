@@ -15,5 +15,5 @@ five.next       # => 6
 # variables can be set to point to new values
 
 five            # => 5
-five = 'five'
+five = "five"
 five            # => "five"

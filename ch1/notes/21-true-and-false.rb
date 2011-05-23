@@ -19,7 +19,7 @@ false.class                     # => FalseClass
 # But what about all the other objects? They want to be boolean too!
 # Turns out they can! (except nil, he can go sit in the corner with false)
 
-[1, "two", :three, Object.new, nil].each do |object|
-  !!object # => true, true, true, true, false
+[0, 1, "two", :three, Object.new, nil].each do |object|
+  !!object # => true, true, true, true, true, false
 end
 
