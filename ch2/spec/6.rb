@@ -1,5 +1,11 @@
 describe 'prime_chars?' do
   
+  # some edge cases
+  specify { prime_chars?([]).should_not be }
+  specify { prime_chars?(['']).should_not be }
+  specify { prime_chars?(['a']).should_not be }
+  specify { prime_chars?(['ab']).should be }
+  
   # length three
   specify { prime_chars?(['abc']).should be }
   specify { prime_chars?(['a', 'bc']).should be }

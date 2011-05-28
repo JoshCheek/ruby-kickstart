@@ -1,5 +1,6 @@
 class Integer
   def prime?
+    return false if self < 2
     2.upto Math.sqrt(self) do |i|
       return false if self % i == 0
     end
@@ -8,7 +9,5 @@ class Integer
 end
 
 def prime_chars?(strings)
-  sum = 0
-  strings.each { |string| sum += string.length }
-  sum.prime?
+  strings.join.length.prime?
 end
