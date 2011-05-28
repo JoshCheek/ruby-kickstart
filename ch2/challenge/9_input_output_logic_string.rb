@@ -1,3 +1,5 @@
+# Taken from http://pragprog.com/titles/fr_ltp/learn-to-program
+# 
 # Write a Deaf Grandma program. Whatever you say to grandma (whatever
 # you type in), she should respond with HUH?!  SPEAK UP, SONNY!, unless
 # you shout it (type in all capitals). If you shout, she can hear you
@@ -29,5 +31,6 @@ end
 
 
 
-
-deaf_grandma if $0 == __FILE__ # this will call your code so you can run it from the terminal
+# This will call your code so you can run it from the terminal.
+# But not call it otherwise, so that it will work with our tests.
+deaf_grandma if $0 == __FILE__

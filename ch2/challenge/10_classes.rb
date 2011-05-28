@@ -1,13 +1,19 @@
-# Give the person a birthday method that will increment their age by 1
-# The birthday method should return their new age
+# Make a person class that has a name, age, and birthday
 #
-# josh = Person.new 'Josh' , 27
-#
-# josh.birthday # => 28
+# josh = Person.new 'Josh' , 28
+# 
+# josh.name     # => "Josh"
 # josh.age      # => 28
-#
+# 
+# josh.name = 'Joshua'
+# josh.name     # => "Joshua"
+# 
 # josh.birthday # => 29
 # josh.age      # => 29
+# 
+# josh.birthday # => 30
+# josh.age      # => 30
+# 
 
 class Person
   

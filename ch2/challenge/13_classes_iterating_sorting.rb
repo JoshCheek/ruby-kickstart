@@ -16,7 +16,7 @@
 #        return self.date == other.date
 #      end
 #
-# =====  EXAMPLE  =====
+# ==========  EXAMPLE  ==========
 #
 # lissa = User.new 'QTSort'
 # lissa.username                  # => "QTSort"

@@ -6,5 +6,3 @@ while line = gets
 end
 
 puts "Goodbye!"
-
-# now complete challenges 1 and 2
