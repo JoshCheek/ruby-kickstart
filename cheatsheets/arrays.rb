@@ -149,8 +149,14 @@ ary = [0,1,1,1,1,3]
 ary.map { |num| num * 2 }                       # => [0, 2, 2, 2, 2, 6]
 ary.map { |num| %w(zero one two three)[num] }   # => ["zero", "one", "one", "one", "one", "three"]
 
+  # iterate over multiple elements
+result = []
+Array(1..10).each_slice(2) { |a, b| result << [a, b] }
+result # => [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
 
-
+result = []
+Array(1..10).each_cons(2) { |a, b| result << [a, b] }
+result # => [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]]
 
 # ===== Miscellaneous useful shit  =====
   # equality
