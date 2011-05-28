@@ -12,7 +12,7 @@ class Instrument
     @price = price
   end
   
-  attr_accessor :name, :price
+  attr_accessor 'name', 'price'
   
 end
 

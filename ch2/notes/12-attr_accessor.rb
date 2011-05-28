@@ -3,7 +3,7 @@
 # will write them for you.
 
 class Car
-  attr_accessor :miles
+  attr_accessor 'miles'
 end
 
 Car.instance_methods false # => [:miles, :miles=]

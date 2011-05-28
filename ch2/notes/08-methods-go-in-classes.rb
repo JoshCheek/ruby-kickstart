@@ -1,6 +1,6 @@
 # When we say "abc".length, the length method
 # is stored in the String class.
-length = String.instance_method :length
+length = String.instance_method 'length'
 length # => #<UnboundMethod: String#length>
 
 

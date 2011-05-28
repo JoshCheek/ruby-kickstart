@@ -4,7 +4,7 @@
 
 class Flight
   
-  attr_accessor :arrival_time
+  attr_accessor 'arrival_time'
   
   def reset
     arrival_time      # => 1100

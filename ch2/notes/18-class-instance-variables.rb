@@ -11,7 +11,7 @@ class Person
   # lets put it on the singleton_class
   self # => Person
   class << self
-    attr_accessor :home_planet
+    attr_accessor 'home_planet'
   end
   
   # remember, self is Person, so @home_planet
@@ -22,7 +22,7 @@ class Person
   @home_planet        # => "Earth"
   
   
-  attr_accessor :name
+  attr_accessor 'name'
   def initialize(name)
     # self is now an instance of person, so @name
     # is defined for this particular person
