@@ -53,6 +53,10 @@ message += ' "Howdy"'
 message             # => "dom said \"Howdy\""
 message.capitalize  # => "Dom said \"howdy\""
 message             # => "dom said \"Howdy\""
+message[-2] = 'e'
+message             # => "dom said \"Howde\""
+message[-2] = 'y!'
+message             # => "dom said \"Howdy!\""
 
 # Other useful methods (some of these use regular expressions, we'll talk about them more later)
 "abc" * 3                                     # => "abcabcabc"
