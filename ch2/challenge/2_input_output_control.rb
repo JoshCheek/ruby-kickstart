@@ -1,8 +1,7 @@
-# This challenge is an extension of example 2, so we've included its source as a starting point
-#
 # Prompt the user for a number, then read it in and print out "hi" that many times
 # 
 # Repeat this process until the user submits "bye", then say "goodbye" and end the program
+# HINT: Check out example 2 if you get stuck
 
 # example:
 # PROGRAM: Enter a number
@@ -20,24 +19,13 @@
 # and when you think it is correct, you can test it with  $ rake 2:2
 
 def hi_hi_goodbye
-
-
-  
-  puts "Hello, start typing!"
-
-  while line = gets
-    puts "You submitted #{line.inspect}"
-    break if line.chomp == 'exit'
-  end
-
-  puts "Goodbye!"
-  
-  
-  
+  # your code here
 end
 
 
 
 
-
-hi_hi_goodbye if $0 == __FILE__  # a little magic so that you can run with "$ ruby 2_input_output_control.rb" but it will still work for our tests
+# This will just invoke the method if you run this program directly
+# This way you can try it out by running "$ ruby 2_input_output_control.rb" 
+# but it will still work for our tests
+hi_hi_goodbye if $0 == __FILE__
