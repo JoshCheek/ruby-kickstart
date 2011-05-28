@@ -66,6 +66,27 @@ end
 before # => [-3, 0, 3, 3, 6, 8, 235]
 after  # => [235, 8, 6, 3, 3, 0, -3]
 
+  # An object with a name and age
+class Person
+  attr_accessor 'name', 'age'
+  def initialize(name, age)
+    @name, @age = name, age
+  end
+  def inspect
+    "<#{name}(#{age})>"
+  end
+end 
+
+  # whatever the block returns will be used to sort the object
+people = [
+  Person.new( 'Ernie'    , 20 ),
+  Person.new( 'Sara'     , 50 ),
+  Person.new( 'Monique'  , 10 ),
+  Person.new( 'Mohammed' , 60 ),
+]
+people.sort_by { |person| person.age } # => [<Monique(10)>, <Ernie(20)>, <Sara(50)>, <Mohammed(60)>]
+
+
 
 # =====  Adding / removing / replacing / finding elements  =====
 
