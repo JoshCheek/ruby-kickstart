@@ -1,4 +1,4 @@
-# Write an array named prime_chars? which takes array of strings
+# Write a method named prime_chars? which takes array of strings
 # and returns true if the sum of the characters is prime. 
 # 
 # Remember that a number is prime if the only integers that can divide it with no remainder are 1 and itself. 
