@@ -1,4 +1,4 @@
-describe 'get_squaeres' do
+describe 'get_squares' do
   [
     [[9], []],
     [[9,3], [3]],
