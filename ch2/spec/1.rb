@@ -31,7 +31,7 @@ describe 'sum_difference_product' do
         0 ,     0 ,
         0 ,     5 ,
   ].each_slice 2 do |a,b|
-    specify %Q[should print out #{a+b} , #{a-b} , #{a*b} when stdin is "#{a} #{b}\\n"] do
+    specify %Q[should print out "#{a+b}\\n#{a-b}\\n#{a*b}\\n" when stdin is "#{a} #{b}\\n"] do
       [a+b , a-b , a*b].map { |n| n.to_s }.each do |result|
         input_output("#{a} #{b}"){ sum_difference_product }[result].should == result
       end
