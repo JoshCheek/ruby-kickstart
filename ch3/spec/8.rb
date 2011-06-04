@@ -1,51 +1,95 @@
-describe 'shared' do
+describe 'Person:' do
   
-  it "should return [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,nil] , 4=>[nil,true] } , [1,2] ] when given [1,2,3] , [1,2,4]" do
-    shared( [1,2,3] , [1,2,4] ).should == [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,nil] , 4=>[nil,true] } , [1,2] ]
-  end  
-  
-  it "should return [ { 'a'=>[true,nil] , 'b'=>[true,true] , 'c'=>[true,nil] , 'd'=>[true,true] , 'aa'=>[nil,true] , 'cc'=>[nil,true] } , ['b','d'] ] when given %w(a b c d) , %w(aa b cc d)" do
-    shared( %w(a b c d) , %w(aa b cc d) ).should ==[ { 'a'=>[true,nil] , 'b'=>[true,true] , 'c'=>[true,nil] , 'd'=>[true,true] , 'aa'=>[nil,true] , 'cc'=>[nil,true] } , ['b','d'] ]
+  before :each do
+    @artist = Person.new :name => 'Prince' do |person|
+      person.age    =  47
+      person.quote  =  "Why don't you purify yourself in the waters of Lake Minnetonka?"
+    end
   end
   
-  it "should return [ { 1=>[nil,true] , 2=>[nil,true] } , [] ] when given [] , [1,2]" do
-    shared( [] , [1,2] ).should == [ { 1=>[nil,true] , 2=>[nil,true] } , [] ]
+  
+  it 'should have the name Prince' do
+    @artist.name.should == 'Prince'
   end
   
-  it "should return [ { 1=>[true,nil] , 2=>[true,nil] } , [] ] when given [1,2] , []" do
-    shared( [1,2] , [] ).should == [ { 1=>[true,nil] , 2=>[true,nil] } , [] ]
+  it 'should have an age of 47' do
+    @artist.age.should == 47
   end
   
-  it "should return [ { } , [] ] when given [] , []" do
-    shared( [] , [] ).should == [ { } , [] ]
+  it 'should have a quote of person.quote  =  "Why don\'t you purify yourself in the waters of Lake Minnetonka?"' do
+    @artist.quote.should == "Why don't you purify yourself in the waters of Lake Minnetonka?"
   end
   
-  it "should return [ { 1=>[true,nil] , 2=>[true,nil] , 'a'=>[nil,true] , 'b'=>[nil,true] , :c=>[true,true] } , [:c] ] when given [1,2,:c] , ['a','b',:c]" do
-    shared( [1,2,:c] , ['a','b',:c] ).should == [ { 1=>[true,nil] , 2=>[true,nil] , 'a'=>[nil,true] , 'b'=>[nil,true] , :c=>[true,true] } , [:c] ]    
+  it 'should be able to change its name' do
+    @artist.name = 'The Artist Formarly Known As Prince'
+    @artist.name.should == "The Artist Formarly Known As Prince"
   end
   
-  it "should return [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] when given [1,2,3] , [3,2,1]" do
-    shared( [1,2,3] , [3,2,1] ).should == [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] 
+  it 'should be able to change its age' do
+    @artist.age  = 1999
+    @artist.age.should == 1999
   end
- 
-  it 'should handle arrays of different lengths' do
-    shared( Array(1..10) , Array(9..15) ).should == [ { 
-        1   =>  [ true , nil  ], 
-        2   =>  [ true , nil  ], 
-        3   =>  [ true , nil  ], 
-        4   =>  [ true , nil  ], 
-        5   =>  [ true , nil  ], 
-        6   =>  [ true , nil  ], 
-        7   =>  [ true , nil  ], 
-        8   =>  [ true , nil  ], 
-        9   =>  [ true , true ], 
-        10  =>  [ true , true ],
-        11  =>  [ nil  , true ], 
-        12  =>  [ nil  , true ], 
-        13  =>  [ nil  , true ], 
-        14  =>  [ nil  , true ], 
-        15  =>  [ nil  , true ], 
-      } , [9,10]
-    ]
-  end 
+  
+  it 'should be able to change its quote' do
+    @artist.quote = "new quote"
+    @artist.quote.should == "new quote"
+  end
+  
+  it 'should not be able to reinit its name if name was not in the init block' do
+    @artist.name = 'The Artist Formarly Known As Prince'
+    @artist.reinit
+    @artist.name.should == 'The Artist Formarly Known As Prince'
+  end
+
+  it 'should be able to reinit its age' do
+    @artist.age = 1999
+    @artist.reinit
+    @artist.age.should == 47
+  end
+  
+  it 'should be able to reinit its quote' do
+    @artist.quote = 'new quote'
+    @artist.reinit
+    @artist.quote.should == "Why don't you purify yourself in the waters of Lake Minnetonka?"
+  end
+  
 end
+
+
+describe "Person's hash params" do
+  
+  it 'should be able to set name' do
+    Person.new(:name => 'Kris').name.should == 'Kris'
+  end
+  
+  it 'should be able to set the age' do
+    Person.new(:age => 27).age.should == 27
+  end
+  
+  it 'should be able to set the quote' do
+    Person.new(:quote => 'Text if you wanna talk to me.').quote.should == 'Text if you wanna talk to me.'
+  end
+  
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,111 +1,43 @@
-describe 'HTMLTag' do
+describe 'match_maker' do |variable|
+  when_true = [
+    [[true  , true                ],[false]],
+    [[false , false               ],[false]],
+    [[false , true                ],[true]],
+    [[true  , false               ],[true]],
+    [[true  , true, false, true   ],[false, true]],
+    [[true  , true, false, nil    ],[false, false]],
+    [[true  , true, true, nil     ],[false, true]],
+    [[true  , true, 0, nil        ],[false, true]],
+    [[                            ],[]],
+    [[false, false, false, nil, false, "abc", 6, nil, nil, nil, 1, 1, :abc, false, false, false, nil, false, :abc, /abc/, false, false, Object.new, false, 5, 5], [false, false, true, true, false, false, true, false, false, false, false, true, false]],
+    [[6, false, false, false, 1, nil, false, /abc/, Class.new, false, 1, nil, false, 1, false, false, true, 2], [true, false, true, true, true, true, true, false, false]],
+    [[nil, Class.new, nil, 3, false, Class.new, false, false, 6, 2, Class.new, false, false, nil, 5, Object.new, nil, false, 4, nil, Object.new, nil, :abc, false], [true, true, true, false, false, true, false, false, false, true, true, true]],
+    [[false, nil, nil, Object.new, 6, nil, nil, Object.new, 4, nil, :abc, 1, 3, /abc/, false, false, /abc/, 5, /abc/, false, "abc", false, false, 6, false, 4, false, false], [false, true, true, true, true, false, false, false, false, true, true, true, true, false]],
+    [[Object.new, false, 5, false, 1, true, "abc", /abc/, false, false, 5, 3, Object.new, false, Object.new, nil, false, 7, 4, 3, false, 3, 2, false, nil, false, 3, false, nil, nil], [true, true, false, false, false, false, true, true, true, false, true, true, false, true, false]],
+    [[false, 7, 7, nil, false, 6, false, Object.new, 4, nil, 4, nil], [true, true, true, true, true, true]],
+    [[nil, Class.new, false, nil, false, 3, 5, Object.new, false, 3, Class.new, false, nil, 4, nil, 5, Object.new, nil, nil, :abc, false, Class.new, Object.new, nil], [true, false, true, false, true, true, true, true, true, true, true, true]],
+    [[6, nil, "abc", 5, 5, Object.new, 5, nil, false, :abc, true, false, Class.new, true, true, 2, 7, 6], [true, false, false, true, true, true, false, false, false]],
+    [[false, false, Object.new, false, false, :abc, nil, 2, false, nil, 6, nil, 7, nil, false, "abc"], [false, true, true, true, false, true, true, true]],
+    [[/abc/, nil, "abc", 6, 5, nil, :abc, "abc", false, :abc, true, false, nil, nil, 1, nil, false, Object.new], [true, false, true, false, true, true, false, true, true]],
+  ]
   
-  it "should generate \"<li style='color:#FF0000;'>baseball</li>\\n\" when given 'li' , 'baseball' , :multiline => false , :color => :red" do
-    HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :red ).to_s.chomp.should =~ %r{<li\s+style=('|")color:#FF0000;(\1)\s*>baseball</li>}i
-  end
-  
-  it "should generate \"<li style='color:#00FF00;'>baseball</li>\\n\" when given 'li' , 'baseball' , :multiline => false , :color => :green" do
-    HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :green ).to_s.chomp.should =~ %r{<li\s+style=('|")color:#00FF00;(\1)\s*>baseball</li>}i
-  end
-  
-  it "should generate \"<li style='color:#0000FF;'>baseball</li>\\n\" when given 'li' , 'baseball' , :color => :blue" do
-    HTMLTag.new( 'li' , 'baseball' , :color => :blue ).to_s.chomp.should =~ %r{<li\s+style=('|")color:#0000FF;(\1)\s*>baseball</li>}i
-  end
-  
-  it "should generate \"<p >soccer</p>\\n\" when given 'p' , 'soccer' , :multiline => false" do
-    HTMLTag.new( 'p' , 'soccer' , :multiline => false ).to_s.chomp.should =~ %r{<p\s*>soccer</p>}i
-  end
-
-  it "should generate \"<p >soccer</p>\\n\" when given 'p' , 'soccer' , Hash.new" do
-    HTMLTag.new( 'p' , 'soccer' , Hash.new ).to_s.chomp.should =~ %r{<p\s*>soccer</p>}i
-  end
-
-  it "should generate \"<p >soccer</p>\\n\" when given 'p' , 'soccer' , and no hash" do
-    HTMLTag.new( 'p' , 'soccer' ).to_s.chomp.should =~ %r{<p\s*>soccer</p>}i
-  end
-  
-  it "should generate \"<li style='font-family:\"Arial\", \"Verdana\";color:#FF0000;'>baseball</li>\\n\" when given 'li' , 'baseball' , :multiline => false , :color => :red , :font => :sans_serif" do
-    regex = %r{<li\s+style=('|")(.*)(\1)\s*>baseball</li>}i
-    html  = HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :red , :font => :sans_serif ).to_s.chomp
-    html.should =~ regex
-    html =~ regex   # because capture groups aren't _really_ global, and rspec changes scope of execution
-    style = $2
-    style.should =~ /font-family:("|')Arial(\1), ("|')Verdana(\3);color:#FF0000;/i
+  # cases when first arg is true
+  all_cases = when_true.map do |args, expectations|
+    args = [true].concat args
+    [args, expectations]
   end
   
-  it 'multiline switch should work' do
-    HTMLTag.new( 'p' , 'soccer' , :multiline => true ).to_s.chomp.should =~ %r{<p\s*>\nsoccer\n</p>}i
-  end
-
-end
-
-
-
-
-
-describe 'The example from the explanation' do
-    
-  before :each do
-    sports = [
-      HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :red   , :font => :serif      ) ,
-      HTMLTag.new( 'li' , 'soccer'   , :multiline => false , :color => :green , :font => :sans_serif ) ,
-      HTMLTag.new( 'li' , 'football' , :multiline => false , :color => :blue  , :font => :monospace  ) ,
-    ]
-  
-    ordered_list = HTMLTag.new 'ol' , sports.join , :multiline => true
-  
-    @lines = ordered_list.to_s.split("\n")
-
-    @regexes = {
-      :open     => /<ol\s*>/i ,  
-      :baseball => { :tag => %r{<li\s+style=('|")(.*?)(\1)>baseball</li>}i , :styles => [/color\s*:\s*#FF0000\s*;/i , /font-family:("?|'?)Times New Roman(\1),\s*("?|'?)Georgia(\3);/     ] },
-      :soccer   => { :tag => %r{<li\s+style=('|")(.*?)(\1)>soccer</li>}i   , :styles => [/color\s*:\s*#00FF00\s*;/i , /font-family:("?|'?)Arial(\1),\s*("?|'?)Verdana(\3);/               ] },
-      :football => { :tag => %r{<li\s+style=('|")(.*?)(\1)>football</li>}i , :styles => [/color\s*:\s*#0000FF\s*;/i , /font-family:("?|'?)Courier New(\1),\s*("?|'?)Lucida Console(\3);/  ] },
-      :close    => %r(</ol>)i,
-    }
-  end
-    
-  it 'should result in five lines' do
-    @lines.size.should == 5
+  # cases when first arg is false
+  all_cases += when_true.map do |args, expectations|
+    args = [false].concat args
+    expectations = expectations.map { |expectation| !expectation }
+    [args, expectations]
   end
   
-  its 'first tag should be ordered list' do
-    @lines[0].should =~ @regexes[:open]
-  end
-
-  its 'second line should be the li for baseball' do
-    @lines[1].should  =~  @regexes[:baseball][:tag]
+  all_cases.each do |args, expectations|
+    it "should return #{expectations.inspect} when given #{args.inspect}" do
+      match_maker(*args).should == expectations
+    end
   end
   
-  its "second line's style should match the expected styles" do
-    @lines[1] =~ @regexes[:baseball][:tag]
-    style = $2
-    @regexes[:baseball][:styles].each { |regex| style.should =~ regex }
-  end
-  
-  
-  its 'third line should be the li for soccer' do  
-    @lines[2].should  =~  @regexes[:soccer][:tag]
-  end
-  
-  its 'third line should match the expected styles' do
-    @lines[2] =~ @regexes[:soccer][:tag]
-    style = $2
-    @regexes[:soccer][:styles].each { |regex| style.should =~ regex }
-  end
-  
-  its 'fourth line should be the li for football' do
-    @lines[3].should  =~  @regexes[:football][:tag]    
-  end
-  
-  its 'fourth lines style should match the expected styles' do
-    @lines[3] =~ @regexes[:football][:tag]
-    style = $2
-    @regexes[:football][:styles].each { |regex| style.should =~ regex }
-  end
-    
-  its 'fifth line should close the ordered list' do
-    @lines[4].should  =~  @regexes[:close]
-  end  
-
 end

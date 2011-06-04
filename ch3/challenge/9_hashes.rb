@@ -1,33 +1,32 @@
-# Lets represent a file system with hashes
-# You will be passed a hash table, whose keys represent folders.
-# Their values will either be arrays of filenames in that directory
-# or they will be hashes with the same rules (a treelike structure)
+# Write a function which takes two arrays, a, and b
+# it should then find the elements that are in both (union)
+# 
+# This is the same as [1,2,3] & [1,2,4]
+# but we don't want to use the builtin method
+# instead, implement your own by creating a hash table of elements from the first set
+# and checking it against the elements from the second set
 #
-# Your job is to take the hashes, and return an array containing 
-# all of the complete file paths where each directory is separated by a '/'
+# the keys will be the elements in the arrays
+# each value will be a two element array, where the first index is true if the
+# key is in a, and the second is true if the key is in b
+# if an index is not true, it should be nil
 #
-# HINT:
-#   [1,2,3].is_a? Array # => true
-#   [1,2,3].is_a? Hash  # => false
-#   {1=>1}.is_a? Array  # => false
-#   {1=>1}.is_a? Hash   # => true
+# return the hash, and the array of elements in both sets (it should be sorted)
+# (do not worry about the order of the hash, remember, on 1.8, hashes have no ordering)
 #
-# HINT2:
-#   Don't feel constrained, you may create any methods, classes, etc, that 
-#   you need to you may address the problem in any way you need to (I 
-#   haven't tried it yet, but will probably use a recursive approach)
+# hints: 
+#   you can set up default behaviour for a hash by passing a block, see cheatsheet (essentially a lazy initialization)
+#   you can get an array of keys from a hash with the keys method
 #
-# EXAMPLES:
+# examples:
 #
-# pathify 'usr' => { 'bin' => [ 'ruby' ] }                                                            # => [ '/usr/bin/ruby' ]
-# pathify 'usr' => { 'bin' => [ 'ruby' , 'perl' ] }                                                   # => [ '/usr/bin/ruby' , '/usr/bin/perl' ]
-# pathify 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] }                                    # => [ '/usr/bin/ruby' , '/usr/include/zlib.h' ]
-# pathify 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } }   # => [ '/usr/bin/ruby' , 'opt/local/bin/sqlite3' , 'opt/local/bin/rsync' ]
-# pathify                                                                                             # => []
-#
-#
-# create it from scratch :)
+# shared [1,2,3] , [1,2,4]              # => [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,nil] , 4=>[nil,true] } , [1,2] ]
+# shared %w(a b c d) , %w(aa b cc d)    # => [ { 'a'=>[true,nil] , 'b'=>[true,true] , 'c'=>[true,nil] , 'd'=>[true,true] , 'aa'=>[nil,true] , 'cc'=>[nil,true] } , ['b','d'] ]
+# shared [] , [1,2]                     # => [ { 1=>[nil,true] , 2=>[nil,true] } , [] ]
+# shared [1,2] , []                     # => [ { 1=>[true,nil] , 2=>[true,nil] } , [] ]
+# shared [] , []                        # => [ { } , [] ]
+# shared [1,2,:c] , ['a','b',:c]        # => [ { 1=>[true,nil] , 2=>[true,nil] , 'a'=>[nil,true] , 'b'=>[nil,true] , :c=>[true,true] } , [:c] ]
+# shared [1,2,3] , [3,2,1]              # => [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ]
 
-
-def pathify
+def shared( a , b )
 end

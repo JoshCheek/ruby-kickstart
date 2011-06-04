@@ -1,63 +1,77 @@
-# Write a method that initializes an Array
-# it receives one parameter, which is 5 by default, but can be overridden by the user
-# The parameter determines the size of the Array to initialize
+# Lets represent a file system with hashes
+# You will be passed a hash table, whose keys represent folders.
+# Their values will either be arrays of filenames in that directory
+# or they will be hashes with the same rules (a treelike structure)
 #
-# If a block is submitted, use that block to initialize ach index in the Array (pass it the current index)
+# Your job is to take the hashes, and return an array containing 
+# all of the complete file paths where each directory is separated by a '/'
 #
-# If a block is not submitted, initialize the Array to 100 times the array's index, as a String
-#
-# CONDITIONS:
-#   Do not loop through the Array to initialize it, instead, use the block form
-#
-# HINTS:
-#   Remember that the Array initializer will pass the index being initialized to your block that is doing the initializing
-#   (if you wish to use blocks) Remember that in the block you pass, to Array.new, you can yield to the block the user passed
-#   (if you wish to use procs)  You can place the block you received into the block spot with the ampersand ( ampersand to get it out, and to put it in )
+# HINT:
+#   [1,2,3].is_a? Array # => true
+#   [1,2,3].is_a? Hash  # => false
+#   {1=>1}.is_a? Array  # => false
+#   {1=>1}.is_a? Hash   # => true
 #
 # EXAMPLES:
-#   
-# array_init(2) { |i| i.to_s }    # => [ '0' , '1' ]
-# array_init { |i| i.to_s }       # => [ '0' , '1' , '2' , '3' , '4' , '5' ]
-# array_init 2                    # => [ '0' , '100' ]
-# array_init                      # => [ '0' , '100' , '200' , '300' , 400' , '500' ]
-# array_init { 'hi }              # => [ 'hi' , 'hi' , 'hi' , 'hi' ]
+#
+# pathify 'usr' => { 'bin' => [ 'ruby' ] }                                                            # => [ '/usr/bin/ruby' ]
+# pathify 'usr' => { 'bin' => [ 'ruby' , 'perl ] }                                                    # => [ '/usr/bin/ruby' , '/usr/bin/perl' ]
+# pathify 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] }                                    # => [ '/usr/bin/ruby' , '/usr/include/zlib.h' ]
+# pathify 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } }   # => [ '/usr/bin/ruby' , 'opt/local/bin/sqlite3' , 'opt/local/bin/rsync' ]
+# pathify                                                                                             # => []
+#
+#
+# create it from scratch :)
 
 
-describe 'array_init' do
+describe 'pathify' do
   
-  it "should return [ '0' , '1' ] when called as array_init(2) { |i| i.to_s }" do
-    array_init(2) { |i| i.to_s }.should == [ '0' , '1' ]
-  end
-
-  it "should return [ '0' , '1' , '2' , '3' , '4' ] when called as array_init { |i| i.to_s }" do
-    array_init { |i| i.to_s }.should == [ '0' , '1' , '2' , '3' , '4' ]
-  end
-
-  it "should return [ '0' , '100' ] when called as array_init 2" do
-    array_init(2).should == [ '0' , '100' ]
+  it 'should return [] when given {}' do
+    pathify(Hash.new).should == Array.new
   end
   
-  it "should return [ '0' , '100' , '200' , '300' , 400' ] when called as array_init" do
-    array_init.should == [ '0' , '100' , '200' , '300' , '400' ]
+  it "should return [ '/usr/bin/ruby' ] when given 'usr' => { 'bin' => [ 'ruby' ] }" do
+    pathify( 'usr' => { 'bin' => [ 'ruby' ] } ).should == [ '/usr/bin/ruby' ] 
   end
   
-  it "should return [ 'hi' , 'hi' , 'hi' , 'hi' ] when called as array_init { 'hi }" do
-    array_init { 'hi' }.should == [ 'hi' , 'hi' , 'hi' , 'hi' , 'hi' ]
-  end
-
-  it "should return ['hi'] * 100 when called as array_init(100){ 'hi' }" do
-    array_init(100) { 'hi' }.should == ['hi'] * 100
+  it "should return [ '/usr/bin/ruby' , '/usr/bin/perl' ] when given 'usr' => { 'bin' => [ 'ruby' , 'perl ] }" do
+    pathify( 'usr' => { 'bin' => [ 'ruby' , 'perl' ] } ).sort.should == [ '/usr/bin/ruby' , '/usr/bin/perl' ].sort
   end
   
-  it 'should work for a more complicated block' do
-    result = array_init 10 do |i|
-      if i % 2 == 0
-        i * 200
-      else
-        i * -5
-      end
-    end
-    result.should == [ 0 , -5 , 400 , -15 , 800 , -25 , 1200 , -35 , 1600 , -45 ]
+  it "should return [ '/usr/bin/ruby' , '/usr/include/zlib.h' ] when given 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] }" do
+    pathify( 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] } ).sort.should == [ '/usr/bin/ruby' , '/usr/include/zlib.h' ].sort
+  end
+  
+  it "should return [ '/usr/bin/ruby' , 'opt/local/bin/sqlite3' , 'opt/local/bin/rsync' ] when given 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } }" do
+    pathify( 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } } ).sort.should == 
+    [ '/usr/bin/ruby' , '/opt/local/bin/sqlite3' , '/opt/local/bin/rsync' ].sort
+  end
+  
+  it "should return the correct values for a deeply nested hash" do
+    pathify('a'=>{'b'=>{'c'=>{'d'=>['e','f']}}}).sort.should == ['/a/b/c/d/e','/a/b/c/d/f'].sort
+  end
+  
+  it "should return the correct values for a big hash" do
+    pathify(
+      'a' => {
+        'b' => {
+          'c' => {
+            'd' => %w(e f g h)
+          },
+          'i' => {
+            'j' => %w(k l m n)
+          }
+        },
+        'o' => %w(p q r s) ,
+        't' => %w(u v w x)
+      },
+      'y' => ['z']
+    ).sort.should == %w(
+      /a/b/c/d/e   /a/b/i/j/k   /a/o/p   /a/t/u   /y/z
+      /a/b/c/d/f   /a/b/i/j/l   /a/o/q   /a/t/v
+      /a/b/c/d/g   /a/b/i/j/m   /a/o/r   /a/t/w
+      /a/b/c/d/h   /a/b/i/j/n   /a/o/s   /a/t/x
+    ).sort
   end
   
 end
