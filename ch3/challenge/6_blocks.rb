@@ -11,7 +11,7 @@
 # pieces of code, is a line or two that changes every time.
 #
 # Thinking a little bit, you realize that you could create a method that performs this
-# boiler plate code, then yields to a block which does the custom code.
+# boiler plate code, then calls a block which does the custom code.
 #
 # You decide to name it pay_by.
 #
