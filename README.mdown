@@ -58,10 +58,11 @@ Chapters
     * Arithmetic
     * Logic
     * String
-- 2 
     * Basic IO
+- 2 
     * Arrays
     * Basic Classes
+    * Singleton Classes
 - 3 
     * Symbols
     * Hashes
@@ -71,8 +72,7 @@ Chapters
     * Boolean Return Values
     * Introspection / Reflection
     * Ranges
-    * Simle File IO
-    * Singleton Methods
+    * Simple File IO
     * Inheritance
     * Modules
 - 5
