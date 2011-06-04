@@ -1,24 +1,22 @@
 class HTMLTag
   
-  # FONTS is a hash whose keys are font types, and values are the CSS font families
   FONTS = { 
     :serif        => '"Times New Roman", "Georgia"'     ,
     :sans_serif   => '"Arial", "Verdana"'               ,
     :monospace    => '"Courier New", "Lucida Console"' 
   }
   
-  # notice that attr_accessor uses symbols
   attr_accessor :name , :innerHTML , :options
   
   # options is a hash tag that allows the user to specify whether they want this tag to span multiple lines
-  # example when args are: 'p' , 'hello world' , { :multiline => false }
+  # example when args are: 'p' , 'hello world' , :multiline => false
   # <p >hello world</p>
   # 
-  # example when args are: 'p' , 'hello world' , { :multiline => true }
+  # example when args are: 'p' , 'hello world' , :multiline => true
   # <p >
   # hello world
   # </p>
-  def initialize( name , innerHTML , options )
+  def initialize(name, innerHTML, options={})
     @name , @innerHTML , @options = name , innerHTML , options
   end
   
@@ -35,7 +33,6 @@ class HTMLTag
   end
   
   # convert our HTMLTag to a String (in this case, it is represented as HTML)
-  # in Java, this would be like myInstance.toString(), in ruby it's my_instance.to_s
   def to_s
     # remember, if options[:multiline] doesn't exist, it will return nil, and nil is false
     line_end = if options[:multiline] then "\n" else "" end
@@ -50,9 +47,9 @@ end
 # let us create a list of sports we like
 # they will have no options
 sports = [
-  HTMLTag.new( 'li' , 'baseball' , { :multiline => false }  ) ,
-  HTMLTag.new( 'li' , 'soccer'   , { }                      ) ,  # no multiline here, but the default is false... why is this?
-  HTMLTag.new( 'li' , 'football' , { :multiline => false }  ) ,
+  HTMLTag.new('li', 'baseball', :multiline => false) ,
+  HTMLTag.new('li', 'soccer'                       ) ,  # no multiline here, but the default is false... why is this?
+  HTMLTag.new('li', 'football', :multiline => false) ,
 ]
 
 # join will use the to_s method of each object in the Array to convert it into a string
@@ -65,3 +62,8 @@ ordered_list = HTMLTag.new 'ol' , sports.join , :font => :sans_serif , :multilin
 
 # puts will also convert the tag to a string by invoking the to_s method
 puts ordered_list
+# >> <ol style='font-family:"Arial", "Verdana"'>
+# >> <li >baseball</li>
+# >> <li >soccer</li>
+# >> <li >football</li>
+# >> </ol>
