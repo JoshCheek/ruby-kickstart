@@ -63,8 +63,8 @@ def run_spec(chapter,problem)
   else
     problem_dir = Dir["#{ch}/challenge/#{problem}_*"].first
   end  
-  sh "ruby -c '#{problem_dir}'"                                               # check syntax
-  sh "rspec -cr '#{problem_dir}' -r enumerator '#{ch}/spec/#{problem}.rb'"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
+  sh "ruby -c '#{problem_dir}'"                                                           # check syntax
+  sh "rspec -cr '#{problem_dir}' -r enumerator '#{ch}/spec/#{problem}.rb' --fail-fast"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
 end
 
 
