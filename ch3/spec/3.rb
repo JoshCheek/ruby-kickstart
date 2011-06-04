@@ -1,111 +1,32 @@
-describe 'HTMLTag' do
+describe 'word_count' do
   
-  it "should generate \"<li style='color:#FF0000;'>baseball</li>\\n\" when given 'li' , 'baseball' , :multiline => false , :color => :red" do
-    HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :red ).to_s.chomp.should =~ %r{<li\s+style=('|")color:#FF0000;(\1)\s*>baseball</li>}i
-  end
-  
-  it "should generate \"<li style='color:#00FF00;'>baseball</li>\\n\" when given 'li' , 'baseball' , :multiline => false , :color => :green" do
-    HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :green ).to_s.chomp.should =~ %r{<li\s+style=('|")color:#00FF00;(\1)\s*>baseball</li>}i
+  it 'should be defined' do
+    method(:word_count).should be
   end
   
-  it "should generate \"<li style='color:#0000FF;'>baseball</li>\\n\" when given 'li' , 'baseball' , :color => :blue" do
-    HTMLTag.new( 'li' , 'baseball' , :color => :blue ).to_s.chomp.should =~ %r{<li\s+style=('|")color:#0000FF;(\1)\s*>baseball</li>}i
+  it 'should return {} when given ""' do
+    word_count("").should == {}
   end
   
-  it "should generate \"<p >soccer</p>\\n\" when given 'p' , 'soccer' , :multiline => false" do
-    HTMLTag.new( 'p' , 'soccer' , :multiline => false ).to_s.chomp.should =~ %r{<p\s*>soccer</p>}i
-  end
-
-  it "should generate \"<p >soccer</p>\\n\" when given 'p' , 'soccer' , Hash.new" do
-    HTMLTag.new( 'p' , 'soccer' , Hash.new ).to_s.chomp.should =~ %r{<p\s*>soccer</p>}i
-  end
-
-  it "should generate \"<p >soccer</p>\\n\" when given 'p' , 'soccer' , and no hash" do
-    HTMLTag.new( 'p' , 'soccer' ).to_s.chomp.should =~ %r{<p\s*>soccer</p>}i
+  it 'should return { "the" => 2, "dog" => 1, "and" => 1, "cat" => 1 } when given "The dog and the cat"' do
+    word_count("The dog and the cat").should == { "the" => 2, "dog" => 1, "and" => 1, "cat" => 1 }
   end
   
-  it "should generate \"<li style='font-family:\"Arial\", \"Verdana\";color:#FF0000;'>baseball</li>\\n\" when given 'li' , 'baseball' , :multiline => false , :color => :red , :font => :sans_serif" do
-    regex = %r{<li\s+style=('|")(.*)(\1)\s*>baseball</li>}i
-    html  = HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :red , :font => :sans_serif ).to_s.chomp
-    html.should =~ regex
-    html =~ regex   # because capture groups aren't _really_ global, and rspec changes scope of execution
-    style = $2
-    style.should =~ /font-family:("|')Arial(\1), ("|')Verdana(\3);color:#FF0000;/i
+  [
+    ["ThAt C b c c thAt b thaT", {"that"=>3, "c"=>3, "b"=>2}],
+    ["other c THiS c This", {"other"=>1, "c"=>2, "this"=>2}],
+    ["c This oTheR c othER A THIS a b b that OtheR A C A c That b tHAt ThIs B tHaT B a c THAt c A", {"c"=>6, "this"=>3, "other"=>3, "a"=>6, "b"=>5, "that"=>5}],
+    ["A B B ThAt otHEr B C that OTHEr ThiS ThAt tHis B a", {"a"=>2, "b"=>4, "that"=>3, "other"=>2, "c"=>1, "this"=>2}],
+    ["otheR tHIS OthEr B b a oTHeR ThIs b C THat b thaT thAt oTheR thiS b", {"other"=>4, "this"=>3, "b"=>5, "a"=>1, "c"=>1, "that"=>3}],
+    ["OTheR B THAT ThIs b thAT tHat ThAt tHat tHaT ThaT a A C c thAT oTher thAt", {"other"=>2, "b"=>2, "that"=>9, "this"=>1, "a"=>2, "c"=>2}],
+    ["tHAt thAt b otheR ThIs OThEr c b ThIs A c thiS tHIs b a other b tHAT c B b oTher A thIS thIS that A other OthER", {"that"=>4, "b"=>6, "other"=>6, "this"=>6, "c"=>3, "a"=>4}],
+    ["oTheR OtHEr c A OthEr c b B ThIS that b a OtHer b thAT A B", {"other"=>4, "c"=>2, "a"=>3, "b"=>5, "this"=>1, "that"=>2}],
+    ["A B C THaT A a Other OTher c c otHeR thaT this a c", {"a"=>4, "b"=>1, "c"=>4, "that"=>2, "other"=>3, "this"=>1}],
+    ["B b a ThAt A C ThAt tHAt tHat a oThEr a A OTHEr C", {"b"=>2, "a"=>5, "that"=>4, "c"=>2, "other"=>2}],
+  ].each do |string, result|
+    it "should return #{result.inspect} when given #{string.inspect}" do
+      word_count(string).should == result
+    end
   end
   
-  it 'multiline switch should work' do
-    HTMLTag.new( 'p' , 'soccer' , :multiline => true ).to_s.chomp.should =~ %r{<p\s*>\nsoccer\n</p>}i
-  end
-
-end
-
-
-
-
-
-describe 'The example from the explanation' do
-    
-  before :each do
-    sports = [
-      HTMLTag.new( 'li' , 'baseball' , :multiline => false , :color => :red   , :font => :serif      ) ,
-      HTMLTag.new( 'li' , 'soccer'   , :multiline => false , :color => :green , :font => :sans_serif ) ,
-      HTMLTag.new( 'li' , 'football' , :multiline => false , :color => :blue  , :font => :monospace  ) ,
-    ]
-  
-    ordered_list = HTMLTag.new 'ol' , sports.join , :multiline => true
-  
-    @lines = ordered_list.to_s.split("\n")
-
-    @regexes = {
-      :open     => /<ol\s*>/i ,  
-      :baseball => { :tag => %r{<li\s+style=('|")(.*?)(\1)>baseball</li>}i , :styles => [/color\s*:\s*#FF0000\s*;/i , /font-family:("?|'?)Times New Roman(\1),\s*("?|'?)Georgia(\3);/     ] },
-      :soccer   => { :tag => %r{<li\s+style=('|")(.*?)(\1)>soccer</li>}i   , :styles => [/color\s*:\s*#00FF00\s*;/i , /font-family:("?|'?)Arial(\1),\s*("?|'?)Verdana(\3);/               ] },
-      :football => { :tag => %r{<li\s+style=('|")(.*?)(\1)>football</li>}i , :styles => [/color\s*:\s*#0000FF\s*;/i , /font-family:("?|'?)Courier New(\1),\s*("?|'?)Lucida Console(\3);/  ] },
-      :close    => %r(</ol>)i,
-    }
-  end
-    
-  it 'should result in five lines' do
-    @lines.size.should == 5
-  end
-  
-  its 'first tag should be ordered list' do
-    @lines[0].should =~ @regexes[:open]
-  end
-
-  its 'second line should be the li for baseball' do
-    @lines[1].should  =~  @regexes[:baseball][:tag]
-  end
-  
-  its "second line's style should match the expected styles" do
-    @lines[1] =~ @regexes[:baseball][:tag]
-    style = $2
-    @regexes[:baseball][:styles].each { |regex| style.should =~ regex }
-  end
-  
-  
-  its 'third line should be the li for soccer' do  
-    @lines[2].should  =~  @regexes[:soccer][:tag]
-  end
-  
-  its 'third line should match the expected styles' do
-    @lines[2] =~ @regexes[:soccer][:tag]
-    style = $2
-    @regexes[:soccer][:styles].each { |regex| style.should =~ regex }
-  end
-  
-  its 'fourth line should be the li for football' do
-    @lines[3].should  =~  @regexes[:football][:tag]    
-  end
-  
-  its 'fourth lines style should match the expected styles' do
-    @lines[3] =~ @regexes[:football][:tag]
-    style = $2
-    @regexes[:football][:styles].each { |regex| style.should =~ regex }
-  end
-    
-  its 'fifth line should close the ordered list' do
-    @lines[4].should  =~  @regexes[:close]
-  end  
-
 end

@@ -1,15 +1,16 @@
-def pathify( paths = Hash.new )
-  # base step
-  return paths.map { |path| '/' + path } if paths.is_a? Array
-  
-  # recursive step
-  to_return = Array.new
-  paths.each do |parent_path,child_dirs|
-    parent_path = '/' + parent_path         # paths begin with a /
-    child_paths = pathify child_dirs        # convert child directories to paths
-    child_paths.each do |child_path|        # join each child path to it's parent path
-      to_return << parent_path + child_path
-    end
+def shared( a , b )
+  union = Hash.new do |hash, key|
+    hash[key] = Array.new
+    if a.include? key then hash[key] << true else hash[key] << nil end
+    if b.include? key then hash[key] << true else hash[key] << nil end
   end
-  to_return
+  
+  a.each { |element| union[element] }
+  b.each { |element| union[element] }
+  
+  ary = Array.new
+  
+  union.each { |key, value| ary << key if union[key] == [true, true] }
+  
+  return union, ary.sort
 end
