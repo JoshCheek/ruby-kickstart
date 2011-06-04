@@ -1,6 +1,6 @@
 # This can be handled in a much cleaner way in 1.9, without the params fiddling
 
-def problem_8(*params)
+def problem_14(*params)
   hash    = if params[-1].is_a? Hash then params.pop else nil end
   problem = if hash then hash[:problem] else :count_clumps end
 

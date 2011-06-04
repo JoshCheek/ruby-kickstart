@@ -5,11 +5,11 @@
 # PROBLEM: count_clumps
 # Say that a "clump" in an array is a series of 2 or more adjacent elements of the same value. 
 # Return the number of clumps in the given arguments.
-# problem_8 1, 2, 2, 3, 4, 4   , :problem => :count_clumps    # => 2
-# problem_8 1, 1, 2, 1, 1      , :problem => :count_clumps    # => 2
-# problem_8 1, 1, 1, 1, 1      , :problem => :count_clumps    # => 1
+# problem_14 1, 2, 2, 3, 4, 4   , :problem => :count_clumps    # => 2
+# problem_14 1, 1, 2, 1, 1      , :problem => :count_clumps    # => 2
+# problem_14 1, 1, 1, 1, 1      , :problem => :count_clumps    # => 1
 #
-# I can also bypass your problem_8 method and go directly to count_clumps as so:
+# I can also bypass your problem_14 method and go directly to count_clumps as so:
 # count_clumps 1, 2, 2, 3, 4, 4     # => 2
 # count_clumps 1, 1, 2, 1, 1        # => 2
 # count_clumps 1, 1, 1, 1, 1        # => 1
@@ -21,17 +21,17 @@
 # You may assume that n is in the range 0..nums.length inclusive.
 # 
 # The first parameter will be n, the rest will be the input to look for ends from
-# problem_8 1, 5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => false
-# problem_8 2, 5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => true
-# problem_8 3, 5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => false
+# problem_14 1, 5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => false
+# problem_14 2, 5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => true
+# problem_14 3, 5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => false
 #
-# I can also bypass your problem_8 method and go directly to same_ends as so:
+# I can also bypass your problem_14 method and go directly to same_ends as so:
 # same_ends 1, 5, 6, 45, 99, 13, 5, 6    # => false
 # same_ends 2, 5, 6, 45, 99, 13, 5, 6    # => true
 # same_ends 3, 5, 6, 45, 99, 13, 5, 6    # => false
 
 
-def problem_8
+def problem_14
 end
 
 def same_ends
