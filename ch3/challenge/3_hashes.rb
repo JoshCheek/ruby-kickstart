@@ -7,7 +7,7 @@
 # and checking it against the elements from the second set
 #
 # the keys will be the elements in the arrays
-# eacy value will be a two element array, where the first index is true if the
+# each value will be a two element array, where the first index is true if the
 # key is in a, and the second is true if the key is in b
 # if an index is not true, it should be nil
 #
