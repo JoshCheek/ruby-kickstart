@@ -1,82 +1,63 @@
-describe 'refactoring' do
+# Write a method that initializes an Array
+# it receives one parameter, which is 5 by default, but can be overridden by the user
+# The parameter determines the size of the Array to initialize
+#
+# If a block is submitted, use that block to initialize ach index in the Array (pass it the current index)
+#
+# If a block is not submitted, initialize the Array to 100 times the array's index, as a String
+#
+# CONDITIONS:
+#   Do not loop through the Array to initialize it, instead, use the block form
+#
+# HINTS:
+#   Remember that the Array initializer will pass the index being initialized to your block that is doing the initializing
+#   (if you wish to use blocks) Remember that in the block you pass, to Array.new, you can yield to the block the user passed
+#   (if you wish to use procs)  You can place the block you received into the block spot with the ampersand ( ampersand to get it out, and to put it in )
+#
+# EXAMPLES:
+#   
+# array_init(2) { |i| i.to_s }    # => [ '0' , '1' ]
+# array_init { |i| i.to_s }       # => [ '0' , '1' , '2' , '3' , '4' , '5' ]
+# array_init 2                    # => [ '0' , '100' ]
+# array_init                      # => [ '0' , '100' , '200' , '300' , 400' , '500' ]
+# array_init { 'hi }              # => [ 'hi' , 'hi' , 'hi' , 'hi' ]
 
-  describe 'original methods without block stubbed' do
-    before :each do
-      @order = mock :order
-      @order.should_receive(:compute_cost).once
-      @order.should_receive(:compute_shipping).once
-      @order.should_receive(:compute_tax).once
-      @order.should_receive(:ship_goods).once
-    end
+
+describe 'array_init' do
   
-    it 'should work for pay_by_visa' do
-      ccn = mock :ccn
-      @order.should_receive(:payment).once.with :type => :visa , :ccn => ccn
-      @order.should_receive(:verify_payment)
-      pay_by_visa @order , ccn
-    end
-  
-    it 'should work for pay_by_check' do
-      @order.should_receive(:payment).once.with :type => :check , :signed => true
-      pay_by_check @order
-    end
-  
-    it 'should work for pay_by_cash' do
-      @order.should_receive(:payment).once.with :type => :cash
-      pay_by_cash @order
-    end 
-  
-    it 'should work for pay_by_store_credit' do
-      @order.should_receive(:payment).once.with :type => :store_credit
-      @order.should_receive(:cost).once.and_return(:'one million sollars')
-      current_user = mock :current_user
-      store_credit = mock :store_credit
-      store_credit.should_receive(:-).once.with(:'one million sollars').and_return(:'still one million dollars')
-      current_user.should_receive(:store_credit).once.and_return(store_credit)
-      current_user.should_receive(:store_credit=).once.with(:'still one million dollars')
-      pay_by_store_credit @order , current_user
-    end
+  it "should return [ '0' , '1' ] when called as array_init(2) { |i| i.to_s }" do
+    array_init(2) { |i| i.to_s }.should == [ '0' , '1' ]
+  end
+
+  it "should return [ '0' , '1' , '2' , '3' , '4' ] when called as array_init { |i| i.to_s }" do
+    array_init { |i| i.to_s }.should == [ '0' , '1' , '2' , '3' , '4' ]
+  end
+
+  it "should return [ '0' , '100' ] when called as array_init 2" do
+    array_init(2).should == [ '0' , '100' ]
   end
   
-  describe 'original methods with pay_by intercepted' do
-    before :each do
-      @order = mock :order
-      stub!(:pay_by)
-    end
-  
-    it 'should invoke nothing for pay_by_visa' do
-      ccn = mock :ccn
-      pay_by_visa @order , ccn
-    end
-  
-    it 'should invoke nothing for pay_by_check' do
-      pay_by_check @order
-    end
-  
-    it 'should invoke nothing for pay_by_cash' do
-      pay_by_cash @order
-    end 
-  
-    it 'should invoke nothing for pay_by_store_credit' do
-      current_user = mock :current_user
-      pay_by_store_credit @order , current_user
-    end
+  it "should return [ '0' , '100' , '200' , '300' , 400' ] when called as array_init" do
+    array_init.should == [ '0' , '100' , '200' , '300' , '400' ]
   end
   
+  it "should return [ 'hi' , 'hi' , 'hi' , 'hi' ] when called as array_init { 'hi }" do
+    array_init { 'hi' }.should == [ 'hi' , 'hi' , 'hi' , 'hi' , 'hi' ]
+  end
+
+  it "should return ['hi'] * 100 when called as array_init(100){ 'hi' }" do
+    array_init(100) { 'hi' }.should == ['hi'] * 100
+  end
   
-  describe 'pay_by' do
-    it 'should have a method pay_by that receives the order, computes boiler plate code, and invokes the block' do
-      @order = mock :order
-      @order.should_receive(:compute_cost).once
-      @order.should_receive(:compute_shipping).once
-      @order.should_receive(:compute_tax).once
-      @order.should_receive(:ship_goods).once
-      block_called = mock(:block_called)
-      block_called.should_receive :block_was_called
-      pay_by @order do
-        block_called.block_was_called
+  it 'should work for a more complicated block' do
+    result = array_init 10 do |i|
+      if i % 2 == 0
+        i * 200
+      else
+        i * -5
       end
     end
+    result.should == [ 0 , -5 , 400 , -15 , 800 , -25 , 1200 , -35 , 1600 , -45 ]
   end
   
 end

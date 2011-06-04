@@ -1,77 +1,51 @@
-# Lets represent a file system with hashes
-# You will be passed a hash table, whose keys represent folders.
-# Their values will either be arrays of filenames in that directory
-# or they will be hashes with the same rules (a treelike structure)
-#
-# Your job is to take the hashes, and return an array containing 
-# all of the complete file paths where each directory is separated by a '/'
-#
-# HINT:
-#   [1,2,3].is_a? Array # => true
-#   [1,2,3].is_a? Hash  # => false
-#   {1=>1}.is_a? Array  # => false
-#   {1=>1}.is_a? Hash   # => true
-#
-# EXAMPLES:
-#
-# pathify 'usr' => { 'bin' => [ 'ruby' ] }                                                            # => [ '/usr/bin/ruby' ]
-# pathify 'usr' => { 'bin' => [ 'ruby' , 'perl ] }                                                    # => [ '/usr/bin/ruby' , '/usr/bin/perl' ]
-# pathify 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] }                                    # => [ '/usr/bin/ruby' , '/usr/include/zlib.h' ]
-# pathify 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } }   # => [ '/usr/bin/ruby' , 'opt/local/bin/sqlite3' , 'opt/local/bin/rsync' ]
-# pathify                                                                                             # => []
-#
-#
-# create it from scratch :)
-
-
-describe 'pathify' do
+describe 'shared' do
   
-  it 'should return [] when given {}' do
-    pathify(Hash.new).should == Array.new
+  it "should return [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,nil] , 4=>[nil,true] } , [1,2] ] when given [1,2,3] , [1,2,4]" do
+    shared( [1,2,3] , [1,2,4] ).should == [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,nil] , 4=>[nil,true] } , [1,2] ]
+  end  
+  
+  it "should return [ { 'a'=>[true,nil] , 'b'=>[true,true] , 'c'=>[true,nil] , 'd'=>[true,true] , 'aa'=>[nil,true] , 'cc'=>[nil,true] } , ['b','d'] ] when given %w(a b c d) , %w(aa b cc d)" do
+    shared( %w(a b c d) , %w(aa b cc d) ).should ==[ { 'a'=>[true,nil] , 'b'=>[true,true] , 'c'=>[true,nil] , 'd'=>[true,true] , 'aa'=>[nil,true] , 'cc'=>[nil,true] } , ['b','d'] ]
   end
   
-  it "should return [ '/usr/bin/ruby' ] when given 'usr' => { 'bin' => [ 'ruby' ] }" do
-    pathify( 'usr' => { 'bin' => [ 'ruby' ] } ).should == [ '/usr/bin/ruby' ] 
+  it "should return [ { 1=>[nil,true] , 2=>[nil,true] } , [] ] when given [] , [1,2]" do
+    shared( [] , [1,2] ).should == [ { 1=>[nil,true] , 2=>[nil,true] } , [] ]
   end
   
-  it "should return [ '/usr/bin/ruby' , '/usr/bin/perl' ] when given 'usr' => { 'bin' => [ 'ruby' , 'perl ] }" do
-    pathify( 'usr' => { 'bin' => [ 'ruby' , 'perl' ] } ).sort.should == [ '/usr/bin/ruby' , '/usr/bin/perl' ].sort
+  it "should return [ { 1=>[true,nil] , 2=>[true,nil] } , [] ] when given [1,2] , []" do
+    shared( [1,2] , [] ).should == [ { 1=>[true,nil] , 2=>[true,nil] } , [] ]
   end
   
-  it "should return [ '/usr/bin/ruby' , '/usr/include/zlib.h' ] when given 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] }" do
-    pathify( 'usr' => { 'bin' => ['ruby'] , 'include' => ['zlib.h'] } ).sort.should == [ '/usr/bin/ruby' , '/usr/include/zlib.h' ].sort
+  it "should return [ { } , [] ] when given [] , []" do
+    shared( [] , [] ).should == [ { } , [] ]
   end
   
-  it "should return [ '/usr/bin/ruby' , 'opt/local/bin/sqlite3' , 'opt/local/bin/rsync' ] when given 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } }" do
-    pathify( 'usr' => { 'bin' => ['ruby'] } , 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } } ).sort.should == 
-    [ '/usr/bin/ruby' , '/opt/local/bin/sqlite3' , '/opt/local/bin/rsync' ].sort
+  it "should return [ { 1=>[true,nil] , 2=>[true,nil] , 'a'=>[nil,true] , 'b'=>[nil,true] , :c=>[true,true] } , [:c] ] when given [1,2,:c] , ['a','b',:c]" do
+    shared( [1,2,:c] , ['a','b',:c] ).should == [ { 1=>[true,nil] , 2=>[true,nil] , 'a'=>[nil,true] , 'b'=>[nil,true] , :c=>[true,true] } , [:c] ]    
   end
   
-  it "should return the correct values for a deeply nested hash" do
-    pathify('a'=>{'b'=>{'c'=>{'d'=>['e','f']}}}).sort.should == ['/a/b/c/d/e','/a/b/c/d/f'].sort
+  it "should return [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] when given [1,2,3] , [3,2,1]" do
+    shared( [1,2,3] , [3,2,1] ).should == [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ] 
   end
-  
-  it "should return the correct values for a big hash" do
-    pathify(
-      'a' => {
-        'b' => {
-          'c' => {
-            'd' => %w(e f g h)
-          },
-          'i' => {
-            'j' => %w(k l m n)
-          }
-        },
-        'o' => %w(p q r s) ,
-        't' => %w(u v w x)
-      },
-      'y' => ['z']
-    ).sort.should == %w(
-      /a/b/c/d/e   /a/b/i/j/k   /a/o/p   /a/t/u   /y/z
-      /a/b/c/d/f   /a/b/i/j/l   /a/o/q   /a/t/v
-      /a/b/c/d/g   /a/b/i/j/m   /a/o/r   /a/t/w
-      /a/b/c/d/h   /a/b/i/j/n   /a/o/s   /a/t/x
-    ).sort
-  end
-  
+ 
+  it 'should handle arrays of different lengths' do
+    shared( Array(1..10) , Array(9..15) ).should == [ { 
+        1   =>  [ true , nil  ], 
+        2   =>  [ true , nil  ], 
+        3   =>  [ true , nil  ], 
+        4   =>  [ true , nil  ], 
+        5   =>  [ true , nil  ], 
+        6   =>  [ true , nil  ], 
+        7   =>  [ true , nil  ], 
+        8   =>  [ true , nil  ], 
+        9   =>  [ true , true ], 
+        10  =>  [ true , true ],
+        11  =>  [ nil  , true ], 
+        12  =>  [ nil  , true ], 
+        13  =>  [ nil  , true ], 
+        14  =>  [ nil  , true ], 
+        15  =>  [ nil  , true ], 
+      } , [9,10]
+    ]
+  end 
 end

@@ -1,12 +1,33 @@
-def your_sort( array , &orderer )
+def pay_by(order)
+  order.compute_cost
+  order.compute_shipping
+  order.compute_tax
+  yield
+  order.ship_goods
+end
 
-  # if it is nil, then it hasn't been set, default to spaceship operator for comparison result
-  orderer = Proc.new { |a,b| a <=> b } unless orderer
-  
-  array.each_index do |index1|
-    array.each_index do |index2|
-      array[index1] , array[index2] = array[index2] , array[index1] if orderer.call(array[index1],array[index2]) < 0
-    end
+
+def pay_by_visa(order,ccn)
+  pay_by order do
+    order.payment :type => :visa , :ccn => ccn
+    order.verify_payment
   end
+end
 
+
+def pay_by_check(order)
+  pay_by(order) { order.payment :type => :check , :signed => true }
+end
+
+
+def pay_by_cash(order)
+  pay_by(order) { order.payment :type => :cash }
+end
+
+
+def pay_by_store_credit(order,current_user)
+  pay_by order do 
+    order.payment :type => :store_credit
+    current_user.store_credit -= order.cost
+  end
 end
