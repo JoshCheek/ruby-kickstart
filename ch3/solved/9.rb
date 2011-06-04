@@ -1,27 +1,12 @@
-# This can be handled in a much cleaner way in 1.9, without the params fiddling
+def your_sort( array , &orderer )
 
-def problem_8(*params)
-  hash    = if params[-1].is_a? Hash then params.pop else nil end
-  problem = if hash then hash[:problem] else :count_clumps end
-
-  return count_clumps *params if problem == :count_clumps
-  return same_ends *params    if problem == :same_ends
-end
-
-def count_clumps(*numbers)
-  clumps     = 0
-  previous   = nil
-  two_before = nil
-
-  numbers.each do |number|
-    clumps += 1 if (previous == number) && !(previous == two_before)
-    two_before = previous
-    previous = number
+  # if it is nil, then it hasn't been set, default to spaceship operator for comparison result
+  orderer = Proc.new { |a,b| a <=> b } unless orderer
+  
+  array.each_index do |index1|
+    array.each_index do |index2|
+      array[index1] , array[index2] = array[index2] , array[index1] if orderer.call(array[index1],array[index2]) < 0
+    end
   end
-  clumps
-end
 
-
-def same_ends( n , *params )
-  params[0,n] == params[-n,n]
 end
