@@ -38,7 +38,7 @@ have common features:
   I'm hoping to add some projecteuler.net problems into here they also helped me develop a knack for problem solving. 
   And lastly, many are made up out of my head, or are taken from real world situations that I have found myself in.
 
-  **Solved & Specs **
+  **Solved & Specs**
   -------------------
   Along with challenges, each chapter provides solutions to its challenges and 
   a suite of automated tests you can use to test your solutions.
