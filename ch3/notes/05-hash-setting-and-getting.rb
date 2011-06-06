@@ -22,7 +22,7 @@ hash[:yay_for_pirates!]   # => nil
 
 # If it makes more sense for your hash, you can change
 # what it returns for nonexistent keys by passing it
-# a block that will be invoked when a mising key is found.
+# a block that will be invoked when a mising key is requested.
 character_counts = Hash.new { |this_hash, key| this_hash[key] = 0 }
 character_counts["a"]     # => 0
 character_counts          # => {"a"=>0}
