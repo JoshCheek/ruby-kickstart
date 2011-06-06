@@ -1,6 +1,6 @@
 # in 1.8, HASHES ARE NOT ORDERED, if you iterate through them,
 # you don't know what order they will be passed
-# in 1.9, hashes are ordered according to their insertion order
+# in 1.9, they will passed to your block in the order they were inserted.
 
 
 # When you iterate over the hash, you pass it a block, just like
