@@ -1,5 +1,5 @@
 # A Proc is just a way of storing code in an object
-# It's ust like a method in that it takes parameters, evaluates
+# It's just like a method in that it takes parameters, evaluates
 # code, and then returns a result.
 square_it_proc = Proc.new { |num| num * num }
 
