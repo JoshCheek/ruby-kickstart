@@ -2,7 +2,7 @@ describe 'context' do
   specify '1_stack_classes_inspect should have been required' do
     path = File.dirname(__FILE__) + "/../challenge/1_stack_classes_inspect.rb"
     path = File.expand_path(path)
-    $LOADED_FEATURES.should include path
+    $LOADED_FEATURES.map { |filename| File.expand_path filename }.should include path
   end
 end
 
