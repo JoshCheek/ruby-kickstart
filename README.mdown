@@ -13,13 +13,13 @@ How it works
 ============
 
 RubyKickstart is downloaded onto your computer as a folder full of files and folders, which can be later
-updated from our github webpage using the git version control software. It consists of chapters, all which
-have common features:
+updated from our github webpage using the git version control software. It consists of sessions, all of
+which have common features:
 
   **Notes**
   ---------
-  Each chapter has a notes file, which is just a Ruby program that's heavily commented to walk
-  through the material of that chapter. It's where you should start each time you open a new chapter.
+  Each session has a notes file, which is just a Ruby program that's heavily commented to walk
+  through the material of that session. It's where you should start each time you open a new session.
 
   **Examples**
   ------------
@@ -28,8 +28,8 @@ have common features:
 
   **Challenges**
   --------------
-  Challenges are found in each chapter. They provide fun programming exercises for you to work through,
-  in order to give you something to write with all of your new knowledge from the chapter. Challenges are taken
+  Challenges are found in each session. They provide fun programming exercises for you to work through,
+  in order to give you something to write with all of your new knowledge from the session. Challenges are taken
   from many different places. About half of them are taken from <http://codingbat.com> (if you would like to work through many
   small problems in Java or Python, this is a wonderful site, and gave me a lot of inspiration regarding how I wanted my challenges to work)
   several are taken from different books that I have enjoyed, including the third edition of Absolute Java by Walter Savitch, 
@@ -40,17 +40,17 @@ have common features:
 
   **Solved & Specs**
   -------------------
-  Along with challenges, each chapter provides solutions to its challenges and 
+  Along with challenges, each session provides solutions to its challenges and 
   a suite of automated tests you can use to test your solutions.
 
   **Cheatsheets**
   ---------------
-  Although not part of the chapters, RubyKickstart has a number of cheatsheets which contain all the syntax
-  for various topics. Some of the material in the cheatsheets is not covered in the notes or examples for chapters,
+  Although not part of the sessions, RubyKickstart has a number of cheatsheets which contain all the syntax
+  for various topics. Some of the material in the cheatsheets is not covered in the notes or examples for sessions,
   so make sure you check out the cheatsheets before diving into the challenges.
 
    
-Chapters
+Sessions
 ========
 
 - 1
