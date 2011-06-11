@@ -74,9 +74,9 @@ Chapters
     * Ranges
     * Simple File IO
     * Inheritance
-    * Modules
-- 5
     * Exceptions
+- 5
+    * Modules
     * Regular Expressions
     * Ruby gems
     * Sinatra
