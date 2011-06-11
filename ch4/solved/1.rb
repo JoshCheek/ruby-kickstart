@@ -9,7 +9,7 @@ class Stack
     while current
       to_return << current.data.inspect
       to_return << ")"
-      current = current.next
+      current = current.next_node
     end
     to_return << ")" if to_return == "("
     to_return

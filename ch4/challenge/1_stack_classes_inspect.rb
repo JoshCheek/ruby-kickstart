@@ -14,10 +14,10 @@ stack.pop   # => nil
 # But I want to implement it using linked lists instead of arrays.
 class Node
   
-  attr_accessor :next, :data
+  attr_accessor :next_node, :data
   
   def initialize(next_node, data)
-    @next = next_node
+    @next_node = next_node
     @data = data
   end
   
@@ -36,7 +36,7 @@ class Stack
   
   def pop
     to_return = @head && @head.data
-    @head &&= @head.next
+    @head &&= @head.next_node
     to_return
   end
   
