@@ -1,14 +1,15 @@
 # You are going to write a method called passthrough
-# It receives an enumerable object, and an initial passthrough value
+# It receives an enumerable object, and an initial passthrough value, and a block
 # 
 # For each of the elements in the enumerable object,
-# it yields the passthrough value and the object
-# whatever the block returns, must be passed in as the next passthrough value for the next element
+# it passes them the passthrough value and the element.
+# Whatever the block returns, must be passed in as the
+# next passthrough value for the next element.
 #
 # After we go through all the elements, the last passthrough value is returned to the caller
 #
 #
-# EXAMPLES:
+# EXAMPLE:
 #
 # passthrough 5..10 , 0 do |sum,num|
 #   sum + num
@@ -23,26 +24,6 @@
 #   The fourth time the block is passed  35 , 10 and it returns 45
 #   The method then returns 45
 #
-# -----
-#
-# passthrough %w(the fox and the hound ran all around) , Hash.new do |words,word|
-#   words[word.length] ||= Array.new
-#   words[word.length] << word
-#   words
-# end
-# 
-# should return {5=>["hound"], 6=>["around"], 3=>["the", "fox", "and", "the", "ran", "all"]}
-#
-# -----
-#
-# married_couples = { 'Smith' => ['John' , 'Sally'] , 'Jones' => ['Will','Robert'] }
-#
-# passthrough married_couples , Array.new do |people,(last_name,first_names)|
-#   full_names = first_names.map { |first_name| "#{first_name} #{last_name}" }
-#   people + full_names
-# end
-# 
-# should return ["Will Jones", "Robert Jones", "John Smith", "Sally Smith"]
 
 def passthrough
 end
