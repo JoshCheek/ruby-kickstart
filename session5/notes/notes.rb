@@ -1,68 +1,114 @@
-# =====  Exceptions  =====
-# errors and exceptions are used to say "something fucked up"
-# it halts evaluation, and returns to where it was called from
-# incrementally making its way up the stack (the series of methods that were called to get to 
-# wherever the exception was raised) until it is either rescued, or crashes the program
+# 01234567890123456789012345678901234567890123456789012345678901234567
 
-# There are quite a few exceptions in Ruby (one of your challenges will be to find them :)
-# You've seen them before, but perhaps didn't know what they were
-def method_with_one_parameter(n) end
-begin
-  method_with_one_parameter(1,2,3)
-  1 + 2             # => 
-rescue => e
-  e                 # => #<ArgumentError: wrong number of arguments (3 for 1)>
-  e.class           # => ArgumentError
-  e.class.ancestors # => [ArgumentError, StandardError, Exception, Object, Kernel]
+# =====  Modules  =====
+# Generally, inheriting classes is becoming less embraced by the Ruby community
+# Now, people usually prefer to use modules instead of inheritence.
+# A class can only inherit from one other class, but it can include as many modules as it likes (this is commonly called a mix-in)
+#
+# Modules have the feel of a class in that they have methods on them. But they cannot be instantiated.
+# Instead, you declare that the methods in the module should extend an object, or be included in a class
+# and all the methods the module contains will be magically dropped into the class.
+module Threes
+  
+  def threes_r0
+    self.select { |i| i % 3 == 0 }
+  end
+  
+  def threes_r1
+    select { |i| i % 3 == 1 }
+  end
+  
+  def threes_r2
+    select { |i| i % 3 == 2 }
+  end
+  
 end
 
-# You can rescue specific exceptions if you like
-begin
-  method_with_one_parameter(1,2,3)
-rescue ZeroDivisionError => e
-  e # => 
-rescue ArgumentError => e
-  e # => #<ArgumentError: wrong number of arguments (3 for 1)>
-end
 
-begin
-  1 / 0
-rescue ZeroDivisionError => e
-  e # => #<ZeroDivisionError: divided by 0>
-rescue ArgumentError => e
-  e # => 
-end
+# Extending an object with a module
+sequence = 0...30
+sequence.extend Threes
 
-# If you handle the exception, you may want to try again
-numerator = 100
-denominator = 0
-begin
-  result = numerator / denominator
-rescue ZeroDivisionError => e
-  denominator += 1
-  retry
-end
-result        # => 100
-denominator   # => 1
 
-# You can raise your own exceptions
-def show_exception
-  begin
-    yield
-  rescue Exception => e
-    e
+# if we look in sequence's singleton class, we see that Threes is now an ancestor of it
+# but this has only affected our one object
+(class << sequence; self; end).ancestors # => 
+(class << Range.new(0,0); self; end).ancestors # => 
+
+sequence.threes_r0 # => 
+sequence.threes_r1 # => 
+sequence.threes_r2 # => 
+
+sequence                          # => 
+0...30                            # => 
+sequence.methods.grep(/threes/)   # => 
+(0...30).methods.grep(/threes/)   # => 
+
+# Questions: Where did the select come from in threes_rn?
+#            Can you think of another object we could extend with this module?
+
+
+# Including a module in a class' instance methods
+# A class has lots of instance methods that its instances are able to use
+# You can include the module's methods in them as well
+Range.ancestors                   # => 
+class Range
+  include Threes
+end
+Range.ancestors                   # => 
+
+sequence                          # => 
+0...30                            # => 
+sequence.methods.grep(/threes/)   # => 
+(0...30).methods.grep(/threes/)   # => 
+
+
+
+# Modules are also commonly used for namespacing
+# maybe you want to try the same problem several days in a row, to see how your approach changes
+module Day1Solutions
+  class MinFinder
+    def initialize(a,b)
+      @a , @b = a , b
+    end
+    def solve
+      if @a < @b then @a else @b end
+    end
   end
 end
 
-def get_names(full_name)
-  raise ArgumentError.new("you need to submit the name as 'Firstname Lastname'") unless full_name[ /^[A-Z][a-z]* [A-Z][a-z]*$/ ]
-  full_name.split
+module Day2Solutions
+  class MinFinder
+    def initialize(a,b)
+      @elements = [ a , b ]
+    end
+    def solve
+      @elements.min
+    end
+  end
 end
 
-show_exception { get_names 'josh cheek' } # => #<ArgumentError: you need to submit the name as 'Firstname Lastname'>
-show_exception { get_names 'Josh Cheek' } # => ["Josh", "Cheek"]
+day1 = Day1Solutions::MinFinder.new 10 , 5
+day2 = Day2Solutions::MinFinder.new 10 , 5
+day1                                          # => 
+day2                                          # => 
+day1.solve                                    # => 
+day2.solve                                    # => 
 
-# QUESTION: Why did our program return an ArgumentError? We caught an Exception
+# that is a lot to type, though, I think I like Day2Solutions better, it's easier to read
+# that is the one I want to use from now on, but I don't want to have to keep typing Day2Solutions::MinFinder.new
+# we can include day2 solutions into our main
+include Day2Solutions
+MinFinder.new 10 , 5                          # => 
+
+# This is a common way to get nicer functionality
+# For example, the FileUtils module (http://ruby-doc.org/core/classes/FileUtils.html), which is in the Ruby standard library
+# is included when working with rake files, this lets you say things like "cd 'ch4'" instead of "FileUtils.cd 'ch4'"
+
+# ~> -:264:in `lkjlkj': super: no superclass method `lkjlkj' for #<Engineer:0x0000010090ba40 @hours_worked=10> (NoMethodError)
+# ~> 	from -:268:in `<main>'
+
+
 
 
 
