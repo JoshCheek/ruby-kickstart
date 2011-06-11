@@ -1,7 +1,7 @@
 Welcome to RubyKickstart!
 =========================
 
-    http://github.com/JoshCheek/JoshsRubyKickstart
+    https://github.com/JoshCheek/ruby-kickstart
 
 RubyKickstart is an interactive guide to learning the Ruby programming language.
 By providing all of our notes and examples in real Ruby program files, you can see exactly how
