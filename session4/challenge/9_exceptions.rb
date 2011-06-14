@@ -2,7 +2,7 @@
 # generate their full name. A full name is just a first_name
 # and a last_name separated by a space.
 # 
-# Sometimes, though, the code will raise a FullNameError
+# Sometimes, though, the code will raise a FirstNameError
 # In these cases, just return their last name.
 # 
 # Other times, the code will raise a LastNameError
