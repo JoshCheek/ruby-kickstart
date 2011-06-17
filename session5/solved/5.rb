@@ -1,23 +1,3 @@
-module OperatorGeneratorFromSpace
-
-  def <(other)
-    ( self <=> other ) < 0
-  end
-
-  def >(other)
-    ( self <=> other ) > 0
-  end
-
-  def ==(other)
-    ( self <=> other ) == 0
-  end
-
-  def <=(other)
-    !( self > other )
-  end
-  
-  def >=(other)
-    !( self < other )
-  end
-  
+def list_of_errors_and_exceptions
+  Module.constants.grep(/exception|error/i)
 end
