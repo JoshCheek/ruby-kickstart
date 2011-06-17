@@ -4,9 +4,15 @@
 # Wouldn't it be great if we could write those methods one time, 
 # and have them work for any class we wanted to drop them into?
 # 
-# Your mission then, is to write a module that uses the spaceship operator <=>
-# to write the methods < , <= , == , > , and >=
+# Your mission then, is to write a module, OperatorGeneratorFromSpace,
+# that uses the spaceship operator <=> to write the methods < , <= , == , > , and >=
 #
+# The spaceship operator takes two arguments and returns -1, 0, 1
+# depending on whether the left argument is less than, equal to, or greater than the right.
+#       SPACESHIP OPERATOR EXAMPLES:
+#         0 <=> 1     # => -1
+#         1 <=> 1     # => 0
+#         2 <=> 1     # => 1
 #
 #
 # EXAMPLE:
