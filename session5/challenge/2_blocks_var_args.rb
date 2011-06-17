@@ -13,21 +13,22 @@
 # In his controller, he told Rails:
 # before_filter :set_admin , :except => [ :show , :index ]
 #
-# Then he created the method
+# Then he created the method that he told the before filter to invoke
 # def set_admin
 #   body_class << 'admin'
 # end
 #
 # Rails now knows that when an HTTP request is going to be handled by this controller,
-# if the controller method handling the request is anything other than the methods named show and index
+# if the controller method handling the request is anything other than the methods named show and index,
 # that it should first invoke the set_admin method. And in that method, he sets the CSS class.
 # 
 #
 #
 # The problem, is that there are several of these of these filters he wants to apply,
 # and he wants to do it in _every_ controller. There are many controllers, and many classes
-# and so this amounts to lots and lots of very redundant and simple code (called "boiler plate"). So he called me over
-# and says that he would like to be able to accomplish the same thing with just one line of code:
+# and so this amounts to lots and lots of very redundant and simple code (we call this "boiler plate"). 
+# So he called me over and said that he would like to be able to accomplish the same thing with just
+# one line of code:
 #
 # css_classes 'admin' , :except => [ :show , :index ]
 #
@@ -78,28 +79,10 @@
 #
 # HINTS:
 #   * Don't bother requiring the other file. To avoid relative require issues, the test will do it for you.
-#   * First think about where you need to put this method
+#   * First think about where you need to put this method so that it will be available to all the controllers
 #   * You are going to need to combine variable length parameters with an options hash. This can't be done in the method signature
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
