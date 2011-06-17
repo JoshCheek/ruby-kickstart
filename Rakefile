@@ -99,11 +99,3 @@ end
 
 task :default => get_sessions.map { |session| "#{session}:all" }
 
-
-
-desc 'create session skeleton'
-task :add_sess do
-  sess = "session#{ENV['sess']||get_sessions.size.next}"
-  makedirs 'challenge' , 'examples' , 'notes' , 'solved' , 'spec' , :path => sess
-  touch "#{sess}/notes/josh.rb"
-end
