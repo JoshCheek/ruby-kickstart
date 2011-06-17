@@ -1,7 +1,6 @@
-# This is the same as 4:9 but now we want to make this more comprehensive
+# This is the same as 4:6 but now we want to make this more comprehensive
 #
 # There are a few nuances, though.
-# The String you return won't be initialized (you do not have an initialize method)
 # The String you return must be retained during the object's entire life
 # The method must be able to be called multiple times
 # The String you return should know how to add new CSS classes: each class is separated by a space
