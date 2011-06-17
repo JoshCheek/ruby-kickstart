@@ -1,7 +1,0 @@
-sinatra
-dm-core
-dm-sqlite-adapter
-dm-postgres-adapter
-dm-timestamps
-dm-validations
-dm-migrations
