@@ -1,7 +1,6 @@
 # =====  What Are Gems?  =====
 # In Ruby, third party libraries are called gems
 # You can see a list of most of Ruby's gems at rubygems.org
-# (by see a list, I mean query)
 
 
 # =====  How To Install  =====
@@ -22,7 +21,7 @@
 # So some libraries, like BlueCloth will require you to have a compiler available to use to compile the gem for your system
 
 # It also builds documentation in the form of ri, and rdoc
-# ri was broken on my comp when I was learning Ruby, so I don't know how to use it
+# To use ri, go to the command line and type "$ ri topic", ie "$ ri String"
 # To use the rdocs, you can load up your own documentation server
 
 
@@ -43,7 +42,9 @@
 #
 # To get there, you you can go to your gem directory, see this with
 # $ gem environment
-#
+# 
+# If you have gem-open ("$ gem install gem-open"), then you can open it directly with "$ gem open gemname"
+# 
 # If you just want to see it quickly, you can follow the link to the source host (probably github)
 # If you want to experiment with it, you can git clone the source code into a directory on your machine
 # Then you can play around without affecting your gems.
@@ -51,12 +52,12 @@
 # A good example can also be very helpful, google + blogs can be your friend :)
 # Oftentimes there are also examples in the code
 #
-# Looking at what things the authors took the time to test can show you how they expected it to be used
+# Looking at what things the authors taken the time to test can show you how they expected it to be used
 # And what features and things they took the time to make sure work correctly
 # Tests will either be in /spec or /test directories.
 #
-# For example, looking at the BlueCloth homepage I didn't see anything helpful (except it is fast)
-# I loaded up the gem server, and felt unsure where the "overview" information was (contextless method explanations do little for me)
+# For example, looking at the BlueCloth homepage I didn't see anything helpful.
+# I loaded up the gem server, and felt unsure where the "overview" information was
 # I looked at spec/bluecloth_spec.rb and saw the spec
 # it "allows output to be rendered several times" do
 #   bc = BlueCloth.new( "Some text" )
@@ -68,8 +69,7 @@
 
 # =====  Using Gems  =====
 # Gems become available to you in your ruby files
-# For stupid path reasons, you must require rubygems first
-require 'rubygems'
+# (On Ruby 1.8, you must require rubygems first.)
 require 'bluecloth'
 
 # now you are free to use it as you would any library, or even your own code
