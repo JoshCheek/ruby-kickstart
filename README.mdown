@@ -79,9 +79,10 @@ Sessions
     * Modules
     * Regular Expressions
     * Ruby gems
+- 6
+    * ERB
     * Sinatra
     * Heroku
-
 
     
 What you'll need to use it 
