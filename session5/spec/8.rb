@@ -1,3 +1,5 @@
+gemlist = %x(gem list)
+
 describe 'gem installation' do
 
   specify "you should have rubygems running (if you're on 1.8, try `require 'rubygems'`)" do
@@ -5,7 +7,7 @@ describe 'gem installation' do
   end
     
   specify 'you should have installed helloworld' do    
-    %x(gem list).should =~ /\bhelloworld\b/
+    gemlist.should =~ /\bhelloworld\b/
   end
   
   specify 'you should have required hello_world' do
@@ -13,7 +15,7 @@ describe 'gem installation' do
   end
   
   specify 'you should have installed sinatra' do
-    %x(gem list).should =~ /\bsinatra\b/
+    gemlist.should =~ /\bsinatra\b/
   end
   
   specify 'you should ahve required sinatra' do
@@ -21,7 +23,7 @@ describe 'gem installation' do
   end
   
   specify 'you should have installed nokogiri' do
-    %x(gem list).should =~ /\bnokogiri\b/
+    gemlist.should =~ /\bnokogiri\b/
   end
   
   specify 'you should have required nokogiri' do
