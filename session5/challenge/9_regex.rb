@@ -30,4 +30,5 @@
 #     </body>
 #   </html>
 
-
+def trees_to_html(trees)
+end
