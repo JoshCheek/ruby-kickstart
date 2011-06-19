@@ -23,7 +23,7 @@ sequence.extend Threes
 sequence # => 0...30
 
 
-# Threes is no on our sequence of numbers, but not on any others
+# Threes is not on our sequence of numbers, but not on any others
 sequence.singleton_class.ancestors  # => [Threes, Range, Enumerable, Object, Kernel, BasicObject]
 (0...30).singleton_class.ancestors  # => [Range, Enumerable, Object, Kernel, BasicObject]
 
