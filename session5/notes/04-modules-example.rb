@@ -1,6 +1,3 @@
-# 01234567890123456789012345678901234567890123456789012345678901234567
-
-
 # Here is a common example of how we might use modules
 module Threes
   
