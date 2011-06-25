@@ -3,11 +3,11 @@
 
 require 'rubygems'
 require 'sinatra/base'
-include Sinatra::Delegator
+extend Sinatra::Delegator
 
 
 # =====  To Create a Sinatra App  =====
-# Male a simple text file that ends with .rb
+# Make a simple text file that ends with .rb
 # Require rubygems and sinatra
 # Define your http methods, their routes and responses
 # Run it like any Ruby file (if shotgun works on your computer, try with that)
@@ -35,15 +35,15 @@ module Sinatra
   class Base
     # Pure routes
     compile '/'                               # => [/^\/$/, []]
-    compile '/actors/brad-pitt'               # => [/^\/actors\/brad-pitt$/, []]
+    compile '/actors/brad-pitt'               # => [/^\/actors\/brad(?:\-|%2D)pitt$/, []]
     
     # Routes with variables - notice it replaces the variable name with a capture group, 
     # And it keeps track of the variable name for assigning the match in the params hash
-    compile '/actors/:firstname-:lastname'    # => [/^\/actors\/([^\/?&#]+)-([^\/?&#]+)$/, ["firstname", "lastname"]]
-    compile '/it/is/:time/in/:location'       # => [/^\/it\/is\/([^\/?&#]+)\/in\/([^\/?&#]+)$/, ["time", "location"]]
+    compile '/actors/:firstname-:lastname'    # => [/^\/actors\/([^\/?#]+)(?:\-|%2D)([^\/?#]+)$/, ["firstname", "lastname"]]
+    compile '/it/is/:time/in/:location'       # => [/^\/it\/is\/([^\/?#]+)\/in\/([^\/?#]+)$/, ["time", "location"]]
     
     # The splat will greedily eat up as much as it can, and get placed in the params hash under the name 'splat'
-    compile '/the-path-is/*'                  # => [/^\/the-path-is\/(.*?)$/, ["splat"]]
+    compile '/the-path-is/*'                  # => [/^\/the(?:\-|%2D)path(?:\-|%2D)is\/(.*?)$/, ["splat"]]
   end
 end
 
@@ -186,10 +186,6 @@ end
 not_found do
   'This is nowhere to be found'
 end
-
-# Link a route directly to a file in your ./public directory
-# then going to yoursite.com/about-us will simply return the file ...yourapp/public/about-us
-set :public, File.dirname(__FILE__) + '/about-us'
 
 # configure is a block run once at startup
 configure do
