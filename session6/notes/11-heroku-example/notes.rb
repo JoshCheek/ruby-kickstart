@@ -1,5 +1,3 @@
-# 01234567890123456789012345678901234567890123456789012345678901234567
-
 # Okay, lets make a Sinatra application and put it on Heroku.
 # It will be a username generator. You will go to 
 # thesite.com/lastname/firstname and it will generate a username

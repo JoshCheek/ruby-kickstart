@@ -1,5 +1,5 @@
 # a good book http://sinatra-book.gittr.com/       (note that most of it appears to be good, but some of it appears to be outdated)
-# docs http://railsapi.com/doc/sinatra-v1.0/       (I really like example based docs like this one -- almost feels like another cheetsheat)
+# docs http://railsapi.com/doc/sinatra-v1.1.2/     (I really like example based docs like this one -- almost feels like another cheetsheat)
 
 require 'rubygems'
 require 'sinatra/base'
