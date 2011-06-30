@@ -22,4 +22,10 @@ describe 'The HelloWorld App' do
     specify { last_response.body.should include "Joshua Jay Cheek's username is jjcheek" }    
   end
   
+  context 'get "/Matsumoto/Yukihiro"' do
+    before { get '/Matsumoto/Yukihiro' }
+    specify { last_response.should be_ok }
+    specify { last_response.body.should include "Yukihiro Matsumoto's username is ymatsu" }
+  end
+  
 end
