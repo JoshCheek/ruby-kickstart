@@ -5,7 +5,7 @@
 paths_ary = [ '/bin' , '/opt/local/var' , '/Users/josh' ]
 
 
-# if we were on Michael's or Kris' computer, we might have this in our path
+# if we were on Michael's or Kris' computer, we might have this in our path (they use Windows)
 paths_ary << 'c:\\michael'
 paths_ary << 'c:\\kris'
 

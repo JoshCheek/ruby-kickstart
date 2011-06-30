@@ -7,7 +7,7 @@
 # so I'm not going to rewrite it, this is just a translation from Java to Ruby
 
 class Bill
-  RATE = 150.00  # dollars per quarter hour
+  RATE = 150.00  # dollars per quarter hour (note that it's bad practice to use floats for money)
   
   attr_accessor :hours , :minutes , :fee
     
