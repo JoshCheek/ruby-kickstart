@@ -1,3 +1,6 @@
+# YOU WILL NEED TO WATCH THE VIDEO TO SEE THIS ONE DONE
+# -----------------------------------------------------
+
 # Okay, lets make a Sinatra application and put it on Heroku.
 # It will be a username generator. You will go to 
 # thesite.com/lastname/firstname and it will generate a username
