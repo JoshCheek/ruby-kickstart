@@ -1,11 +1,6 @@
 # invoke this program with a number
 # $ ruby 2_check_odd.rb number
 
-def is_odd?(number)
-  # it is odd if it has a remainder of 1 when divided by two
-  number % 2 == 1
-end
-
 
 # when a user passes an argument to a ruby program
 # it is stored in the ARGV array
@@ -19,7 +14,7 @@ end       # If you're exiting because something went wrong, pass a different num
 # We'll have to turn it into a number ourselves with to_i (what if the user didn't pass a number?)
 number = ARGV.first.to_i
 
-if is_odd?(number)
+if number.odd?
   puts "Yes, #{number} is odd"
 else
   puts "No, #{number} is not odd"
