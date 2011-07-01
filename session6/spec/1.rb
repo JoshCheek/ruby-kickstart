@@ -1,4 +1,9 @@
-app_root = File.expand_path "#{File.dirname __FILE__}/../challenge/1_build_an_app"
+if $LOADED_FEATURES.grep(/session6\/solved\/1/).empty?
+  app_root = File.expand_path "#{File.dirname __FILE__}/../challenge/1_build_an_app"
+else
+  app_root = File.expand_path "#{File.dirname __FILE__}/../solved/1_build_an_app"
+end
+
 main = self
 
 # check necessary preliminaries
