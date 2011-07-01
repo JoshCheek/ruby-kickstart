@@ -265,3 +265,17 @@ describe "Your application's config.ru" do
     load "#{app_root}/config.ru"
   end  
 end
+
+
+describe do
+  specify do
+    at_exit do
+      puts '', <<-MESSAGE
+        Great job! I'd add tests for github, but honestly, I don't know how to :/
+        Anyway, go ahead and put it under git source control and put it on Heroku :)
+       
+        This is our last challenge together, I hope you've enjoyed it!
+      MESSAGE
+    end
+  end
+end
