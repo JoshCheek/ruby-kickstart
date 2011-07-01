@@ -1,47 +1,50 @@
 Welcome to RubyKickstart!
 =========================
 
-    https://github.com/JoshCheek/ruby-kickstart
+**RubyKickstart is an interactive guide to learning the Ruby programming language.**
 
-RubyKickstart is an interactive guide to learning the Ruby programming language.
-By providing all of our notes and examples in real Ruby program files, you can see exactly how
-everything looks and works in the code itself.
-
+Please visit [our website](http://ruby-kickstart.com/) for videos and quizzes.
+And get the [source code](https://github.com/JoshCheek/ruby-kickstart) with notes and challenges.
 
 
 How it works
 ============
 
-RubyKickstart is downloaded onto your computer as a folder full of files and folders, which can be later
-updated from our github webpage using the git version control software. It consists of sessions, all of
-which have common features:
+RubyKickstart is downloaded onto your computer as a folder full of files and folders. 
+It consists of six sessions, all of which have common features:
+
+  **Videos**
+  ----------
+  Each session has a video where I go through the notes with some friends I made this material for. 
+  Watch your way through the video and follow along with the material on your computer.
 
   **Notes**
   ---------
-  Each session has a notes file, which is just a Ruby program that's heavily commented to walk
-  through the material of that session. It's where you should start each time you open a new session.
+  Each session has a set of notes files, which are just simple Ruby programs that are heavily commented to walk
+  through the material of that session. This is the material that we go through for each session.
 
   **Examples**
   ------------
-  Examples are full Ruby programs that demonstrate the material taught in the notes. You can run them
-  on your own and modify them to experiment with the ideas they demonstrate.
+  Existence of examples is intermittent. They are full Ruby programs that demonstrate the material taught in the notes.
+  You can run them on your own and modify them to experiment with the ideas they demonstrate.
+
+  **Quizzes**
+  -----------
+  Each session has an associated quiz available on the website. The quizzes test that you understood the material for the session.
 
   **Challenges**
   --------------
   Challenges are found in each session. They provide fun programming exercises for you to work through,
-  in order to give you something to write with all of your new knowledge from the session. Challenges are taken
-  from many different places. About half of them are taken from <http://codingbat.com> (if you would like to work through many
-  small problems in Java or Python, this is a wonderful site, and gave me a lot of inspiration regarding how I wanted my challenges to work)
-  several are taken from different books that I have enjoyed, including the third edition of Absolute Java by Walter Savitch, 
-  which is probably my favourite CS book, it was exceptionally well done, though would probably be boring for a more advanced 
-  programmer, and Learn to Program by Chris Pine, a book to teach programming to absolute beginners, using Ruby. 
-  I'm hoping to add some projecteuler.net problems into here they also helped me develop a knack for problem solving. 
-  And lastly, many are made up out of my head, or are taken from real world situations that I have found myself in.
+  so you have something to work on that utilizes the session's information. Challenges are taken
+  from a few different places. Several are taken from different books that I have enjoyed, including the third edition
+  of Absolute Java by Walter Savitch, which is probably my favourite CS book (for beginners), it was exceptionally well done,
+  and one was taken from Learn to Program by Chris Pine, a book to teach programming to absolute beginners, using Ruby. 
+  The rest were spawned out of my own brain, or from real world situations that I have found myself in.
 
   **Solved & Specs**
   -------------------
-  Along with challenges, each session provides solutions to its challenges and 
-  a suite of automated tests you can use to test your solutions.
+  Along with challenges, each session provides solutions to its challenges and
+  a suite of automated tests you can use to test the correctness of your solutions.
 
   **Cheatsheets**
   ---------------
@@ -80,8 +83,11 @@ Sessions
     * Regular Expressions
     * Ruby gems
 - 6
-    * ERB
+    * The Web
     * Sinatra
+    * ERB
+    * Rack
+    * Git
     * Heroku
 
     
