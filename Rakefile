@@ -61,7 +61,7 @@ def run_spec(session_num,problem)
   if ENV['solved']
     problem_dir = "#{sess}/solved/#{problem}.rb"
   else
-    problem_dir = Dir["#{sess}/challenge/#{problem}_*"].first
+    problem_dir = Dir["#{sess}/challenge/#{problem}_*.rb"].first
   end  
   sh "ruby -c '#{problem_dir}'"                                                             # check syntax
   sh "rspec -cr '#{problem_dir}' -r enumerator '#{sess}/spec/#{problem}.rb' --fail-fast"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
@@ -78,7 +78,7 @@ end
 # each value is a range indicating the problems available for this session
 def sessions_with_problems
   get_sessions.inject Hash.new do |sessions_with_sections, session|
-    challenges = Dir["session#{session}/challenge/*"]
+    challenges = Dir["session#{session}/challenge/*.rb"]
     sessions_with_sections[session] = challenges.map { |challenge| challenge[%r([^/]+?$)].to_i }.sort
     sessions_with_sections
   end
