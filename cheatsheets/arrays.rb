@@ -176,10 +176,10 @@ result # => [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9,
 [3, 4, 13, 2, -3, 7].max        # => 13
 [3, 4, 13, 2, -3, 7].min        # => -3
 
-  # union
+  # intersection
 [1,3,4] & [0,3,4,5]             # => [3, 4]
 
-  # intersection (order is not guaranteed)
+  # union (order is not guaranteed)
 [1,3,4] | [0,3,4,5]             # => [1, 3, 4, 0, 5]
 
   # convert each element to a string, and join them together

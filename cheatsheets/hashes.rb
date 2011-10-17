@@ -121,8 +121,8 @@ hash = { "a" => 100, "b" => 200 }
 hash.index(200)               # => "b" # !> Hash#index is deprecated; use Hash#key
 hash.index(999)               # => nil # !> Hash#index is deprecated; use Hash#key
 
-# swap keys with values values
-hash = { :n => 1, :m => 1, :o => 2 }  # n and m have the same value, m ends up getting squashed
+# swap keys with values
+hash = { :n => 1, :m => 1, :o => 2 }  # n and m have the same value, n ends up getting squashed
 hash.invert                   # => {1=>:m, 2=>:o}
 
 # convert to an array

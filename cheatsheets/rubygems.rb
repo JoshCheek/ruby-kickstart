@@ -4,7 +4,7 @@
 
 
 # =====  How To Install  =====
-# When you find one there that you are interested in, ie BlueCloth, a gem to parse markdown and output html
+# When you find one there that you are interested in, e.g. BlueCloth, a gem to parse markdown and output html
 # http://rubygems.org/gems/bluecloth
 # It will give you instructions on how to install it
 # $ gem install bluecloth
