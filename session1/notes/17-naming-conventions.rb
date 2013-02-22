@@ -4,8 +4,8 @@
 # Use snake_case with variables
 local_variable = nil
 
-# Constants are like variables, but you're telling the world that the value should not change. 
-# Any variable that starts with a capital letter is a constant. 
+# Constants are like variables, but you're telling the world that the value should not change.
+# Any variable that starts with a capital letter is a constant.
 # Use CamelCase with constants.
 Constant = nil
 
@@ -24,7 +24,7 @@ my_variable = 13
 def example
   begin
     MyConstant        # => 12
-    my_variable       # => 
+    my_variable       # =>
   rescue => exception
     exception         # => #<NameError: undefined local variable or method `my_variable' for main:Object>
   end

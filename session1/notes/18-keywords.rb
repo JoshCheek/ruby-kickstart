@@ -1,9 +1,9 @@
-# We care about keywords, because they ahve special meaning to Ruby.
+# We care about keywords, because they have special meaning to Ruby.
 # This means that we can't use them as variable names.
 #
-# You will know if you've used one, because the interpreter will 
+# You will know if you've used one, because the interpreter will
 # If your text editor highlights it, don't use it. :)
-# 
+#
 # If you _really_ want a list, its at http://www.google.com/search?&q=ruby+keywords+list
 
 
