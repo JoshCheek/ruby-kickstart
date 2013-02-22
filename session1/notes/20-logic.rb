@@ -1,8 +1,8 @@
 # In your life, when you need to conditionally do something, you use logic.
 # Logic has two values: true and false
-# You say things like "if it's raining and I have an umbrealla I'll go outside, otherwise I'll stay inside."
+# You say things like "if it's raining and I have an umbrella I'll go outside, otherwise I'll stay inside."
 # This is a logical statement.
-# 
+#
 # Ruby has logic, too, so you can totally write a program to see if you should go outside, in fact, lets do it!
 
 def go_outside?(raining, umbrella)
