@@ -3,7 +3,7 @@
 if 4 == (2 + 2)
   "I get evaluated"   # => "I get evaluated"
 else
-  "I don't :("        # => 
+  "I don't :("        # =>
 end
 
 
@@ -19,7 +19,7 @@ end
 
   # Output:
   # You could hold me in 6 bits
-  # 
+  #
 
 
 'one line if statement'     if true       # => "one line if statement"

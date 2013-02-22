@@ -1,4 +1,4 @@
-# Programs that run in a terminal read text in, and write text out. 
+# Programs that run in a terminal read text in, and write text out.
 # This is the common interface that allows lots of different programs to interact with each other.
 
 # When a program outputs text, we say it sends it to standard output (stdout).
@@ -18,7 +18,7 @@ puts "You said: #{user_response}"
 
 
 # Watch out!
-# 
+#
 # A line is text that ends in a newline. line = "Line\n"
 # When you read in the line, you also read in the newline.
 # That means: line + line # => "Line\nLine\n"
