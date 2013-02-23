@@ -1,4 +1,4 @@
-# symbols are commonly used as keys because of their efficiency,
+# Symbols are commonly used as keys because of their efficiency,
 # but you can use any object you like.
 
 hash           = Hash.new
