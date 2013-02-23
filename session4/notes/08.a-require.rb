@@ -1,10 +1,10 @@
 # When you have code in one file that you want to use in another
-# file, you load it by using require
+# file, you load it by using require.
 defined? Date # => nil
 require 'date'
 defined? Date # => "constant"
 
-# In this case, Ruby looks in several different places to see a 
+# In this case, Ruby looks in several different places to see a
 # list of locations to look for the file you required. It contains
 # things like the standard library, a set of files with useful
 # things like Date.

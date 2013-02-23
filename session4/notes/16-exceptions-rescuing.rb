@@ -6,7 +6,7 @@ end
 begin
   method_with_one_parameter(1,2,3)
   # This code won't be executed because it happened after the exception.
-  1 + 2             # => 
+  1 + 2             # =>
 rescue ArgumentError => e
   # We've rescued the Error, and are storing it in
   # the variable e. Errors are objects just like anything else.
@@ -21,7 +21,7 @@ end
 begin
   method_with_one_parameter(1,2,3)
 rescue ZeroDivisionError => e
-  e # => 
+  e # =>
 rescue ArgumentError => e
   e # => #<ArgumentError: wrong number of arguments (3 for 1)>
 end
@@ -32,6 +32,6 @@ begin
 rescue ZeroDivisionError => e
   e # => #<ZeroDivisionError: divided by 0>
 rescue ArgumentError => e
-  e # => 
+  e # =>
 end
 
