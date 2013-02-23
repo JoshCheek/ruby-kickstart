@@ -21,7 +21,7 @@ singleton_class.ancestors # => [ERB::Util, Object, Kernel, BasicObject]
 h "<script>" # => "&lt;script&gt;"
 
 
-# This is a common way to get nicer functionality. For example, the 
+# This is a common way to get nicer functionality. For example, the
 # FileUtils module (http://ruby-doc.org/core/classes/FileUtils.html),
 # from the Ruby standard library extended onto main into Object, when
 # working with rake files, this lets you say things like `mkdir 'ch4'`
