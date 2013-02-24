@@ -16,16 +16,16 @@ puts "This script is located in #{File.dirname __FILE__}"
 # Try going to different directories and invoking this script:
 
 # --- From the RKS root ---
-# $ ruby ch4/notes/07-working-dir-vs-file-dir.rb 
+# $ ruby ch4/notes/07-working-dir-vs-file-dir.rb
 # Your working directory is /Users/josh/code/RKS
 # This script is located in ch4/notes
 
 # --- From ch3 ---
-# $ ruby ../ch4/notes/07-working-dir-vs-file-dir.rb 
+# $ ruby ../ch4/notes/07-working-dir-vs-file-dir.rb
 # Your working directory is /Users/josh/code/RKS/ch3
 # This script is located in ../ch4/notes
 
 # --- From ch4/notes ---
-# $ ruby 07-working-dir-vs-file-dir.rb 
+# $ ruby 07-working-dir-vs-file-dir.rb
 # Your working directory is /Users/josh/code/RKS/ch4/notes
 # This script is located in .
