@@ -29,5 +29,5 @@ stop  = 15
 start..stop                         # => 10..15
 
 
-# They're mostly useless, but you'll see them every now and 
+# They're mostly useless, but you'll see them every now and
 # then, so just be aware of what they are.

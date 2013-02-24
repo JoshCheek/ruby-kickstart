@@ -5,27 +5,27 @@
 # been set, it is nil, so returns the value of b.
 
 
-# Here is an example, I am using this in ruby-kickstart.com 
+# Here is an example, I am using this in ruby-kickstart.com
 # (http://goo.gl/21tEg) I have regular expressions that match
 # against your answers, but databases don't know what regular
 # expressions are, so I have to convert them into a text format
 # called YAML. Then when I want to use them, I convert them out
-# of YAML back into a regular expression. 
-# 
-# In order to not incur the cost of converting from YAML
+# of YAML back into a regular expression.
+#
+# In order to not incure the cost of converting from YAML
 # every time I want to use the regex, I only do it the first
-# time by using ||= 
+# time by using ||=
 class QuizRegex < ActiveRecord::Base
-  
+
   belongs_to :quiz_match_answer_problem
-  
+
   def regex=(regex)
     @regex = regex
     self.content = YAML.dump regex
   end
-  
+
   def regex
     @regex ||= YAML.load(content)
   end
-  
+
 end

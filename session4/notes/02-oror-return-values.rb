@@ -1,4 +1,4 @@
-# the same short circuit principle applies to ||
+# The same short circuit principle applies to ||.
 
 
 

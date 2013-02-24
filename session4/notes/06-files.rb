@@ -2,12 +2,12 @@
 #       http://ruby-doc.org/core/classes/IO.html
 #
 #
-# file output basically works the same way as regular output,
+# File output basically works the same way as regular output,
 # because a File object is an IO object
 # and $stdout and $stdin, are also IO objects.
 
 
-# Note that by default, this all happens in the dir 
+# Note that by default, this all happens in the dir
 # *you're* in, not the dir that the *file* is in.
 
 
@@ -31,7 +31,7 @@ contents = File.read "names"
 contents  # => "sally\nsam\nbillybob\n"
 
 
-# Iterate over the lines of the file 
+# Iterate over the lines of the file
 # useful if your file is really big.
 File.foreach "names" do |line|
   line  # => "sally\n", "sam\n", "billybob\n"
@@ -45,4 +45,4 @@ File.readlines "names" # => ["sally\n", "sam\n", "billybob\n"]
 # Cleaning up
 File.exist? "names" # => true
 File.delete "names"
-File.exist? "names" # => false
+File.exist? "names" # => false 2013-02-23
