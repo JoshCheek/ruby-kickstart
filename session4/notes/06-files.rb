@@ -45,4 +45,4 @@ File.readlines "names" # => ["sally\n", "sam\n", "billybob\n"]
 # Cleaning up
 File.exist? "names" # => true
 File.delete "names"
-File.exist? "names" # => false 2013-02-23
+File.exist? "names" # => false
