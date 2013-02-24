@@ -22,4 +22,3 @@ obj.extend OurModule
 obj.singleton_class.ancestors   # => [OurModule, Object, Kernel, BasicObject]
 obj.meth                        # => "method from M"
 
-

@@ -1,9 +1,9 @@
 # You can declare classes and modules inside of each other.
 class A
-  
+
   class B
   end
-  
+
   module C
     module D
       class C
@@ -13,7 +13,7 @@ class A
       end
     end
   end
-  
+
 end
 
 # You can then access them with ::
