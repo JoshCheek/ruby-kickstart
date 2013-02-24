@@ -2,7 +2,7 @@
 # -----------------------------------------------------
 
 # Okay, lets make a Sinatra application and put it on Heroku.
-# It will be a username generator. You will go to 
+# It will be a username generator. You will go to
 # thesite.com/lastname/firstname and it will generate a username
 # for you in the form of first initial of first name, first five
 # characters of last name. So thesite.com/Cheek/Josh should
@@ -21,9 +21,9 @@
 #   add rackup
 #   show that it works in the browser
 #   make sure everything is committed
-#   create our heroku app `$ herkou create` 
+#   create our Heroku app `$ heroku create`
 #     The first time you do this, you'll have to authenticate yourself
 #     I won't because I've done it before
 #     Heroku will add itself as a remote repository to your git repo
-#   Push the repo to heroku with `$ git push heroku master`
+#   Push the repo to Heroku with `$ git push heroku master`
 #   Now open the site with `$ heroku open`
