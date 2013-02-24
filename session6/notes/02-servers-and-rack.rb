@@ -2,7 +2,7 @@
 # will present the server's data to our program us in the form of
 # a hash table like this:
 
-{ 
+{
   "REQUEST_METHOD"  =>"GET",                # The type of request
   "REQUEST_PATH"    =>"/",                  # Where to go on my application
   "REMOTE_ADDR"     =>"127.0.0.1",          # This is my IP address
