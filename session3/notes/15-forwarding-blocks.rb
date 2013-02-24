@@ -3,6 +3,7 @@ def meth1(&block)
   "(meth1: #{block.call})"
 end
 
+
 # Use the & notation when calling a method to put a block into
 # the method's block slot.
 def meth2(&block)

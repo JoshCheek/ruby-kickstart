@@ -24,4 +24,4 @@ what_are_filled_in :A , :B , :C , :D       # => "A B C D 1"
 what_are_filled_in :A , :B , :C , :D , :E  # => "A B C D E"
 
 # what will this return?
-what_are_filled_in :A ,                :E  # => 
+what_are_filled_in :A ,                :E  # =>
