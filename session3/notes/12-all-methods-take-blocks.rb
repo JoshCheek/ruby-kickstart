@@ -1,5 +1,5 @@
 # When you pass a block as a parameter, the block gets put into
-# a special slot that every method has, whether they use the 
+# a special slot that every method has, whether they use the
 # block or not.
 def method
   "result"
@@ -8,7 +8,7 @@ method {} # => "result"
 method    # => "result"
 
 
-# To access the block, use the ampersand, this will 
+# To access the block, use the ampersand, this will
 # give it to you as a proc that you can use.
 def method2(&block)
   block.call.upcase

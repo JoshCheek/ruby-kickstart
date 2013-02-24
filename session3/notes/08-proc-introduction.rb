@@ -13,7 +13,6 @@ square_it_proc.call 5  # => 25
 square_it_proc.call 10 # => 100
 
 
-
 # Compare it to a method
 def square_it_method(num)
   num * num

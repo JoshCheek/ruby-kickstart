@@ -3,7 +3,7 @@
 :this_is_a_symbol.object_id # => 212668
 :this_is_a_symbol.object_id # => 212668
 
-# Whereas each String is a new object, 
+# Whereas each String is a new object,
 # notice they have different object ids.
 'this is a string'.object_id # => 2149403240
 'this is a string'.object_id # => 2149402020

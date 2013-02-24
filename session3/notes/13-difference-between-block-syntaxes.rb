@@ -15,5 +15,5 @@ block_checker( [1,2,3].map ) { 1 }    # => [[1, 2, 3], true]
 block_checker [1,2,3].map do 1 end    # => [[1, 2, 3], true]
 
 
-# This makes { ... } ideal for inline blocks, and 
+# This makes { ... } ideal for inline blocks, and
 # do ... end ideal for mutli line blocks

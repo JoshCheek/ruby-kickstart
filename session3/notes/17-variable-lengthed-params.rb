@@ -1,6 +1,6 @@
 # After listing your ordinal and optional parameters, you can take
 # a variable length of arguments. To do this, you use '*' before
-# the parameter. In Ruby 1.8, it must be the last parameter. 
+# the parameter. In Ruby 1.8, it must be the last parameter.
 # The parameters that match it will be put into an array.
 def variable_length(first, second=:default, *rest )
   [first, second, rest]
