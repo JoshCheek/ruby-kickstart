@@ -6,7 +6,7 @@
 # the work of parsing that big hash table and figuring out what it
 # means for my application.
 
-# To make this simpler, we use Frameworks. Frameworks give us the tools
+# To make this simpler, we use frameworks. Frameworks give us the tools
 # (as gems) that we need to do things that make sense on the internet.
 # They give us an interface so we can think about the stuff that
 # matters in a way that is idiomatic for the web.
@@ -17,7 +17,8 @@
 # variables.
 
 # Sinatra is a much much simpler framework, it really gives you a
-# minimal interface to match incoming requests and return a response. 
+# minimal interface to match incoming requests and return a response.
 # It also handles all the templating for you (taking data and
 # making a web page out of it). The http://ruby-kickstart.com code
 # is written in Sinatra. So is my own webpage, http://joshcheek.com
+

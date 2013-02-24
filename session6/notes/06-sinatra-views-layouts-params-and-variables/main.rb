@@ -1,11 +1,11 @@
 require 'sinatra'
 
-# VIEWS
+# VIEWS:
 # Sinatra makes using ERB simpler for you. It will look in a directory
 # called views, for files named after the view you tell it you want.
-# 
+#
 # By default, it will also look for a file views/layout.erb, which it
-# will render content into
+# will render content into.
 
 get '/' do
   erb :home_page # tells Sinatra to render views/home_page.erb
@@ -13,7 +13,7 @@ end
 
 
 
-# PARAMS
+# PARAMS:
 # The contents of the form we submitted on the home_page comes in
 # in a hash Sinatra makes available to us through the params method.
 # Since the form was named cart_items, that is the key its contents
