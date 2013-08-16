@@ -22,6 +22,7 @@ It consists of six sessions, all of which have common features:
   ---------
   Each session has a set of notes files, which are just simple Ruby programs that are heavily commented to walk
   through the material of that session. This is the material that we go through for each session.
+	You can run them in IRB for example: require './notes/01-intro' and the text will print out.
 
   **Examples**
   ------------
