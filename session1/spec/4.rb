@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 describe 'grade' do
   
   context 'for non book reader' do
@@ -36,3 +38,7 @@ describe 'grade' do
     end
   end
 end
+
+EOT
+
+puts txt

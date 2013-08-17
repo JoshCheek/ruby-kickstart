@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # The way you modify objects is through sequences of instructions called methods.
 # For example, there is a set of instructions that know how to capitalize text. We group them into a method named capitalize.
 
@@ -12,3 +14,7 @@ def is_this_a_method?
 end
 
 is_this_a_method? # => "Yes, it is!"
+
+EOT
+
+puts txt

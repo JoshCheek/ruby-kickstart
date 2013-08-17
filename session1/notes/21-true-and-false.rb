@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # Logic in Ruby operates on "boolean" objects. If I'm not lying, then they're named after the guy who invented logic!
 # A boolean object is just an object that can be considered true or false.
 
@@ -23,3 +25,6 @@ false.class                     # => FalseClass
   !!object # => true, true, true, true, true, false
 end
 
+EOT
+
+puts txt

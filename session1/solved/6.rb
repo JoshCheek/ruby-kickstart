@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 def odds_and_evens(string, return_odds)
   to_return = ""
   string.size.times do |index|
@@ -7,3 +9,7 @@ def odds_and_evens(string, return_odds)
   end
   to_return
 end
+
+EOT
+
+puts txt

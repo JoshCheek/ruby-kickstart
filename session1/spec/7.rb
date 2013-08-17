@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 describe 'pirates_say_arrrrrrrrr' do
   
   it 'should return "eeu" when given "are you really learning Ruby?"' do
@@ -25,3 +27,7 @@ describe 'pirates_say_arrrrrrrrr' do
   end
   
 end
+
+EOT
+
+puts txt

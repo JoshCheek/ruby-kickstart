@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # This program uses things you haven't seen yet.
 # Can you look at it and figure out what it is doing?
 
@@ -18,3 +20,7 @@ loop do
   end
   
 end
+
+EOT
+
+puts txt

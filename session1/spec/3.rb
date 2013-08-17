@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 describe 'ten_twenty' do
   
   it 'should return 20 when passed 5' do
@@ -25,3 +27,7 @@ describe 'ten_twenty' do
   end
   
 end
+
+EOT
+
+puts txt

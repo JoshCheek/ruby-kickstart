@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 describe 'add_more_ruby' do
   
   it 'should change sad to happy' do
@@ -21,3 +23,7 @@ describe 'add_more_ruby' do
   end
   
 end
+
+EOT
+
+puts txt

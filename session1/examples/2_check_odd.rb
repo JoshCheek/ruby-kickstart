@@ -1,6 +1,7 @@
+txt = <<-'EOT'
+
 # invoke this program with a number
 # $ ruby 2_check_odd.rb number
-
 
 # when a user passes an argument to a ruby program
 # it is stored in the ARGV array
@@ -19,3 +20,7 @@ if number.odd?
 else
   puts "No, #{number} is not odd"
 end
+
+EOT
+
+puts txt

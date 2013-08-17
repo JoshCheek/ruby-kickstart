@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # lets say you actually want to do something conditionally
 
 if 4 == (2 + 2)
@@ -25,3 +27,6 @@ end
 'one line if statement'     if true       # => "one line if statement"
 'one line unless statement' unless false  # => "one line unless statement"
 
+EOT
+
+puts txt

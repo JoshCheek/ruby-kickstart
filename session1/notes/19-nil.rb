@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # There is a special object named nil
 nil.class # => NilClass
 
@@ -5,3 +7,7 @@ nil.class # => NilClass
 array = [1,5,7]
 array.find { |number| number * 2 == 10 } # => 5
 array.find { |number| number * 2 == 11 } # => nil
+
+EOT
+
+puts txt

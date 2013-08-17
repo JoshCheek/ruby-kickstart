@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 describe 'arithmetic2' do
 
   it 'should return 0.5 when give 1 , 2' do
@@ -25,3 +27,6 @@ describe 'arithmetic2' do
 
 end
 
+EOT
+
+puts txt

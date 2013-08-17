@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # =====  Initializing  =====
 [ 1 , 2 , 3 ]                       # => [1, 2, 3]
 Array.new(2)                        # => [nil, nil]
@@ -211,3 +213,7 @@ def sum( x , y , z )
 end
 a = [1,2,3]
 sum(*a)                         # => 6
+
+EOT
+
+puts txt

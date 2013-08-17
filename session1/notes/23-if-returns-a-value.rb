@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # Anywhere you can write code in Ruby returns a value, including if statements
 
 result = if true
@@ -35,3 +37,7 @@ end
 
 unless_returns_value true   # => "yep, it's true"
 unless_returns_value false  # => "nope, it's not true"
+
+EOT
+
+puts txt

@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # This should get you started. 
 # But to see all the cool things you can do, check out the documentation
 # 
@@ -67,3 +69,6 @@ message             # => "dom said \"Howdy!\""
 "/usr/bin:/opt/local:/Users/josh".split(':')  # => ["/usr/bin", "/opt/local", "/Users/josh"]
 "abcdefg hi".split(//)                        # => ["a", "b", "c", "d", "e", "f", "g", " ", "h", "i"]
 
+EOT
+
+puts txt
