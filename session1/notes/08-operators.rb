@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # There are some special methods called operators.
 # They are special because the Ruby interpreter lets you use them in pretty ways, even though they are just methods.
 # That's called syntactic sugar!
@@ -23,7 +21,3 @@ txt = <<-'EOT'
 
 # question: if operators are just methods on objects, can other objects have operators?
 # lets open up irb and try it out!
-
-EOT
-
-puts txt

@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # Programs that run in a terminal read text in, and write text out.
 # This is the common interface that allows lots of different programs to interact with each other.
 
@@ -33,7 +31,3 @@ puts "You said: #{user_response}"
 # line       # => "Line\n"
 #
 # It's like a cookie monster for newlines!
-
-EOT
-
-puts txt

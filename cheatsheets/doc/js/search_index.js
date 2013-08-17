@@ -1,0 +1,1 @@
+var search_data = {"index":{"searchIndex":["general"],"longSearchIndex":[""],"info":[["general","","files/general_txt.html","","<p>Terminal:\n\n<pre>Make Directory:                 mkdir directory_name\nChange Directories:             cd directory_name ...</pre>\n"]]}}

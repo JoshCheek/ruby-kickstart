@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # You know how you and I can go to the same website, but even though we both see it in our browser,
 # there is only one website?
 # 
@@ -18,7 +16,3 @@ browser_goto(website)   # => "Direct your browser towards ruby-kickstart.com"
 
 # Ruby likes to be beautiful, it doesn't make you put parentheses where it can figure out what you meant.
 browser_goto website    # => "Direct your browser towards ruby-kickstart.com"
-
-EOT
-
-puts txt

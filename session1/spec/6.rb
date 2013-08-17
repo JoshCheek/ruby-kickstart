@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 describe 'odds_and_evens' do
   
   context 'when odd' do
@@ -42,7 +40,3 @@ describe 'odds_and_evens' do
   end
   
 end
-
-EOT
-
-puts txt

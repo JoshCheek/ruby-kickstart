@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # When you make a method, remember that it is its own little world,
 # it doesn't know about anything outside of itself, this is called scope.
 
@@ -26,7 +24,3 @@ def beam_me_up(person1, person2)
 end
 
 beam_me_up("Ryker", "Data") # => "The away team consists of Ryker and Data."
-
-EOT
-
-puts txt

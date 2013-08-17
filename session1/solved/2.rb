@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 def arithmetic2(a,b)
   
   min = if a < b
@@ -11,7 +9,3 @@ def arithmetic2(a,b)
   min / 2.0
   
 end
-
-EOT
-
-puts txt

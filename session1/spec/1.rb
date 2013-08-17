@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 describe 'arithmetic1' do
 
   it 'should return 30 when passed 10' do
@@ -19,7 +17,3 @@ describe 'arithmetic1' do
   end
   
 end
-
-EOT
-
-puts txt

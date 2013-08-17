@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 def pirates_say_arrrrrrrrr(string)
   to_return = ""
   add_next = false
@@ -10,7 +8,3 @@ def pirates_say_arrrrrrrrr(string)
   end
   to_return
 end
-
-EOT
-
-puts txt

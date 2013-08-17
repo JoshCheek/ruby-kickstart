@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # The data for the objects exist in a part of memory called the "heap"
 # When Ruby wants to store an object, it goes to the heap, finds available memory, and then puts the object's data there.
 # But how will we know where we put our object? We need something to keep track of that location (called its address).
@@ -19,7 +17,3 @@ five.next       # => 6
 five            # => 5
 five = "five"
 five            # => "five"
-
-EOT
-
-puts txt

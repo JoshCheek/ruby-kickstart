@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # In the notes, examples and cheatsheets provided, we use a few conventions in our code to make it easy
 # to see the results of expressions. To show the results of a line, we use the following notation
 
@@ -11,7 +9,3 @@ my_var      # => 4
 # of the object it refers to.
 
 # For more complicated output, such as from a print statement, it'll be placed below the code.
-
-EOT
-
-puts txt

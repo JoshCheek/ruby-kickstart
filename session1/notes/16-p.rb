@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # One other important output method is the 'p' method. p outputs an object's internal representation:
 # think of it as how the object looks in code. This kind of output is what we've been putting to the right of
 # lines of code in these notes.
@@ -31,7 +29,3 @@ p    array
 
   # p:
   # [1, 2, 3]
-
-EOT
-
-puts txt

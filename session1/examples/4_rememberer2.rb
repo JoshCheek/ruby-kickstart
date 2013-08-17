@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # Did you understand the last one?
 # This is the same one, but we abstracted the tasks
 # into methods that are easier to test,
@@ -39,7 +37,3 @@ loop do
   puts user_message(lines_seen, line)
   record_observation(lines_seen, line)
 end
-
-EOT
-
-puts txt

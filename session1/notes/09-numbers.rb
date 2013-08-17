@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # Because of real world limitations, math can't be implemented as purely as is done in the classroom
 # This means that while you think of 10 and 10.0 as the same thing, most programming languages don't.
 
@@ -19,7 +17,3 @@ txt = <<-'EOT'
 # You can also use parentheses, they will take on the value of whatever is inside them
 (1 + 2) * 3     # => 9
 (91 + 2).even?  # => false
-
-EOT
-
-puts txt

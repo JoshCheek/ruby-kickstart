@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # All the variables we've seen so far have been local variables.
 # That means they exist within the current scope, but if we leave it, they go away.
 # Local variables begin with a lowercase letter, and can then be followed by alphanumeric values and underscores
@@ -38,7 +36,3 @@ example # invokes the method
 # question: classes begin with uppercase letters, are they constants?
 #   Remember, constants are just variables that aren't supposed to change.
 #   go test this in irb
-
-EOT
-
-puts txt

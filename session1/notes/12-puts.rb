@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # Ruby has several methods for sending text to stdout, the most common of which is 'puts':
 puts "Welcome to the program!"
 
@@ -25,7 +23,3 @@ puts thing_to_print
   # Output:
   # 56
   #
-
-EOT
-
-puts txt

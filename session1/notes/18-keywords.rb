@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # We care about keywords, because they have special meaning to Ruby.
 # This means that we can't use them as variable names.
 #
@@ -17,7 +15,3 @@ def = 3 # !> useless use of a literal in void context
 # ~> -:14: syntax error, unexpected '='
 # ~> def = 3 # !> useless use of a literal in void context
 # ~>      ^
-
-EOT
-
-puts txt

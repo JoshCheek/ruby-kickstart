@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 def grade(num_books, reads_books)
   if reads_books
     return "C" if num_books <  10
@@ -11,7 +9,3 @@ def grade(num_books, reads_books)
     return "B"
   end
 end
-
-EOT
-
-puts txt

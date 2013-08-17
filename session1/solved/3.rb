@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 def ten_twenty(n)
   if n % 2 == 0
     10
@@ -7,7 +5,3 @@ def ten_twenty(n)
     20
   end
 end
-
-EOT
-
-puts txt

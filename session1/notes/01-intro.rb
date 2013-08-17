@@ -1,5 +1,3 @@
-txt = <<-'EOT'
-
 # Origins of the Ruby Language:
 #   Written By: Matz (Yukihiro Matsumoto)
 #   First Public Release: 1995
@@ -49,7 +47,3 @@ txt = <<-'EOT'
 # You can create anything you can conceive of, like a brilliant architect. 
 # "Whoever holds the keys to programming ends up building the reality in which the rest of us live."
 # -- Douglas Rushkoff
-
-EOT
-
-puts txt
