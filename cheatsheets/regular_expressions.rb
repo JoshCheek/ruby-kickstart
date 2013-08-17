@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # modified version of Ryan Davis' cheatsheet at http://www.zenspider.com/Languages/Ruby/QuickRef.html#11
 
 # =====  Quickreference  =====
@@ -231,3 +233,7 @@ str.scan(/.\Z/)     # => ["?"]
 # to match the break between a word and nonword boundry, use \b
 str.scan(/\w\b/) # => ["o", "y", "g", "w", "e", "u"]
 str.scan(/\b\w/) # => ["H", "m", "d", "h", "a", "y"]
+
+EOT
+
+puts txt

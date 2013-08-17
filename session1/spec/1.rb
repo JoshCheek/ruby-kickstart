@@ -1,4 +1,20 @@
-describe 'arithmetic1' do
+text = <<-'EOT'
+
+Your task is to finish the method so that it returns a number 20 less than that number multiplied by 5.
+
+==== The tests run:
+ arithmetic1( 10 )     # => 30
+ arithmeitc1( 10.5 )   # => 32.5
+ arithmeitc1( -6 )     # => -50
+ arithmetic1( 100 )    # => 480
+
+ def arithmetic1( n )  
+    Your code goes here.
+ end
+
+EOT
+
+describe text do
 
   it 'should return 30 when passed 10' do
     arithmetic1(10).should == 30

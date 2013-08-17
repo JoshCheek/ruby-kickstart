@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # http://ruby-doc.org/core/classes/Hash.html
 
 
@@ -128,3 +130,6 @@ hash.invert                   # => {1=>:m, 2=>:o}
 # convert to an array
 { :Chicago => :USA , :Paris => :France , :Ramstein => :Germany }.to_a # => [[:Chicago, :USA], [:Paris, :France], [:Ramstein, :Germany]]
 
+EOT
+
+puts txt

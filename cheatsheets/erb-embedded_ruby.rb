@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html # !> instance variable @num not initialized
 
 # =====  About  =====
@@ -50,3 +52,7 @@ get_result str # => "My favourite number is 12"
 # =====  What About The Arguments?  =====
 # generally, whatever framework you're using ERB with will take care of them.
 # but if you want to know more... read the docs ^_^
+
+EOT
+
+puts txt

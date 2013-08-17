@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # =====  Reflection and Introspection (they're synonyms)  =====
 # it can be useful to know about what kind of an object you are dealing with
 # what your environment is like, etc
@@ -84,3 +86,7 @@ audrey.private_methods              # => ["exit!", "chomp!", "initialize", "prin
 
 Person.constants                    # => ["IS_HUMAN"]
 Person.singleton_methods            # => ["human?"]
+
+EOT
+
+puts txt

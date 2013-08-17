@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # =====  What Are Gems?  =====
 # In Ruby, third party libraries are called gems
 # You can see a list of most of Ruby's gems at rubygems.org
@@ -88,3 +90,7 @@ topics.to_html # => "<ul>\n<li>Arithmetic</li>\n<li>Logic</li>\n<li>Basic IO</li
 # BlueCloth, for example, has an executable. You can go see its source code in BlueCloth's bin directory
 # Here is an example of how to invoke it
 # $ bluecloth ~/code/JoshsRubyKickstart/README.mdown 
+
+EOT
+
+puts txt

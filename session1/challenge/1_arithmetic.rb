@@ -1,13 +1,23 @@
-# fill out the method below
-# then test tho see if you did them correctly with
-#  $ rake 1:1
+=begin rdoc
 
-# Given a number, return 20 less than, that number multiplied by 5
-# 
-# arithmetic1(10)     # => 30
-# arithmeitc1(10.5)   # => 32.5
-# arithmeitc1(-6)     # => -50
+=== Fill out the method below then test to see if you did them correctly with
 
-def arithmetic1(n)
-  # the code for this method goes in here
+  $ rake 1:1
+
+=== Your task is to finish the method so that it returns a number 20 less than that number multiplied by 5.
+
+==== The tests run:
+ arithmetic1( 10 )     # => 30
+ arithmeitc1( 10.5 )   # => 32.5
+ arithmeitc1( -6 )     # => -50
+ arithmetic1( 100 )    # => 480
+
+ def arithmetic1( n )  
+    Your code goes here.
+ end
+
+=end
+
+def arithmetic1( n )
+  
 end

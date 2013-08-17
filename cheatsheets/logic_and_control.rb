@@ -1,3 +1,5 @@
+txt = <<-'EOT'
+
 # =====  Logical Operators  =====
 a , b , c = 1 , 2 , 3
 a == b && a == c          # logical and
@@ -115,3 +117,7 @@ ary = Array.new
 end
 ary # => [0, 1, 2, 3, 4]
 
+
+EOT
+
+puts txt
