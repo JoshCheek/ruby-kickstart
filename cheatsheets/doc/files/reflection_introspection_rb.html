@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>reflection_introspection.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            reflection_introspection.rb
+        </h1>
+        <ul class="files">
+            <li>reflection_introspection.rb</li>
+            <li>Last modified: 2013-08-18 19:53:26 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p># =====  Reflection and Introspection (they’re synonyms)  ===== # it can be
+useful to know about what kind of an object you are dealing with # what
+your environment is like, etc # here are some useful methods for this
+purpose # # Got this list from <a
+href="http://weare.buildingsky.net/2009/08/25/rubys-metaprogramming-toolbox">weare.buildingsky.net/2009/08/25/rubys-metaprogramming-toolbox</a>
+# the pound between the class and the method indicates that it is an
+instance method #   Object#inspect #   Object#object_id #   Object#class # 
+Object#instance_variables #   Object#methods #   Object#private_methods #  
+Object#public_methods #   Object#singleton_methods #  
+Module#class_variables #   Module#constants #   Module#included_modules #  
+Module#instance_methods #   Module#name #   Module#private_instance_methods
+#   Module#protected_instance_methods #   Module#public_instance_methods #</p>
+
+<p># examples</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'date'</span>  <span class="ruby-comment"># pulls in date class from the stdlib</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Person</span>
+ <span class="ruby-comment"># class level</span>
+ <span class="ruby-constant">IS_HUMAN</span> = <span class="ruby-keyword">true</span>
+
+ <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+   <span class="ruby-keyword">def</span> <span class="ruby-identifier">human?</span>() <span class="ruby-constant">IS_HUMAN</span> <span class="ruby-keyword">end</span>
+ <span class="ruby-keyword">end</span>
+
+ <span class="ruby-comment"># instance level</span>
+ <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">birthday</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>,<span class="ruby-identifier">age</span>,<span class="ruby-identifier">birthday</span>)
+   <span class="ruby-ivar">@name</span> , <span class="ruby-ivar">@age</span> , <span class="ruby-ivar">@birthday</span> = <span class="ruby-identifier">name</span> , <span class="ruby-identifier">age</span> , <span class="ruby-identifier">birthday</span>
+ <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">audrey</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">'Audrey'</span> , <span class="ruby-value">28</span> , <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">'1 Jan 1995'</span>)
+</pre>
+
+<p># what class is the object?</p>
+
+<pre class="ruby"><span class="ruby-value">1</span>.<span class="ruby-identifier">class</span>                             <span class="ruby-comment"># =&gt; Fixnum</span>
+<span class="ruby-value">1.0</span>.<span class="ruby-identifier">class</span>                           <span class="ruby-comment"># =&gt; Float</span>
+<span class="ruby-string">&quot;abc&quot;</span>.<span class="ruby-identifier">class</span>                         <span class="ruby-comment"># =&gt; String</span>
+<span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">class</span>                        <span class="ruby-comment"># =&gt; Person</span>
+<span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">birthday</span>.<span class="ruby-identifier">class</span>               <span class="ruby-comment"># =&gt; Date</span>
+</pre>
+
+<p># are two objects the same? # symbols are</p>
+
+<pre class="ruby">:<span class="ruby-identifier">abc</span>.<span class="ruby-identifier">object_id</span>                      <span class="ruby-comment"># =&gt; 215868</span>
+:<span class="ruby-identifier">abc</span>.<span class="ruby-identifier">object_id</span>                      <span class="ruby-comment"># =&gt; 215868</span>
+</pre>
+
+<p># strings are not</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;abc&quot;</span>.<span class="ruby-identifier">object_id</span>                     <span class="ruby-comment"># =&gt; 2148310280</span>
+<span class="ruby-string">&quot;abc&quot;</span>.<span class="ruby-identifier">object_id</span>                     <span class="ruby-comment"># =&gt; 2148308540</span>
+</pre>
+
+<p># classes are</p>
+
+<pre class="ruby"><span class="ruby-constant">Array</span>.<span class="ruby-identifier">object_id</span>                     <span class="ruby-comment"># =&gt; 2148370060</span>
+<span class="ruby-constant">Array</span>.<span class="ruby-identifier">object_id</span>                     <span class="ruby-comment"># =&gt; 2148370060</span>
+</pre>
+
+<p># Two separate instantiations of non singleton (patterned) classes aren’t</p>
+
+<pre class="ruby"><span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">object_id</span>                 <span class="ruby-comment"># =&gt; 2148303280</span>
+<span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">object_id</span>                 <span class="ruby-comment"># =&gt; 2148301520</span>
+</pre>
+
+<p># what instance variables does the object have?</p>
+
+<pre class="ruby"><span class="ruby-ivar">@hello</span> , <span class="ruby-ivar">@world</span> = <span class="ruby-node">%w(hello world)</span>
+<span class="ruby-keyword">self</span>.<span class="ruby-identifier">instance_variables</span>             <span class="ruby-comment"># =&gt; [&quot;@hello&quot;, &quot;@world&quot;]</span>
+<span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">instance_variables</span>           <span class="ruby-comment"># =&gt; [&quot;@birthday&quot;, &quot;@age&quot;, &quot;@name&quot;]</span>
+<span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">birthday</span>.<span class="ruby-identifier">instance_variables</span>  <span class="ruby-comment"># =&gt; [&quot;@sg&quot;, &quot;@of&quot;, &quot;@ajd&quot;]</span>
+</pre>
+
+<p># what methods does the object have?</p>
+
+<pre class="ruby"><span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">methods</span>                      <span class="ruby-comment"># =&gt; [&quot;inspect&quot;, &quot;tap&quot;, &quot;birthday=&quot;, &quot;clone&quot;, &quot;public_methods&quot;, &quot;object_id&quot;, &quot;__send__&quot;, &quot;instance_variable_defined?&quot;, &quot;equal?&quot;, &quot;freeze&quot;, &quot;extend&quot;, &quot;send&quot;, &quot;methods&quot;, &quot;hash&quot;, &quot;dup&quot;, &quot;to_enum&quot;, &quot;instance_variables&quot;, &quot;eql?&quot;, &quot;instance_eval&quot;, &quot;id&quot;, &quot;singleton_methods&quot;, &quot;taint&quot;, &quot;frozen?&quot;, &quot;instance_variable_get&quot;, &quot;enum_for&quot;, &quot;instance_of?&quot;, &quot;display&quot;, &quot;to_a&quot;, &quot;method&quot;, &quot;type&quot;, &quot;instance_exec&quot;, &quot;protected_methods&quot;, &quot;==&quot;, &quot;===&quot;, &quot;instance_variable_set&quot;, &quot;kind_of?&quot;, &quot;respond_to?&quot;, &quot;to_s&quot;, &quot;class&quot;, &quot;__id__&quot;, &quot;tainted?&quot;, &quot;=~&quot;, &quot;private_methods&quot;, &quot;untaint&quot;, &quot;nil?&quot;, &quot;is_a?&quot;, &quot;birthday&quot;]</span>
+<span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/birthday/</span>)     <span class="ruby-comment"># =&gt; [&quot;birthday=&quot;, &quot;birthday&quot;]</span>
+<span class="ruby-value">1</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">sort</span>                      <span class="ruby-comment"># =&gt; [&quot;%&quot;, &quot;&amp;&quot;, &quot;*&quot;, &quot;**&quot;, &quot;+&quot;, &quot;+@&quot;, &quot;-&quot;, &quot;-@&quot;, &quot;/&quot;, &quot;&lt;&quot;, &quot;&lt;&lt;&quot;, &quot;&lt;=&quot;, &quot;&lt;=&gt;&quot;, &quot;==&quot;, &quot;===&quot;, &quot;=~&quot;, &quot;&gt;&quot;, &quot;&gt;=&quot;, &quot;&gt;&gt;&quot;, &quot;[]&quot;, &quot;^&quot;, &quot;__id__&quot;, &quot;__send__&quot;, &quot;abs&quot;, &quot;between?&quot;, &quot;ceil&quot;, &quot;chr&quot;, &quot;class&quot;, &quot;clone&quot;, &quot;coerce&quot;, &quot;denominator&quot;, &quot;display&quot;, &quot;div&quot;, &quot;divmod&quot;, &quot;downto&quot;, &quot;dup&quot;, &quot;enum_for&quot;, &quot;eql?&quot;, &quot;equal?&quot;, &quot;even?&quot;, &quot;extend&quot;, &quot;fdiv&quot;, &quot;floor&quot;, &quot;freeze&quot;, &quot;frozen?&quot;, &quot;gcd&quot;, &quot;gcdlcm&quot;, &quot;hash&quot;, &quot;id&quot;, &quot;id2name&quot;, &quot;inspect&quot;, &quot;instance_eval&quot;, &quot;instance_exec&quot;, &quot;instance_of?&quot;, &quot;instance_variable_defined?&quot;, &quot;instance_variable_get&quot;, &quot;instance_variable_set&quot;, &quot;instance_variables&quot;, &quot;integer?&quot;, &quot;is_a?&quot;, &quot;kind_of?&quot;, &quot;lcm&quot;, &quot;method&quot;, &quot;methods&quot;, &quot;modulo&quot;, &quot;next&quot;, &quot;nil?&quot;, &quot;nonzero?&quot;, &quot;numerator&quot;, &quot;object_id&quot;, &quot;odd?&quot;, &quot;ord&quot;, &quot;power!&quot;, &quot;prec&quot;, &quot;prec_f&quot;, &quot;prec_i&quot;, &quot;pred&quot;, &quot;private_methods&quot;, &quot;protected_methods&quot;, &quot;public_methods&quot;, &quot;quo&quot;, &quot;rdiv&quot;, &quot;remainder&quot;, &quot;respond_to?&quot;, &quot;round&quot;, &quot;rpower&quot;, &quot;send&quot;, &quot;singleton_method_added&quot;, &quot;singleton_methods&quot;, &quot;size&quot;, &quot;step&quot;, &quot;succ&quot;, &quot;taint&quot;, &quot;tainted?&quot;, &quot;tap&quot;, &quot;times&quot;, &quot;to_a&quot;, &quot;to_enum&quot;, &quot;to_f&quot;, &quot;to_i&quot;, &quot;to_int&quot;, &quot;to_r&quot;, &quot;to_s&quot;, &quot;to_sym&quot;, &quot;truncate&quot;, &quot;type&quot;, &quot;untaint&quot;, &quot;upto&quot;, &quot;zero?&quot;, &quot;|&quot;, &quot;~&quot;]</span>
+<span class="ruby-string">&quot;abc&quot;</span>.<span class="ruby-identifier">methods</span>                       <span class="ruby-comment"># =&gt; [&quot;upcase!&quot;, &quot;zip&quot;, &quot;find_index&quot;, &quot;between?&quot;, &quot;unpack&quot;, &quot;enum_slice&quot;, &quot;to_f&quot;, &quot;minmax&quot;, &quot;lines&quot;, &quot;sub&quot;, &quot;methods&quot;, &quot;send&quot;, &quot;replace&quot;, &quot;empty?&quot;, &quot;group_by&quot;, &quot;squeeze&quot;, &quot;crypt&quot;, &quot;gsub!&quot;, &quot;taint&quot;, &quot;instance_variable_defined?&quot;, &quot;match&quot;, &quot;downcase!&quot;, &quot;take&quot;, &quot;find_all&quot;, &quot;min_by&quot;, &quot;bytes&quot;, &quot;each_cons&quot;, &quot;entries&quot;, &quot;gsub&quot;, &quot;singleton_methods&quot;, &quot;instance_eval&quot;, &quot;to_str&quot;, &quot;first&quot;, &quot;chop!&quot;, &quot;intern&quot;, &quot;nil?&quot;, &quot;succ&quot;, &quot;capitalize!&quot;, &quot;take_while&quot;, &quot;select&quot;, &quot;max_by&quot;, &quot;chars&quot;, &quot;enum_cons&quot;, &quot;tr!&quot;, &quot;protected_methods&quot;, &quot;instance_exec&quot;, &quot;display&quot;, &quot;sort&quot;, &quot;chop&quot;, &quot;tainted?&quot;, &quot;dump&quot;, &quot;method&quot;, &quot;include?&quot;, &quot;untaint&quot;, &quot;instance_of?&quot;, &quot;chomp!&quot;, &quot;swapcase!&quot;, &quot;drop&quot;, &quot;equal?&quot;, &quot;reject&quot;, &quot;hex&quot;, &quot;minmax_by&quot;, &quot;sum&quot;, &quot;hash&quot;, &quot;private_methods&quot;, &quot;all?&quot;, &quot;tr_s!&quot;, &quot;sort_by&quot;, &quot;chomp&quot;, &quot;upcase&quot;, &quot;start_with?&quot;, &quot;succ!&quot;, &quot;kind_of?&quot;, &quot;strip!&quot;, &quot;freeze&quot;, &quot;drop_while&quot;, &quot;eql?&quot;, &quot;next&quot;, &quot;collect&quot;, &quot;oct&quot;, &quot;id&quot;, &quot;slice&quot;, &quot;casecmp&quot;, &quot;grep&quot;, &quot;strip&quot;, &quot;any?&quot;, &quot;delete!&quot;, &quot;public_methods&quot;, &quot;end_with?&quot;, &quot;downcase&quot;, &quot;%&quot;, &quot;object_id&quot;, &quot;is_a?&quot;, &quot;scan&quot;, &quot;lstrip!&quot;, &quot;cycle&quot;, &quot;map&quot;, &quot;member?&quot;, &quot;tap&quot;, &quot;type&quot;, &quot;*&quot;, &quot;split&quot;, &quot;insert&quot;, &quot;each_with_index&quot;, &quot;+&quot;, &quot;count&quot;, &quot;lstrip&quot;, &quot;one?&quot;, &quot;squeeze!&quot;, &quot;instance_variables&quot;, &quot;__id__&quot;, &quot;frozen?&quot;, &quot;capitalize&quot;, &quot;next!&quot;, &quot;each_line&quot;, &quot;to_enum&quot;, &quot;rstrip!&quot;, &quot;to_a&quot;, &quot;ljust&quot;, &quot;respond_to?&quot;, &quot;upto&quot;, &quot;each&quot;, &quot;inject&quot;, &quot;tr&quot;, &quot;slice!&quot;, &quot;class&quot;, &quot;reverse&quot;, &quot;length&quot;, &quot;enum_with_index&quot;, &quot;rpartition&quot;, &quot;rstrip&quot;, &quot;&lt;=&gt;&quot;, &quot;none?&quot;, &quot;instance_variable_get&quot;, &quot;find&quot;, &quot;==&quot;, &quot;swapcase&quot;, &quot;__send__&quot;, &quot;===&quot;, &quot;min&quot;, &quot;each_byte&quot;, &quot;enum_for&quot;, &quot;extend&quot;, &quot;to_s&quot;, &quot;rjust&quot;, &quot;index&quot;, &quot;&gt;=&quot;, &quot;size&quot;, &quot;reduce&quot;, &quot;tr_s&quot;, &quot;&lt;=&quot;, &quot;clone&quot;, &quot;reverse_each&quot;, &quot;to_sym&quot;, &quot;bytesize&quot;, &quot;=~&quot;, &quot;instance_variable_set&quot;, &quot;&lt;&quot;, &quot;detect&quot;, &quot;max&quot;, &quot;each_char&quot;, &quot;each_slice&quot;, &quot;&gt;&quot;, &quot;to_i&quot;, &quot;center&quot;, &quot;inspect&quot;, &quot;[]&quot;, &quot;reverse!&quot;, &quot;rindex&quot;, &quot;partition&quot;, &quot;delete&quot;, &quot;[]=&quot;, &quot;concat&quot;, &quot;sub!&quot;, &quot;dup&quot;, &quot;&lt;&lt;&quot;]</span>
+
+<span class="ruby-string">&quot;abc&quot;</span>.<span class="ruby-identifier">private_methods</span>               <span class="ruby-comment"># =&gt; [&quot;untrace_var&quot;, &quot;load&quot;, &quot;readlines&quot;, &quot;sprintf&quot;, &quot;exit&quot;, &quot;syscall&quot;, &quot;remove_instance_variable&quot;, &quot;eval&quot;, &quot;set_trace_func&quot;, &quot;require&quot;, &quot;p&quot;, &quot;exit!&quot;, &quot;initialize&quot;, &quot;format&quot;, &quot;abort&quot;, &quot;open&quot;, &quot;autoload&quot;, &quot;login_name&quot;, &quot;at_exit&quot;, &quot;printf&quot;, &quot;iterator?&quot;, &quot;Integer&quot;, &quot;fork&quot;, &quot;`&quot;, &quot;initialize_copy&quot;, &quot;srand&quot;, &quot;catch&quot;, &quot;print&quot;, &quot;block_given?&quot;, &quot;binding&quot;, &quot;autoload?&quot;, &quot;Float&quot;, &quot;loop&quot;, &quot;callcc&quot;, &quot;exec&quot;, &quot;method_missing&quot;, &quot;Rational&quot;, &quot;rand&quot;, &quot;throw&quot;, &quot;putc&quot;, &quot;proc&quot;, &quot;String&quot;, &quot;system&quot;, &quot;global_variables&quot;, &quot;puts&quot;, &quot;lambda&quot;, &quot;singleton_method_added&quot;, &quot;raise&quot;, &quot;test&quot;, &quot;Array&quot;, &quot;sleep&quot;, &quot;local_variables&quot;, &quot;warn&quot;, &quot;gets&quot;, &quot;trap&quot;, &quot;singleton_method_removed&quot;, &quot;fail&quot;, &quot;trace_var&quot;, &quot;__method__&quot;, &quot;readline&quot;, &quot;singleton_method_undefined&quot;, &quot;caller&quot;, &quot;getc&quot;]</span>
+[<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>].<span class="ruby-identifier">private_methods</span>             <span class="ruby-comment"># =&gt; [&quot;chomp!&quot;, &quot;exit!&quot;, &quot;fail&quot;, &quot;print&quot;, &quot;initialize&quot;, &quot;binding&quot;, &quot;Array&quot;, &quot;split&quot;, &quot;catch&quot;, &quot;iterator?&quot;, &quot;chop&quot;, &quot;format&quot;, &quot;readlines&quot;, &quot;trap&quot;, &quot;remove_instance_variable&quot;, &quot;getc&quot;, &quot;caller&quot;, &quot;singleton_method_added&quot;, &quot;putc&quot;, &quot;proc&quot;, &quot;autoload?&quot;, &quot;p&quot;, &quot;throw&quot;, &quot;block_given?&quot;, &quot;chomp&quot;, &quot;sub!&quot;, &quot;syscall&quot;, &quot;trace_var&quot;, &quot;loop&quot;, &quot;callcc&quot;, &quot;Integer&quot;, &quot;exec&quot;, &quot;load&quot;, &quot;exit&quot;, &quot;singleton_method_removed&quot;, &quot;puts&quot;, &quot;login_name&quot;, &quot;initialize_copy&quot;, &quot;srand&quot;, &quot;lambda&quot;, &quot;global_variables&quot;, &quot;gsub!&quot;, &quot;`&quot;, &quot;open&quot;, &quot;untrace_var&quot;, &quot;system&quot;, &quot;method_missing&quot;, &quot;Float&quot;, &quot;require&quot;, &quot;abort&quot;, &quot;sub&quot;, &quot;singleton_method_undefined&quot;, &quot;gets&quot;, &quot;test&quot;, &quot;rand&quot;, &quot;eval&quot;, &quot;warn&quot;, &quot;local_variables&quot;, &quot;chop!&quot;, &quot;fork&quot;, &quot;printf&quot;, &quot;set_trace_func&quot;, &quot;raise&quot;, &quot;scan&quot;, &quot;Rational&quot;, &quot;String&quot;, &quot;sleep&quot;, &quot;gsub&quot;, &quot;sprintf&quot;, &quot;readline&quot;, &quot;autoload&quot;, &quot;at_exit&quot;, &quot;__method__&quot;]</span>
+<span class="ruby-identifier">audrey</span>.<span class="ruby-identifier">private_methods</span>              <span class="ruby-comment"># =&gt; [&quot;exit!&quot;, &quot;chomp!&quot;, &quot;initialize&quot;, &quot;print&quot;, &quot;fail&quot;, &quot;binding&quot;, &quot;split&quot;, &quot;Array&quot;, &quot;readlines&quot;, &quot;format&quot;, &quot;chop&quot;, &quot;iterator?&quot;, &quot;catch&quot;, &quot;trap&quot;, &quot;getc&quot;, &quot;remove_instance_variable&quot;, &quot;putc&quot;, &quot;singleton_method_added&quot;, &quot;caller&quot;, &quot;autoload?&quot;, &quot;proc&quot;, &quot;chomp&quot;, &quot;block_given?&quot;, &quot;throw&quot;, &quot;p&quot;, &quot;sub!&quot;, &quot;loop&quot;, &quot;trace_var&quot;, &quot;syscall&quot;, &quot;exec&quot;, &quot;Integer&quot;, &quot;callcc&quot;, &quot;login_name&quot;, &quot;initialize_copy&quot;, &quot;puts&quot;, &quot;singleton_method_removed&quot;, &quot;exit&quot;, &quot;load&quot;, &quot;lambda&quot;, &quot;srand&quot;, &quot;global_variables&quot;, &quot;gsub!&quot;, &quot;untrace_var&quot;, &quot;open&quot;, &quot;`&quot;, &quot;Float&quot;, &quot;method_missing&quot;, &quot;system&quot;, &quot;gets&quot;, &quot;singleton_method_undefined&quot;, &quot;sub&quot;, &quot;abort&quot;, &quot;require&quot;, &quot;rand&quot;, &quot;test&quot;, &quot;warn&quot;, &quot;eval&quot;, &quot;local_variables&quot;, &quot;chop!&quot;, &quot;scan&quot;, &quot;Rational&quot;, &quot;raise&quot;, &quot;set_trace_func&quot;, &quot;printf&quot;, &quot;fork&quot;, &quot;sleep&quot;, &quot;select&quot;, &quot;String&quot;, &quot;gsub&quot;, &quot;sprintf&quot;, &quot;readline&quot;, &quot;at_exit&quot;, &quot;autoload&quot;, &quot;__method__&quot;]</span>
+
+<span class="ruby-value">12</span>.<span class="ruby-identifier">methods</span> <span class="ruby-operator">==</span> <span class="ruby-value">12</span>.<span class="ruby-identifier">public_methods</span>     <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-constant">Person</span>.<span class="ruby-identifier">constants</span>                    <span class="ruby-comment"># =&gt; [&quot;IS_HUMAN&quot;]</span>
+<span class="ruby-constant">Person</span>.<span class="ruby-identifier">singleton_methods</span>            <span class="ruby-comment"># =&gt; [&quot;human?&quot;]</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

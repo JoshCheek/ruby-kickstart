@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>11-stdin-and-stdout.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            11-stdin-and-stdout.rb
+        </h1>
+        <ul class="files">
+            <li>notes/11-stdin-and-stdout.rb</li>
+            <li>Last modified: 2013-08-19 12:03:51 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><strong>Programs that run in a terminal read text in, and write text out.
+This is the common interface that allows lots of different programs to
+interact with each other.</strong></p>
+
+<p><strong>When a program outputs text, we say it sends it to standard output
+( stdout ). In the terminal, anything your program sends stdout will
+display on your terminal. For example, cat sends a file’s contents to
+standard output, echo sends its arguments to standard output.</strong></p>
+
+<p><strong>When it reads text in, it gets that from standard input ( stdin ).
+In the terminal, stdin is hooked up to your keyboard. Whatever you type
+will be sent to your program’s stdin.</strong></p>
+
+<h4 id="label-Use+gets+to+read+a+line+from+stdin.">Use gets to read a line from stdin.</h4>
+
+<pre>user_response = gets</pre>
+
+<h4 id="label-Use+puts+to+write+the+line+to+stdout.">Use puts to write the line to stdout.</h4>
+
+<pre>puts &quot;You said: #{user_response}&quot;</pre>
+
+<h3 id="label-Watch+out%21">Watch out!</h3>
+
+<p><strong>A line is text that ends in a newline. line = “Linen” When you read
+in the line, you also read in the newline.</strong></p>
+
+<h4 id="label-That+means%3A">That means:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">line</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">line</span> <span class="ruby-comment"># =&gt; &quot;Line\nLine\n&quot;</span>
+</pre>
+
+<h4 id="label-If+you+actually+wanted+this%3A+%22LineLine%22+then+you+need+to+remove+the+newline.">If you <em>actually</em> wanted this: “LineLine” then you need to remove the newline.</h4>
+
+<h4 id="label-Ruby+gives+you+a+method+named+chomp+that+will+give+you+that+string+without+the+newline">Ruby gives you a method named chomp that will give you that string without the newline</h4>
+
+<pre class="ruby"><span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> <span class="ruby-comment"># =&gt; &quot;Line&quot;</span>
+<span class="ruby-identifier">line</span>       <span class="ruby-comment"># =&gt; &quot;Line\n&quot;</span>
+</pre>
+
+<h4 id="label-It%27s+like+a+cookie+monster+for+newlines%21">It’s like a cookie monster for newlines!</h4>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

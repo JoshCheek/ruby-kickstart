@@ -1,10 +1,14 @@
-# You can use basic operators on Strings, just like other objects:
+=begin rdoc
 
-my_string   = "Face"
-your_string = "book"
+==== You can use basic operators on Strings, just like other objects:
 
-my_string + your_string  # => "Facebook"
+ my_string   = "Face"
+ your_string = "book"
 
-my_string == your_string # => false
-my_string = "book"
-my_string == your_string # => true
+ my_string + your_string  # => "Facebook"
+
+ my_string == your_string # => false
+ my_string = "book"
+ my_string == your_string # => true
+
+=end

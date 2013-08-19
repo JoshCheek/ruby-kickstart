@@ -46,7 +46,7 @@ end
 # overriding makedirs so that I can pass a path to make them from
 # pass the path in a hash at the end if desired
 # ie makedirs 'abc' , 'def' , :path => 'ghi'
-def makedirs(*dirs)
+def makedirs( *dirs )
   path = dirs.pop[:path].sub(%r[/$],'')   if dirs.last.is_a? Hash
   dirs.map! { |dir| "#{path}/#{dir}" }    if path
   super(dirs)
@@ -56,21 +56,23 @@ end
 # runs the spec against the challenge
 # if the environment variable 'solved' has been set,
 # then it runs them against the solved challenge instead
-def run_spec(session_num,problem)
-  sess = "#{File.dirname(__FILE__)}/session#{session_num}"
-  if ENV['solved']
-    problem_dir = "#{sess}/solved/#{problem}.rb"
+def run_spec( session_num, problem )
+  sess = "#{ File.dirname(__FILE__) }/session#{ session_num }"
+  if ENV[ 'solved' ]
+    problem_dir = "#{ sess }/solved/#{ problem }.rb"
   else
-    problem_dir = Dir["#{sess}/challenge/#{problem}_*.rb"].first
+    problem_dir = Dir[ "#{ sess }/challenge/#{ problem }_*.rb" ].first
   end  
-  sh "ruby -c '#{problem_dir}'"                                                             # check syntax
-  sh "rspec -cr '#{problem_dir}' -r enumerator '#{sess}/spec/#{problem}.rb' --fail-fast"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
+  #~ sh "ruby -c '#{ problem_dir }'"                                                             # check syntax
+  #~ sh "rspec -cr '#{ problem_dir }' -r enumerator '#{ sess }/spec/#{ problem }.rb' --fail-fast"    # run spec ( c for colour, r to require the files, enumerator required for 1.8.6 compatibility )
+  system "ruby -c '#{ problem_dir }'"                                                             # check syntax
+  system "rspec -cr '#{ problem_dir }' -r enumerator '#{ sess }/spec/#{ problem }.rb' --fail-fast"
 end
 
 
 # returns array of sessions
 def get_sessions
-  Dir['*'].grep(/^session\d+$/).map { |folder_name| folder_name[/\d+$/] }
+  Dir[ '*' ].grep( /^session\d+$/ ).map { | folder_name | folder_name[ /\d+$/ ] }
 end
 
 

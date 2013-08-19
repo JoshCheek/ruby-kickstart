@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>2_check_odd.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            2_check_odd.rb
+        </h1>
+        <ul class="files">
+            <li>examples/2_check_odd.rb</li>
+            <li>Last modified: 2013-08-19 14:08:01 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h3 id="label-Invoke+this+program+with+a+number">Invoke this program with a number</h3>
+
+<h3 id="label-%24+ruby+2_check_odd.rb+number">$ ruby 2_check_odd.rb number</h3>
+
+<h4 id="label-when+a+user+passes+an+argument+to+a+ruby+program+it+is+stored+in+the+ARGV+array.">when a user passes an argument to a ruby program it is stored in the ARGV array.</h4>
+
+<pre>unless ARGV.first
+ puts &quot;You need to submit a number to check&quot;
+ # If you're exiting because something went wrong, pass a number like 1
+ # Use exit( 0 ) to exit the program early.
+ exit( 1 ) 
+end</pre>
+
+<h4 id="label-Unix+is+too+dumb+to+know+the+argument+is+a+number%2C+so+it+passes+it+in+as+text.">Unix is too dumb to know the argument is a number, so it passes it in as text.</h4>
+
+<h4 id="label-We%27ll+have+to+turn+it+into+a+number+ourselves+with+to_i.+%28+what+if+the+user+didn%27t+pass+a+number%3F+%29">We’ll have to turn it into a number ourselves with to_i. ( what if the user didn’t pass a number? )</h4>
+
+<pre>number = ARGV.first.to_i
+
+if number.odd?
+ puts &quot;Yes, #{number} is odd&quot;
+else
+ puts &quot;No, #{number} is not odd&quot;
+end</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

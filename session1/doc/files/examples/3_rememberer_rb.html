@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>3_rememberer.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            3_rememberer.rb
+        </h1>
+        <ul class="files">
+            <li>examples/3_rememberer.rb</li>
+            <li>Last modified: 2013-08-18 22:59:36 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h3 id="label-This+program+uses+things+you+haven%27t+seen+yet.">This program uses things you haven’t seen yet.</h3>
+
+<h3 id="label-Can+you+look+at+it+and+figure+out+what+it+is+doing%3F">Can you look at it and figure out what it is doing?</h3>
+
+<pre>lines_seen = [ ] 
+
+loop do
+
+ # why do we chomp?
+ # can you use irb to figure out the difference between gets, and gets.chomp ? 
+ line = gets.chomp
+ break if line == &quot;exit&quot;
+
+ if lines_seen.include? line
+   puts &quot;Yes, I've seen #{ line } before&quot;
+ else
+   puts &quot;No, I haven't seen #{ line } before&quot;
+   lines_seen &lt;&lt; line
+ end
+
+end</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>hashes.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            hashes.rb
+        </h1>
+        <ul class="files">
+            <li>hashes.rb</li>
+            <li>Last modified: 2013-08-17 23:19:39 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h3 id="label-http%3A%2F%2Fruby-doc.org%2Fcore%2Fclasses%2FHash.html"><a href="http://ruby-doc.org/core/classes/Hash.html">ruby-doc.org/core/classes/Hash.html</a></h3>
+
+<h2 id="label-Initializing%3A">Initializing:</h2>
+
+<h3 id="label-populated%3A">populated:</h3>
+
+<pre class="ruby">{ <span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'one'</span> , <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'two'</span> }                       <span class="ruby-comment"># =&gt; { 1=&gt;&quot;one&quot;, 2=&gt;&quot;two&quot; }</span>
+<span class="ruby-constant">Hash</span>[ <span class="ruby-value">1</span>,<span class="ruby-string">'one'</span> , <span class="ruby-value">2</span>,<span class="ruby-string">'two'</span> ]                         <span class="ruby-comment"># =&gt; { 1=&gt;&quot;one&quot;, 2=&gt;&quot;two&quot; }</span>
+</pre>
+
+<h3 id="label-empty%3A">empty:</h3>
+
+<pre class="ruby">{}                                                <span class="ruby-comment"># =&gt; { }</span>
+<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>                                          <span class="ruby-comment"># =&gt; { }</span>
+</pre>
+
+<h2 id="label-Nonexistent+Keys">Nonexistent Keys</h2>
+
+<h3 id="label-by+default%2C+nonexistent+keys+return+nil">by default, nonexistent keys return nil</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>                                   <span class="ruby-comment"># =&gt; { }</span>
+<span class="ruby-identifier">hash</span>[ :<span class="ruby-identifier">josh</span> ]                                     <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<h3 id="label-to+change+this+behaviour%2C+you+can+pass+new+a+block+that+receives+the+hash+and+the+nonexistent+key+and+then+adds+it+to+the+hash+in+the+way+that+you+would+like.">to change this behaviour, you can pass new a block that receives the hash and the nonexistent key and then adds it to the hash in the way that you would like.</h3>
+
+<pre class="ruby"><span class="ruby-identifier">aliases</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">this_hash</span>, <span class="ruby-identifier">key</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">this_hash</span>[ <span class="ruby-identifier">key</span> ] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> }
+<span class="ruby-identifier">aliases</span>                                           <span class="ruby-comment"># =&gt; { }</span>
+<span class="ruby-identifier">aliases</span>[ :<span class="ruby-identifier">josh</span> ]                                  <span class="ruby-comment"># =&gt; [ ]</span>
+<span class="ruby-identifier">aliases</span>                                           <span class="ruby-comment"># =&gt; { :josh=&gt;[ ] }</span>
+<span class="ruby-identifier">aliases</span>[ :<span class="ruby-identifier">jeff</span> ] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'the dude'</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'his dudeness'</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'duder'</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'el duderino'</span>
+<span class="ruby-identifier">aliases</span>         
+<span class="ruby-comment"># =&gt; { :josh=&gt;[ ], :jeff=&gt;[ &quot;the dude&quot;, &quot;his dudeness&quot;, &quot;duder&quot;, &quot;el duderino&quot; ] }</span>
+</pre>
+
+<h2 id="label-Access+and+Assign">Access and Assign</h2>
+
+<h3 id="label-generally+access+and+assign+like+this">generally access and assign like this</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">hash</span>                                              <span class="ruby-comment"># =&gt; { }</span>
+<span class="ruby-identifier">hash</span>[ <span class="ruby-string">&quot;my key&quot;</span> ] = <span class="ruby-string">&quot;my value&quot;</span>
+<span class="ruby-identifier">hash</span>                                              <span class="ruby-comment"># =&gt; { &quot;my key&quot;=&gt;&quot;my value&quot; }</span>
+<span class="ruby-identifier">hash</span>[ <span class="ruby-string">&quot;my key&quot;</span> ]                                  <span class="ruby-comment"># =&gt; &quot;my value&quot;</span>
+</pre>
+
+<h3 id="label-access+multiple+values+at+once">access multiple values at once</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>[ *[ <span class="ruby-constant">Array</span>( <span class="ruby-string">'a'</span><span class="ruby-operator">..</span><span class="ruby-string">'j'</span> ) , <span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> ) ].<span class="ruby-identifier">transpose</span>.<span class="ruby-identifier">flatten</span> ] <span class="ruby-comment"># just populating</span>
+<span class="ruby-identifier">hash</span>                                  
+<span class="ruby-comment"># =&gt; { &quot;a&quot;=&gt;1, &quot;b&quot;=&gt;2, &quot;c&quot;=&gt;3, &quot;d&quot;=&gt;4, &quot;e&quot;=&gt;5, &quot;f&quot;=&gt;6, &quot;g&quot;=&gt;7, &quot;h&quot;=&gt;8, &quot;i&quot;=&gt;9, &quot;j&quot;=&gt;10 }</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">values_at</span> <span class="ruby-string">'j'</span> , <span class="ruby-string">'e'</span> , <span class="ruby-string">'i'</span> , :<span class="ruby-identifier">x</span>               <span class="ruby-comment"># =&gt; [ 10, 5, 9, nil ]</span>
+</pre>
+
+<h3 id="label-more+interesting+options+with+fetch+%28think+how+this+might+be+helpful+in+param+default+values%29">more interesting options with fetch (think how this might be helpful in param default values)</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = { <span class="ruby-string">&quot;a&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>, <span class="ruby-string">&quot;b&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">200</span> }
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">fetch</span> <span class="ruby-string">&quot;a&quot;</span>                                    <span class="ruby-comment"># =&gt; 100</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">fetch</span> <span class="ruby-string">&quot;z&quot;</span> , <span class="ruby-string">&quot;go fish&quot;</span>                        <span class="ruby-comment"># =&gt; &quot;go fish&quot;</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-string">&quot;z&quot;</span> ) { <span class="ruby-operator">|</span> <span class="ruby-identifier">el</span> <span class="ruby-operator">|</span> <span class="ruby-node">&quot;go fish, #{ el }&quot;</span> }   <span class="ruby-comment"># =&gt; &quot;go fish, z&quot;</span>
+</pre>
+
+<h3 id="label-sometimes+you+might+use+has_key+to+check+for+a+key%2C+for+example%2C+if+you%27re+using+an+init+block">sometimes you might use has_key to check for a key, for example, if you’re using an init block</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-keyword">true</span> }
+<span class="ruby-identifier">hash</span>[ :<span class="ruby-identifier">a</span> ] = :<span class="ruby-identifier">b</span>
+<span class="ruby-identifier">hash</span>[ <span class="ruby-value">1000</span> ]                                      <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">1000</span>                                <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-identifier">hash</span> = { <span class="ruby-value">12</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span> }
+<span class="ruby-identifier">hash</span>[ <span class="ruby-value">12</span> ]                                        <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-identifier">hash</span>[ <span class="ruby-value">13</span> ]                                        <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">12</span>                                  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">13</span>                                  <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<h3 id="label-and+the+converse">and the converse</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = { <span class="ruby-string">&quot;a&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>, <span class="ruby-string">&quot;b&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">200</span> }
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_value?</span>( <span class="ruby-value">100</span> )                            <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_value?</span>( <span class="ruby-value">999</span> )                            <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<h2 id="label-Removal">Removal</h2>
+
+<h3 id="label-delete+accepts+a+key+and+returns+its+value.+You+can+give+a+block+that+will+be+invoked+and+returned+in+the+event+that+the+keyt+o+delete+was+not+seen">delete accepts a key and returns its value. You can give a block that will be invoked and returned in the event that the keyt o delete was not seen</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>[ *<span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> ) ]                    <span class="ruby-comment"># =&gt; { 1=&gt;2, 3=&gt;4, 5=&gt;6, 7=&gt;8, 9=&gt;10 }</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">1</span>                                     <span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">100</span>                                   <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-identifier">hash</span>                                              <span class="ruby-comment"># =&gt; {3=&gt;4, 5=&gt;6, 7=&gt;8, 9=&gt;10}</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span>( <span class="ruby-value">3</span> )   { <span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{ n } not found&quot;</span> }   <span class="ruby-comment"># =&gt; 4</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span>( <span class="ruby-value">100</span> ) { <span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{ n } not found&quot;</span> }   <span class="ruby-comment"># =&gt; &quot;100 not found&quot;</span>
+</pre>
+
+<h3 id="label-delete_if+to+remove+all+pairs+from+a+hash+that+cause+the+block+to+evaluate+to+true">delete_if to remove all pairs from a hash that cause the block to evaluate to true</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>[ *<span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> ) ]                    <span class="ruby-comment"># =&gt; { 1=&gt;2, 3=&gt;4, 5=&gt;6, 7=&gt;8, 9=&gt;10 }</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete_if</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span> <span class="ruby-operator">|</span>
+ <span class="ruby-identifier">key</span> <span class="ruby-operator">%</span> <span class="ruby-value">5</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">%</span> <span class="ruby-value">5</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">hash</span>                                              <span class="ruby-comment"># =&gt; {1=&gt;2, 3=&gt;4, 7=&gt;8}</span>
+</pre>
+
+<h2 id="label-Iterating">Iterating</h2>
+
+<h3 id="label-pass+a+block+that+receives+the+key+and+the+value">pass a block that receives the key and the value</h3>
+
+<pre class="ruby"><span class="ruby-identifier">cities</span> = { :<span class="ruby-constant">Chicago</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">USA</span> , :<span class="ruby-constant">Paris</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">France</span> , :<span class="ruby-constant">Ramstein</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">Germany</span> }
+<span class="ruby-identifier">results</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">cities</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">city</span>,<span class="ruby-identifier">country</span><span class="ruby-operator">|</span>
+ <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{ city } is in #{ country }&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">results</span> 
+<span class="ruby-comment"># =&gt; [ &quot;Chicago is in USA&quot;, &quot;Paris is in France&quot;, &quot;Ramstein is in Germany&quot; ]</span>
+</pre>
+
+<h2 id="label-Other+Useful+Methods">Other Useful Methods</h2>
+
+<h3 id="label-there+is+also+a+self+mutator+version%3A+merge%21">there is also a self mutator version: merge!</h3>
+
+<pre class="ruby"><span class="ruby-identifier">defaults</span> = { :<span class="ruby-identifier">color</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">red</span> , :<span class="ruby-identifier">city</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Wichita'</span> }
+<span class="ruby-identifier">custom</span>   = { :<span class="ruby-identifier">city</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Boston'</span> }
+<span class="ruby-identifier">merged</span>   = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">custom</span>
+<span class="ruby-identifier">defaults</span>                                          <span class="ruby-comment"># =&gt; { :color=&gt;:red, :city=&gt;&quot;Wichita&quot; }</span>
+<span class="ruby-identifier">custom</span>                                            <span class="ruby-comment"># =&gt; { :city=&gt;&quot;Boston&quot; }</span>
+<span class="ruby-identifier">merged</span>                                            <span class="ruby-comment"># =&gt; { :color=&gt;:red, :city=&gt;&quot;Boston&quot; }</span>
+
+<span class="ruby-identifier">cities</span> = { :<span class="ruby-constant">Chicago</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">USA</span> , :<span class="ruby-constant">Paris</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">France</span> , :<span class="ruby-constant">Ramstein</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">Germany</span> }
+<span class="ruby-identifier">cities</span>.<span class="ruby-identifier">keys</span>                                       <span class="ruby-comment"># =&gt; [ :Chicago, :Paris, :Ramstein ]</span>
+<span class="ruby-identifier">cities</span>.<span class="ruby-identifier">values</span>                                     <span class="ruby-comment"># =&gt; [ :USA, :France, :Germany ]</span>
+<span class="ruby-identifier">cities</span>.<span class="ruby-identifier">length</span>                                     <span class="ruby-comment"># =&gt; 3</span>
+<span class="ruby-identifier">cities</span>.<span class="ruby-identifier">size</span>                                       <span class="ruby-comment"># =&gt; 3</span>
+<span class="ruby-identifier">cities</span>.<span class="ruby-identifier">empty?</span>                                     <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">empty?</span>                                   <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hash</span>[ *<span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> ) ]
+<span class="ruby-identifier">hash</span>                                              <span class="ruby-comment"># =&gt; { 1=&gt;2, 3=&gt;4, 5=&gt;6, 7=&gt;8, 9=&gt;10 }</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">clear</span>
+<span class="ruby-identifier">hash</span>                                              <span class="ruby-comment"># =&gt; { }</span>
+</pre>
+
+<h3 id="label-get+a+key+for+a+given+value+%28+remember%2C+there+could+be+more+than+one+key+with+the+same+value+%29">get a key for a given value ( remember, there could be more than one key with the same value )</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = { <span class="ruby-string">&quot;a&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>, <span class="ruby-string">&quot;b&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">200</span> }
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">index</span>( <span class="ruby-value">200</span> )                                 <span class="ruby-comment"># =&gt; &quot;b&quot; # !&gt; Hash#index is deprecated; use Hash#key</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">index</span>( <span class="ruby-value">999</span> )                                 <span class="ruby-comment"># =&gt; nil # !&gt; Hash#index is deprecated; use Hash#key</span>
+</pre>
+
+<h3 id="label-swap+keys+with+values">swap keys with values</h3>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = { :<span class="ruby-identifier">n</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, :<span class="ruby-identifier">m</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, :<span class="ruby-identifier">o</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> }              <span class="ruby-comment"># n and m have the same value, n ends up getting squashed</span>
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">invert</span>                                       <span class="ruby-comment"># =&gt; { 1=&gt;:m, 2=&gt;:o }</span>
+</pre>
+
+<h3 id="label-convert+to+an+array">convert to an array</h3>
+
+<pre class="ruby">{ :<span class="ruby-constant">Chicago</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">USA</span> , :<span class="ruby-constant">Paris</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">France</span> , :<span class="ruby-constant">Ramstein</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-constant">Germany</span> }.<span class="ruby-identifier">to_a</span> 
+<span class="ruby-comment"># =&gt; [[ :Chicago, :USA ], [ :Paris, :France ], [ :Ramstein, :Germany ]]</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

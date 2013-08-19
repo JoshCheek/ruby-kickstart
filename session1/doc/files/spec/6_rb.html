@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>6.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            6.rb
+        </h1>
+        <ul class="files">
+            <li>spec/6.rb</li>
+            <li>Last modified: 2013-08-19 14:20:49 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h3 id="label-"></h3>
+
+<pre class="ruby"><span class="ruby-identifier">text</span> = <span class="ruby-value">&lt;&lt;eot
+
+Giving a string and a boolean to the method,
+if the boolean is true, it returns a new string containing all the odd characters,
+and if the boolean is false it returns a new string containing all the even characters.
+
+If you have no idea where to begin, remember to check out the cheatsheets for string and logic/control.
+
+The examples run: 
+ odds_and_evens( &quot;abcdefg&quot;, true )    # =&gt; &quot;bdf&quot;
+ odds_and_evens( &quot;abcdefg&quot;, false )   # =&gt; &quot;aceg&quot;
+
+ def odds_and_evens( string, return_odds )
+   Your code goes here.
+ end
+
+eot</span>
+
+<span class="ruby-identifier">describe</span> <span class="ruby-identifier">text</span> <span class="ruby-keyword">do</span>
+
+ <span class="ruby-identifier">context</span> <span class="ruby-string">'when odd'</span> <span class="ruby-keyword">do</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;bdf&quot; when given &quot;abcdefg&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;abcdefg&quot;</span>, <span class="ruby-keyword">true</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;bdf&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;&quot; when given &quot;&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">true</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;&quot; when given &quot;a&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-keyword">true</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;123456789&quot; when given &quot;112233445566778899&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;112233445566778899&quot;</span>, <span class="ruby-keyword">true</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;123456789&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should work for &quot;You want to enjoy life, don\t you? If you get your job done quickly and your job is fun, that\s good isn\t it? That\s the purpose of life, partly. Your life is better. -- Yukihiro Matsumoto&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;You want to enjoy life, don\'t you? If you get your job done quickly and your job is fun, that\'s good isn\'t it? That\'s the purpose of life, partly. Your life is better. -- Yukihiro Matsumoto&quot;</span>, <span class="ruby-keyword">true</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span>
+       <span class="ruby-string">&quot;o att no ie o' o?I o e orjbdn ucl n orjbi u,ta' odinti?Ta' h ups flf,prl.Yu iei etr -Ykhr asmt&quot;</span>
+   <span class="ruby-keyword">end</span>
+ <span class="ruby-keyword">end</span>
+
+ <span class="ruby-identifier">context</span> <span class="ruby-string">'when even'</span> <span class="ruby-keyword">do</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;aceg&quot; when given &quot;abcdefg&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;abcdefg&quot;</span>, <span class="ruby-keyword">false</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;aceg&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;&quot; when given &quot;&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">false</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;a&quot; when given &quot;a&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-keyword">false</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;a&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should return &quot;123456789&quot; when given &quot;112233445566778899&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;112233445566778899&quot;</span>, <span class="ruby-keyword">false</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;123456789&quot;</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">it</span> <span class="ruby-string">'should work for &quot;You want to enjoy life, don\t you? If you get your job done quickly and your job is fun, that\s good isn\t it? That\s the purpose of life, partly. Your life is better. -- Yukihiro Matsumoto&quot;'</span> <span class="ruby-keyword">do</span>
+     <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;You want to enjoy life, don\'t you? If you get your job done quickly and your job is fun, that\'s good isn\'t it? That\'s the purpose of life, partly. Your life is better. -- Yukihiro Matsumoto&quot;</span>, <span class="ruby-keyword">false</span> ).<span class="ruby-identifier">should</span> <span class="ruby-operator">==</span>
+       <span class="ruby-string">&quot;Yuwn oejylf,dntyu fyugtyu o oeqikyadyu o sfn htsgo s' t htsteproeo ie aty orlf sbte.- uiioMtuoo&quot;</span>
+   <span class="ruby-keyword">end</span>
+
+ <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

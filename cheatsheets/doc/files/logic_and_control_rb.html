@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>logic_and_control.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            logic_and_control.rb
+        </h1>
+        <ul class="files">
+            <li>logic_and_control.rb</li>
+            <li>Last modified: 2013-08-18 19:51:37 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p># =====  Logical Operators  =====</p>
+
+<pre>a , b , c = 1 , 2 , 3
+a == b &amp;&amp; a == c          # logical and
+a == b || a == c          # logical or</pre>
+
+<p># less than, greater than</p>
+
+<pre class="ruby"><span class="ruby-value">4</span> <span class="ruby-operator">&lt;</span>  <span class="ruby-value">5</span>  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">&lt;</span>  <span class="ruby-value">3</span>  <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-value">4</span> <span class="ruby-operator">&gt;</span>  <span class="ruby-value">3</span>  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">&gt;</span>  <span class="ruby-value">5</span>  <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<p># less/greater than or equal to</p>
+
+<pre class="ruby"><span class="ruby-value">4</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">3</span>  <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">4</span>  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">5</span>  <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-value">4</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">3</span>  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">4</span>  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">5</span>  <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<p># equal to</p>
+
+<pre class="ruby"><span class="ruby-value">4</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>  <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-value">4</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span>  <span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p># =====  General syntax of an if statement  =====</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">one_two_or_three</span>(<span class="ruby-identifier">n</span>)
+ <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+   <span class="ruby-keyword">return</span> <span class="ruby-string">'one'</span>
+ <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+   <span class="ruby-keyword">return</span> <span class="ruby-string">'two'</span>
+ <span class="ruby-keyword">else</span>
+   <span class="ruby-keyword">return</span> <span class="ruby-string">'three'</span>
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">one_two_or_three</span> <span class="ruby-value">1</span> <span class="ruby-comment"># =&gt; &quot;one&quot;</span>
+<span class="ruby-identifier">one_two_or_three</span> <span class="ruby-value">2</span> <span class="ruby-comment"># =&gt; &quot;two&quot;</span>
+<span class="ruby-identifier">one_two_or_three</span> <span class="ruby-value">3</span> <span class="ruby-comment"># =&gt; &quot;three&quot;</span>
+</pre>
+
+<p># =====  Single line  =====</p>
+
+<pre class="ruby"><span class="ruby-identifier">result</span> = <span class="ruby-string">'set'</span>
+<span class="ruby-identifier">result</span> = <span class="ruby-string">'modified once'</span> <span class="ruby-keyword">if</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">result</span>                                    <span class="ruby-comment"># =&gt; &quot;modified once&quot;</span>
+<span class="ruby-identifier">result</span> = <span class="ruby-string">'modified twice'</span> <span class="ruby-keyword">if</span> <span class="ruby-value">1</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">result</span>                                    <span class="ruby-comment"># =&gt; &quot;modified once&quot;</span>
+</pre>
+
+<p># =====  ! to negate  =====</p>
+
+<pre class="ruby"><span class="ruby-identifier">result</span> = <span class="ruby-string">'set'</span>
+<span class="ruby-identifier">result</span> = <span class="ruby-string">'modified once'</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">false</span>
+<span class="ruby-identifier">result</span>                                    <span class="ruby-comment"># =&gt; &quot;modified once&quot;</span>
+<span class="ruby-identifier">result</span> = <span class="ruby-string">'modified twice'</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">true</span>
+<span class="ruby-identifier">result</span>                                    <span class="ruby-comment"># =&gt; &quot;modified once&quot;</span>
+</pre>
+
+<p># =====  False and nil are false, everything else is true  =====</p>
+
+<pre class="ruby"><span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">false</span>           <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">true</span>            <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">nil</span>             <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>       <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-constant">String</span>.<span class="ruby-identifier">new</span>      <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">''</span>)  <span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p># =====  Unless  =====</p>
+
+<pre class="ruby"><span class="ruby-identifier">result</span> = <span class="ruby-string">'set'</span>
+<span class="ruby-identifier">result</span> = <span class="ruby-string">'modified once'</span> <span class="ruby-keyword">unless</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+<span class="ruby-identifier">result</span>                                    <span class="ruby-comment"># =&gt; &quot;modified once&quot;</span>
+<span class="ruby-identifier">result</span> = <span class="ruby-string">'modified twice'</span> <span class="ruby-keyword">unless</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">result</span>                                    <span class="ruby-comment"># =&gt; &quot;modified once&quot;</span>
+</pre>
+
+<p># =====  While  =====</p>
+
+<pre class="ruby"><span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">5</span>
+ <span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+ <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">ary</span> <span class="ruby-comment"># =&gt; [0, 1, 2, 3, 4]</span>
+</pre>
+
+<p># =====  Loops  =====</p>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">current</span><span class="ruby-operator">|</span>
+ <span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">ary</span> <span class="ruby-comment"># =&gt; [0, 1, 2, 3, 4]</span>
+
+<span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-value">1</span>.<span class="ruby-identifier">step</span> <span class="ruby-value">10</span> , <span class="ruby-value">2</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">current</span><span class="ruby-operator">|</span>
+ <span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">ary</span> <span class="ruby-comment"># =&gt; [1, 3, 5, 7, 9]</span>
+</pre>
+
+<p># =====  Skip this iteration / Stop iterating  =====</p>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-value">10</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">current</span><span class="ruby-operator">|</span>
+ <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+ <span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">ary</span> <span class="ruby-comment"># =&gt; [0, 2, 4, 6, 8]</span>
+</pre>
+
+<p># break out of a loop</p>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-value">10</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">current</span><span class="ruby-operator">|</span>
+ <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">5</span>
+ <span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">ary</span> <span class="ruby-comment"># =&gt; [0, 1, 2, 3, 4]</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

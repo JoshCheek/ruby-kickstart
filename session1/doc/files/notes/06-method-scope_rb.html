@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>06-method-scope.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            06-method-scope.rb
+        </h1>
+        <ul class="files">
+            <li>notes/06-method-scope.rb</li>
+            <li>Last modified: 2013-08-19 00:20:51 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><strong>When you make a method, remember that it is its own little world,
+it doesn’t know about anything outside of itself, this is called
+scope.</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">defined?</span> <span class="ruby-identifier">twelve</span> <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-identifier">twelve</span> = <span class="ruby-value">12</span>
+<span class="ruby-keyword">defined?</span> <span class="ruby-identifier">twelve</span> <span class="ruby-comment"># =&gt; &quot;local-variable&quot;</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_own_little_world</span>
+ <span class="ruby-keyword">defined?</span> <span class="ruby-identifier">twelve</span> <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">my_own_little_world</span> <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-keyword">defined?</span> <span class="ruby-identifier">twelve</span>     <span class="ruby-comment"># =&gt; &quot;local-variable&quot;</span>
+</pre>
+
+<p><strong>Well that seems pretty useless, eh? Fortunately, there is an
+internet connection on this world! You can pass objects, into the method.
+When we pass an object in, the variable that points to it  is called an
+argument or a parameter</strong></p>
+
+<p><strong>person1 and person2 are arguments or parameters</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">beam_me_up</span>( <span class="ruby-identifier">person1</span>, <span class="ruby-identifier">person2</span> )
+ <span class="ruby-node">&quot;The away team consists of #{ person1 } and #{ person2 }.&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">beam_me_up</span>( <span class="ruby-string">&quot;Ryker&quot;</span>, <span class="ruby-string">&quot;Data&quot;</span> ) <span class="ruby-comment"># =&gt; &quot;The away team consists of Ryker and Data.&quot;</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

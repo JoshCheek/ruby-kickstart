@@ -1,37 +1,41 @@
-# Anywhere you can write code in Ruby returns a value, including if statements
+=begin rdoc
 
-result = if true
-  "yep, it's true"
-else 
-  "nope, it's not true"
-end
+==== Anywhere you can write code in Ruby returns a value, including if statements.
 
-result # => "yep, it's true"
+ result = if true
+   "yep, it's true"
+ else 
+   "nope, it's not true"
+ end
 
-
-
-# lets put that in a method
-def if_returns_value(bool)
-  if bool
-    "yep it's true"
-  else
-    "nope, it's not true"
-  end
-end
-
-if_returns_value true     # => "yep it's true"
-if_returns_value false    # => "nope, it's not true"
+ result # => "yep, it's true"
 
 
 
-# so does unless
-def unless_returns_value(bool)
-  unless bool
-    "nope, it's not true"
-  else
-    "yep, it's true"
-  end
-end
+==== Lets put that in a method:
+ def if_returns_value( bool )
+   if bool
+     "yep it's true"
+   else
+     "nope, it's not true"
+   end
+ end
 
-unless_returns_value true   # => "yep, it's true"
-unless_returns_value false  # => "nope, it's not true"
+ if_returns_value true     # => "yep it's true"
+ if_returns_value false    # => "nope, it's not true"
+
+
+
+==== So does unless:
+ def unless_returns_value( bool )
+   unless bool
+		   "nope, it's not true"
+   else
+     "yep, it's true"
+   end
+ end
+
+ unless_returns_value true   # => "yep, it's true"
+ unless_returns_value false  # => "nope, it's not true"
+
+=end

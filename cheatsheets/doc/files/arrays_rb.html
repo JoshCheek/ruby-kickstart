@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>arrays.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            arrays.rb
+        </h1>
+        <ul class="files">
+            <li>arrays.rb</li>
+            <li>Last modified: 2013-08-17 22:14:21 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h2 id="label-Initializing">Initializing</h2>
+
+<pre class="ruby">[ <span class="ruby-value">1</span> , <span class="ruby-value">2</span> , <span class="ruby-value">3</span> ]                       <span class="ruby-comment"># =&gt; [ 1, 2, 3 ]</span>
+<span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">2</span> )                      <span class="ruby-comment"># =&gt; [ nil, nil ]</span>
+<span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">5</span> ) { <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> * <span class="ruby-value">5</span> }      <span class="ruby-comment"># =&gt; [ 0, 5, 10, 15, 20 ]</span>
+<span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">2</span> ) { <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">2</span> ) }   <span class="ruby-comment"># =&gt; [[ nil, nil ], [nil, nil ]]</span>
+<span class="ruby-identifier">ary</span> = [ ]                           <span class="ruby-comment"># =&gt; []</span>
+<span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>                     <span class="ruby-comment"># =&gt; []</span>
+</pre>
+
+<h3 id="label-Initializing+an+array+of+strings+on+whitespace%3A">Initializing an array of strings on whitespace:</h3>
+
+<pre class="ruby"><span class="ruby-node">%w( this that, and the other )</span>      <span class="ruby-comment"># =&gt; [ &quot;this&quot;, &quot;that,&quot;, &quot;and&quot;, &quot;the&quot;, &quot;other&quot; ]</span>
+</pre>
+
+<h2 id="label-Accessing+and+assigning++">Accessing and assigning  </h2>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = <span class="ruby-node">%w( ruby python perl php javascript c )</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">0</span> ]   <span class="ruby-comment"># =&gt; &quot;ruby&quot;</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">1</span> ]   <span class="ruby-comment"># =&gt; &quot;python&quot;</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">2</span> ]   <span class="ruby-comment"># =&gt; &quot;perl&quot;</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">3</span> ]   <span class="ruby-comment"># =&gt; &quot;php&quot;</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">4</span> ] = <span class="ruby-string">'ecmascript'</span>
+<span class="ruby-identifier">ary</span>        <span class="ruby-comment"># =&gt; [ &quot;ruby&quot;, &quot;python&quot;, &quot;perl&quot;, &quot;php&quot;, &quot;ecmascript&quot;, &quot;c&quot; ]</span>
+</pre>
+
+<h3 id="label-Negative+indexes+are+applied+from+the+end%3A">Negative indexes are applied from the end:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span>[ <span class="ruby-value">-1</span> ]  <span class="ruby-comment"># =&gt; &quot;c&quot;</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">-2</span> ]  <span class="ruby-comment"># =&gt; &quot;ecmascript&quot;</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">-3</span> ]  <span class="ruby-comment"># =&gt; &quot;php&quot;</span>
+</pre>
+
+<h3 id="label-First+and+last%3A">First and last:</h3>
+
+<h4 id="label-%28+unfortunately+can%27t+do+ary.first+%3D+%27+abc+%27+%2C+for+reasons+that+will+become+clearer+when+we+talk+more+about+the+object+model+%29">( unfortunately can’t do ary.first = ‘ abc ’ , for reasons that will become clearer when we talk more about the object model )</h4>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span>.<span class="ruby-identifier">first</span>   <span class="ruby-comment"># =&gt; &quot;ruby&quot;</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">last</span>    <span class="ruby-comment"># =&gt; &quot;c&quot;</span>
+</pre>
+
+<h3 id="label-Subarrays%3A">Subarrays:</h3>
+
+<h4 id="label-give+a+range+of+indexes%2C+or+a+start+index+and+length">give a range of indexes, or a start index and length</h4>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span>              <span class="ruby-comment"># =&gt; [ &quot;ruby&quot;, &quot;python&quot;, &quot;perl&quot;, &quot;php&quot;, &quot;ecmascript&quot;, &quot;c&quot; ]</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span> ]      <span class="ruby-comment"># =&gt; [ &quot;ruby&quot;, &quot;python&quot;, &quot;perl&quot; ]</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">-3</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span> ]    <span class="ruby-comment"># =&gt; [ &quot;php&quot;, &quot;ecmascript&quot;, &quot;c&quot; ]</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]      <span class="ruby-comment"># =&gt; [ &quot;perl&quot;, &quot;php&quot;, &quot;ecmascript&quot; ]</span>
+</pre>
+
+<h3 id="label-Replace%3A">Replace:</h3>
+
+<h4 id="label-a+range+of+indexes+with+elements+from+an+array+%28+size+doesn%27t+need+to+match+%29">a range of indexes with elements from an array ( size doesn’t need to match )</h4>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span>         <span class="ruby-comment"># =&gt; [ &quot;ruby&quot;, &quot;python&quot;, &quot;perl&quot;, &quot;php&quot;, &quot;ecmascript&quot;, &quot;c&quot; ]</span>
+<span class="ruby-identifier">ary</span>[ <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span> ] = [ <span class="ruby-value">9</span>, <span class="ruby-value">8</span>, <span class="ruby-value">7</span>, <span class="ruby-value">6</span>, <span class="ruby-value">5</span>, <span class="ruby-value">4</span>, <span class="ruby-value">3</span>, <span class="ruby-value">2</span>, <span class="ruby-value">1</span> ]
+<span class="ruby-identifier">ary</span>         <span class="ruby-comment"># =&gt; [ &quot;ruby&quot;, 9, 8, 7, 6, 5, 4, 3, 2, 1, &quot;php&quot;, &quot;ecmascript&quot;, &quot;c&quot; ]</span>
+
+<span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>( <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> )    <span class="ruby-comment"># =&gt; [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">insert</span>( <span class="ruby-value">5</span>, <span class="ruby-string">'five'</span> )
+<span class="ruby-identifier">ary</span>                     <span class="ruby-comment"># =&gt; [ 0, 1, 2, 3, 4, &quot;five&quot;, 5, 6, 7, 8, 9, 10 ]</span>
+</pre>
+
+<h2 id="label-Sorting+">Sorting </h2>
+
+<pre class="ruby"><span class="ruby-identifier">before</span> = [ <span class="ruby-value">3</span>, <span class="ruby-value">6</span>, <span class="ruby-value">3</span>, <span class="ruby-value">0</span>, <span class="ruby-value">8</span>, <span class="ruby-value">235</span>, <span class="ruby-value">-3</span> ]
+<span class="ruby-identifier">after</span>  = <span class="ruby-identifier">before</span>.<span class="ruby-identifier">sort</span>
+<span class="ruby-identifier">before</span>       <span class="ruby-comment"># =&gt; [ 3, 6, 3, 0, 8, 235, -3 ]</span>
+<span class="ruby-identifier">after</span>        <span class="ruby-comment"># =&gt; [ -3, 0, 3, 3, 6, 8, 235 ]</span>
+</pre>
+
+<h3 id="label-Bang%3A">Bang:</h3>
+
+<h4 id="label-bang+on+the+end+of+a+method+means+%22watch+out%22%2C+many+methods+have+a+%22safe%22+version+which+will+return+a+new+object+and+a+%22dangerous%22+version%2C+which+will+mutate+the+current+object.+%28+this+is+not+it%27s+only+use%2C+so+check+the+docs+%3B+%29">bang on the end of a method means “watch out”, many methods have a “safe” version which will return a new object and a “dangerous” version, which will mutate the current object. ( this is not it’s only use, so check the docs ; )</h4>
+
+<pre class="ruby"><span class="ruby-identifier">before</span>       <span class="ruby-comment"># =&gt; [ 3, 6, 3, 0, 8, 235, -3 ]</span>
+<span class="ruby-identifier">before</span>.<span class="ruby-identifier">sort!</span>
+<span class="ruby-identifier">before</span>       <span class="ruby-comment"># =&gt; [ -3, 0, 3, 3, 6, 8, 235 ]</span>
+</pre>
+
+<h3 id="label-Spaceship+operator%28+%3C%3D%3E+%29%3A">Spaceship operator( &lt;=&gt; ):</h3>
+
+<h4 id="label-You+can+sort+based+on+your+own+criteria%2C+your+block+must+simply+evaluate+to+-1+%2C+0+%2C+or+1+This+is+the+same+as+Java%27s+compareTo+method.+We+have+a+method+like+that+already%2C+our+spaceship+operator%28+%3C%3D%3E+%29.+If+this+example+is+too+confusing%2C+let+me+know+%28+or+if+it%27s+cake%2C+you+can+brag+%29">You can sort based on your own criteria, your block must simply evaluate to -1 , 0 , or 1 This is the same as Java’s compareTo method. We have a method like that already, our spaceship operator( &lt;=&gt; ). If this example is too confusing, let me know ( or if it’s cake, you can brag )</h4>
+
+<pre class="ruby"><span class="ruby-identifier">after</span> = <span class="ruby-identifier">before</span>.<span class="ruby-identifier">sort</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> <span class="ruby-operator">|</span>
+ <span class="ruby-identifier">b</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>   <span class="ruby-comment"># sort such that larger elements come first</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">before</span> <span class="ruby-comment"># =&gt; [ -3, 0, 3, 3, 6, 8, 235 ]</span>
+<span class="ruby-identifier">after</span>  <span class="ruby-comment"># =&gt; [ 235, 8, 6, 3, 3, 0, -3 ]</span>
+</pre>
+
+<h4 id="label-An+object+with+a+name+and+age">An object with a name and age</h4>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Person</span>
+ <span class="ruby-identifier">attr_accessor</span> <span class="ruby-string">'name'</span>, <span class="ruby-string">'age'</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span> )
+   <span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@age</span> = <span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span>
+ <span class="ruby-keyword">end</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">inspect</span>
+   <span class="ruby-node">&quot;&lt;#{ name }(#{ age })&gt;&quot;</span>
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h4 id="label-Whatever+the+block+returns+will+be+used+to+sort+the+object">Whatever the block returns will be used to sort the object</h4>
+
+<pre class="ruby"><span class="ruby-identifier">people</span> = [
+ <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">'Ernie'</span>    , <span class="ruby-value">20</span> ),
+ <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">'Sara'</span>     , <span class="ruby-value">50</span> ),
+ <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">'Monique'</span>  , <span class="ruby-value">10</span> ),
+ <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">'Mohammed'</span> , <span class="ruby-value">60</span> ),
+]
+<span class="ruby-identifier">people</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">person</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">person</span>.<span class="ruby-identifier">age</span> } <span class="ruby-comment"># =&gt; </span>
+[ <span class="ruby-operator">&lt;</span><span class="ruby-constant">Monique</span>( <span class="ruby-value">10</span> )<span class="ruby-operator">&gt;</span>, <span class="ruby-operator">&lt;</span><span class="ruby-constant">Ernie</span>( <span class="ruby-value">20</span> )<span class="ruby-operator">&gt;</span>, <span class="ruby-operator">&lt;</span><span class="ruby-constant">Sara</span>( <span class="ruby-value">50</span> )<span class="ruby-operator">&gt;</span>, <span class="ruby-operator">&lt;</span><span class="ruby-constant">Mohammed</span>( <span class="ruby-value">60</span> )<span class="ruby-operator">&gt;</span> ]
+</pre>
+
+<h2 id="label-Adding+%2F+removing+%2F+replacing+%2F+finding+elements+">Adding / removing / replacing / finding elements </h2>
+
+<h3 id="label-appending+%2F+pushing+%2F+popping++%28+never+have+to+write+a+stack+again+%29%3A">appending / pushing / popping  ( never have to write a stack again ):</h3>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">4</span>
+<span class="ruby-identifier">ary</span>             <span class="ruby-comment"># =&gt; [ 1, 2, 3, 4 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">push</span> <span class="ruby-value">5</span>
+<span class="ruby-identifier">ary</span>             <span class="ruby-comment"># =&gt; [ 1, 2, 3, 4, 5 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">pop</span>         <span class="ruby-comment"># =&gt; 5</span>
+<span class="ruby-identifier">ary</span>             <span class="ruby-comment"># =&gt; [ 1, 2, 3, 4 ]</span>
+</pre>
+
+<h4 id="label-if+you+want+to+push+%2F+pop+from+the+beginning%2C+it%27s+called+unshifting+and+shifting+to+help+you+remember+which+is+which%2C+it+might+help+to+associate+shift+with+the+assembly+command+shl">if you want to push / pop from the beginning, it’s called unshifting and shifting to help you remember which is which, it might help to associate shift with the assembly command shl</h4>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-value">0</span>
+<span class="ruby-identifier">ary</span>             <span class="ruby-comment"># =&gt; [ 0, 1, 2, 3 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">shift</span>       <span class="ruby-comment"># =&gt; 0</span>
+<span class="ruby-identifier">ary</span>             <span class="ruby-comment"># =&gt; [ 1, 2, 3 ]</span>
+</pre>
+
+<h3 id="label-removing+items%3A">removing items:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> )             <span class="ruby-comment"># =&gt; [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">5</span>
+<span class="ruby-identifier">ary</span>                              <span class="ruby-comment"># =&gt; [ 1, 2, 3, 4, 6, 7, 8, 9, 10 ]</span>
+
+<span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> )             <span class="ruby-comment"># =&gt; [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> }  <span class="ruby-comment"># =&gt; [ 1, 3, 5, 7, 9 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> }  <span class="ruby-comment"># =&gt; [ 2, 4, 6, 8, 10 ]</span>
+</pre>
+
+<h3 id="label-checking+for+an+object%3A">checking for an object:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = <span class="ruby-constant">Array</span>( <span class="ruby-value">3</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> )    <span class="ruby-comment"># =&gt; [ 3, 4, 5, 6, 7, 8, 9, 10 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">include?</span>( <span class="ruby-value">5</span> )       <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">index</span>( <span class="ruby-value">5</span> )          <span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">include?</span>( <span class="ruby-value">11</span> )      <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">index</span>( <span class="ruby-value">11</span> )         <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<h2 id="label-Iterating+">Iterating </h2>
+
+<h3 id="label-iterate+over+each+element%3A">iterate over each element:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">sum</span> , <span class="ruby-identifier">ary</span> = <span class="ruby-value">0</span> , [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">num</span> }
+<span class="ruby-identifier">sum</span>       <span class="ruby-comment"># =&gt; 6</span>
+</pre>
+
+<h4 id="label-iterating+over+each+index+%2C+capture+results+in+a+new+Array">iterating over each index , capture results in a new Array</h4>
+
+<pre class="ruby"><span class="ruby-identifier">results</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-node">%w( a b c )</span>.<span class="ruby-identifier">each_index</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">results</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">i</span> }
+<span class="ruby-identifier">results</span>   <span class="ruby-comment"># =&gt; [ 0, 1, 2 ]</span>
+</pre>
+
+<h4 id="label-what+if+you+care+about+both+elements+and+indexes%3F">what if you care about both elements and indexes?</h4>
+
+<pre class="ruby"><span class="ruby-identifier">results</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-node">%w( a b c )</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">character</span>, <span class="ruby-identifier">index</span> <span class="ruby-operator">|</span>
+ <span class="ruby-identifier">results</span>.<span class="ruby-identifier">push</span> <span class="ruby-node">&quot;index #{ index } has element #{ character }&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">results</span>   
+<span class="ruby-comment"># =&gt; [ &quot;index 0 has element a&quot;, &quot;index 1 has element b&quot;, &quot;index 2 has element c&quot; ]</span>
+</pre>
+
+<h4 id="label-create+a+new+array%2C+where+each+element+is+derived+from+the+original+array+whatever+the+block+returns+%28+its+last+line+%29+will+be+at+that+index+in+the+new+array">create a new array, where each element is derived from the original array whatever the block returns ( its last line ) will be at that index in the new array</h4>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = [ <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> * <span class="ruby-value">2</span> }                       <span class="ruby-comment"># =&gt; [ 0, 2, 2, 2, 2, 6 ]</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">|</span> <span class="ruby-node">%w(zero one two three)</span>[<span class="ruby-identifier">num</span>] }   
+<span class="ruby-comment"># =&gt; [ &quot;zero&quot;, &quot;one&quot;, &quot;one&quot;, &quot;one&quot;, &quot;one&quot;, &quot;three&quot; ]</span>
+</pre>
+
+<h3 id="label-iterate+over+multiple+elements%3A">iterate over multiple elements:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">result</span> = []
+<span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> ).<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>) { <span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> ] }
+<span class="ruby-identifier">result</span> <span class="ruby-comment"># =&gt; [[ 1, 2 ], [ 3, 4 ], [ 5, 6 ], [ 7, 8 ], [ 9, 10 ]]</span>
+
+<span class="ruby-identifier">result</span> = []
+<span class="ruby-constant">Array</span>( <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span> ).<span class="ruby-identifier">each_cons</span>( <span class="ruby-value">2</span> ) { <span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> ] }
+<span class="ruby-identifier">result</span> 
+<span class="ruby-comment"># =&gt; [[ 1, 2 ], [ 2, 3 ], [ 3, 4 ], [ 4, 5 ], [ 5, 6 ], [ 6, 7 ], [ 7, 8 ], [ 8, 9 ], [ 9, 10 ]]</span>
+</pre>
+
+<h2 id="label-Miscellaneous+useful+shit+">Miscellaneous useful shit </h2>
+
+<h3 id="label-equality%3A">equality:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span> ,<span class="ruby-value">2</span>, <span class="ruby-value">3</span> ] <span class="ruby-operator">==</span> [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]              <span class="ruby-comment"># =&gt; true</span>
+[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ] <span class="ruby-operator">==</span> [ <span class="ruby-value">3</span>, <span class="ruby-value">2</span>, <span class="ruby-value">1</span> ]              <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<h3 id="label-repetition%3A">repetition:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">22</span> ] * <span class="ruby-value">3</span>                      <span class="ruby-comment"># =&gt; [ 1, 22, 1, 22, 1, 22 ]</span>
+</pre>
+
+<h3 id="label-concatenation%3A">concatenation:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-node">%w( 3 4 )</span>               <span class="ruby-comment"># =&gt; [ 1, 2, &quot;3&quot;, &quot;4&quot; ]</span>
+</pre>
+
+<h3 id="label-difference%3A">difference:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span> ] <span class="ruby-operator">-</span> [ <span class="ruby-value">3</span>, <span class="ruby-value">5</span> ]               <span class="ruby-comment"># =&gt; [ 1, 2, 4 ]</span>
+</pre>
+
+<h3 id="label-max+and+min%3A">max and min:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">13</span>, <span class="ruby-value">2</span>, <span class="ruby-value">-3</span>, <span class="ruby-value">7</span> ].<span class="ruby-identifier">max</span>        <span class="ruby-comment"># =&gt; 13</span>
+[ <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">13</span>, <span class="ruby-value">2</span>, <span class="ruby-value">-3</span>, <span class="ruby-value">7</span> ].<span class="ruby-identifier">min</span>        <span class="ruby-comment"># =&gt; -3</span>
+</pre>
+
+<h3 id="label-intersection%3A">intersection:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span> ] &amp; [ <span class="ruby-value">0</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span> ]             <span class="ruby-comment"># =&gt; [ 3, 4 ]</span>
+</pre>
+
+<h3 id="label-union%3A+%28+order+is+not+guaranteed+%29">union: ( order is not guaranteed )</h3>
+
+<pre class="ruby">[<span class="ruby-value">1</span>,<span class="ruby-value">3</span>,<span class="ruby-value">4</span>] <span class="ruby-operator">|</span> [<span class="ruby-value">0</span>,<span class="ruby-value">3</span>,<span class="ruby-value">4</span>,<span class="ruby-value">5</span>]             <span class="ruby-comment"># =&gt; [1, 3, 4, 0, 5]</span>
+</pre>
+
+<h3 id="label-convert+each+element+to+a+string%2C+and+join+them+together">convert each element to a string, and join them together</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-string">' and '</span> )         <span class="ruby-comment"># =&gt; &quot;1 and 2 and 3&quot;</span>
+</pre>
+
+<h3 id="label-length+%2F+size%3A++%28+get+tired+of+trying+to+remember+which+is+correct%3F+In+Ruby%2C+they+both+are+%5E_%5E+%29">length / size:  ( get tired of trying to remember which is correct? In Ruby, they both are ^_^ )</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ].<span class="ruby-identifier">length</span>                  <span class="ruby-comment"># =&gt; 3</span>
+[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ].<span class="ruby-identifier">size</span>                    <span class="ruby-comment"># =&gt; 3</span>
+</pre>
+
+<h3 id="label-reverse%3A">reverse:</h3>
+
+<pre class="ruby">[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ].<span class="ruby-identifier">reverse</span>                 <span class="ruby-comment"># =&gt; [ 3, 2, 1 ]</span>
+</pre>
+
+<h3 id="label-transpose%3A">transpose:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">a</span> = [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">b</span> = <span class="ruby-node">%w( one two three )</span>
+[ <span class="ruby-identifier">a</span> , <span class="ruby-identifier">b</span> ].<span class="ruby-identifier">transpose</span>             <span class="ruby-comment"># =&gt; [[ 1, &quot;one&quot; ], [ 2, &quot;two&quot; ], [ 3, &quot;three&quot; ]]</span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">zip</span> <span class="ruby-identifier">b</span>                         <span class="ruby-comment"># =&gt; [[ 1, &quot;one&quot; ], [ 2, &quot;two&quot; ], [ 3, &quot;three&quot; ]]</span>
+</pre>
+
+<h3 id="label-assigning+to+variables%3A">assigning to variables:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">a</span> = [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">num1</span> , <span class="ruby-identifier">num2</span> , <span class="ruby-identifier">num3</span> = <span class="ruby-identifier">a</span>
+<span class="ruby-identifier">num1</span>                            <span class="ruby-comment"># =&gt; 1</span>
+<span class="ruby-identifier">num2</span>                            <span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">num3</span>                            <span class="ruby-comment"># =&gt; 3</span>
+</pre>
+
+<h3 id="label-%22removing%22+the+brackets+to+feed+as+arguments%3A">“removing” the brackets to feed as arguments:</h3>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">sum</span>( <span class="ruby-identifier">x</span> , <span class="ruby-identifier">y</span> , <span class="ruby-identifier">z</span> )
+ <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">y</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">z</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">a</span> = [ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ]
+<span class="ruby-identifier">sum</span>( *<span class="ruby-identifier">a</span> )                       <span class="ruby-comment"># =&gt; 6</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

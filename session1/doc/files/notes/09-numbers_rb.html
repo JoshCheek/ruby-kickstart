@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>09-numbers.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            09-numbers.rb
+        </h1>
+        <ul class="files">
+            <li>notes/09-numbers.rb</li>
+            <li>Last modified: 2013-08-19 11:56:24 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><strong>Because of real world limitations, math can’t be implemented as
+purely as is done in the classroom. This means that while you think of 10
+and 10.0 as the same thing, most programming languages don’t.</strong></p>
+
+<pre class="ruby"><span class="ruby-value">10</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">ancestors</span>    <span class="ruby-comment"># =&gt; [Fixnum, Integer, Numeric, Comparable, Object, Kernel, BasicObject]</span>
+<span class="ruby-value">10.0</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">ancestors</span>  <span class="ruby-comment"># =&gt; [Float, Numeric, Comparable, Object, Kernel, BasicObject]</span>
+</pre>
+
+<p><strong>They are both numbers ( we haven’t talked about classes yet, but
+notice that Numeric is in the ancestry ) but they have slightly different
+behaviour. For example, integer division gives an integer, but float
+division gives a float.</strong></p>
+
+<pre class="ruby"><span class="ruby-value">10</span>    <span class="ruby-operator">/</span> <span class="ruby-value">3</span> <span class="ruby-comment"># =&gt; 3</span>
+<span class="ruby-value">10.0</span>  <span class="ruby-operator">/</span> <span class="ruby-value">3</span> <span class="ruby-comment"># =&gt; 3.3333333333333335</span>
+</pre>
+
+<p><strong>What if you want to convert them?</strong></p>
+
+<pre class="ruby"><span class="ruby-value">10</span>.<span class="ruby-identifier">to_f</span>   <span class="ruby-comment"># =&gt; 10.0</span>
+<span class="ruby-value">10.0</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-comment"># =&gt; 10</span>
+</pre>
+
+<p><strong>You can also use parentheses, they will take on the value of
+whatever is inside them.</strong></p>
+
+<pre class="ruby">( <span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span> ) * <span class="ruby-value">3</span>     <span class="ruby-comment"># =&gt; 9</span>
+( <span class="ruby-value">91</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span> ).<span class="ruby-identifier">even?</span>  <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>
