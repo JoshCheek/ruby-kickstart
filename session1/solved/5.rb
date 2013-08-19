@@ -1,3 +1,8 @@
-def add_more_ruby(string)
-  string.gsub('sad','happy').gsub('Sad','Happy')
-end
+=begin rdoc
+
+===
+ def add_more_ruby( string )
+   string.gsub( 'sad', 'happy' ).gsub( 'Sad', 'Happy' )
+ end
+
+=end

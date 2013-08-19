@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>21-true-and-false.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            21-true-and-false.rb
+        </h1>
+        <ul class="files">
+            <li>notes/21-true-and-false.rb</li>
+            <li>Last modified: 2013-08-19 12:40:37 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><strong>Logic in Ruby operates on “boolean” objects. If I’m not lying, then
+they’re named after the guy who invented logic! A boolean object is just an
+object that can be considered true or false.</strong></p>
+
+<h4 id="label-The+true+object%3A">The true object:</h4>
+
+<pre class="ruby"><span class="ruby-keyword">true</span>.<span class="ruby-identifier">class</span>                      <span class="ruby-comment"># =&gt; TrueClass</span>
+<span class="ruby-string">'yep, its true'</span>   <span class="ruby-keyword">if</span> <span class="ruby-keyword">true</span>       <span class="ruby-comment"># =&gt; &quot;yep, its true&quot;</span>
+</pre>
+
+<h4 id="label-The+false+object%3A">The false object:</h4>
+
+<pre class="ruby"><span class="ruby-keyword">false</span>.<span class="ruby-identifier">class</span>                     <span class="ruby-comment"># =&gt; FalseClass</span>
+<span class="ruby-string">'nope, its not true'</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">false</span>   <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<h4 id="label-You+can+flip+them+with+a+leading+bang%3A">You can flip them with a leading bang:</h4>
+
+<pre class="ruby"><span class="ruby-operator">!</span><span class="ruby-keyword">true</span>     <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-operator">!</span><span class="ruby-keyword">false</span>    <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">true</span>    <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">false</span>   <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<h4 id="label-But+what+about+all+the+other+objects%3F+They+want+to+be+boolean+too%21+Turns+out+they+can%21+%28+except+%27nil%27%2C+he+can+go+sit+in+the+corner+with+%27false%27+%29">But what about all the other objects? They want to be boolean too! Turns out they can! ( except ‘nil’, he can go sit in the corner with ‘false’ )</h4>
+
+<pre class="ruby">[ <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-string">&quot;two&quot;</span>, :<span class="ruby-identifier">three</span>, <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>, <span class="ruby-keyword">nil</span> ].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">object</span> <span class="ruby-operator">|</span>
+  <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">object</span> <span class="ruby-comment"># =&gt; true, true, true, true, true, false</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

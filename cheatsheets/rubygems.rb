@@ -1,4 +1,4 @@
-txt = <<-'EOT'
+=begin rdoc
 
 # =====  What Are Gems?  =====
 # In Ruby, third party libraries are called gems
@@ -72,7 +72,7 @@ txt = <<-'EOT'
 # =====  Using Gems  =====
 # Gems become available to you in your ruby files
 # (On Ruby 1.8, you must require rubygems first.)
-require 'bluecloth'
+ require 'bluecloth'
 
 # now you are free to use it as you would any library, or even your own code
 topics = BlueCloth.new <<CHAPTER_DESCRIPTION
@@ -82,7 +82,7 @@ topics = BlueCloth.new <<CHAPTER_DESCRIPTION
 * Arrays
 CHAPTER_DESCRIPTION
 
-topics.to_html # => "<ul>\n<li>Arithmetic</li>\n<li>Logic</li>\n<li>Basic IO</li>\n<li>Arrays</li>\n</ul>"
+ topics.to_html # => "<ul>\n<li>Arithmetic</li>\n<li>Logic</li>\n<li>Basic IO</li>\n<li>Arrays</li>\n</ul>"
 
 
 # =====  Executables  =====
@@ -91,6 +91,4 @@ topics.to_html # => "<ul>\n<li>Arithmetic</li>\n<li>Logic</li>\n<li>Basic IO</li
 # Here is an example of how to invoke it
 # $ bluecloth ~/code/JoshsRubyKickstart/README.mdown 
 
-EOT
-
-puts txt
+=end

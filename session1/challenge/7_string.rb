@@ -1,10 +1,10 @@
 =begin rdoc
 
-Given a string, return the character after every letter "r".
+==== Given a string, return the character after every letter "r".
 
-  $ rake 1:7
+ rake 1:7
 
-==== The tests run:
+==== The examples run:
  pirates_say_arrrrrrrrr( "are you really learning Ruby?" ) # => "eenu"
  pirates_say_arrrrrrrrr( "Katy Perry is on the radio!" )   # => "rya"
  pirates_say_arrrrrrrrr( "Pirates say arrrrrrrrr" )        # => "arrrrrrrr"

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>20-logic.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            20-logic.rb
+        </h1>
+        <ul class="files">
+            <li>notes/20-logic.rb</li>
+            <li>Last modified: 2013-08-19 13:00:06 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><strong>In your life, when you need to conditionally do something, you use
+logic. Logic has two values: true and false You say things like “if it’s
+raining and I have an umbrella I’ll go outside, otherwise I’ll stay
+inside.” This is a logical statement.</strong></p>
+
+<h4 id="label-Ruby+has+logic%2C+too%2C+so+you+can+totally+write+a+program+to+see+if+you+should+go+outside%2C+in+fact%2C+lets+do+it%21">Ruby has logic, too, so you can totally write a program to see if you should go outside, in fact, lets do it!</h4>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">go_outside?</span>( <span class="ruby-identifier">raining</span>, <span class="ruby-identifier">umbrella</span> )
+  <span class="ruby-identifier">raining</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">umbrella</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">go_outside?</span>( <span class="ruby-keyword">true</span>  , <span class="ruby-keyword">true</span>  )  <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">go_outside?</span>( <span class="ruby-keyword">true</span>  , <span class="ruby-keyword">false</span> )  <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-identifier">go_outside?</span>( <span class="ruby-keyword">false</span> , <span class="ruby-keyword">true</span>  )  <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-identifier">go_outside?</span>( <span class="ruby-keyword">false</span> , <span class="ruby-keyword">false</span> )  <span class="ruby-comment"># =&gt; false</span>
+</pre>
+
+<h4 id="label-Look%2C+the+go_outside%3F+Method+knows+exactly+what+to+do%2C+because+it+knows+about+logic%21">Look, the go_outside? Method knows exactly what to do, because it knows about logic!</h4>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

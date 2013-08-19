@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>17-naming-conventions.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            17-naming-conventions.rb
+        </h1>
+        <ul class="files">
+            <li>notes/17-naming-conventions.rb</li>
+            <li>Last modified: 2013-08-19 12:57:34 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><strong>All the variables we’ve seen so far have been local variables. That
+means they exist within the current scope, but if we leave it, they go
+away. Local variables begin with a lowercase letter, and can then be
+followed by alphanumeric values and underscores. Use snake_case with
+variables.</strong></p>
+
+<pre>local_variable = nil</pre>
+
+<p><strong>Constants are like variables, but you’re telling the world that the
+value should not change. Any variable that starts with a capital letter is
+a constant. Use CamelCase with constants.</strong></p>
+
+<pre>Constant = nil</pre>
+
+<p><strong>Instance variables are variables that belong to an object rather
+than a scope. Any variable that starts with an ‘@’ sigil is an instance
+variable. We’ll talk more about these later.</strong></p>
+
+<pre>@instance_variable = nil</pre>
+
+<p><strong>Remember when I said methods were their own little worlds? I lied.
+Constants can be seen by anything defined in their scope.</strong></p>
+
+<pre class="ruby"><span class="ruby-constant">MyConstant</span>  = <span class="ruby-value">12</span>
+<span class="ruby-identifier">my_variable</span> = <span class="ruby-value">13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">example</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">MyConstant</span>        <span class="ruby-comment"># =&gt; 12</span>
+    <span class="ruby-identifier">my_variable</span>       <span class="ruby-comment"># =&gt;</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exception</span>
+    <span class="ruby-identifier">exception</span>         <span class="ruby-comment"># =&gt; #&lt;NameError: undefined local variable or method `my_variable' for main:Object&gt;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">example</span> <span class="ruby-comment"># invokes the method</span>
+</pre>
+
+<h3 id="label-Question%3A+classes+begin+with+uppercase+letters%2C+are+they+constants%3F">Question: classes begin with uppercase letters, are they constants?</h3>
+
+<h4 id="label-Remember%2C+constants+are+just+variables+that+aren%27t+supposed+to+change.">Remember, constants are just variables that aren’t supposed to change.</h4>
+
+<h4 id="label-Go+test+this+in+irb">Go test this in irb</h4>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

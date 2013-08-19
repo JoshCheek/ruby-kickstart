@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>23-if-returns-a-value.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            23-if-returns-a-value.rb
+        </h1>
+        <ul class="files">
+            <li>23-if-returns-a-value.rb</li>
+            <li>Last modified: 2013-08-19 12:43:17 -0500</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h4 id="label-Anywhere+you+can+write+code+in+Ruby+returns+a+value%2C+including+if+statements.">Anywhere you can write code in Ruby returns a value, including if statements.</h4>
+
+<pre class="ruby"><span class="ruby-identifier">result</span> = <span class="ruby-keyword">if</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-string">&quot;yep, it's true&quot;</span>
+<span class="ruby-keyword">else</span> 
+  <span class="ruby-string">&quot;nope, it's not true&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">result</span> <span class="ruby-comment"># =&gt; &quot;yep, it's true&quot;</span>
+</pre>
+
+<h4 id="label-Lets+put+that+in+a+method%3A">Lets put that in a method:</h4>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">if_returns_value</span>( <span class="ruby-identifier">bool</span> )
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">bool</span>
+    <span class="ruby-string">&quot;yep it's true&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;nope, it's not true&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">if_returns_value</span> <span class="ruby-keyword">true</span>     <span class="ruby-comment"># =&gt; &quot;yep it's true&quot;</span>
+<span class="ruby-identifier">if_returns_value</span> <span class="ruby-keyword">false</span>    <span class="ruby-comment"># =&gt; &quot;nope, it's not true&quot;</span>
+</pre>
+
+<h4 id="label-So+does+unless%3A">So does unless:</h4>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">unless_returns_value</span>( <span class="ruby-identifier">bool</span> )
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">bool</span>
+                  <span class="ruby-string">&quot;nope, it's not true&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;yep, it's true&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">unless_returns_value</span> <span class="ruby-keyword">true</span>   <span class="ruby-comment"># =&gt; &quot;yep, it's true&quot;</span>
+<span class="ruby-identifier">unless_returns_value</span> <span class="ruby-keyword">false</span>  <span class="ruby-comment"># =&gt; &quot;nope, it's not true&quot;</span>
+</pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

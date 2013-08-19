@@ -23,12 +23,70 @@
         </h1>
         <ul class="files">
             <li>erb-embedded_ruby.rb</li>
-            <li>Last modified: 2013-08-16 22:26:55 -0500</li>
+            <li>Last modified: 2013-08-18 19:52:21 -0500</li>
         </ul>
     </div>
 
     <div id="bodyContent">
         <div id="content">
+  
+    <div class="description">
+      
+<p># <a
+href="http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html">www.ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html</a>
+# !&gt; instance variable @num not initialized</p>
+
+<p># =====  About  ===== # ERB stands for Embedded Ruby # It is in the
+standard library, meaning not a gem, so you can require it like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'erb'</span>
+</pre>
+
+<p># It is pretty easy to use, and is the default for most Ruby things that
+require templates (Rails, Sinatra, etc) # It is embedded within Strings (ie
+files, local strings, etc) and once evaluated, is removed leaving only what
+you desire</p>
+
+<p># =====  &lt;% Syntax: Control Structures %&gt;  ===== # there are,
+amazingly enough, only two types of syntax for ERB (unless you want to get
+complicated – which, you don’t) #  # Control structures are embedded within
+&lt;% %&gt; tags. Inside of them, you place regular Ruby. It gets evaluated
+like normal</p>
+
+<pre>def get_result(str) ERB.new( str , 0 , '&gt;' ).result end
+get_result &quot;123&lt;% 10.times do %&gt;4&lt;% end %&gt;567&quot;  # =&gt; &quot;1234444444444567&quot;
+get_result &quot;123&lt;% if true %&gt;4444&lt;% end %&gt;567&quot;   # =&gt; &quot;1234444567&quot;
+get_result &quot;123&lt;% if false %&gt;4444&lt;% end %&gt;567&quot;  # =&gt; &quot;123567&quot;</pre>
+
+<p># =====  &lt;%= Syntax: Output %&gt;  ===== # The second type of syntax is
+&lt;%= %&gt; tags. # They are like &lt;% %&gt; except that they will drop
+into the template, whatever they return</p>
+
+<pre>get_result &quot;123&lt;%= '4444' %&gt;567&quot;          # =&gt; &quot;1234444567&quot;
+get_result &quot;123&lt;%= 'erb'.upcase %&gt;567&quot;    # =&gt; &quot;123ERB567&quot;
+products = %w(shoes shirts pants)
+str =  &lt;&lt;TEMPLATE
+&lt;% products.each do |product| %&gt;
+Want to buy &lt;%= product.upcase %&gt;?
+&lt;% end %&gt;
+TEMPLATE
+get_result str # =&gt; &quot;Want to buy SHOES?\nWant to buy SHIRTS?\nWant to buy PANTS?\n&quot;</pre>
+
+<p># =====  It Can’t See My Variables  ===== # there are some weird binding
+situations that can occur when using ERB # If your binding is such that ERB
+can’t see your local variables, usually the # solution will be to make them
+instance variables.</p>
+
+<pre>str = '&lt;%if @num%&gt;My favourite number is &lt;%=@num%&gt;&lt;%else%&gt;I have no favourite number&lt;%end%&gt;'
+get_result str # =&gt; &quot;I have no favourite number&quot;
+@num = 12
+get_result str # =&gt; &quot;My favourite number is 12&quot;</pre>
+
+<p># =====  What About The Arguments?  ===== # generally, whatever framework
+you’re using ERB with will take care of them. # but if you want to know
+more… read the docs ^_^</p>
+
+    </div>
   
 
 

@@ -1,12 +1,14 @@
 =begin rdoc
 
-=== Giving a string and a boolean to the method,
-=== if the boolean is true, it returns a new string containing all the odd characters,
-=== and if the boolean is false it returns a new string containing all the even characters.
+<b>Giving a string and a boolean to the method,
+if the boolean is true, it returns a new string containing all the odd characters,
+and if the boolean is false it returns a new string containing all the even characters.</b>
  
-=== If you have no idea where to begin, remember to check out the cheatsheets for string and logic/control.
+<b>If you have no idea where to begin, remember to check out the cheatsheets for string and logic/control.</b>
 
-==== The tests run: 
+ rake 1:6
+
+==== The examples run: 
  odds_and_evens( "abcdefg", true )    # => "bdf"
  odds_and_evens( "abcdefg", false )   # => "aceg"
 

@@ -1,12 +1,12 @@
 =begin rdoc
 
-=== Fill out the method below, then run the tests with
-   $ rake 1:2
+=== Fill out the method below, then run the tests with:
 
+ rake 1:2
 
 === Given two numbers, a and b, return half of whichever is smallest, as a float.
 
-==== The tests run:
+==== The examples run:
  arithmetic2( 1, 2 )    # => 0.5
  arithmetic2( 9, 10 )   # => 5.0
  arithmetic2( -6, -7 )  # => -3.5

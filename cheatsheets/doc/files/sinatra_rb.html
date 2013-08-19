@@ -23,12 +23,232 @@
         </h1>
         <ul class="files">
             <li>sinatra.rb</li>
-            <li>Last modified: 2013-08-16 22:27:53 -0500</li>
+            <li>Last modified: 2013-08-18 19:58:00 -0500</li>
         </ul>
     </div>
 
     <div id="bodyContent">
         <div id="content">
+  
+    <div class="description">
+      
+<p># a good book <a
+href="http://sinatra-book.gittr.com/">sinatra-book.gittr.com/</a>      
+(note that most of it appears to be good, but some of it appears to be
+outdated) # docs <a
+href="http://railsapi.com/doc/sinatra-v1.1.2/">railsapi.com/doc/sinatra-v1.1.2/</a>
+(I really like example based docs like this one – almost feels like another
+cheetsheat)</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'rubygems'</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">'sinatra/base'</span>
+<span class="ruby-identifier">extend</span> <span class="ruby-constant">Sinatra</span><span class="ruby-operator">::</span><span class="ruby-constant">Delegator</span>
+</pre>
+
+<p># =====  To Create a Sinatra App  ===== # Make a simple text file that ends
+with .rb # Require rubygems and sinatra # Define your http methods, their
+routes and responses # Run it like any Ruby file (if shotgun works on your
+computer, try with that)</p>
+
+<p># =====  HTTP Methods  ===== # get , post , put , delete # To define one,
+simply type which one it is (correlates to a method invocation) # Then pass
+it the route you wish to match, and the block that defines the code to
+execute when that route is matched</p>
+
+<p># Now when someone makes a get request to ‘yourapp.com/home’ it will return
+‘hello world’</p>
+
+<pre>get '/home' do
+ 'hello world!'
+end</pre>
+
+<p># =====  Routes  ===== # Routes are compiled into regular expressions. #
+You can place named variables in the route by listing them like symbols #
+‘/hello/:name’ will take the name out of the url and make it available in
+the params hash # Routes are relative to the path your app is mounted on
+(probably the root of your application, ie localhost)</p>
+
+<p># what do the routes look like when they get compiled?</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">Sinatra</span>
+ <span class="ruby-keyword">class</span> <span class="ruby-constant">Base</span>
+   <span class="ruby-comment"># Pure routes</span>
+   <span class="ruby-identifier">compile</span> <span class="ruby-string">'/'</span>                               <span class="ruby-comment"># =&gt; [/^\/$/, []]</span>
+   <span class="ruby-identifier">compile</span> <span class="ruby-string">'/actors/brad-pitt'</span>               <span class="ruby-comment"># =&gt; [/^\/actors\/brad(?:\-|%2D)pitt$/, []]</span>
+
+   <span class="ruby-comment"># Routes with variables - notice it replaces the variable name with a capture group, </span>
+   <span class="ruby-comment"># And it keeps track of the variable name for assigning the match in the params hash</span>
+   <span class="ruby-identifier">compile</span> <span class="ruby-string">'/actors/:firstname-:lastname'</span>    <span class="ruby-comment"># =&gt; [/^\/actors\/([^\/?#]+)(?:\-|%2D)([^\/?#]+)$/, [&quot;firstname&quot;, &quot;lastname&quot;]]</span>
+   <span class="ruby-identifier">compile</span> <span class="ruby-string">'/it/is/:time/in/:location'</span>       <span class="ruby-comment"># =&gt; [/^\/it\/is\/([^\/?#]+)\/in\/([^\/?#]+)$/, [&quot;time&quot;, &quot;location&quot;]]</span>
+
+   <span class="ruby-comment"># The splat will greedily eat up as much as it can, and get placed in the params hash under the name 'splat'</span>
+   <span class="ruby-identifier">compile</span> <span class="ruby-string">'/the-path-is/*'</span>                  <span class="ruby-comment"># =&gt; [/^\/the(?:\-|%2D)path(?:\-|%2D)is\/(.*?)$/, [&quot;splat&quot;]]</span>
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p># If you want, you can even create your own regexes for the routes # Then,
+instead of naming them after the symbol given in the route, it will be
+passed into the block</p>
+
+<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-regexp">%r{/hello/([\w]+)}</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">firstname</span><span class="ruby-operator">|</span>
+ <span class="ruby-node">&quot;Hello, #{firstname}!&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p># =====  The Params Hash  ===== # You can access the params hash by simply
+calling the params method, which returns the hash. # The hash is populated
+with the parameters passed to your program # They may come from matching
+the route you gave # They may be passed at the end of a route # They may be
+submitted with form data</p>
+
+<pre>actor_acknowledgment = lambda do 
+ firstname  =  params[:firstname].capitalize
+ lastname   =  params[:lastname].capitalize
+ &quot;You are looking for information about #{firstname} #{lastname}!&quot;
+end</pre>
+
+<p># Each of the following url and method pairs will return “You are looking
+for information about Brad Pitt” # When you go to them in your browser (the
+last one is done with curl – sry Windows guys, didn’t know how else to show
+it)</p>
+
+<p># <a
+href="http://localhost:4567/actors?lastname=pitt&firstname=brad">localhost:4567/actors?lastname=pitt&firstname=brad</a>
+# <a
+href="http://localhost:4567/actors?firstname=brad&lastname=pitt">localhost:4567/actors?firstname=brad&lastname=pitt</a></p>
+
+<pre>get '/actors' , &amp;actor_acknowledgment</pre>
+
+<p># <a
+href="http://localhost:4567/actors/brad-pitt">localhost:4567/actors/brad-pitt</a>
+# (probably not a great choice since real people can have hyphens in their
+name :P)</p>
+
+<pre>get '/actors/:firstname-:lastname' , &amp;actor_acknowledgment</pre>
+
+<p># <a
+href="http://localhost:4567/actors/brad/pitt">localhost:4567/actors/brad/pitt</a></p>
+
+<pre>get '/actors/:firstname/:lastname' , &amp;actor_acknowledgment</pre>
+
+<p># curl -d ‘firstname=brad&amp;lastname=pitt’ <a
+href="http://localhost:4567/actors">localhost:4567/actors</a> # Notice in
+this case, that firstname and lastname will be passed invisibly ;)</p>
+
+<pre>post '/actors' , &amp;actor_acknowledgment</pre>
+
+<p># =====  The Block  ===== # When defining how to respond to a request, you
+submit the http method, the route, and the block # The block is what will
+be executed when the given http method  # Your params hash will be set and
+available, and any parameters that were captured will be in there #
+Whatever your block returns is what will be displayed to the user</p>
+
+<p># —–  Redirect  —– # You can send an HTTP redirect with the redirect method</p>
+
+<pre>get '/invalid' do
+ redirect '/valid'
+end
+
+get '/ruby' do
+ redirect 'http://www.ruby-lang.org/'
+end</pre>
+
+<p># —–  Cookie Sessions  —– # Sessions are a way that you can remember a user
+between HTTP requests (remember, HTTP is inherently stateless) # The
+easiest way is to use cookies. Cookies are very small (&lt;4kb) text files
+that sit on the client’s computer # Also because they are stored on the
+client’s computer, they can be edited by the client, so be careful what you
+put in there</p>
+
+<p># To use cookies for sessions, you need to specify so outside the block (ie
+at the top of your file)</p>
+
+<pre>set :sessions, true</pre>
+
+<p># Sessions are implemented with a simple hash</p>
+
+<pre>get '/' do
+ session[&quot;thing&quot;] ||= 0
+ session[&quot;thing&quot;] += 1
+ &quot;Thing is now: #{session[&quot;thing&quot;]}&quot;
+end</pre>
+
+<p># =====  Before Filters  ===== # Remember challenge 5:2 where my boss was
+using before filters to set @body_class? Sinatra has something similar.  #
+You can specify a block of code to be run before each request. Instance
+variables are visible, and it can modify the environment</p>
+
+<p># for example, with the given get request, if we went to ‘/rock’ in our
+browser, it would work. But if we went to ‘/rock/’ it would not # because
+it would no longer match the regular expression generated by the path # but
+we could make a before filter that modifies the path to always remove any
+trailing slashes</p>
+
+<pre>before { request.path_info.gsub! /\/$/ , '' } # !&gt; ambiguous first argument; put parentheses or even spaces
+get( '/rock' ){ 'roll' }</pre>
+
+<p># =====  Views  ===== # As your Sinatra applications become more complex,
+creating Strings in your blocks will become britle, obtrusive # You can add
+views to a data section within the same file (you’ll have to look that up
+on your own if you want to try it) # You can also place them into their own
+files in a subdirectory called ‘views’ # then if you want to call it from
+your sinatra block, you just call the method named after the templating
+language, # and pass in the name of your template</p>
+
+<pre>get '/' do
+ @people = %w(bill barry sally sue jerry quinn)
+ erb :roster # I return a String, so still need last line
+end</pre>
+
+<p># —–  File: views/roster.erb  —– # &lt;h3&gt;Roster:&lt;/h3&gt; #
+&lt;ul&gt; #   &lt;% @people.each do |person| %&gt; #     &lt;li&gt; #     
+&lt;%= person %&gt; #     &lt;/li&gt; #   &lt;% end %&gt; # &lt;ul&gt;</p>
+
+<p># =====  Use A Layout  ===== # Want to give your code a layout that each
+result is dropped into? # Just create a file views/layout.erb # Sinatra
+will know to use erb to render it b/c of your extension # Like with blocks,
+call yield when you want the content to be included</p>
+
+<p># —–  File: views/layout.erb  —– # &lt;!DOCTYPE html PUBLIC “-//W3C//DTD
+XHTML 1.0 Transitional//EN” “<a
+href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a>”&gt;
+# &lt;html lang=‘en’ xml:lang=‘en’ xmlns=‘<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>’&gt; #  
+&lt;head&gt; #     &lt;title&gt;My Awesome App!&lt;/title&gt; #    
+&lt;meta content=‘text/html;charset=utf-8’ http-equiv=‘Content-Type’ /&gt;
+#   &lt;/head&gt; #   &lt;body&gt; #     &lt;%= yield %&gt; #  
+&lt;/body&gt; # &lt;/html&gt;</p>
+
+<p># what if you don’t want to use the layout?</p>
+
+<pre class="ruby"><span class="ruby-identifier">get</span> <span class="ruby-string">'/roster'</span> <span class="ruby-keyword">do</span>
+ <span class="ruby-ivar">@roster</span> = <span class="ruby-node">%w(amy bill george sally)</span>
+ <span class="ruby-identifier">erb</span> :<span class="ruby-identifier">roster</span> , :<span class="ruby-identifier">layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p># =====  Other Fun Stuff  =====</p>
+
+<p># Respond to routes that don’t exist</p>
+
+<pre>not_found do
+ 'This is nowhere to be found'
+end</pre>
+
+<p># configure is a block run once at startup</p>
+
+<pre>configure do
+ # typically config info goes here, like how to find your database
+end</pre>
+
+<p># you can also configure based on environment</p>
+
+<pre>configure :development  do end
+configure :production   do end
+configure :test         do end</pre>
+
+    </div>
   
 
 

@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Object</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Object 
+            
+                <span class="parent">&lt; 
+                    
+                    BasicObject
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/challenge/1_arithmetic_rb.html">challenge/1_arithmetic.rb</a></li>
+            
+            <li><a href="../files/challenge/2_arithmetic_rb.html">challenge/2_arithmetic.rb</a></li>
+            
+            <li><a href="../files/challenge/3_simple_logic_rb.html">challenge/3_simple_logic.rb</a></li>
+            
+            <li><a href="../files/challenge/4_logic_rb.html">challenge/4_logic.rb</a></li>
+            
+            <li><a href="../files/challenge/5_string_rb.html">challenge/5_string.rb</a></li>
+            
+            <li><a href="../files/challenge/6_string_rb.html">challenge/6_string.rb</a></li>
+            
+            <li><a href="../files/challenge/7_string_rb.html">challenge/7_string.rb</a></li>
+            
+            <li><a href="../files/examples/4_rememberer2_rb.html">examples/4_rememberer2.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-add_more_ruby">add_more_ruby</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-arithmetic1">arithmetic1</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-arithmetic2">arithmetic2</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-finished-3F">finished?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-get_line">get_line</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-grade">grade</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-odds_and_evens">odds_and_evens</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-pirates_say_arrrrrrrrr">pirates_say_arrrrrrrrr</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-record_observation">record_observation</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ten_twenty">ten_twenty</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-user_message">user_message</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add_more_ruby">
+            
+              <b>add_more_ruby</b>( string )
+            
+            <a href="../classes/Object.html#method-i-add_more_ruby" name="method-i-add_more_ruby" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-add_more_ruby-label-Given+a+string%2C+replace+every+instance+of+sad+with+happy.">Given a string, replace every instance of sad with happy.</h3>
+
+<pre>rake 1:5</pre>
+
+<h4 id="method-i-add_more_ruby-label-The+examples+run%3A">The examples run:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">add_more_ruby</span>( <span class="ruby-string">&quot;The clowns were sad.&quot;</span> )           <span class="ruby-comment"># =&gt; &quot;The clowns were happy.&quot;</span>
+<span class="ruby-identifier">add_more_ruby</span>( <span class="ruby-string">&quot;The sad dad said sad stuff.&quot;</span> )    <span class="ruby-comment"># =&gt; &quot;The happy dad said happy stuff.&quot;</span>
+<span class="ruby-identifier">add_more_ruby</span>( <span class="ruby-string">&quot;Sad times are ahead!&quot;</span> )           <span class="ruby-comment"># =&gt; &quot;Happy times are ahead!&quot;</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_more_ruby</span>( <span class="ruby-identifier">string</span> )
+  <span class="ruby-constant">Your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">here</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-add_more_ruby_source')" id="l_method-i-add_more_ruby_source">show</a>
+                
+              </p>
+              <div id="method-i-add_more_ruby_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/5_string.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">add_more_ruby</span>( <span class="ruby-identifier">string</span> )
+   
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-arithmetic1">
+            
+              <b>arithmetic1</b>( n )
+            
+            <a href="../classes/Object.html#method-i-arithmetic1" name="method-i-arithmetic1" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-arithmetic1-label-Fill+out+the+method+below+then+test+to+see+if+you+did+them+correctly+with">Fill out the method below then test to see if you did them correctly with</h3>
+
+<pre>rake 1:1</pre>
+
+<h3 id="method-i-arithmetic1-label-Your+task+is+to+finish+the+method+so+that+it+returns+a+number+20+less+than+that+number+multiplied+by+5.">Your task is to finish the method so that it returns a number 20 less than that number multiplied by 5.</h3>
+
+<h4 id="method-i-arithmetic1-label-The+examples+run%3A">The examples run:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">arithmetic1</span>( <span class="ruby-value">10</span> )     <span class="ruby-comment"># =&gt; 30</span>
+<span class="ruby-identifier">arithmeitc1</span>( <span class="ruby-value">10.5</span> )   <span class="ruby-comment"># =&gt; 32.5</span>
+<span class="ruby-identifier">arithmeitc1</span>( <span class="ruby-value">-6</span> )     <span class="ruby-comment"># =&gt; -50</span>
+<span class="ruby-identifier">arithmetic1</span>( <span class="ruby-value">100</span> )    <span class="ruby-comment"># =&gt; 480</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">arithmetic1</span>( <span class="ruby-identifier">n</span> )  
+   <span class="ruby-constant">Your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">goes</span> <span class="ruby-identifier">here</span>.
+<span class="ruby-identifier">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-arithmetic1_source')" id="l_method-i-arithmetic1_source">show</a>
+                
+              </p>
+              <div id="method-i-arithmetic1_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/1_arithmetic.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">arithmetic1</span>( <span class="ruby-identifier">n</span> )
+  <span class="ruby-identifier">n</span> * <span class="ruby-number">5</span> <span class="ruby-operator">-</span> <span class="ruby-number">20</span>  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-arithmetic2">
+            
+              <b>arithmetic2</b>( a, b )
+            
+            <a href="../classes/Object.html#method-i-arithmetic2" name="method-i-arithmetic2" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-arithmetic2-label-Fill+out+the+method+below%2C+then+run+the+tests+with%3A">Fill out the method below, then run the tests with:</h3>
+
+<pre>rake 1:2</pre>
+
+<h3 id="method-i-arithmetic2-label-Given+two+numbers%2C+a+and+b%2C+return+half+of+whichever+is+smallest%2C+as+a+float.">Given two numbers, a and b, return half of whichever is smallest, as a float.</h3>
+
+<h4 id="method-i-arithmetic2-label-The+examples+run%3A">The examples run:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">arithmetic2</span>( <span class="ruby-value">1</span>, <span class="ruby-value">2</span> )    <span class="ruby-comment"># =&gt; 0.5</span>
+<span class="ruby-identifier">arithmetic2</span>( <span class="ruby-value">9</span>, <span class="ruby-value">10</span> )   <span class="ruby-comment"># =&gt; 5.0</span>
+<span class="ruby-identifier">arithmetic2</span>( <span class="ruby-value">-6</span>, <span class="ruby-value">-7</span> )  <span class="ruby-comment"># =&gt; -3.5</span>
+[  <span class="ruby-value">-7</span> ,  <span class="ruby-value">-6</span> , <span class="ruby-value">-3.5</span> ,
+    <span class="ruby-value">1</span>  ,  <span class="ruby-value">-1</span> , <span class="ruby-value">-0.5</span> ,  
+   <span class="ruby-value">-1</span>  ,   <span class="ruby-value">1</span> , <span class="ruby-value">-0.5</span> ,   
+   <span class="ruby-value">-1</span>  ,  <span class="ruby-value">-1</span> , <span class="ruby-value">-0.5</span> ,  
+    <span class="ruby-value">0</span>  ,   <span class="ruby-value">0</span> ,    <span class="ruby-value">0</span> ,      
+    <span class="ruby-value">0</span>  , <span class="ruby-value">100</span> ,    <span class="ruby-value">0</span> ].<span class="ruby-identifier">each_slice</span> <span class="ruby-value">3</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-identifier">result</span> <span class="ruby-operator">|</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">arithmetic2</span>( <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> )
+ <span class="ruby-constant">Your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">goed</span> <span class="ruby-identifier">here</span>.
+<span class="ruby-identifier">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-arithmetic2_source')" id="l_method-i-arithmetic2_source">show</a>
+                
+              </p>
+              <div id="method-i-arithmetic2_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/2_arithmetic.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">arithmetic2</span>( <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> )
+  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-finished-3F">
+            
+              <b>finished?</b>( line )
+            
+            <a href="../classes/Object.html#method-i-finished-3F" name="method-i-finished-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-finished-3F_source')" id="l_method-i-finished-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-finished-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File examples/4_rememberer2.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">finished?</span>( <span class="ruby-identifier">line</span> )
+  <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;exit&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-get_line">
+            
+              <b>get_line</b>()
+            
+            <a href="../classes/Object.html#method-i-get_line" name="method-i-get_line" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-get_line-label-Did+you+understand+the+last+one%3F">Did you understand the last one?</h3>
+
+<p><strong>This is the same one, but we abstracted the tasks into methods that
+are easier to test, and can be reused easily. They also let us talk about a
+task based on the method name, which is much simpler than the piece of code
+behind it.</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">get_line</span>
+ <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">finished?</span>( <span class="ruby-identifier">line</span> )
+ <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;exit&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_message</span>( <span class="ruby-identifier">lines_seen</span>, <span class="ruby-identifier">line</span> )
+ <span class="ruby-keyword">if</span> <span class="ruby-identifier">lines_seen</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">line</span>
+   <span class="ruby-node">&quot;Yes, I've seen #{line} before&quot;</span>
+ <span class="ruby-keyword">else</span>
+   <span class="ruby-node">&quot;No, I haven't seen #{line} before&quot;</span>
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">record_observation</span>( <span class="ruby-identifier">lines_seen</span>, <span class="ruby-identifier">line</span> )
+ <span class="ruby-keyword">unless</span> <span class="ruby-identifier">lines_seen</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">line</span>
+   <span class="ruby-identifier">lines_seen</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">lines_seen</span> = [ ]
+
+<span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+ <span class="ruby-identifier">line</span> = <span class="ruby-identifier">get_line</span>
+ <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">finished?</span>( <span class="ruby-identifier">line</span> )
+ <span class="ruby-identifier">puts</span> <span class="ruby-identifier">user_message</span>( <span class="ruby-identifier">lines_seen</span>, <span class="ruby-identifier">line</span> )
+ <span class="ruby-identifier">record_observation</span>( <span class="ruby-identifier">lines_seen</span>, <span class="ruby-identifier">line</span> )
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-get_line_source')" id="l_method-i-get_line_source">show</a>
+                
+              </p>
+              <div id="method-i-get_line_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File examples/4_rememberer2.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">get_line</span>
+  <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-grade">
+            
+              <b>grade</b>( num_books, reads_books )
+            
+            <a href="../classes/Object.html#method-i-grade" name="method-i-grade" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><strong>  A grad student at a local university thinks he has discovered a
+formula to predict what kind of grades a person will get. He says if you
+own less than  10 books, you will get a “D”. If you own 10 to 20 books, you
+will get a “C”,  and if you own more than 20 books, you will get a “B”. He
+further hypothesizes that if you actually read your books, then you will
+get a full letter grade higher in every case.</strong></p>
+
+<pre>rake 1:4</pre>
+
+<h4 id="method-i-grade-label-The+examples+run%3A">The examples run:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">grade</span>( <span class="ruby-value">4</span>,  <span class="ruby-keyword">false</span> )  <span class="ruby-comment"># =&gt; &quot;D&quot;</span>
+<span class="ruby-identifier">grade</span>( <span class="ruby-value">4</span>,  <span class="ruby-keyword">true</span> )   <span class="ruby-comment"># =&gt; &quot;C&quot;</span>
+<span class="ruby-identifier">grade</span>( <span class="ruby-value">15</span>, <span class="ruby-keyword">true</span> )   <span class="ruby-comment"># =&gt; &quot;B&quot;</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">grade</span>( <span class="ruby-identifier">num_books</span>, <span class="ruby-identifier">reads_books</span> )
+   <span class="ruby-constant">Your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">goes</span> <span class="ruby-identifier">here</span>.
+<span class="ruby-identifier">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-grade_source')" id="l_method-i-grade_source">show</a>
+                
+              </p>
+              <div id="method-i-grade_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/4_logic.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">grade</span>( <span class="ruby-identifier">num_books</span>,  <span class="ruby-identifier">reads_books</span> )
+    
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-odds_and_evens">
+            
+              <b>odds_and_evens</b>( string, return_odds )
+            
+            <a href="../classes/Object.html#method-i-odds_and_evens" name="method-i-odds_and_evens" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p><strong>Giving a string and a boolean to the method, if the boolean is
+true, it returns a new string containing all the odd characters, and if the
+boolean is false it returns a new string containing all the even
+characters.</strong></p>
+
+<p><strong>If you have no idea where to begin, remember to check out the
+cheatsheets for string and logic/control.</strong></p>
+
+<pre>rake 1:6</pre>
+
+<h4 id="method-i-odds_and_evens-label-The+examples+run%3A+">The examples run: </h4>
+
+<pre class="ruby"><span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;abcdefg&quot;</span>, <span class="ruby-keyword">true</span> )    <span class="ruby-comment"># =&gt; &quot;bdf&quot;</span>
+<span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-string">&quot;abcdefg&quot;</span>, <span class="ruby-keyword">false</span> )   <span class="ruby-comment"># =&gt; &quot;aceg&quot;</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">odds_and_evens</span>( <span class="ruby-identifier">string</span>, <span class="ruby-identifier">return_odds</span> )
+  <span class="ruby-constant">Your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">goes</span> <span class="ruby-identifier">here</span>.
+<span class="ruby-identifier">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-odds_and_evens_source')" id="l_method-i-odds_and_evens_source">show</a>
+                
+              </p>
+              <div id="method-i-odds_and_evens_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/6_string.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">odds_and_evens</span>( <span class="ruby-identifier">string</span>,  <span class="ruby-identifier">return_odds</span> )
+
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-pirates_say_arrrrrrrrr">
+            
+              <b>pirates_say_arrrrrrrrr</b>( string )
+            
+            <a href="../classes/Object.html#method-i-pirates_say_arrrrrrrrr" name="method-i-pirates_say_arrrrrrrrr" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h4 id="method-i-pirates_say_arrrrrrrrr-label-Given+a+string%2C+return+the+character+after+every+letter+%22r%22.">Given a string, return the character after every letter “r”.</h4>
+
+<pre>rake 1:7</pre>
+
+<h4 id="method-i-pirates_say_arrrrrrrrr-label-The+examples+run%3A">The examples run:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">pirates_say_arrrrrrrrr</span>( <span class="ruby-string">&quot;are you really learning Ruby?&quot;</span> ) <span class="ruby-comment"># =&gt; &quot;eenu&quot;</span>
+<span class="ruby-identifier">pirates_say_arrrrrrrrr</span>( <span class="ruby-string">&quot;Katy Perry is on the radio!&quot;</span> )   <span class="ruby-comment"># =&gt; &quot;rya&quot;</span>
+<span class="ruby-identifier">pirates_say_arrrrrrrrr</span>( <span class="ruby-string">&quot;Pirates say arrrrrrrrr&quot;</span> )        <span class="ruby-comment"># =&gt; &quot;arrrrrrrr&quot;</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pirates_say_arrrrrrrrr</span>( <span class="ruby-identifier">string</span> )
+  <span class="ruby-constant">Your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">goes</span> <span class="ruby-identifier">here</span>.
+<span class="ruby-identifier">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-pirates_say_arrrrrrrrr_source')" id="l_method-i-pirates_say_arrrrrrrrr_source">show</a>
+                
+              </p>
+              <div id="method-i-pirates_say_arrrrrrrrr_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/7_string.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">pirates_say_arrrrrrrrr</span>( <span class="ruby-identifier">string</span> )
+   
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-record_observation">
+            
+              <b>record_observation</b>( lines_seen, line )
+            
+            <a href="../classes/Object.html#method-i-record_observation" name="method-i-record_observation" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-record_observation_source')" id="l_method-i-record_observation_source">show</a>
+                
+              </p>
+              <div id="method-i-record_observation_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File examples/4_rememberer2.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">record_observation</span>( <span class="ruby-identifier">lines_seen</span>, <span class="ruby-identifier">line</span> )
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">lines_seen</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">lines_seen</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ten_twenty">
+            
+              <b>ten_twenty</b>( n )
+            
+            <a href="../classes/Object.html#method-i-ten_twenty" name="method-i-ten_twenty" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <h3 id="method-i-ten_twenty-label-Remember%2C+you+can+test+this+file+with">Remember, you can test this file with</h3>
+
+<pre>rake 1:3</pre>
+
+<h3 id="method-i-ten_twenty-label-Given+a+number%2C+n%2C+return+10+if+it+is+even%2C+and+20+if+it+is+odd.">Given a number, n, return 10 if it is even, and 20 if it is odd.</h3>
+
+<h4 id="method-i-ten_twenty-label-The+examples+run%3A">The examples run:</h4>
+
+<pre class="ruby"><span class="ruby-identifier">ten_twenty</span>( <span class="ruby-value">5</span> ) <span class="ruby-comment"># =&gt; 20</span>
+<span class="ruby-identifier">ten_twenty</span>( <span class="ruby-value">6</span> ) <span class="ruby-comment"># =&gt; 10</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ten_twenty</span>( <span class="ruby-identifier">n</span> )
+ <span class="ruby-identifier">your</span> <span class="ruby-identifier">code</span> <span class="ruby-identifier">goes</span> <span class="ruby-identifier">here</span>
+<span class="ruby-keyword">end</span>
+</pre>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-ten_twenty_source')" id="l_method-i-ten_twenty_source">show</a>
+                
+              </p>
+              <div id="method-i-ten_twenty_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File challenge/3_simple_logic.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ten_twenty</span>( <span class="ruby-identifier">n</span> )
+  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-user_message">
+            
+              <b>user_message</b>( lines_seen, line )
+            
+            <a href="../classes/Object.html#method-i-user_message" name="method-i-user_message" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-user_message_source')" id="l_method-i-user_message_source">show</a>
+                
+              </p>
+              <div id="method-i-user_message_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File examples/4_rememberer2.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">user_message</span>( <span class="ruby-identifier">lines_seen</span>, <span class="ruby-identifier">line</span> )
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">lines_seen</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-node">&quot;Yes, I've seen #{line} before&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-node">&quot;No, I haven't seen #{line} before&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

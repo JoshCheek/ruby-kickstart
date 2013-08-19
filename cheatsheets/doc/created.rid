@@ -1,12 +1,11 @@
-Sat, 17 Aug 2013 10:10:24 -0500
-./arrays.rb	Sat, 17 Aug 2013 10:10:05 -0500
-./erb-embedded_ruby.rb	Fri, 16 Aug 2013 22:26:55 -0500
-./general.rb	Fri, 16 Aug 2013 22:27:05 -0500
+Sun, 18 Aug 2013 20:00:45 -0500
+./arrays.rb	Sat, 17 Aug 2013 22:14:21 -0500
+./erb-embedded_ruby.rb	Sun, 18 Aug 2013 19:52:21 -0500
 ./general.txt	Fri, 16 Aug 2013 22:18:32 -0500
-./hashes.rb	Fri, 16 Aug 2013 22:27:15 -0500
-./logic_and_control.rb	Fri, 16 Aug 2013 22:27:26 -0500
-./reflection_introspection.rb	Fri, 16 Aug 2013 22:27:34 -0500
-./regular_expressions.rb	Fri, 16 Aug 2013 22:20:22 -0500
-./rubygems.rb	Fri, 16 Aug 2013 22:27:44 -0500
-./sinatra.rb	Fri, 16 Aug 2013 22:27:53 -0500
-./strings.rb	Fri, 16 Aug 2013 22:26:32 -0500
+./hashes.rb	Sat, 17 Aug 2013 23:19:39 -0500
+./logic_and_control.rb	Sun, 18 Aug 2013 19:51:37 -0500
+./reflection_introspection.rb	Sun, 18 Aug 2013 19:53:26 -0500
+./regular_expressions.rb	Sun, 18 Aug 2013 19:55:58 -0500
+./rubygems.rb	Sun, 18 Aug 2013 19:56:28 -0500
+./sinatra.rb	Sun, 18 Aug 2013 19:58:00 -0500
+./strings.rb	Sat, 17 Aug 2013 22:50:03 -0500

@@ -23,12 +23,105 @@
         </h1>
         <ul class="files">
             <li>strings.rb</li>
-            <li>Last modified: 2013-08-16 22:26:32 -0500</li>
+            <li>Last modified: 2013-08-17 22:50:03 -0500</li>
         </ul>
     </div>
 
     <div id="bodyContent">
         <div id="content">
+  
+    <div class="description">
+      
+<h2 id="label-Strings">Strings</h2>
+
+<h3 id="label-This+should+get+you+started.+">This should get you started. </h3>
+
+<h3 id="label-But+to+see+all+the+cool+things+you+can+do%2C+check+out+the+documentation.">But to see all the cool things you can do, check out the documentation.</h3>
+
+<h3 id="label-http%3A%2F%2Fruby-doc.org%2Fcore%2Fclasses%2FString.html"><a href="http://ruby-doc.org/core/classes/String.html">ruby-doc.org/core/classes/String.html</a></h3>
+
+<h3 id="label-Make+a+new+string%3A">Make a new string:</h3>
+
+<pre class="ruby"><span class="ruby-node">&quot;Can interpolate #{ 1 + 1 }&quot;</span>      <span class="ruby-comment"># =&gt; &quot;Can interpolate 2&quot;</span>
+<span class="ruby-string">'Cannot interpolate #{ 1 + 1 }'</span>   <span class="ruby-comment"># =&gt; &quot;Cannot interpolate \#{ 1 + 1 }&quot;</span>
+
+<span class="ruby-identifier">string</span> = <span class="ruby-string">&quot; This is a here document, I can interpolate #{ 1 }
+ It will continue until it finds, the line END_OF_DOC by itself.
+ Notice I can continue doing things on the line the here document is defined in.
+ here I called String#upcase on it.
+&quot;</span>.<span class="ruby-identifier">upcase</span>
+
+<span class="ruby-identifier">string</span>  <span class="ruby-comment"># =&gt; </span>
+<span class="ruby-node">&quot; THIS IS A HERE DOCUMENT, I CAN INTERPOLATE 1
+IT WILL CONTINUE UNTIL IT FINDS, THE LINE END_OF_DOC BY ITSELF.
+NOTICE I CAN CONTINUE DOING THINGS ON THE LINE THE HERE DOCUMENT IS DEFINED IN.
+HERE I CALLED STRING#UPCASE ON IT.
+&quot;</span>
+</pre>
+
+<h3 id="label-Useful+methods%3A">Useful methods:</h3>
+
+<pre class="ruby"><span class="ruby-string">'abc'</span>.<span class="ruby-identifier">length</span>        <span class="ruby-comment"># =&gt; 3</span>
+<span class="ruby-string">'abc'</span> <span class="ruby-operator">==</span> <span class="ruby-string">'abc'</span>      <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-string">'abc'</span> <span class="ruby-operator">==</span> <span class="ruby-string">'def'</span>      <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-string">'AbCd'</span>.<span class="ruby-identifier">downcase</span>     <span class="ruby-comment"># =&gt; &quot;abcd&quot;</span>
+<span class="ruby-string">'AbCd'</span>.<span class="ruby-identifier">upcase</span>       <span class="ruby-comment"># =&gt; &quot;ABCD&quot;</span>
+<span class="ruby-string">&quot; abc   &quot;</span>.<span class="ruby-identifier">strip</span>     <span class="ruby-comment"># =&gt; &quot;abc&quot;</span>
+</pre>
+
+<h3 id="label-concatenation%3A">concatenation:</h3>
+
+<pre class="ruby"><span class="ruby-string">'hello'</span> <span class="ruby-operator">+</span> <span class="ruby-string">'world'</span>   <span class="ruby-comment"># =&gt; &quot;helloworld&quot;</span>
+<span class="ruby-string">'hello'</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'world'</span>  <span class="ruby-comment"># =&gt; &quot;helloworld&quot;</span>
+</pre>
+
+<h4 id="label-wait+O.o+why+two+methods+for+this%3F">wait O.o why two methods for this?</h4>
+
+<pre class="ruby"><span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;abc&quot;</span>
+<span class="ruby-identifier">s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;def&quot;</span>       <span class="ruby-comment"># =&gt; &quot;abcdef&quot;</span>
+<span class="ruby-identifier">s</span>               <span class="ruby-comment"># =&gt; &quot;abc&quot;</span>
+<span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;def&quot;</span>      <span class="ruby-comment"># =&gt; &quot;abcdef&quot;</span>
+<span class="ruby-identifier">s</span>               <span class="ruby-comment"># =&gt; &quot;abcdef&quot;</span>
+</pre>
+
+<h3 id="label-Access+parts+of+the+string%3A+%28-1+counts+backwards+from+the+end%29">Access parts of the string: (-1 counts backwards from the end)</h3>
+
+<pre class="ruby"><span class="ruby-string">&quot;abc&quot;</span>[ <span class="ruby-value">-1</span> ]           <span class="ruby-comment"># =&gt; &quot;c&quot;</span>
+<span class="ruby-string">&quot;abc&quot;</span>[ <span class="ruby-value">0</span> ]            <span class="ruby-comment"># =&gt; &quot;a&quot;</span>
+<span class="ruby-string">&quot;abc&quot;</span>[ <span class="ruby-value">1</span> ]            <span class="ruby-comment"># =&gt; &quot;b&quot;</span>
+<span class="ruby-string">&quot;abc&quot;</span>[ <span class="ruby-value">2</span> ]            <span class="ruby-comment"># =&gt; &quot;c&quot;</span>
+<span class="ruby-string">&quot;abc&quot;</span>[ <span class="ruby-value">3</span> ]            <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-string">&quot;abcdefg&quot;</span>[ <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">4</span> ]     <span class="ruby-comment"># =&gt; &quot;cde&quot;</span>
+<span class="ruby-string">&quot;abcdefg&quot;</span>[ <span class="ruby-value">4</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span> ]    <span class="ruby-comment"># =&gt; &quot;efg&quot;</span>
+</pre>
+
+<h3 id="label-Changing+parts+of+a+string%3A">Changing parts of a string:</h3>
+
+<pre class="ruby"><span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Josh said&quot;</span>
+<span class="ruby-identifier">message</span>[ <span class="ruby-string">&quot;Josh&quot;</span> ] = <span class="ruby-string">&quot;dom&quot;</span>
+<span class="ruby-identifier">message</span>             <span class="ruby-comment"># =&gt; &quot;dom said&quot;</span>
+<span class="ruby-identifier">message</span> <span class="ruby-operator">+=</span> <span class="ruby-string">' &quot;Howdy&quot;'</span>
+<span class="ruby-identifier">message</span>             <span class="ruby-comment"># =&gt; &quot;dom said \&quot;Howdy\&quot;&quot;</span>
+<span class="ruby-identifier">message</span>.<span class="ruby-identifier">capitalize</span>  <span class="ruby-comment"># =&gt; &quot;Dom said \&quot;howdy\&quot;&quot;</span>
+<span class="ruby-identifier">message</span>             <span class="ruby-comment"># =&gt; &quot;dom said \&quot;Howdy\&quot;&quot;</span>
+<span class="ruby-identifier">message</span>[ <span class="ruby-value">-2</span> ] = <span class="ruby-string">'e'</span>
+<span class="ruby-identifier">message</span>             <span class="ruby-comment"># =&gt; &quot;dom said \&quot;Howde\&quot;&quot;</span>
+<span class="ruby-identifier">message</span>[ <span class="ruby-value">-2</span> ] = <span class="ruby-string">'y!'</span>
+<span class="ruby-identifier">message</span>             <span class="ruby-comment"># =&gt; &quot;dom said \&quot;Howdy!\&quot;&quot;</span>
+</pre>
+
+<h3 id="label-Other+useful+methods%3A+%28+some+of+these+use+regular+expressions%2C+we%27ll+talk+about+them+more+later+%29">Other useful methods: ( some of these use regular expressions, we’ll talk about them more later )</h3>
+
+<pre class="ruby"><span class="ruby-string">&quot;abc&quot;</span> * <span class="ruby-value">3</span>                                       <span class="ruby-comment"># =&gt; &quot;abcabcabc&quot;</span>
+<span class="ruby-string">&quot; abc \n&quot;</span>.<span class="ruby-identifier">chomp</span>                                 <span class="ruby-comment"># =&gt; &quot; abc &quot;</span>
+<span class="ruby-string">'trite'</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-string">'t'</span>, <span class="ruby-string">'b'</span> )                        <span class="ruby-comment"># =&gt; &quot;bribe&quot;</span>
+<span class="ruby-string">&quot;Their IDs are 11, and 492&quot;</span>.<span class="ruby-identifier">scan</span>( <span class="ruby-regexp">/\d+/</span> )       <span class="ruby-comment"># =&gt; [ &quot;11&quot;, &quot;492&quot; ]</span>
+<span class="ruby-string">&quot;Jack and Jill ran up the hill&quot;</span>.<span class="ruby-identifier">split</span>           <span class="ruby-comment"># =&gt; [ &quot;Jack&quot;, &quot;and&quot;, &quot;Jill&quot;, &quot;ran&quot;, &quot;up&quot;, &quot;the&quot;, &quot;hill&quot; ]</span>
+<span class="ruby-string">&quot;/usr/bin:/opt/local:/Users/josh&quot;</span>.<span class="ruby-identifier">split</span>( <span class="ruby-string">':'</span> )  <span class="ruby-comment"># =&gt; [ &quot;/usr/bin&quot;, &quot;/opt/local&quot;, &quot;/Users/josh&quot; ]</span>
+<span class="ruby-string">&quot;abcdefg hi&quot;</span>.<span class="ruby-identifier">split</span>( <span class="ruby-regexp">//</span> )                        <span class="ruby-comment"># =&gt; [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot; &quot;, &quot;h&quot;, &quot;i&quot; ]</span>
+</pre>
+
+    </div>
   
 
 

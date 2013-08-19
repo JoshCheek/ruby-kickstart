@@ -1,12 +1,12 @@
 =begin rdoc
 
 === Remember, you can test this file with
-   $ rake 1:3
 
+ rake 1:3
 
 === Given a number, n, return 10 if it is even, and 20 if it is odd.
 
-==== The tests run:
+==== The examples run:
  ten_twenty( 5 ) # => 20
  ten_twenty( 6 ) # => 10
 

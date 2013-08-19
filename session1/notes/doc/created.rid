@@ -1,0 +1,25 @@
+Mon, 19 Aug 2013 13:09:07 -0500
+./01-intro.rb	Mon, 19 Aug 2013 12:50:45 -0500
+./02-conventions.rb	Mon, 19 Aug 2013 00:08:49 -0500
+./03-object-definition.rb	Mon, 19 Aug 2013 00:11:01 -0500
+./04-variables.rb	Mon, 19 Aug 2013 00:07:12 -0500
+./05-methods.rb	Mon, 19 Aug 2013 00:12:44 -0500
+./06-method-scope.rb	Mon, 19 Aug 2013 00:20:51 -0500
+./07-method-arguments.rb	Mon, 19 Aug 2013 09:50:43 -0500
+./08-operators.rb	Mon, 19 Aug 2013 10:18:09 -0500
+./09-numbers.rb	Mon, 19 Aug 2013 11:56:24 -0500
+./10-introducing-strings.rb	Mon, 19 Aug 2013 12:05:49 -0500
+./11-stdin-and-stdout.rb	Mon, 19 Aug 2013 12:03:51 -0500
+./12-puts.rb	Mon, 19 Aug 2013 12:07:25 -0500
+./13-single-vs-double-quotes.rb	Mon, 19 Aug 2013 12:11:15 -0500
+./14-operators-on-strings.rb	Mon, 19 Aug 2013 12:12:33 -0500
+./15-interpolation.rb	Mon, 19 Aug 2013 12:14:06 -0500
+./16-p.rb	Mon, 19 Aug 2013 12:56:13 -0500
+./17-naming-conventions.rb	Mon, 19 Aug 2013 12:57:34 -0500
+./18-keywords.rb	Mon, 19 Aug 2013 12:38:36 -0500
+./19-nil.rb	Mon, 19 Aug 2013 12:59:40 -0500
+./20-logic.rb	Mon, 19 Aug 2013 13:00:06 -0500
+./21-true-and-false.rb	Mon, 19 Aug 2013 12:40:37 -0500
+./22-if-else.rb	Mon, 19 Aug 2013 12:41:25 -0500
+./23-if-returns-a-value.rb	Mon, 19 Aug 2013 12:43:17 -0500
+./24-go-do-the-challenges.rb	Mon, 19 Aug 2013 13:09:01 -0500

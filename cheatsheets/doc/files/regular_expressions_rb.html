@@ -23,12 +23,298 @@
         </h1>
         <ul class="files">
             <li>regular_expressions.rb</li>
-            <li>Last modified: 2013-08-16 22:20:22 -0500</li>
+            <li>Last modified: 2013-08-18 19:55:58 -0500</li>
         </ul>
     </div>
 
     <div id="bodyContent">
         <div id="content">
+  
+    <div class="description">
+      
+<p># modified version of Ryan Davis’ cheatsheet at <a
+href="http://www.zenspider.com/Languages/Ruby/QuickRef.html#11">www.zenspider.com/Languages/Ruby/QuickRef.html#11</a></p>
+
+<p># =====  Quickreference  ===== # .             any character except newline
+# [ ]           any single character of set # [^ ]          any single
+character NOT of set # *             0 or more previous regular expression
+# *?            0 or more previous regular expression (non-greedy) # +     
+1 or more previous regular expression # +?            1 or more previous
+regular expression (non-greedy) # ?             0 or 1 previous regular
+expression # |             alternation # ( )           grouping regular
+expressions # ^             beginning of a line or string # $            
+end of a line or string # {m,n}         at least m but most n previous
+regular expression # {m,n}?        at least m but most n previous regular
+expression (non-greedy) # 1-9          nth previous captured group # &     
+whole match # `            pre-match # '            post-match # +         
+highest group matched # A            beginning of a string # b           
+backspace(0x08)(inside[]only) # b            word boundary(outside[]only) #
+B            non-word boundary # d            digit, same <a
+href="http://0-9">as</a> # D            non-digit # S           
+non-whitespace character # s            whitespace character[ tnrf] # W    
+non-word character # w            word <a
+href="http://0-9A-Za-z_">character</a> # z            end of a string # Z  
+end of a string, or before newline at the end # (?#)          comment #
+(?:)          grouping without backreferences # (?=)          zero-width
+positive look-ahead assertion # (?!)          zero-width negative
+look-ahead assertion # (?&gt;)          nested anchored sub-regexp. stops
+backtracking. # (?imx-imx)    turns on/off imx options for rest of regexp.
+# (?imx-imx:re) turns on/off imx options, localized in group.</p>
+
+<p># =====  Constructing  =====</p>
+
+<p># to create a regex, just surround it with slashes</p>
+
+<pre class="ruby"><span class="ruby-regexp">/regex/</span>       <span class="ruby-comment"># =&gt; /regex/</span>
+<span class="ruby-regexp">/regex/</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; Regexp</span>
+</pre>
+
+<p># if you have a bunch of / in your regex, you would have to escape them, so
+that they don’t look like the end of the regex # so you can also create a
+regex with %r followed by a delimiter (just like %w for Arrays of Strings)</p>
+
+<pre class="ruby"><span class="ruby-regexp">%r(regex)</span>     <span class="ruby-comment"># =&gt; /regex/</span>
+<span class="ruby-regexp">%r[regex]</span>     <span class="ruby-comment"># =&gt; /regex/</span>
+<span class="ruby-regexp">%r{regex}</span>     <span class="ruby-comment"># =&gt; /regex/</span>
+<span class="ruby-regexp">%r(/usr/bin)</span>  <span class="ruby-comment"># =&gt; /\/usr\/bin/</span>
+</pre>
+
+<p># you can also interpolate</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;ege&quot;</span>
+<span class="ruby-node">/r#{str}x/</span>    <span class="ruby-comment"># =&gt; /regex/</span>
+</pre>
+
+<p># =====  Ways to Use Regex (simple)  =====</p>
+
+<pre>str = &quot;This is a cheatsheet for regular expressions.&quot;</pre>
+
+<p># get the index of a match</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/h../</span> <span class="ruby-comment"># =&gt; 1</span>
+<span class="ruby-identifier">str</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/q../</span> <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<p># get the content of a match</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>[<span class="ruby-regexp">/h../</span>]  <span class="ruby-comment"># =&gt; &quot;his&quot;</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-regexp">/q../</span>]  <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<p># substitute the first match with sub, and every match with gsub (the g
+means to apply the regex “globally” to the String – g is a flag in some
+other languages)</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;bobbling babbling bubbles&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">sub</span>(  <span class="ruby-regexp">/b.b/</span> , <span class="ruby-string">&quot;--replacement--&quot;</span> )       <span class="ruby-comment"># =&gt; &quot;--replacement--bling babbling bubbles&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">/b.b/</span> , <span class="ruby-string">&quot;--replacement--&quot;</span> )       <span class="ruby-comment"># =&gt; &quot;--replacement--bling --replacement--bling --replacement--bles&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">/b.b/</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span> <span class="ruby-identifier">match</span>.<span class="ruby-identifier">upcase</span> }  <span class="ruby-comment"># =&gt; &quot;BOBbling BABbling BUBbles&quot;</span>
+</pre>
+
+<p># find all occurrences of a match</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b.b/</span>)   <span class="ruby-comment"># =&gt; [&quot;bob&quot;, &quot;bab&quot;, &quot;bub&quot;]</span>
+</pre>
+
+<p># use the match as a delimiter, and find everything inbetween</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/b.b/</span>)  <span class="ruby-comment"># =&gt; [&quot;&quot;, &quot;bling &quot;, &quot;bling &quot;, &quot;bles&quot;]</span>
+</pre>
+
+<p># These don’t directly work on Symbols, but if you invoke the grep method
+on an Array # it will convert them to Symbols before checking your regular
+expression # This will go through each element, and if the regex matches
+it, that element will be in the return array</p>
+
+<pre class="ruby"><span class="ruby-identifier">words</span> = <span class="ruby-node">%w(Oh, oh, oh, finding the answer. Oh, oh, oh, oh, oh. Finding that there ain't no answer to find.)</span>
+<span class="ruby-identifier">words</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/e/</span>) <span class="ruby-comment"># =&gt; [&quot;the&quot;, &quot;answer.&quot;, &quot;there&quot;, &quot;answer&quot;]</span>
+</pre>
+
+<p># =====  Flags  ===== # You can append a flag to the end of a regex to
+alter its behaviour # /i         case insensitive # /o         only
+interpolate #{} blocks once # /m         multiline mode - ‘.’ will match
+newline # /x         extended mode - whitespace is ignored # /[neus]   
+encoding: none, EUC, UTF-8, SJIS, respectively</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;BOBble bobble&quot;</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b.b/</span>)  <span class="ruby-comment"># =&gt; [&quot;bob&quot;]</span>
+<span class="ruby-string">&quot;BOBble bobble&quot;</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b.b/</span>) <span class="ruby-comment"># =&gt; [&quot;BOB&quot;, &quot;bob&quot;]</span>
+
+<span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;bobble\nbubble\nbabble&quot;</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-regexp">/e.b/</span>]  <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-regexp">/e.b/</span>] <span class="ruby-comment"># =&gt; &quot;e\nb&quot;</span>
+</pre>
+
+<p># =====  Matching Characters  ===== # Any character by itself will match
+that character</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;abc&quot;</span>[<span class="ruby-regexp">/a/</span>]  <span class="ruby-comment"># =&gt; &quot;a&quot;</span>
+<span class="ruby-string">&quot;abc&quot;</span>[<span class="ruby-regexp">/ab/</span>] <span class="ruby-comment"># =&gt; &quot;ab&quot;</span>
+<span class="ruby-string">&quot;abc&quot;</span>[<span class="ruby-regexp">/ac/</span>] <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-string">&quot;abc&quot;</span>[<span class="ruby-regexp">/A/</span>]  <span class="ruby-comment"># =&gt; nil</span>
+<span class="ruby-string">&quot;abc&quot;</span>[<span class="ruby-regexp">/A/</span>] <span class="ruby-comment"># =&gt; &quot;a&quot;</span>
+</pre>
+
+<p># A dot will match any character except newline</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;ab\ncd&quot;</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/./</span>) <span class="ruby-comment"># =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span>
+</pre>
+
+<p># Brackets are how you define a set of characters that are allowed to match
+one particular character</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;bobble bubble babble&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b.b/</span>)     <span class="ruby-comment"># =&gt; [&quot;bob&quot;, &quot;bub&quot;, &quot;bab&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b[oa]b/</span>)  <span class="ruby-comment"># =&gt; [&quot;bob&quot;, &quot;bab&quot;]</span>
+</pre>
+
+<p># you can also give ranges when inside of brackets by specifying a start
+and end character # this is the same as /<a
+href="http://abcdefghijklmnopqrst">b</a>b/</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b[a-t]b/</span>)                                                 <span class="ruby-comment"># =&gt; [&quot;bob&quot;, &quot;bab&quot;]</span>
+</pre>
+
+<p># this is the same as /<a href="http://abcnop">b</a>b/</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b[a-cn-p]b/</span>)                                              <span class="ruby-comment"># =&gt; [&quot;bob&quot;, &quot;bab&quot;]</span>
+<span class="ruby-identifier">alphabet</span> = <span class="ruby-string">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span>
+<span class="ruby-identifier">alphabet</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/[a-cmnoy-z]/</span>)                                        <span class="ruby-comment"># =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;, &quot;y&quot;, &quot;z&quot;]</span>
+</pre>
+
+<p># To match anything NOT in the set, put a caret at the beginning of the
+brackets</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/b[^o]b/</span>) <span class="ruby-comment"># =&gt; [&quot;bub&quot;, &quot;bab&quot;]</span>
+</pre>
+
+<p># =====  Named Sets  ===== # d digit, same <a href="http://0-9">as</a> # D
+non-digit # S non-whitespace character # s whitespace character[ tnrf] # W
+non-word character # w word <a href="http://0-9A-Za-z_">character</a></p>
+
+<p># =====  Quantifiers  ===== # To continue to match 0 or more previous
+regular expression, use a spat # in this case, we will match digits that
+occur in series of 0 or more, if they follow the text MX # notice that they
+are greedy, they try to match as much number as they can</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;The product tags are plain MX, MX104, MX952, and MX7511.&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/MX[1-9]*/</span>) <span class="ruby-comment"># =&gt; [&quot;MX&quot;, &quot;MX1&quot;, &quot;MX952&quot;, &quot;MX7511&quot;]</span>
+</pre>
+
+<p># the plus does the same thing as the splat, but matches 1 or more insetad
+of 0 or more</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/MX[1-9]+/</span>) <span class="ruby-comment"># =&gt; [&quot;MX1&quot;, &quot;MX952&quot;, &quot;MX7511&quot;]</span>
+</pre>
+
+<p># to make them non greedy, so that they match as little as they can instead
+of as much as they can, put a question mark after them</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;Then I said 'Oh no' and he said 'oh yes!', can you believe it?&quot;</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-regexp">/'.*'/</span>]   <span class="ruby-comment"># =&gt; &quot;'Oh no' and he said 'oh yes!'&quot;</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-regexp">/'.*?'/</span>]  <span class="ruby-comment"># =&gt; &quot;'Oh no'&quot;</span>
+</pre>
+
+<p># Use a question mark to match 0 or 1 time</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;The product tags are plain MX, MX104, MX952, and MX7511.&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/MX[0-9]?/</span>) <span class="ruby-comment"># =&gt; [&quot;MX&quot;, &quot;MX1&quot;, &quot;MX9&quot;, &quot;MX7&quot;]</span>
+</pre>
+
+<p># specify a minimum and maximum number of times to look for whatever is to
+the left by using curly braces</p>
+
+<pre class="ruby"><span class="ruby-identifier">numbers</span> = <span class="ruby-string">&quot;1 12 123 1234 12345 123456 1234567 12345678 123456789 1234567890&quot;</span>
+<span class="ruby-identifier">numbers</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\d{4,8}/</span>) <span class="ruby-comment"># =&gt; [&quot;1234&quot;, &quot;12345&quot;, &quot;123456&quot;, &quot;1234567&quot;, &quot;12345678&quot;, &quot;12345678&quot;, &quot;12345678&quot;]</span>
+</pre>
+
+<p># Whoops, things are a little tricky! That isn’t what I meant to match at
+all, it is matching the “1245678” out of things like “1234567890”</p>
+
+<pre class="ruby"><span class="ruby-identifier">numbers</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\b\d{4,8}\b/</span>) <span class="ruby-comment"># =&gt; [&quot;1234&quot;, &quot;12345&quot;, &quot;123456&quot;, &quot;1234567&quot;, &quot;12345678&quot;]</span>
+</pre>
+
+<p># =====  Logic, Grouping And Control  ===== # use a single pipe to express
+alternation (this one or that one)</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;I'm planning a trip to the moon, and then from there to venus, and from there to the center of milky way!&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/moon|venus|milky way/</span>) <span class="ruby-comment"># =&gt; [&quot;moon&quot;, &quot;venus&quot;, &quot;milky way&quot;]</span>
+</pre>
+
+<p># you can group things together with parentheses</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;I rode a sunbeam from the sunburst on Sunday.&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/sun(beam|burst|day)/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span> <span class="ruby-identifier">match</span>.<span class="ruby-identifier">upcase</span> } <span class="ruby-comment"># =&gt; &quot;I rode a SUNBEAM from the SUNBURST on SUNDAY.&quot;</span>
+</pre>
+
+<p># Parentheses capture whatever is matched inside of them. You can access
+the capture in Ruby with the variables $1 - $9</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;location: France, language: French, name: Aimée&quot;</span>
+<span class="ruby-identifier">str</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/location: (\w+), language: (\w+), name: (\w+)/</span>
+<span class="ruby-node">$1</span>  <span class="ruby-comment"># =&gt; &quot;France&quot;</span>
+<span class="ruby-node">$2</span>  <span class="ruby-comment"># =&gt; &quot;French&quot;</span>
+<span class="ruby-node">$3</span>  <span class="ruby-comment"># =&gt; &quot;Aimée&quot;</span>
+<span class="ruby-node">$4</span>  <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+<p># When you need to refer back to a capture group in a String, you can use 1
+through 9</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;I rode a sunbeam from the sunburst on Monday.&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">/(sun|mon)(beam|burst|day)/</span> , <span class="ruby-string">'(\1)(\2)'</span> ) <span class="ruby-comment"># =&gt; &quot;I rode a (sun)(beam) from the (sun)(burst) on (Mon)(day).&quot;</span>
+</pre>
+
+<p># warning, double quoted strings will require you to escape the slash in
+front of 1 and 2:</p>
+
+<pre class="ruby"><span class="ruby-string">'(\1)(\2)'</span>    <span class="ruby-comment"># =&gt; &quot;(\\1)(\\2)&quot;</span>
+<span class="ruby-string">&quot;(\\1)(\\2)&quot;</span>  <span class="ruby-comment"># =&gt; &quot;(\\1)(\\2)&quot;</span>
+</pre>
+
+<p># If you don’t want the group to capture, place ?: at the front of it. Now,
+the second group is the first capture group.</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;I rode a sunbeam from the sunburst on Monday.&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">/(?:sun|mon)(beam|burst|day)/</span> , <span class="ruby-string">'(\1)(\2)'</span> ) <span class="ruby-comment"># =&gt; &quot;I rode a (beam)() from the (burst)() on (day)().&quot;</span>
+</pre>
+
+<p># If you want to conditionally match, if you see something ahead (in 1.9,
+you can also match behind) # then use (?=) and if you want to match if you
+do not see something ahead, use (?!) # NOTE THAT THESE DO NOT TAKE UP ANY
+WIDTH IN THE MATCH</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;This is the firstday of the secondstone of the month.&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/(?:first|second)(?:stone|day)/</span>) <span class="ruby-comment"># =&gt; [&quot;firstday&quot;, &quot;secondstone&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/(?:first|second)(?=stone)/</span>) <span class="ruby-comment"># =&gt; [&quot;second&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/(?:first|second)(?!stone)/</span>) <span class="ruby-comment"># =&gt; [&quot;first&quot;]</span>
+</pre>
+
+<p># =====  Zero Width Matchers  ===== # caret to match the beginning of a
+line, and dollar sign to match end of a line # note that in this example,
+we don’t need multiline because the match itself is not going across
+multiple lines</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-string">&quot;Hello my\ndarling how\nare you?&quot;</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/^./</span>)      <span class="ruby-comment"># =&gt; [&quot;H&quot;, &quot;d&quot;, &quot;a&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/.$/</span>)      <span class="ruby-comment"># =&gt; [&quot;y&quot;, &quot;w&quot;, &quot;?&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/.$.^./</span>)   <span class="ruby-comment"># =&gt; []</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/.$.^./</span>)  <span class="ruby-comment"># =&gt; [&quot;y\nd&quot;, &quot;w\na&quot;]</span>
+</pre>
+
+<p># A and Z are just like ^ and $, but they match the beginning and end of
+the entire string, rather than just the line</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\A./</span>)     <span class="ruby-comment"># =&gt; [&quot;H&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/.\Z/</span>)     <span class="ruby-comment"># =&gt; [&quot;?&quot;]</span>
+</pre>
+
+<p># to match the break between a word and nonword boundry, use b</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\w\b/</span>) <span class="ruby-comment"># =&gt; [&quot;o&quot;, &quot;y&quot;, &quot;g&quot;, &quot;w&quot;, &quot;e&quot;, &quot;u&quot;]</span>
+<span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\b\w/</span>) <span class="ruby-comment"># =&gt; [&quot;H&quot;, &quot;m&quot;, &quot;d&quot;, &quot;h&quot;, &quot;a&quot;, &quot;y&quot;]</span>
+</pre>
+
+    </div>
   
 
 
