@@ -4,7 +4,7 @@
 # will be added to the inheritance chain, making its methods available.
 module OurModule
   def meth
-    'method from M'
+    'method from OurModule'
   end
 end
 
