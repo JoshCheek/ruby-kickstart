@@ -1,5 +1,5 @@
 describe 'grade' do
-  
+
   context 'for non book reader' do
     0.upto 9 do |num_books|
       it "should return \"D\" when given #{num_books} books" do
@@ -17,7 +17,7 @@ describe 'grade' do
       end
     end
   end
-  
+
   context 'for book reader' do
     0.upto 9 do |num_books|
       it "should return \"C\" when given #{num_books} books" do
