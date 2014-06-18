@@ -14,7 +14,7 @@ puts 45
   #
 
 
-# puts can output other objects by using their to_s method to convert them into Strings 
+# puts can output other objects by using their to_s method to convert them into Strings
 # and then outputs the strings. It works like this:
 number = 56
 thing_to_print = number.to_s
@@ -23,3 +23,4 @@ puts thing_to_print
   # Output:
   # 56
   #
+

@@ -1,5 +1,5 @@
 # In your life, when you need to conditionally do something, you use logic.
-# Logic has two values: true and false
+# Logic has two values: true and false.
 # You say things like "if it's raining and I have an umbrella I'll go outside, otherwise I'll stay inside."
 # This is a logical statement.
 #
@@ -14,4 +14,5 @@ go_outside?( true  , false )  # => false
 go_outside?( false , true  )  # => false
 go_outside?( false , false )  # => false
 
-# look, the go_outside? method knows exactly what to do, because it knows about logic!
+# Look, the go_outside? method knows exactly what to do, because it knows about logic!
+

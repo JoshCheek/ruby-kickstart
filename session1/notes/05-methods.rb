@@ -4,7 +4,6 @@
 "josh".capitalize # => "Josh"
 
 
-
 # You can make methods, too!
 
 def is_this_a_method?
@@ -12,3 +11,4 @@ def is_this_a_method?
 end
 
 is_this_a_method? # => "Yes, it is!"
+

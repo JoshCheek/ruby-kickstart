@@ -15,9 +15,9 @@
 
 
 # !!!!!!!!!!DON'T FORGET!!!!!!!!!
-# There are cheatsheets to help you. You will need to reference them!
+# There are cheat sheets to help you. You will need to reference them!
 #
-# How should you use the cheatsheets?
+# How should you use the cheat sheets?
 # Read them once so you know what kinds of things they contain.
 # Then when you need to use something, first try to remember what it was.
 # If you can't remember, then go look it up.
@@ -32,3 +32,4 @@
 # For this section, you'll need:
 # https://github.com/JoshCheek/ruby-kickstart/blob/master/cheatsheets/logic_and_control.rb
 # https://github.com/JoshCheek/ruby-kickstart/blob/master/cheatsheets/strings.rb
+
