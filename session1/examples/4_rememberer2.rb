@@ -29,7 +29,7 @@ def record_observation(lines_seen, line)
 end
 
 
-lines_seen = [ ]
+lines_seen = []
 
 loop do
   line = get_line
@@ -37,3 +37,4 @@ loop do
   puts user_message(lines_seen, line)
   record_observation(lines_seen, line)
 end
+

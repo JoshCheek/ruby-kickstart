@@ -19,5 +19,6 @@
 2 * 3 + 10   # => 16
 2 + 3 * 10   # => 32
 
-# question: if operators are just methods on objects, can other objects have operators?
-# lets open up irb and try it out!
+# Question: If operators are just methods on objects, can other objects have operators?
+# Lets open up irb and try it out!
+

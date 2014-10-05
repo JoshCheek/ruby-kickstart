@@ -1,4 +1,4 @@
-# lets say you actually want to do something conditionally
+# Lets say you actually want to do something conditionally
 
 if 4 == (2 + 2)
   "I get evaluated"   # => "I get evaluated"

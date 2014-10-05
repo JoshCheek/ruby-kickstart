@@ -33,6 +33,7 @@ end
 example # invokes the method
 
 
-# question: classes begin with uppercase letters, are they constants?
+# Question: classes begin with uppercase letters, are they constants?
 #   Remember, constants are just variables that aren't supposed to change.
 #   go test this in irb
+
