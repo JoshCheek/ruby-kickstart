@@ -16,7 +16,7 @@ describe "add_more_ruby" do
   end
 
   it 'should change lots of sads in a row' do
-    expect(add_more_ruby("sadSadsadsad").to be_eql "happyHappyhappyhappy"
+    expect(add_more_ruby("sadSadsadsad")).to be_eql "happyHappyhappyhappy"
   end
 
 end
