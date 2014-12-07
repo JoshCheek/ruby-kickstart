@@ -1,11 +1,9 @@
 def list_size(list)
-  size = 1
-  size += 1 while list = list[:next]
-  size
+  return 0 unless list
+  1 + list_size(list[:next])
 end
 
-def middle(list)
-  middle = list_size(list) / 2
-  middle.times { list = list[:next] }
-  list[:data]
+def middle(list, distance=list_size(list)/2)
+  return list[:data] if distance == 0
+  middle list[:next], (distance - 1)
 end

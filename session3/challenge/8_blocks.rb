@@ -9,7 +9,7 @@
 #   person.age    =  47
 #   person.quote  =  "Why don't you purify yourself in the waters of Lake Minnetonka?"
 # end
-# 
+#
 # artist.name         # => "Prince"
 # artist.age          # => 47
 #
@@ -20,22 +20,20 @@
 # artist.age          # => 1999
 #
 # artist.reinit
-# 
+#
 # artist.name         # => "The Artist Formarly Known As Prince"
 # artist.age          # => 47
 
 
 class Person
-  
   attr_accessor :name
-  
-  def initialize( &initializer )
+
+  def initialize(&initializer)
     @initializer = initializer
     initializer.call self
   end
-  
+
   def reinit
     @initializer.call self
   end
-  
 end

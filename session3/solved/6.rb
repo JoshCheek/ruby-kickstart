@@ -1,9 +1,13 @@
-def match_maker(should_xor, *elements)
+def match_maker(opposites_attract, *elements)
   to_return = []
   elements.each_slice 2 do |first, last|
-    first = !!first
-    last  = !!last
-    result = if should_xor then first != last else first == last end
+    first  = !!first
+    last   = !!last
+    result = if opposites_attract
+               first != last
+             else
+               first == last
+             end
     to_return << result
   end
   to_return
