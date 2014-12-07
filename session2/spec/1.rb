@@ -1,6 +1,6 @@
-require File.join( File.dirname(__FILE__) , 'helper' )
+require_relative 'helper'
 
-describe 'sum_difference_product' do
+RSpec.describe 'sum_difference_product' do
   [     9 ,     2 ,
         4 ,     9 ,
         8 ,     7 ,
@@ -30,11 +30,12 @@ describe 'sum_difference_product' do
      -235 ,    98 ,
         0 ,     0 ,
         0 ,     5 ,
-  ].each_slice 2 do |a,b|
-    specify %Q[should print out "#{a+b}\\n#{a-b}\\n#{a*b}\\n" when stdin is "#{a} #{b}\\n"] do
-      [a+b , a-b , a*b].map { |n| n.to_s }.each do |result|
-        input_output("#{a} #{b}"){ sum_difference_product }[result].should == result
-      end
+  ].each_slice 2 do |a, b|
+    specify %Q[prints out "#{a+b}\\n#{a-b}\\n#{a*b}\\n" when stdin is "#{a} #{b}\\n"] do
+      printed = input_output("#{a} #{b}"){ sum_difference_product }
+      expect(printed).to include (a+b).to_s
+      expect(printed).to include (a-b).to_s
+      expect(printed).to include (a*b).to_s
     end
   end
 end

@@ -1,57 +1,47 @@
-describe 'Person' do
-  
-  it 'should be a class called Person' do
-    the_classes = Module.constants.map { |c| c.to_s }.grep('Person')
-    the_classes.first.should == 'Person'
-    the_classes.size.should == 1
-    Person.class.should == Class
+RSpec.describe 'Person' do
+  let(:jim) { Person.new 'Jim' , 45 }
+
+  it 'has a name getter' do
+    expect(jim.name).to eq 'Jim'
   end
-  
-  it 'should have a name getter' do
-    jim = Person.new 'Jim' , 45
-    jim.name.should == 'Jim'
-  end
-  
-  it 'should have a name setter' do
-    jim = Person.new 'Jim' , 45
+
+  it 'has a name setter' do
+    expect(jim.name).to_not eq 'Jimmy'
     jim.name = 'Jimmy'
-    jim.name.should == 'Jimmy'
+    expect(jim.name).to eq 'Jimmy'
   end
-  
-  it 'should have an age getter' do
-    jim = Person.new 'Jim' , 45
-    jim.age.should == 45
+
+  it 'has an age getter' do
+    expect(jim.age).to eq 45
   end
-  
-  it 'should have an age setter' do
-    jim = Person.new 'Jim' , 45
+
+  it 'has an age setter' do
+    expect(jim.age).to_not eq 30
     jim.age = 30
-    jim.age.should == 30
+    expect(jim.age).to eq 30
   end
-  
-  it 'should have a birthday method which ' do
-    jim = Person.new 'Jim' , 45
-    jim.birthday.should == 46
-    jim.age.should == 46
+
+  it 'has a birthday method which increases the age' do
+    expect(jim.age).to eq 45
+    expect(jim.birthday).to eq 46
+    expect(jim.age).to eq 46
   end
-  
-  it 'should be able to have many birthdays' do
-    jim = Person.new 'Jim' , 45
+
+  it 'can have multiple birthdays' do
     1.upto 10 do |i|
-      jim.birthday.should == 45 + i
-      jim.age.should == 45 + i
+      expect(jim.birthday).to eq 45 + i
+      expect(jim.age).to eq 45 + i
     end
   end
-  
-  it 'should understand the difference between two people' do
+
+  it 'understands the difference between two people' do
     jim = Person.new 'Jim' , 45
     jan = Person.new 'Jan' , 25
     1.upto 10 do |i|
-      jim.birthday.should == 45 + i
-      jim.age.should      == 45 + i
-      jan.birthday.should == 25 + i
-      jan.age.should      == 25 + i
+      expect(jim.birthday).to eq 45 + i
+      expect(jim.age     ).to eq 45 + i
+      expect(jan.birthday).to eq 25 + i
+      expect(jan.age     ).to eq 25 + i
     end
   end
-  
 end

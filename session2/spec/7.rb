@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-describe 'alternate_words' do
-  {
-    "Lorem ipsum dolor sit amet." => ["Lorem", "dolor", "amet"],
+RSpec.describe 'alternate_words' do
+  { "Lorem ipsum dolor sit amet." => ["Lorem", "dolor", "amet"],
     "Can't we all get along?"     => ["Can't", "all", "along"],
     "Elementary, my dear Watson!" => ["Elementary", "dear"],
-    
+
     # and now for a bunch of Richard Stallman quotes ^_^
     "I could have made money this way, and perhaps amused myself writing code. But I knew that at the end of my career, I would look back on years of building walls to divide people, and feel I had spent my life making the world a worse place." => ["I", "have", "money", "way", "perhaps", "myself", "code", "I", "that", "the", "of", "career", "would", "back", "years", "building", "to", "people", "feel", "had", "my", "making", "world", "worse"],
     "I'm always happy when I'm protesting." => ["I'm", "happy", "I'm"],
@@ -28,7 +27,7 @@ describe 'alternate_words' do
     "Copying all or parts of a program is as natural to a programmer as breathing, and as productive. It ought to be as free." => ["Copying", "or", "of", "program", "as", "to", "programmer", "breathing", "as", "It", "to", "as"],
   }.each do |sentence, words|
     specify "#{sentence.inspect} # => #{words.inspect}" do
-      alternate_words(sentence).should == words
+      expect(alternate_words sentence).to eq words
     end
   end
 end

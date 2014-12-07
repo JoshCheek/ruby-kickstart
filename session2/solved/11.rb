@@ -1,19 +1,18 @@
 class BeerSong
-  
   attr_accessor :beers
-  
+
   def initialize(beers)
     beers = 0  if beers < 0
     beers = 99 if beers > 99
     self.beers = beers
   end
-  
+
   def print_song
     beers.downto 1 do |i|
       print_stanza i
     end
   end
-  
+
   def print_stanza(n)
     if n.zero?
       String.new
@@ -40,5 +39,4 @@ class BeerSong
       "#{translate n/10*10}-#{translate n%10}".downcase
     end.capitalize
   end
-  
 end

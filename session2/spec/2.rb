@@ -1,13 +1,13 @@
-require File.join( File.dirname(__FILE__) , 'helper' )
+require_relative 'helper'
 
 # This challenge is an extension of example 2, so we've included its source as a starting point
 #
 # Prompt the user for a number, then read it in and print out "hi" that many times
-# 
+#
 # Repeat this process until the user submits "bye", then say "goodbye" and end the program
 #
 #         example:
-#         
+#
 #         PROGRAM: Enter a number or bye
 #         USER:    4
 #         PROGRAM: hi hi hi hi
@@ -22,31 +22,27 @@ require File.join( File.dirname(__FILE__) , 'helper' )
 # remember you can try your program out with              $ ruby 2_input_output_control.rb
 # and when you think it is correct, you can test it with  $ rake 2:2
 
-HI_REGEX  = /\bhi\b/mi
-BYE_REGEX = /goodbye.*\Z/i
 
-def sum(ary)
-  ary.inject(0) { |sum,n| sum + n }
-end
+RSpec.describe 'hi_hi_goodbye' do
+  def self.sum(ary)
+    ary.inject(0) { |sum,n| sum + n }
+  end
 
-def hi_hi_goodbye_tester( inputs = Array.new )
-  output = input_output("#{inputs.join "\n"}\nbye\n") { hi_hi_goodbye }
-  output.scan(HI_REGEX).length.should == sum(inputs)
-  (!!output[BYE_REGEX]).should be_true
-end
+  def hi_hi_goodbye_tester(inputs=Array.new)
+    output = input_output("#{inputs.join "\n"}\nbye\n") { hi_hi_goodbye }
+    expect(output.scan(/\bhi\b/mi).length).to eq self.class.sum(inputs)
+    expect(output).to match /goodbye.*\Z/i
+  end
 
-describe 'hi_hi_goodbye' do
-  
-  it 'should immediately quit if the first submission is bye' do
+  it 'does not print "hi" when the first submission is "bye"' do
     hi_hi_goodbye_tester
   end
-  
-  it 'should say hi 6 times and goodbye once when given 4,2,bye' do
-    hi_hi_goodbye_tester [ 4 , 2 ]
+
+  it 'says "hi" 6 times and "goodbye" once when given "4,2,bye"' do
+    hi_hi_goodbye_tester [4, 2]
   end
-  
-  [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+  [ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [2, 2, 0, 4, 1, 4, 2, 6, 6, 3, 0, 3, 1, 3, 6],
     [26, 2, 8, 25, 1, 19, 8, 0, 17, 24, 16, 2, 24, 1, 19],
     [13, 59, 59, 28, 11, 34, 58, 49, 32],
@@ -62,7 +58,7 @@ describe 'hi_hi_goodbye' do
     [906, 2353, 2549, 2728, 113, 2326, 2352, 2566, 2594, 1, 287, 2736, 841, 2438],
     [1366, 11, 2246, 1581, 1936, 1231, 1936, 981, 1002, 2683, 561, 1991, 708, 1873, 2370, 431],
   ].each do |inputs|
-    it "should say hi #{sum(inputs)} times and goodbye once when given #{inputs.inspect}" do
+    it "says \"hi\" #{sum inputs} times and \"goodbye\" once when given #{inputs.inspect}" do
       hi_hi_goodbye_tester inputs
     end
   end
