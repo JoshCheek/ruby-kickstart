@@ -1,4 +1,4 @@
-describe 'match_maker' do |variable|
+RSpec.describe 'match_maker' do |variable|
   when_true = [
     [[true  , true                ],[false]],
     [[false , false               ],[false]],
@@ -20,24 +20,24 @@ describe 'match_maker' do |variable|
     [[false, false, Object.new, false, false, :abc, nil, 2, false, nil, 6, nil, 7, nil, false, "abc"], [false, true, true, true, false, true, true, true]],
     [[/abc/, nil, "abc", 6, 5, nil, :abc, "abc", false, :abc, true, false, nil, nil, 1, nil, false, Object.new], [true, false, true, false, true, true, false, true, true]],
   ]
-  
+
   # cases when first arg is true
   all_cases = when_true.map do |args, expectations|
     args = [true].concat args
     [args, expectations]
   end
-  
+
   # cases when first arg is false
   all_cases += when_true.map do |args, expectations|
     args = [false].concat args
     expectations = expectations.map { |expectation| !expectation }
     [args, expectations]
   end
-  
+
   all_cases.each do |args, expectations|
-    it "should return #{expectations.inspect} when given #{args.inspect}" do
-      match_maker(*args).should == expectations
+    it "returns #{expectations.inspect} when given #{args.inspect}" do
+      expect(match_maker(*args)).to eq expectations
     end
   end
-  
+
 end

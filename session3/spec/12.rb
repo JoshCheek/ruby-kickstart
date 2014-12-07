@@ -1,82 +1,76 @@
-describe 'refactoring' do
-
+RSpec.describe 'refactoring' do
   describe 'original methods without block stubbed' do
     before :each do
-      @order = mock :order
-      @order.should_receive(:compute_cost).once
-      @order.should_receive(:compute_shipping).once
-      @order.should_receive(:compute_tax).once
-      @order.should_receive(:ship_goods).once
+      @order = double :order
+      expect(@order).to receive(:compute_cost    ).once
+      expect(@order).to receive(:compute_shipping).once
+      expect(@order).to receive(:compute_tax     ).once
+      expect(@order).to receive(:ship_goods      ).once
     end
-  
-    it 'should work for pay_by_visa' do
-      ccn = mock :ccn
-      @order.should_receive(:payment).once.with :type => :visa , :ccn => ccn
-      @order.should_receive(:verify_payment)
-      pay_by_visa @order , ccn
+
+    it 'pay_by_visa makes a payment with the ccn, and verifies the payment' do
+      ccn = double :ccn
+      expect(@order).to receive(:payment).once.with(:type => :visa, :ccn => ccn)
+      expect(@order).to receive(:verify_payment)
+      pay_by_visa @order, ccn
     end
-  
-    it 'should work for pay_by_check' do
-      @order.should_receive(:payment).once.with :type => :check , :signed => true
+
+    it 'pay_by_chec signs the payment' do
+      expect(@order).to receive(:payment).once.with(:type => :check, :signed => true)
       pay_by_check @order
     end
-  
-    it 'should work for pay_by_cash' do
-      @order.should_receive(:payment).once.with :type => :cash
+
+    it 'pay_by_cash does nothing special' do
+      expect(@order).to receive(:payment).once.with(:type => :cash)
       pay_by_cash @order
-    end 
-  
-    it 'should work for pay_by_store_credit' do
-      @order.should_receive(:payment).once.with :type => :store_credit
-      @order.should_receive(:cost).once.and_return(:'one million sollars')
-      current_user = mock :current_user
-      store_credit = mock :store_credit
-      store_credit.should_receive(:-).once.with(:'one million sollars').and_return(:'still one million dollars')
-      current_user.should_receive(:store_credit).once.and_return(store_credit)
-      current_user.should_receive(:store_credit=).once.with(:'still one million dollars')
+    end
+
+    it 'pay_by_store_credit reduces the current user\'s store credit by the order\'s cost' do
+      current_user = double :current_user
+      store_credit = double :store_credit
+
+      expect(@order      ).to receive(:payment).once.with(:type => :store_credit)
+      expect(@order      ).to receive(:cost).once.and_return('$Initial store credit')
+      expect(store_credit).to receive(:-).once.with('$Initial store credit').and_return('$Reduced store credit')
+      expect(current_user).to receive(:store_credit).once.and_return(store_credit)
+      expect(current_user).to receive(:store_credit=).once.with('$Reduced store credit')
+
       pay_by_store_credit @order , current_user
     end
   end
-  
-  describe 'original methods with pay_by intercepted' do
-    before :each do
-      @order = mock :order
-      stub!(:pay_by)
+
+  describe 'methods do their work in the pay_by block (hence do nothing if it is not called)' do
+    let(:order)   { double :order }
+    before(:each) { allow(self).to receive(:pay_by) }
+
+    it 'invokes nothing for pay_by_visa' do
+      pay_by_visa order, double(:ccn)
     end
-  
-    it 'should invoke nothing for pay_by_visa' do
-      ccn = mock :ccn
-      pay_by_visa @order , ccn
+
+    it 'invokes nothing for pay_by_check' do
+      pay_by_check order
     end
-  
-    it 'should invoke nothing for pay_by_check' do
-      pay_by_check @order
+
+    it 'invokes nothing for pay_by_cash' do
+      pay_by_cash order
     end
-  
-    it 'should invoke nothing for pay_by_cash' do
-      pay_by_cash @order
-    end 
-  
-    it 'should invoke nothing for pay_by_store_credit' do
-      current_user = mock :current_user
-      pay_by_store_credit @order , current_user
+
+    it 'invokes nothing for pay_by_store_credit' do
+      pay_by_store_credit order, double(:current_user)
     end
   end
-  
-  
-  describe 'pay_by' do
-    it 'should have a method pay_by that receives the order, computes boiler plate code, and invokes the block' do
-      @order = mock :order
-      @order.should_receive(:compute_cost).once
-      @order.should_receive(:compute_shipping).once
-      @order.should_receive(:compute_tax).once
-      @order.should_receive(:ship_goods).once
-      block_called = mock(:block_called)
-      block_called.should_receive :block_was_called
-      pay_by @order do
-        block_called.block_was_called
-      end
+
+
+  describe 'pay_by block' do
+    it 'performs boilerplate computations, and delegates to the block at the appropriate time in the algorithm' do
+      order = double :order
+      expect(order).to receive(:compute_cost     ).ordered.once
+      expect(order).to receive(:compute_shipping ).ordered.once
+      expect(order).to receive(:compute_tax      ).ordered.once
+      expect(order).to receive(:called_from_block).ordered.once
+      expect(order).to receive(:ship_goods       ).ordered.once
+
+      pay_by(order) { order.called_from_block }
     end
   end
-  
 end
