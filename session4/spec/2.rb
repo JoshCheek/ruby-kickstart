@@ -1,60 +1,56 @@
-describe 'context' do
+RSpec.describe 'context' do
   specify '1_stack_classes_inspect should have been required' do
-    path = File.dirname(__FILE__) + "/../challenge/1_stack_classes_inspect.rb"
-    path = File.expand_path(path)
-    $LOADED_FEATURES.map { |filename| File.expand_path filename }.should include path
+    path = File.expand_path("../../challenge/1_stack_classes_inspect.rb", __FILE__)
+    expanded_loaded_features = $LOADED_FEATURES.map { |filename| File.expand_path filename }
+    expect(expanded_loaded_features).to include path
   end
 end
 
-describe 'StackInDisguise' do
-  
+RSpec.describe 'StackInDisguise' do
   specify 'it should be a subclass of Stack' do
-    StackInDisguise.superclass.should == Stack
+    expect(StackInDisguise.superclass).to eq Stack
   end
-  
+
   describe '#inspect' do
-  
-    before :each do
-      @stack = StackInDisguise.new
-    end
-    
-    it 'should be overridden' do
-      @stack.method(:inspect).owner.should == StackInDisguise
-    end
-  
-    it 'should be []' do
-      @stack.inspect.should == "[]"
+    let(:stack) { StackInDisguise.new }
+
+    it 'overrides inspect' do
+      expect(stack.method(:inspect).owner).to eq StackInDisguise
     end
 
-    it 'should be [1]' do
-      @stack.push 1
-      @stack.inspect.should == '[1]'
+    it 'inspects with square brackets []' do
+      expect(stack.inspect).to eq "[]"
     end
 
-    it 'should be [{1=>2}]' do
-      @stack.push({1=>2})
-      @stack.inspect.should == '[{1=>2}]'
+    it 'after pushing 1: [1]' do
+      stack.push 1
+      expect(stack.inspect).to eq '[1]'
     end
-  
-    it 'should be [1, 2, 3]' do
-      (1..3).each { |i| @stack.push i }
-      @stack.inspect.should == '[1, 2, 3]'
+
+    it 'after pushing a hash: [{1=>2}]' do
+      stack.push({1=>2})
+      expect(stack.inspect).to eq '[{1=>2}]'
     end
-  
-    it 'should be [1, 2, 3, 4, 5]' do
-      (1..5).each { |i| @stack.push i }
-      @stack.inspect.should == '[1, 2, 3, 4, 5]'
+
+    it 'after pushing 1, then 2, then 3: [1, 2, 3]' do
+      (1..3).each { |i| stack.push i }
+      expect(stack.inspect).to eq '[1, 2, 3]'
     end
-  
-    it 'should be [1, 2, 3, /abc/]' do
-      (1..3).each { |i| @stack.push i }
-      @stack.push(/abc/)
-      @stack.inspect.should == '[1, 2, 3, /abc/]'
+
+    it 'after pushing 1 through 5: [1, 2, 3, 4, 5]' do
+      (1..5).each { |i| stack.push i }
+      expect(stack.inspect).to eq '[1, 2, 3, 4, 5]'
     end
-  
-    it 'should be [nil, false, true, "abc", [1, 2, 3]]' do
-      [nil,false,true,"abc",[1,2,3]].each { |e| @stack.push e }
-      @stack.inspect.should == '[nil, false, true, "abc", [1, 2, 3]]'
+
+    it 'after pushing 1 through 3, and then /abc/: [1, 2, 3, /abc/]' do
+      (1..3).each { |i| stack.push i }
+      stack.push(/abc/)
+      expect(stack.inspect).to eq '[1, 2, 3, /abc/]'
+    end
+
+    it 'after pushing lotsa stuff [nil, false, true, "abc", [1, 2, 3]]' do
+      [nil, false, true, "abc", [1,2,3]].each { |e| stack.push e }
+      expect(stack.inspect).to eq '[nil, false, true, "abc", [1, 2, 3]]'
     end
   end
 end

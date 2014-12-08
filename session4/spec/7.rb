@@ -1,7 +1,6 @@
 require 'date'
-require 'pathname'
 
-describe 'longest_method' do
+RSpec.describe 'longest_method' do
   [ 1,
     2,
     2**1000,
@@ -19,8 +18,9 @@ describe 'longest_method' do
     # This might be cheating, but I'm hesitant to hard code something in here,
     # given that it could change as Ruby changes.
     expected = object.methods.max_by(&:length)
-    it "should return #{expected.inspect} for #{object.inspect}" do
-      longest_method(object).should == expected
+    it "returns #{expected.inspect} for #{object.inspect}" do
+      actual = longest_method(object)
+      expect(actual).to eq expected
     end
   end
 end
