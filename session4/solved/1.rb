@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + "/../challenge/1_stack_classes_inspect"
 
 class Stack
   def inspect
-    current = @head
+    current   = @head
     to_return = "("
     while current
       to_return << current.data.inspect
