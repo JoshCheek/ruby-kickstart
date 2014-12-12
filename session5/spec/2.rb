@@ -1,7 +1,7 @@
 if $LOADED_FEATURES.grep(/2_blocks_var_args/).empty?
-  require File.join( File.dirname(__FILE__) , '..' , 'solved' , '1' )
+  require File.join(File.dirname(__FILE__), '..', 'solved', '1')
 else
-  require File.join( File.dirname(__FILE__) , '..' , 'challenge' , '1_singleton_class_string_exception' )
+  require File.join(File.dirname(__FILE__), '..', 'challenge', '1_singleton_class_string_exception')
 end
 
 
@@ -23,47 +23,34 @@ class ApplicationController
 end
 
 
+RSpec.describe 'css_classes' do
+  let(:klass) { Class.new ApplicationController }
 
-
-describe 'css_classes' do
-
-  before :each do
-    @class = Class.new ApplicationController
+  it 'is a class method of subclasses of ApplicationController' do
+    expect(klass).to respond_to :css_classes
   end
 
-  it 'should be a class method of subclasses of ApplicationController' do
-    @class.respond_to?(:css_classes).should be_true
+  it "forwards scopes to the before filter" do
+    expect(klass).to receive(:before_filter_options).with(:only => %w(show))
+    klass.css_classes 'product', only: %w(show)
+    expect(klass.invoke_before_filters.body_class).to eq 'product'
   end
 
-  it "should work for: 'product' , :only => %w(show)" do
-    @class.class_eval do
-      should_receive(:before_filter_options).with(:only => %w(show))
-      css_classes 'product' , :only => %w(show)
-      invoke_before_filters.body_class.should == 'product'
-    end
-  end
-  
-  it "should work for: 'product'" do
-    @class.class_eval do
-      should_receive(:before_filter_options).with({})
-      css_classes 'product'
-      invoke_before_filters.body_class.should == 'product'
-    end
-  end
-  
-  it "should work for: 'secondary' , 'admin_form' , :only => %w(new edit index)" do
-    @class.class_eval do
-      should_receive(:before_filter_options).with(:only => %w(new edit index))
-      css_classes 'secondary' , 'admin_form' , :only => %w(new edit index) 
-      invoke_before_filters.body_class.should == 'secondary admin_form'
-    end
+  it "can be unscoped" do
+    expect(klass).to receive(:before_filter_options).with({})
+    klass.css_classes 'product'
+    expect(klass.invoke_before_filters.body_class).to eq 'product'
   end
 
-  it "should work for 'admin' , 'administrator' , 'category' , 'business' , 'product' , :except => [ 'index' , 'create' ]" do
-    @class.class_eval do
-      should_receive(:before_filter_options).with(:except => [ 'index' , 'create' ])
-      css_classes 'admin' , 'administrator' , 'category' , 'business' , 'product' , :except => [ 'index' , 'create' ]
-      invoke_before_filters.body_class.should == 'admin administrator category business product'
-    end
+  example "multiple css classes and multiple scopes" do
+    expect(klass).to receive(:before_filter_options).with(:only => %w(new edit index))
+    klass.css_classes 'secondary', 'admin_form', only: %w(new edit index)
+    expect(klass.invoke_before_filters.body_class).to eq 'secondary admin_form'
+  end
+
+  example "lots of classes and scopes" do
+    expect(klass).to receive(:before_filter_options).with(:except => ['index', 'create'])
+    klass.css_classes 'admin', 'administrator', 'category', 'business', 'product', except: ['index', 'create']
+    expect(klass.invoke_before_filters.body_class).to eq 'admin administrator category business product'
   end
 end

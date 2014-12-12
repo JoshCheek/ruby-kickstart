@@ -1,34 +1,31 @@
 gemlist = %x(gem list)
 
-describe 'gem installation' do
+RSpec.describe 'gem installation' do
+  specify "rubygems is running (if you're on 1.8, try `require 'rubygems'`)" do
+    expect { Gem }.to_not raise_error
+  end
 
-  specify "you should have rubygems running (if you're on 1.8, try `require 'rubygems'`)" do
-    Object.const_get('Gem').should be
+  specify 'helloworld gem is installed' do
+    expect(gemlist).to match /\bhelloworld\b/
   end
-    
-  specify 'you should have installed helloworld' do    
-    gemlist.should =~ /\bhelloworld\b/
+
+  specify 'helloworld gem is required' do
+    expect { HelloWorld }.to_not raise_error
   end
-  
-  specify 'you should have required hello_world' do
-    Object.const_get('HelloWorld').should be
+
+  specify 'sinatra gem is installed' do
+    expect(gemlist).to match /\bsinatra\b/
   end
-  
-  specify 'you should have installed sinatra' do
-    gemlist.should =~ /\bsinatra\b/
+
+  specify 'sinatra gem is required' do
+    expect { Sinatra }.to_not raise_error
   end
-  
-  specify 'you should ahve required sinatra' do
-    Object.const_get('Sinatra').should be
+
+  specify 'nokogiri gem is installed' do
+    expect(gemlist).to match /\bnokogiri\b/
   end
-  
-  specify 'you should have installed nokogiri' do
-    gemlist.should =~ /\bnokogiri\b/
+
+  specify 'nokogiri gem is required' do
+    expect { Nokogiri }.to_not raise_error
   end
-  
-  specify 'you should have required nokogiri' do
-    Object.const_get('Nokogiri').should be
-  end
-  
-  
 end

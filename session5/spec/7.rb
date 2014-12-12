@@ -1,11 +1,6 @@
-describe 'tree_parser' do
-  
-  it 'should exist' do
-    method(:tree_parser).should be
-  end
-  
-  it "should give the correct html skeleton when no trees given" do
-    tree_parser("") == []
+RSpec.describe 'tree_parser' do
+  it "gives the correct html skeleton when no trees given" do
+    expect(tree_parser "").to eq []
   end
 
   trees = {
@@ -22,26 +17,31 @@ describe 'tree_parser' do
     "Royal Empress Tree, which ships @ 2 to 4 feet, cost: $4.50"        => [ "Royal Empress Tree"      , "2 to 4 feet" , "$4.50"  ],
     "White Dogwood Tree, which ships at 2 to 3 feet, cost: $5.95"       => [ "White Dogwood Tree"      , "2 to 3 feet" , "$5.95"  ],
   }
-    
-  trees.each do |raw, expected|
-    specify "Each line should match for #{raw.inspect}" do
-      tree_parser(raw).should == [expected]
-    end
-  end
-  
-  trees.each_slice 2 do |a, b|
-    raw = "#{a.first}\n#{b.first}"
-    expected = [a.last, b.last]
-    specify "Each line should match for #{raw.inspect}" do
-      tree_parser(raw).should == expected
-    end
-  end
-  
-  it 'should match the entire block of text' do
-    text      = trees.map(&:first).join("\n")
-    expected  = trees.map(&:last)
-    tree_parser(text).should == expected
-  end
-  
-end
 
+  describe 'one line matches' do
+    trees.each do |raw, expected|
+      example raw.inspect do
+        expect(tree_parser raw).to eq [expected]
+      end
+    end
+  end
+
+  # two lines
+  describe 'two line matches' do
+    trees.each_slice 2 do |(raw1, expected1), (raw2, expected2)|
+      raw = "#{raw1}\n#{raw2}"
+      example raw.inspect do
+        expect(tree_parser raw).to eq [expected1, expected2]
+      end
+    end
+  end
+
+  # whole block
+  describe 'big block of text' do
+    example 'matches the whole block' do
+      text     = trees.map(&:first).join("\n")
+      expected = trees.map(&:last)
+      expect(tree_parser text).to eq expected
+    end
+  end
+end
