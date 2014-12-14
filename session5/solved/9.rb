@@ -5,7 +5,6 @@ require File.dirname(__FILE__) + '/7'
 # In reality, I'd use a templating language like ERB,
 # but we haven't talked about those yet.
 def trees_to_html(trees)
-
   # the first part of the html skeleton
   result = '
   <!doctype html>

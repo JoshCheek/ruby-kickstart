@@ -3,7 +3,7 @@ class ApplicationController
 
   # because we invoke it from the context of the class definition, and not from any particular instance,
   # it must be a class method, so goes in class << self
-  def self.css_classes( *body_classes )
+  def self.css_classes(*body_classes)
     options = body_classes.pop if body_classes.last.is_a? Hash  # remove the last argument if it is the options hash
     options ||= Hash.new                                        # if the above didn't happen, set options anyway
 
