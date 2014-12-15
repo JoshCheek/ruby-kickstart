@@ -29,12 +29,12 @@
 # blog1 = lissa.blogs.first
 # blog1.user                      # => lissa
 #
-# Blog.new Date.parse("2007-01-02") , lissa , "Going dancing!"                                    # we'll call this blog2
-# Blog.new Date.parse("2006-01-02") , lissa , "For the last time, fuck facebook >.<"              # we'll call this blog3
-# Blog.new Date.parse("2010-01-02") , lissa , "Got a new job, cuz I'm pretty much the best ^_^"   # we'll call this blog4
+# Blog.new Date.parse("2007-01-02"), lissa, "Going dancing!"                                    # we'll call this blog2
+# Blog.new Date.parse("2006-01-02"), lissa, "For the last time, fuck facebook >.<"              # we'll call this blog3
+# Blog.new Date.parse("2010-01-02"), lissa, "Got a new job, cuz I'm pretty much the best ^_^"   # we'll call this blog4
 # lissa.blogs                     # => [ blog1 , blog4 , blog2 , blog3 ]
 #
-# blog5 = Blog.new Date.today , lissa , <<BLOG_ENTRY
+# blog5 = Blog.new Date.today, lissa, <<BLOG_ENTRY
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce orci nunc, porta non tristique eu, auctor tincidunt mauris.
 # Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vitae nibh sapien. Curabitur
 # eget eros bibendum justo congue auctor non at turpis. Aenean feugiat vestibulum mi ac pulvinar. Fusce ut felis justo, in

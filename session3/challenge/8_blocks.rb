@@ -6,23 +6,23 @@
 # EXAMPLE:
 #
 # artist = Person.new :name => 'Prince' do |person|
-#   person.age    =  47
-#   person.quote  =  "Why don't you purify yourself in the waters of Lake Minnetonka?"
+#   person.age   = 47
+#   person.quote = "Why don't you purify yourself in the waters of Lake Minnetonka?"
 # end
 #
-# artist.name         # => "Prince"
-# artist.age          # => 47
+# artist.name   # => "Prince"
+# artist.age    # => 47
 #
 # artist.name = 'The Artist Formarly Known As Prince'
 # artist.age  = 1999
 #
-# artist.name         # => "The Artist Formarly Known As Prince"
-# artist.age          # => 1999
+# artist.name   # => "The Artist Formarly Known As Prince"
+# artist.age    # => 1999
 #
 # artist.reinit
 #
-# artist.name         # => "The Artist Formarly Known As Prince"
-# artist.age          # => 47
+# artist.name   # => "The Artist Formarly Known As Prince"
+# artist.age    # => 47
 
 
 class Person

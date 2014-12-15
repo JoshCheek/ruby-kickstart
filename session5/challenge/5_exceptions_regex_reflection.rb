@@ -16,7 +16,7 @@
 # (a question to make you think, it is not tested)
 #
 #
-# Example:  list_of_errors_and_exceptions # => [ 'ArgumentError' , 'NoMethodError' , ... ]
+# Example:  list_of_errors_and_exceptions # => ['ArgumentError', 'NoMethodError', ...]
 # (depending on your Ruby version, your results will either be Strings of Symbols)
 
 def list_of_errors_and_exceptions

@@ -10,9 +10,4 @@ def deaf_grandma
   end
 end
 
-
-
-
-
-
 deaf_grandma if $0 == __FILE__ # this will call your code so you can run it from the terminal

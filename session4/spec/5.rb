@@ -15,12 +15,17 @@ describe 'line_sums' do
 
   template_pattern = File.expand_path "../../resources/*.template", __FILE__
   Dir[template_pattern].each do |template_path|
-    real_path = template_path.sub /\.template$/, ''
-    FileUtils.cp template_path, real_path
+    real_path       = template_path.sub /\.template$/, ''
     expected_answer = expected_answers.fetch real_path[/(\d+\.\d+$)/]
+
     example "#{real_path} sums to #{expected_answer}" do
-      expect(line_sums real_path).to eq expected_answer
-      FileUtils.rm real_path
+      begin
+        FileUtils.cp template_path, real_path
+        expect(line_sums real_path).to eq expected_answer
+      ensure
+        FileUtils.rm real_path
+      end
     end
+
   end
 end

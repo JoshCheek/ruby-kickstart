@@ -1,5 +1,5 @@
 # load the stack code in
-require File.dirname(__FILE__) + "/../challenge/1_stack_classes_inspect"
+require File.expand_path("../../challenge/1_stack_classes_inspect", __FILE__)
 
 
 class Stack

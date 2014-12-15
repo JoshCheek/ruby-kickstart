@@ -1,11 +1,7 @@
-def arithmetic2(a,b)
-
-  min = if a < b
-    a
+def arithmetic2(a, b)
+  if a < b
+    a / 2.0
   else
-    b
+    b / 2.0
   end
-
-  min / 2.0
-
 end

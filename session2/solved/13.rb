@@ -8,7 +8,7 @@ class User
     self.blogs    = []
   end
 
-  def add_blog(date,text)
+  def add_blog(date, text)
     added_blog = Blog.new(date, self, text)
     blogs << added_blog
     self.blogs = blogs.sort_by { |blog| blog.date }.reverse

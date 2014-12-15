@@ -6,7 +6,7 @@
 #
 # You fixed this bug already, but the same code is duplicated in many places,
 # so the bug fix didn't get everything. Frustrated, you decide to refactor your code.
-# 
+#
 # You see a lot of duplciation, but unfortunately, right in the middle of each of these
 # pieces of code, is a line or two that changes every time.
 #
@@ -23,11 +23,11 @@
 # you will not be able to run this code outside of the test
 
 
-def pay_by_visa(order,ccn)
+def pay_by_visa(order, ccn)
   order.compute_cost
   order.compute_shipping
   order.compute_tax
-  order.payment :type => :visa , :ccn => ccn
+  order.payment :type => :visa, :ccn => ccn
   order.verify_payment
   order.ship_goods
 end
@@ -36,7 +36,7 @@ def pay_by_check(order)
   order.compute_cost
   order.compute_shipping
   order.compute_tax
-  order.payment :type => :check , :signed => true
+  order.payment :type => :check, :signed => true
   order.ship_goods
 end
 

@@ -4,7 +4,7 @@ end
 
 def hi_hi_goodbye
   prompt
-  while ( line = gets ) && ( line !~ /bye/ )
+  while (line = gets) && (line !~ /bye/) # first is an assignment statement that returns a line or nil, and is thus boolean
     line.to_i.times { print 'hi ' }
     puts
     prompt

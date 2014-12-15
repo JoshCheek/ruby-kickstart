@@ -17,10 +17,9 @@
 # You may assume that n is in the range 0..nums.length inclusive.
 #
 # The first parameter will be n, the rest will be the input to look for ends from
-# problem_14 1,   5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => false
-# problem_14 2,   5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => true
-# problem_14 3,   5, 6, 45, 99, 13, 5, 6   , :problem => :same_ends    # => false
-
+# problem_14 1,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
+# problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
+# problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
 def problem_14
 end

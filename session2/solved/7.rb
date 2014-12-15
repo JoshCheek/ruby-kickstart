@@ -1,7 +1,7 @@
 def alternate_words(sentence)
   # this will get better when we learn regular expressions :)
   '!@$#%^&*()-=_+[]:;,./<>?\\|'.split(//).each do |char|
-    sentence = sentence.gsub char, ' '
+    sentence = sentence.gsub(char, ' ')
   end
   words = sentence.split
   solution = []
