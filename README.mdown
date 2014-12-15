@@ -3,19 +3,19 @@ Welcome to RubyKickstart!
 
 **RubyKickstart is an interactive guide to learning the Ruby programming language.**
 
-Please visit [our website](http://ruby-kickstart.com/) for videos and quizzes.
+The material here follows along with [the videos](https://vimeo.com/channels/844657), but it's not necessary to watch them to get the benefits.
 And get the [source code](https://github.com/JoshCheek/ruby-kickstart) with notes and challenges.
 
 
 How it works
 ============
 
-RubyKickstart is downloaded onto your computer as a folder full of files and folders. 
+RubyKickstart is downloaded onto your computer as a folder full of files and folders.
 It consists of six sessions, all of which have common features:
 
   **Videos**
   ----------
-  Each session has a video where I go through the notes with some friends I made this material for. 
+  Each session has a video where I go through the notes with some friends I made this material for.
   Watch your way through the video and follow along with the material on your computer.
 
   **Notes**
@@ -38,7 +38,7 @@ It consists of six sessions, all of which have common features:
   so you have something to work on that utilizes the session's information. Challenges are taken
   from a few different places. Several are taken from different books that I have enjoyed, including the third edition
   of Absolute Java by Walter Savitch, which is probably my favourite CS book (for beginners), it was exceptionally well done,
-  and one was taken from Learn to Program by Chris Pine, a book to teach programming to absolute beginners, using Ruby. 
+  and one was taken from Learn to Program by Chris Pine, a book to teach programming to absolute beginners, using Ruby.
   The rest were spawned out of my own brain, or from real world situations that I have found myself in.
 
   **Solved & Specs**
@@ -52,7 +52,7 @@ It consists of six sessions, all of which have common features:
   for various topics. Some of the material in the cheatsheets is not covered in the notes or examples for sessions,
   so make sure you check out the cheatsheets before diving into the challenges.
 
-   
+
 Sessions
 ========
 
@@ -62,11 +62,11 @@ Sessions
     * Logic
     * String
     * Basic IO
-- 2 
+- 2
     * Arrays
     * Basic Classes
     * Singleton Classes
-- 3 
+- 3
     * Symbols
     * Hashes
     * Blocks / Procs
@@ -90,8 +90,8 @@ Sessions
     * Git
     * Heroku
 
-    
-What you'll need to use it 
+
+What you'll need to use it
 ==========================
 
  To use RubyKickstart, you'll need several tools:
@@ -100,9 +100,19 @@ What you'll need to use it
    - [**Rake** version 0.8.7+](http://rubygems.org/gems/rake) see if you have it by typing "gem list" at the command line, we use it to apply the tests
    - [**RSpec** version 2.0+](http://rubygems.org/gems/rspec) currently we use this for testing
    - [**git**](http://help.github.com/git-installation-redirect) lets you download our changes without overwriting your work. Good installation instructions at (http://help.github.com/git-installation-redirect)
-   - [**A text editor**](http://texteditors.org/cgi-bin/wiki.pl) Our Recommendations: 
+   - [**A text editor**](http://texteditors.org/cgi-bin/wiki.pl) Our Recommendations:
      * Windows: [SciTE](http://www.scintilla.org/SciTE.html) should come with the one click installer
      * Linux: [SciTE](http://www.scintilla.org/SciTE.html) also works great on linux :)
      * Mac: [TextMate](http://macromates.com/) costs $50 but can be used by a beginner, and yet is powerful, has a community, and can be customized to meet your needs
 
+Age
+===
 
+This is several years old now, but I updated it to RSpec 3 and cleaned it up a lot
+in December 2014. Everything should still work fine and be applicable.
+
+There is now a Gemfile in the root, you can ignore it, it's mostly for letting me
+know what versions I last checked it against.
+
+The website is down now b/c Heroku changed since I made this. I'll hopefully get
+it up again, but IDK how much work it's going to take, so it might not happen.
