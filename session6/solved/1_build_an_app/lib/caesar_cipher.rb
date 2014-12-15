@@ -5,26 +5,21 @@ module CaesarCipher
   ENCRYPT_MAP = Hash.new { |hash, key| key }
   DECRYPT_MAP = Hash.new { |hash, key| key }
 
-  # will find first index, so first 'a', but 3 chars after first 'x', will be another 'a'
-  lowercase = ('a'..'z').to_a + ['a', 'b', 'c']
-  uppercase = ('A'..'Z').to_a + ['A', 'B', 'C']
-  numerical = ('0'..'9').to_a + ['0', '1', '2']
+  lowercase = ('a'..'z').to_a
+  uppercase = ('A'..'Z').to_a
+  numerical = ('0'..'9').to_a
 
   # now, for each group, map the appropriate characters
-  [lowercase, uppercase, numerical].each do |character_set|
-    character_set.each_cons 4 do |char, _, _, char_plus_three|
-      ENCRYPT_MAP[char] = char_plus_three
-      DECRYPT_MAP[char_plus_three] = char
-    end
+  [lowercase, uppercase, numerical].each do |chars|
+    ENCRYPT_MAP.merge! Hash[chars.zip(chars.rotate  3)]
+    DECRYPT_MAP.merge! Hash[chars.zip(chars.rotate -3)]
   end
 
   def self.encrypt(message)
-    message.gsub(/./) { ENCRYPT_MAP[char] }
+    message.gsub /./, ENCRYPT_MAP
   end
 
   def self.decrypt(message)
-    original_message = ''
-    message.each_char { |crnt_char| original_message << DECRYPT_MAP[crnt_char] }
-    original_message
+    message.gsub /./, DECRYPT_MAP
   end
 end

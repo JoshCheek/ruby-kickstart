@@ -1,7 +1,7 @@
 if $LOADED_FEATURES.grep(/session6\/solved\/1/).empty?
-  app_root = File.expand_path "#{File.dirname __FILE__}/../challenge/1_build_an_app"
+  app_root = File.expand_path "../../challenge/1_build_an_app", __FILE__
 else
-  app_root = File.expand_path "#{File.dirname __FILE__}/../solved/1_build_an_app"
+  app_root = File.expand_path "../../solved/1_build_an_app", __FILE__
 end
 
 # check necessary preliminaries
@@ -21,7 +21,7 @@ end
 
 begin
   Sinatra
-rescue
+rescue => e
   unrecoverable_error "You should have required Sinatra from your main file."
 end
 
