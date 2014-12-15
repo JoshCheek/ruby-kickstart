@@ -4,8 +4,6 @@ else
   app_root = File.expand_path "#{File.dirname __FILE__}/../solved/1_build_an_app"
 end
 
-main = self
-
 # check necessary preliminaries
 def unrecoverable_error(message)
   message     =  "* #{message} *"
@@ -28,9 +26,9 @@ rescue
 end
 
 begin
-  require "webrat"
+  require "capybara/rspec"
 rescue LoadError
-  unrecoverable_error 'You need to install webrat `$ gem install webrat` (for testing).'
+  unrecoverable_error 'You need to install capybara `$ gem install capybara` (for testing).'
 end
 
 begin
@@ -44,241 +42,271 @@ end
 # Set up the environment
 set :show_exceptions, false
 module MyHelpers
+  extend self
+
   def app
     Sinatra::Application
   end
-end
 
-Webrat.configure do |config|
-  config.mode = :rack
+  def assert(bool)
+    expect(bool).to eq true
+  end
+
+  def main
+    TOPLEVEL_BINDING.eval('self')
+  end
 end
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
-  config.include Webrat::Methods
-  config.include Webrat::Matchers
   config.include MyHelpers
+  config.disable_monkey_patching!
+end
+
+Capybara.app = MyHelpers.app
+class Capybara::Session
+  # Super displeased with this solution.
+  # There is `page.driver.post`, but that doesn't update the browser's DOM, which took me fkn *hours* to figure out
+  # (b/c page.body is correct, and code passes self to fkn everything... seriously, probably 4+ hours over multiple days)
+  # I would drop to rack-test and Nokogiri, but the shared assertions expect to be using Capybara.
+  def post(url, data={})
+    driver.browser.reset_host!
+    driver.browser.process_and_follow_redirects :post, url, data
+  end
 end
 
 
-
-
 # Test the app
-describe "Your application's library" do
-  specify 'should be in a folder named lib/caesar_cipher.rb' do
-    File.should exist "#{app_root}/lib/caesar_cipher.rb"
+RSpec.describe "Your application's library" do
+  specify 'is be in a folder named lib/caesar_cipher.rb' do
+    assert File.exist?("#{app_root}/lib/caesar_cipher.rb")
     require "#{app_root}/lib/caesar_cipher"
   end
-    
+
   specify 'Should be in a module named CaesarCipher' do
-    Object.should be_const_defined(:CaesarCipher)
-    CaesarCipher.should be_instance_of Module
+    expect(CaesarCipher).to be_an_instance_of Module
   end
-    
+
   describe 'CaesarCipher.encrypt' do
+    def self.assert_encrypts(encryptions)
+      encryptions.each do |key, value|
+        specify("#{key.inspect} encrypts to #{value.inspect}") do
+          expect(CaesarCipher.encrypt key).to eq value
+        end
+      end
+    end
     describe 'with a lowercase message' do
-      specify { CaesarCipher.encrypt('a').should == 'd' }
-      specify { CaesarCipher.encrypt('b').should == 'e' }
-      specify { CaesarCipher.encrypt('x').should == 'a' }
-      specify { CaesarCipher.encrypt('z').should == 'c' }
+      assert_encrypts 'a' => 'd',
+                      'b' => 'e',
+                      'x' => 'a',
+                      'z' => 'c'
     end
     describe 'with an uppercase message' do
-      specify { CaesarCipher.encrypt('A').should == 'D' }
-      specify { CaesarCipher.encrypt('B').should == 'E' }
-      specify { CaesarCipher.encrypt('X').should == 'A' }
-      specify { CaesarCipher.encrypt('Z').should == 'C' }
+      assert_encrypts 'A' => 'D',
+                      'B' => 'E',
+                      'X' => 'A',
+                      'Z' => 'C'
     end
     describe 'with a numerical message' do
-      specify { CaesarCipher.encrypt('0').should == '3' }
-      specify { CaesarCipher.encrypt('1').should == '4' }
-      specify { CaesarCipher.encrypt('7').should == '0' }
-      specify { CaesarCipher.encrypt('9').should == '2' }
+      assert_encrypts '0' => '3',
+                      '1' => '4',
+                      '7' => '0',
+                      '9' => '2'
     end
     describe 'with non alphanumeric message' do
       '~!@#$%^&*(){}[];\':",./\\ '.each_char do |char|
-        specify { CaesarCipher.encrypt(char.dup).should == char }
+        specify { expect(CaesarCipher.encrypt char.dup).to eq char }
       end
     end
     describe 'with a full message' do
       specify do
-        CaesarCipher.encrypt("The quick brown fox jumps over the lazy dog.").should == 
-          "Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj."
+        expect(CaesarCipher.encrypt "The quick brown fox jumps over the lazy dog.")
+          .to eq "Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj."
       end
     end
   end
 
   describe 'CaesarCipher.decrypt' do
+    def self.assert_decrypts(decryptions)
+      decryptions.each do |key, value|
+        specify("#{key.inspect} decrypts to #{value.inspect}") do
+          expect(CaesarCipher.decrypt key).to eq value
+        end
+      end
+    end
     describe 'with a lowercase message' do
-      specify { CaesarCipher.decrypt('d').should == 'a' }
-      specify { CaesarCipher.decrypt('e').should == 'b' }
-      specify { CaesarCipher.decrypt('a').should == 'x' }
-      specify { CaesarCipher.decrypt('c').should == 'z' }
+      assert_decrypts 'd' => 'a',
+                      'e' => 'b',
+                      'a' => 'x',
+                      'c' => 'z'
     end
     describe 'with an uppercase message' do
-      specify { CaesarCipher.decrypt('D').should == 'A' }
-      specify { CaesarCipher.decrypt('E').should == 'B' }
-      specify { CaesarCipher.decrypt('A').should == 'X' }
-      specify { CaesarCipher.decrypt('C').should == 'Z' }
+      assert_decrypts 'D' => 'A',
+                      'E' => 'B',
+                      'A' => 'X',
+                      'C' => 'Z'
     end
     describe 'with a numerical message' do
-      specify { CaesarCipher.decrypt('3').should == '0' }
-      specify { CaesarCipher.decrypt('4').should == '1' }
-      specify { CaesarCipher.decrypt('0').should == '7' }
-      specify { CaesarCipher.decrypt('2').should == '9' }
+      assert_decrypts '3' => '0',
+                      '4' => '1',
+                      '0' => '7',
+                      '2' => '9'
     end
     describe 'with non alphanumeric message' do
       '~!@#$%^&*(){}[];\':",./\\ '.each_char do |char|
-        specify { CaesarCipher.decrypt(char.dup).should == char }
+        assert_decrypts char.dup => char
       end
     end
     describe 'with a full message' do
-      specify do
-        CaesarCipher.decrypt("Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj.").should ==
-          "The quick brown fox jumps over the lazy dog."
-      end
+      assert_decrypts "Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj." =>
+                      "The quick brown fox jumps over the lazy dog."
     end
   end
 end
-  
 
-describe "Your application's Gemfile" do
-  specify { File.should exist "#{app_root}/Gemfile" }
-  it 'should have a source of :rubygems' do
-    main.should_receive(:source).with(:rubygems).once
-    main.stub! :gem
+
+RSpec.describe "Your application's Gemfile" do
+  specify { assert File.exist?("#{app_root}/Gemfile") }
+  it 'has a source of "https://rubygems.org' do
+    expect(main).to receive(:source).with("https://rubygems.org").once
+    allow(main).to receive :gem
     load "#{app_root}/Gemfile"
   end
-  it 'should have a line for Sinatra' do
-    main.stub! :source
-    main.stub! :gem
-    main.should_receive(:gem).with('sinatra', '~> 1.2.6').once
+  it 'has a line for Sinatra' do
+    allow(main).to receive :source
+    allow(main).to receive :gem
+    expect(main).to receive(:gem).with('sinatra', '~> 1.4').once
     load "#{app_root}/Gemfile"
   end
-  it 'should have a line for rack-test' do
-    main.stub! :source
-    main.stub! :gem
-    main.should_receive(:gem).with('rack-test', '~> 0.6.0').once
+  it 'has a line for rack-test' do
+    allow(main).to receive :source
+    allow(main).to receive :gem
+    expect(main).to receive(:gem).with('rack-test', '~> 0.6').once
     load "#{app_root}/Gemfile"
   end
 end
 
 
-describe "Your application's Gemfile.lock" do
-  it 'should have been installed to a Gemfile.lock' do
-    File.should exist "#{app_root}/Gemfile.lock"
+RSpec.describe "Your application's Gemfile.lock" do
+  it 'has been installed to a Gemfile.lock' do
+    assert File.exist?("#{app_root}/Gemfile.lock")
   end
-  it 'should have a line for Sinatra' do
-    File.readlines("#{app_root}/Gemfile.lock").grep(/\bsinatra\b/).should_not be_empty
+  it 'has a line for Sinatra' do
+    lines = File.readlines("#{app_root}/Gemfile.lock").grep(/\bsinatra\b/)
+    expect(lines).to_not be_empty
   end
-  it 'should have a line for rack-test' do
-    File.readlines("#{app_root}/Gemfile.lock").grep(/\brack-test\b/).should_not be_empty
+  it 'has a line for rack-test' do
+    lines = File.readlines("#{app_root}/Gemfile.lock").grep(/\brack-test\b/)
+    expect(lines).to_not be_empty
   end
 end
-  
 
-shared_examples_for "every page" do  
+
+RSpec.shared_examples_for "every page" do
   specify 'and have an html tag' do
-    response.should have_selector 'html'
+    expect(page).to have_css 'html'
   end
   specify 'and have a head tag' do
-    response.should have_selector 'html head'
+    expect(page).to have_css 'html head', visible: false
   end
   specify 'and have an title of "Caesar Cipher"' do
-    within('html head title') { |title| title.should contain "Caesar Cipher" }
+    title = page.find 'html head title', visible: false
+    expect(title.text :all).to include 'Caesar Cipher' # :all makes it work with hidden elements
   end
   specify 'and have a body tag' do
-    response.should have_selector 'html body'
+    expect(page).to have_css 'html body'
   end
   specify 'and have an h1 with the text "Caesar Cipher"' do
-    response.should have_selector 'h1'
-    within('html body h1') { |h1| h1.should contain "Caesar Cipher" }
+    h1 = page.find 'html body h1'
+    expect(h1).to have_text 'Caesar Cipher'
   end
 end
 
 
 
-describe "Your application's '/' route" do
-  before  { visit '/' }
-  specify { last_response.should be_ok }
-  
-  it_should_behave_like "every page"
-  
-  describe "'s form to encrypt" do
-    it "should post to '/encrypt'" do
-      response.should have_selector 'form[method="post"][action="/encrypt"]'
+RSpec.describe "Your application's '/' route", type: :feature do
+  before  { page.visit '/' }
+  specify { expect(page.status_code).to eq 200 }
+
+  it_behaves_like "every page"
+
+  describe "has a form that posts to encrypt" do
+    it "posts to '/encrypt'" do
+      expect(page).to have_selector 'form[method="post"][action="/encrypt"]'
     end
     it "should have an input of type 'text' and name 'message'" do
-      response.should have_selector 'form[action="/encrypt"] input[type="text"][name="message"]'
+      expect(page).to have_selector 'form[action="/encrypt"] input[type="text"][name="message"]'
     end
     it "should have an input of type 'submit' and value 'encrypt'" do
-      response.should have_selector 'form[action="/encrypt"] input[type="submit"][value="encrypt"]'
+      expect(page).to have_selector 'form[action="/encrypt"] input[type="submit"][value="encrypt"]'
     end
   end
-  
+
   describe "'s form to decrypt" do
     it "should post to '/decrypt'" do
-      response.should have_selector 'form[method="post"][action="/decrypt"]'
+      expect(page).to have_selector 'form[method="post"][action="/decrypt"]'
     end
     it "should have an input of type 'text' and name 'message'" do
-      response.should have_selector 'form[action="/decrypt"] input[type="text"][name="message"]'
+      expect(page).to have_selector 'form[action="/decrypt"] input[type="text"][name="message"]'
     end
     it "should have an input of type 'submit' and value 'decrypt'" do
-      response.should have_selector 'form[action="/decrypt"] input[type="submit"][value="decrypt"]'
+      expect(page).to have_selector 'form[action="/decrypt"] input[type="submit"][value="decrypt"]'
     end
   end
 end
 
-
-describe "Posting to your application's '/encrypt' route" do
-  before { visit '/encrypt', :post, :message => "Abcd." }
-  specify { last_response.should be_ok }
-  it_should_behave_like "every page"
+RSpec.describe "Posting to your application's '/encrypt' route", type: :feature do
+  before { page.post '/encrypt', message: 'Abcd.' }
+  specify { expect(page.status_code).to eq 200 }
+  it_behaves_like "every page"
   it %Q{should have a paragraph saying '"Abcd." encrypts to "Defg."'} do
-    within('p') { |p| p.should contain '"Abcd." encrypts to "Defg."' }
+    paragraphs = page.all('p').map(&:text).join
+    expect(paragraphs).to include '"Abcd." encrypts to "Defg."'
   end
   it 'should have a link to "/", with the text "Back"' do
-    within('a[href="/"]') { |a| a.should contain "Back" }
+    expect(page.find 'a[href="/"]').to have_text "Back"
   end
 end
 
 
-describe "Posting to your application's '/decrypt' route" do
-  before { visit '/decrypt', :post, :message => "Defg." }
-  specify { last_response.should be_ok }
-  it_should_behave_like "every page"
+RSpec.describe "Posting to your application's '/decrypt' route", type: :feature do
+  before { page.post '/decrypt', message: "Defg." }
+  specify { expect(page.status_code).to eq 200 }
+  it_behaves_like "every page"
   it %Q{should have a paragraph saying '"Defg." decrypts to "Abcd."'} do
-    within('p') { |p| p.should contain '"Defg." decrypts to "Abcd."' }
+    paragraphs = page.all('p').map(&:text).join
+    expect(paragraphs).to include '"Defg." decrypts to "Abcd."'
   end
   it 'should have a link to "/", with the text "Back"' do
-    within('a[href="/"]') { |a| a.should contain "Back" }
+    expect(page.find 'a[href="/"]').to have_text "Back"
   end
 end
 
 
-describe "Your application's config.ru" do
+RSpec.describe "Your application's config.ru" do
   it 'should exist' do
-    File.should exist "#{app_root}/config.ru"
+    assert File.exist?("#{app_root}/config.ru")
   end
   it "should require main.rb" do
-    main.should_receive(:require).with("#{app_root}/main")
-    main.stub! :run
+    expect(main).to receive(:require).with("#{app_root}/main")
+    allow(main).to receive :run
     load "#{app_root}/config.ru"
   end
   it "should run Sinatra::Application" do
-    main.stub! :require
-    main.should_receive(:run).with(Sinatra::Application)
+    allow(main).to receive :require
+    expect(main).to receive(:run).with(Sinatra::Application)
     load "#{app_root}/config.ru"
-  end  
+  end
 end
 
 
-describe do
+RSpec.describe do
   specify do
     at_exit do
       puts '', <<-MESSAGE
         Great job! I'd add tests for github, but honestly, I don't know how to :/
         Anyway, go ahead and put it under git source control and put it on Heroku :)
-       
+
         This is our last challenge together, I hope you've enjoyed it!
       MESSAGE
     end
