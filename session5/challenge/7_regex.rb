@@ -4,7 +4,7 @@
 #
 # Suddenly, you realize "Hey, I know Ruby!", and decide to write a simple script to
 # take care of this process for you.
-# 
+#
 # The following string will be passed to your method to generate the list of trees with:
 #   "American Redbud Tree, which ships at 1 to 2 feet, cost $5.95
 #   Autumn Flowering Cherry, which ships at 2 to 4 feet, cost: $8.95
@@ -18,19 +18,19 @@
 #   Purple Leaf Plum Tree, which ships at 2 to 3 feet, cost: $5.95
 #   Royal Empress Tree, which ships @ 2 to 4 feet, cost: $4.50
 #   White Dogwood Tree, which ships at 2 to 3 feet, cost: $5.95"
-# 
+#
 # **BE CAREFU!** The Green Thumb Nursery technician had a few fat fingers when entering
 # the data, you'll have to make your regex robust enough to accommodate this.
-# 
+#
 # Example:
 #   given: "American Redbud Tree, which ships at 1 to 2 feet, cost $5.95")
-#   you should return: [["American Redbud Tree", "1 to 2 feet", "$5.95"]]
-# 
+#   return: [["American Redbud Tree", "1 to 2 feet", "$5.95"]]
+#
 #   given: "American Redbud Tree, which ships at 1 to 2 feet, cost $5.95
 #          Autumn Flowering Cherry, which ships at 2 to 4 feet, cost: $8.95"
-#   you should return: [["American Redbud Tree", "1 to 2 feet", "$5.95"],
-#                       ["Autumn Flowering Cherry", "2 to 4 feet", "$8.95"]]
-# 
+#   return: [["American Redbud Tree", "1 to 2 feet", "$5.95"],
+#            ["Autumn Flowering Cherry", "2 to 4 feet", "$8.95"]]
+#
 
 def tree_parser(trees)
 end

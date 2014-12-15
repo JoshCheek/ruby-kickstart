@@ -1,5 +1,5 @@
 RSpec.describe 'context' do
-  specify '1_stack_classes_inspect should have been required' do
+  specify '1_stack_classes_inspect has been required' do
     path = File.expand_path("../../challenge/1_stack_classes_inspect.rb", __FILE__)
     expanded_loaded_features = $LOADED_FEATURES.map { |filename| File.expand_path filename }
     expect(expanded_loaded_features).to include path
@@ -7,7 +7,7 @@ RSpec.describe 'context' do
 end
 
 RSpec.describe 'StackInDisguise' do
-  specify 'it should be a subclass of Stack' do
+  specify 'it is a subclass of Stack' do
     expect(StackInDisguise.superclass).to eq Stack
   end
 

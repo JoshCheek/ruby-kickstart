@@ -1,4 +1,4 @@
-describe 'first_object' do
+RSpec.describe 'first_object' do
   def self.assert_first(first, args)
     example "first_object(#{args.map(&:inspect).join(", ")}) # => #{first.inspect}" do
       obj = first_object(*args)

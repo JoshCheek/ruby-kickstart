@@ -234,22 +234,22 @@ RSpec.describe "Your application's '/' route", type: :feature do
     it "posts to '/encrypt'" do
       expect(page).to have_selector 'form[method="post"][action="/encrypt"]'
     end
-    it "should have an input of type 'text' and name 'message'" do
+    it "has an input of type 'text' and name 'message'" do
       expect(page).to have_selector 'form[action="/encrypt"] input[type="text"][name="message"]'
     end
-    it "should have an input of type 'submit' and value 'encrypt'" do
+    it "has an input of type 'submit' and value 'encrypt'" do
       expect(page).to have_selector 'form[action="/encrypt"] input[type="submit"][value="encrypt"]'
     end
   end
 
-  describe "'s form to decrypt" do
-    it "should post to '/decrypt'" do
+  describe "has a form to decrypt" do
+    it "has to '/decrypt'" do
       expect(page).to have_selector 'form[method="post"][action="/decrypt"]'
     end
-    it "should have an input of type 'text' and name 'message'" do
+    it "has an input of type 'text' and name 'message'" do
       expect(page).to have_selector 'form[action="/decrypt"] input[type="text"][name="message"]'
     end
-    it "should have an input of type 'submit' and value 'decrypt'" do
+    it "has an input of type 'submit' and value 'decrypt'" do
       expect(page).to have_selector 'form[action="/decrypt"] input[type="submit"][value="decrypt"]'
     end
   end
@@ -259,11 +259,11 @@ RSpec.describe "Posting to your application's '/encrypt' route", type: :feature 
   before { page.post '/encrypt', message: 'Abcd.' }
   specify { expect(page.status_code).to eq 200 }
   it_behaves_like "every page"
-  it %Q{should have a paragraph saying '"Abcd." encrypts to "Defg."'} do
+  it %Q{has a paragraph saying '"Abcd." encrypts to "Defg."'} do
     paragraphs = page.all('p').map(&:text).join
     expect(paragraphs).to include '"Abcd." encrypts to "Defg."'
   end
-  it 'should have a link to "/", with the text "Back"' do
+  it 'has a link to "/", with the text "Back"' do
     expect(page.find 'a[href="/"]').to have_text "Back"
   end
 end
@@ -273,26 +273,26 @@ RSpec.describe "Posting to your application's '/decrypt' route", type: :feature 
   before { page.post '/decrypt', message: "Defg." }
   specify { expect(page.status_code).to eq 200 }
   it_behaves_like "every page"
-  it %Q{should have a paragraph saying '"Defg." decrypts to "Abcd."'} do
+  it %Q{has a paragraph saying '"Defg." decrypts to "Abcd."'} do
     paragraphs = page.all('p').map(&:text).join
     expect(paragraphs).to include '"Defg." decrypts to "Abcd."'
   end
-  it 'should have a link to "/", with the text "Back"' do
+  it 'has a link to "/", with the text "Back"' do
     expect(page.find 'a[href="/"]').to have_text "Back"
   end
 end
 
 
 RSpec.describe "Your application's config.ru" do
-  it 'should exist' do
+  it 'exists' do
     assert File.exist?("#{app_root}/config.ru")
   end
-  it "should require main.rb" do
+  it "requires main.rb" do
     expect(main).to receive(:require).with("#{app_root}/main")
     allow(main).to receive :run
     load "#{app_root}/config.ru"
   end
-  it "should run Sinatra::Application" do
+  it "runs Sinatra::Application" do
     allow(main).to receive :require
     expect(main).to receive(:run).with(Sinatra::Application)
     load "#{app_root}/config.ru"

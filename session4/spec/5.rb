@@ -1,6 +1,6 @@
 require 'fileutils'
 
-describe 'line_sums' do
+RSpec.describe 'line_sums' do
   expected_answers = {
     '8.1' => 4399,
     '8.2' => 0,

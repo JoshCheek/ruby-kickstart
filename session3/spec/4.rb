@@ -21,7 +21,7 @@ RSpec.describe 'first_pos' do
     ["a this that c a a b b c a c a a other that",                                                                           {"a"=>0, "this"=>1, "that"=>2, "c"=>3, "b"=>6, "other"=>13}],
     ["this c a other b this that that this that other c c that other a other other other other a that this a a c c other c", {"this"=>0, "c"=>1, "a"=>2, "other"=>3, "b"=>4, "that"=>6}],
   ].each do |str, result|
-    it "should return #{result.inspect} when given #{str.inspect}" do
+    it "returns #{result.inspect} when given #{str.inspect}" do
       expect(first_pos str).to eq result
     end
   end

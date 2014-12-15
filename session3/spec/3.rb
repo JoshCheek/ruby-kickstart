@@ -7,7 +7,7 @@ RSpec.describe 'word_count' do
     expect(word_count "").to eq Hash.new
   end
 
-  it 'should return { "the" => 2, "dog" => 1, "and" => 1, "cat" => 1 } when given "The dog and the cat"' do
+  it 'returns {"the" => 2, "dog" => 1, "and" => 1, "cat" => 1} when given "The dog and the cat"' do
     expect(word_count "The dog and the cat")
       .to eq "the" => 2, "dog" => 1, "and" => 1, "cat" => 1
   end
@@ -23,7 +23,7 @@ RSpec.describe 'word_count' do
     ["A B C THaT A a Other OTher c c otHeR thaT this a c",                                                              {"a"=>4, "b"=>1, "c"=>4, "that"=>2, "other"=>3, "this"=>1}],
     ["B b a ThAt A C ThAt tHAt tHat a oThEr a A OTHEr C",                                                               {"b"=>2, "a"=>5, "that"=>4, "c"=>2, "other"=>2}],
   ].each do |string, result|
-    it "should return #{result.inspect} when given #{string.inspect}" do
+    it "returns #{result.inspect} when given #{string.inspect}" do
       expect(word_count string).to eq result
     end
   end

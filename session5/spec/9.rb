@@ -56,13 +56,13 @@ RSpec.describe 'trees_to_html' do
 
       describe 'its <td>s' do
         let(:tds) { first_row.xpath './td' }
-        specify 'the first td\'s text should be "Type of tree"' do
+        specify 'the first td\'s text is "Type of tree"' do
           expect(tds[0].text.strip).to eq "Type of tree"
         end
-        specify 'the second td\'s text should be "Size of the tree"' do
+        specify 'the second td\'s text is "Size of the tree"' do
           expect(tds[1].text.strip).to eq "Size of the tree"
         end
-        specify 'the third td\'s text should be "Price of the tree"' do
+        specify 'the third td\'s text is "Price of the tree"' do
           expect(tds[2].text.strip).to eq "Price of the tree"
         end
       end
@@ -96,7 +96,7 @@ RSpec.describe 'trees_to_html' do
       end
       describe 'the <tr>' do
         let(:tds) { html.xpath('/html/body/table/tr[position() = 2]/td') }
-        it 'should have three tds' do
+        it 'has three tds' do
           expect(tds.size).to eq 3
         end
         specify "the first td has the text #{expected[0].inspect}" do
@@ -141,13 +141,13 @@ RSpec.describe 'trees_to_html' do
         it 'has three tds' do
           expect(tds.size).to eq 3
         end
-        specify "the first td should have text of #{b.last[0].inspect}" do
+        specify "the first td's text is #{b.last[0].inspect}" do
           expect(tds[0].text.strip).to eq b.last[0]
         end
-        specify "the second td should have text of #{b.last[1].inspect}" do
+        specify "the second td's text is #{b.last[1].inspect}" do
           expect(tds[1].text.strip).to eq b.last[1]
         end
-        specify "the third td should have text of #{b.last[2].inspect}" do
+        specify "the third td's text is #{b.last[2].inspect}" do
           expect(tds[2].text.strip).to eq b.last[2]
         end
       end
@@ -166,13 +166,13 @@ RSpec.describe 'trees_to_html' do
         it 'has three tds' do
           expect(trs[index].xpath('./td').size).to eq 3
         end
-        specify "the first td should have text of #{type.inspect}" do
+        specify "the first td's text is #{type.inspect}" do
           expect(trs[index].xpath('./td')[0].text.strip).to eq type
         end
-        specify "the second td should have text of #{size.inspect}" do
+        specify "the second td's text is #{size.inspect}" do
           expect(trs[index].xpath('./td')[1].text.strip).to eq size
         end
-        specify "the third td should have text of #{price.inspect}" do
+        specify "the third td's text is #{price.inspect}" do
           expect(trs[index].xpath('./td')[2].text.strip).to eq price
         end
       end
