@@ -1,9 +1,11 @@
+gem 'rspec', '~> 3.0'
+
 # overriding Rake method that displays tasks so that -T will display in the correct order
 module Rake
   class Application
     def display_tasks_and_comments
-      displayable_tasks = tasks.select { |t| t.comment && t.name =~ options.show_task_pattern }.sort do 
-        |t1,t2| 
+      displayable_tasks = tasks.select { |t| t.comment && t.name =~ options.show_task_pattern }.sort do
+        |t1,t2|
         one_is_session = t1.name[/^\d+:(\d+|all)$/]
         two_is_session = t2.name[/^\d+:(\d+|all)$/]
         if one_is_session && two_is_session
@@ -62,7 +64,7 @@ def run_spec(session_num,problem)
     problem_dir = "#{sess}/solved/#{problem}.rb"
   else
     problem_dir = Dir["#{sess}/challenge/#{problem}_*.rb"].first
-  end  
+  end
   sh "ruby -c '#{problem_dir}'"                                                             # check syntax
   sh "rspec -cr '#{problem_dir}' -r enumerator '#{sess}/spec/#{problem}.rb' --fail-fast"    # run spec (c for colour, r to require the files, enumerator required for 1.8.6 compatibility)
 end
