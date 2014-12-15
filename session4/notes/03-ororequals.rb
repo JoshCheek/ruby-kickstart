@@ -16,7 +16,6 @@
 # every time I want to use the regex, I only do it the first
 # time by using ||=
 class QuizRegex < ActiveRecord::Base
-
   belongs_to :quiz_match_answer_problem
 
   def regex=(regex)
@@ -27,5 +26,4 @@ class QuizRegex < ActiveRecord::Base
   def regex
     @regex ||= YAML.load(content)
   end
-
 end

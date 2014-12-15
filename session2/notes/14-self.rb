@@ -20,7 +20,6 @@ end
 # variables and your methods.
 
 class Example
-
   self # => Example
 
   @abc = 123
@@ -32,6 +31,5 @@ class Example
   Example.new # => #<Example:0x00000100863818>
   self.new    # => #<Example:0x000001008634f8>
   new         # => #<Example:0x000001008631d8>
-
 end
 

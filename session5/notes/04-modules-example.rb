@@ -1,6 +1,5 @@
 # Here is a common example of how we might use modules:
 module Threes
-
   def threes_r0
     self.select { |i| i % 3 == 0 }
   end
@@ -12,7 +11,6 @@ module Threes
   def threes_r2
     select { |i| i % 3 == 2 }
   end
-
 end
 
 

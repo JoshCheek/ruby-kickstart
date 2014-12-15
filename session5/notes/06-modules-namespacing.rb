@@ -8,7 +8,7 @@
 # to see how your approach changes over time.
 module Day1Solutions
   class MinFinder
-    def initialize(a,b)
+    def initialize(a, b)
       @a = a
       @b = b
     end
@@ -20,8 +20,8 @@ end
 
 module Day2Solutions
   class MinFinder
-    def initialize(a,b)
-      @elements = [ a , b ]
+    def initialize(a, b)
+      @elements = [a, b]
     end
     def solve
       @elements.min
@@ -29,8 +29,8 @@ module Day2Solutions
   end
 end
 
-day1 = Day1Solutions::MinFinder.new 10 , 5
-day2 = Day2Solutions::MinFinder.new 10 , 5
+day1 = Day1Solutions::MinFinder.new 10, 5
+day2 = Day2Solutions::MinFinder.new 10, 5
 day1          # => #<Day1Solutions::MinFinder:0x000001008679b8 @a=10, @b=5>
 day2          # => #<Day2Solutions::MinFinder:0x00000100867990 @elements=[10, 5]>
 day1.solve    # => 5

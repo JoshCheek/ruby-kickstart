@@ -9,10 +9,10 @@ def go_outside?(raining, umbrella)
   raining && umbrella
 end
 
-go_outside?( true  , true  )  # => true
-go_outside?( true  , false )  # => false
-go_outside?( false , true  )  # => false
-go_outside?( false , false )  # => false
+go_outside?(true,  true)   # => true
+go_outside?(true , false)  # => false
+go_outside?(false, true )  # => false
+go_outside?(false, false)  # => false
 
 # Look, the go_outside? method knows exactly what to do, because it knows about logic!
 

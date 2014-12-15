@@ -12,11 +12,11 @@
 
 
 # Write to a file
-File.open "names" , "w" do |file|
-  file.puts   "sally"
-  file.puts   "sam"
-  file.print  "billy"
-  file.print  "bob"
+File.open "names", "w" do |file|
+  file.puts  "sally"
+  file.puts  "sam"
+  file.print "billy"
+  file.print "bob"
   file.puts
 end
 

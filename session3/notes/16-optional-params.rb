@@ -1,7 +1,7 @@
 # You have already seen ordinal parameters, they have a name and
 # are mandatory. But you can make them optional by giving them
 # an equal sign, and listing a default value.
-def same_case( str , upcase = true )
+def same_case(str, upcase = true)
   return str.upcase if upcase
   str.downcase
 end

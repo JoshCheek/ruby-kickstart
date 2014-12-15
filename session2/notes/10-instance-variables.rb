@@ -5,7 +5,6 @@
 # That was a lie, they can see instance variables.
 # We'll talk more about that in a bit.
 class Car
-
   # we call methods like this a "setter"
   def set_miles(miles)
     @miles = miles
@@ -15,7 +14,6 @@ class Car
   def get_miles
     @miles
   end
-
 end
 
 car = Car.new

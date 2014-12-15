@@ -6,14 +6,12 @@
 # put your object into an initial state.
 
 class Instrument
-
   def initialize(name, price)
     @name = name
     @price = price
   end
 
   attr_accessor 'name', 'price'
-
 end
 
 clarinet = Instrument.new 'Clarinet', 250

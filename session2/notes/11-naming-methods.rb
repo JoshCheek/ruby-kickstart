@@ -3,7 +3,6 @@
 # and getters the same as the variable they represent.
 
 class Car
-
   def miles=(miles)
     @miles = miles
   end
@@ -11,7 +10,6 @@ class Car
   def miles
     @miles
   end
-
 end
 
 Car.instance_methods false # => [:miles=, :miles]
