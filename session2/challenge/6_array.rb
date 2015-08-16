@@ -14,3 +14,13 @@
 # prime_chars? ['ab', 'cd']       # => false
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
+
+def prime_chars? string_array
+	require 'prime'
+	string_length = string_array.join().length
+	Prime.prime?(string_length)
+end
+#puts prime_chars? ['abc','wef']  
+
+
+#puts "#{['a', 'bcd',['awef','awefwea',['hello']]].flatten}"
