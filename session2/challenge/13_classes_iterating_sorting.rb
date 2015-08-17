@@ -14,8 +14,106 @@
 #      def ==(other)
 #        return self.date == other.date
 #      end
+require 'date'
+class User
+	attr_accessor :username, :blogs
+	def initialize username
+		@username = username
+		@blogs = []
+	end
+
+	def add_blog date, text
+		new_blog = Blog.new(date, self, text)
+	end
+end
+
+class Blog
+	attr_accessor :text, :date, :user 
+
+	def initialize date, user, text
+		@date = date
+		@user = user
+		@text = text
+		@user.blogs << self
+		@user.blogs = @user.blogs.sort_by{|x| x.date}.reverse
+	end
+
+	def summary
+    	@text.split[0..9].join(' ')
+  	end
+
+  	def ==(other)
+     	@date == other.date && @user == other.user && @text == other.text
+    end
+
+    def entry
+    	"#{@user.username} #{date}\n#{text}"
+  	end
+end
+
+def tests
+joe = User.new 'joe1984'
+joe.add_blog Date.parse("2010-05-28") , "Sailor Mars is my favourite"
+joe.add_blog Date.parse("2010-06-21") , "New blog entry, awefsa asdfwe wew wef awf awfas sd we ppo wfa wew."
+b1 = Blog.new Date.parse("2007-01-02"), joe, "Going dancing!"   
+b2 = Blog.new Date.parse("2007-02-02"), joe, "What the hell is going on!"  
+b3 = Blog.new Date.parse("2007-02-02"), joe, "What the hell is going on!" 
+puts "#{b2.==(b3)}"
+puts ''
+puts b1.entry
+for i in 0...joe.user_blogs.length
+	puts joe.user_blogs[i].text
+end
+#text = 'asd asdf sadfsadf waefew waefsdf'
+#puts "#{text.split}"
+#puts "#{text.split[3]}"
+#puts "#{text.split[1...4]}"
+end
 
 
+=begin
+class User
+  attr_accessor :username, :blogs
+
+  def initialize(username)
+    self.username = username
+    self.blogs    = []
+  end
+
+  def add_blog(date, text)
+    added_blog = Blog.new(date, self, text)
+    blogs << added_blog
+    self.blogs = blogs.sort_by { |blog| blog.date }.reverse
+    added_blog
+  end
+end
+
+
+
+class Blog
+  attr_accessor :date, :user, :text
+
+  def initialize(date, user, text)
+    self.date = date
+    self.user = user
+    self.text = text
+  end
+
+  def summary
+    text.split[0..9].join(' ')
+  end
+
+  def entry
+    "#{user.username} #{date}\n#{text}"
+  end
+
+  def ==(other)
+    date   == other.date &&
+      user == other.user &&
+      text == other.text
+  end
+end
+=end
 
 # ==========  EXAMPLE  ==========
 #
@@ -63,4 +161,4 @@
 
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
-require 'date'
+
