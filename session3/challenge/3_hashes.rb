@@ -1,4 +1,4 @@
-# Write a method that takes a string and returns an array
+# Write a method that takes a string and returns a hash
 # whose keys are all the downcased words in the string,
 # and values are the number of times these words were seen.
 #
