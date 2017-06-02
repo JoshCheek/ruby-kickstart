@@ -17,13 +17,6 @@ end
 
 
 
-
-
-
-
-
-
-
 #  def pirates_say_arrrrrrrrr(string)
 #      string.gsub(/(?<!r)./i, '')
 #    end
