@@ -6,10 +6,10 @@
 # got_three? ['a', 'a', 'a']  # => true
 # got_three? [1, 2, 1, 1]     # => false
 
-def got_three?(array)
-  array.find_all do |e|
-    array.count(e)
-    return true if array.count(e) == 3
+# Really struggled with this one. 
+def got_three?(elements)
+  elements.each_cons 3 do |a, b, c|
+    return true if a == b && b == c
   end
   false
 end
