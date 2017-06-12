@@ -15,16 +15,19 @@
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
 
-def string_length(array)
-  array.join.length
-end
-
-def prime_chars?(num)
-  return false if num < 2
-  2.upto Math.sqrt(num) do |i|
-    return false if num % i == 0
+# Unsure why this needs to be a class
+# Had written functioning code, but rake will only pass when it is my prime? function sits with a class called Integer
+# Unsure why?
+class Integer
+  def prime?
+    return false if self < 2
+    2.upto Math.sqrt(self) do |i|
+      return false if self % i == 0
+    end
+    true
   end
-  true
 end
 
-prime_chars? string_length ['abc']
+def prime_chars?(array)
+  array.join.length.prime?
+end
