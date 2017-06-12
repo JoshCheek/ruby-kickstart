@@ -29,4 +29,11 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+  one = {}
+  two = {}
+  a.each_with_index {|v, i| one[i] = v}
+  b.each_with_index {|v, i| two[i] = v}
+  p two
 end
+
+shared [1,2,3], [1,2,4]
