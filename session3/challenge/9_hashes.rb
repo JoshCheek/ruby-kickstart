@@ -29,4 +29,20 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+  # Create a hash
+  hash = {}
+  # Loop through each number in the array
+  a.each do |num|
+    # Create a nil, nil value for the hash
+    hash[num] ||= [nil, nil]
+    hash[num][0] = true
+  end
+  b.each do |num|
+    hash[num] ||= [nil, nil]
+    hash[num][1] = true
+  end
+  answer = hash.select { |key, value| value == [true, true] }.map { |key, value| key }
+  return hash, answer.sort
 end
+
+shared [1,2,3], [1,2,4]

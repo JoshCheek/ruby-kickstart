@@ -29,6 +29,14 @@
 #   end
 # end
 
-
-def array_init
+# New method that has a set parameter size of '5' if nothing else is supplie when the method is called
+# It also accepts a block. If no block is supplied it reverts to the block that exists within the method
+def array_init(size=5, &block)
+  # Conditional assigment operator - if block is not assigned then assign the following Proc
+  block ||= Proc.new { |i| (i * 100).to_s }
+  # Create and return a new Array
+  Array.new(size, &block)
 end
+
+array = array_init(10) { |i| (i * 200).to_s }
+p array
