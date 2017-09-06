@@ -9,4 +9,5 @@
 
 def ten_twenty(n)
   # your code goes here
+  n % 2 == 0 ? 10 : 20
 end
