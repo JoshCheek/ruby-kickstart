@@ -5,15 +5,16 @@
 #
 # EXAMPLE:
 #
-# artist = Person.new :name => 'Prince' do |person|
+# artist = Person.new({:name => 'Prince'}, do |person|
 #   person.age   = 47
 #   person.quote = "Why don't you purify yourself in the waters of Lake Minnetonka?"
-# end
+# end)
 #
 # artist.name   # => "Prince"
 # artist.age    # => 47
 #
 # artist.name = 'The Artist Formarly Known As Prince'
+# artist.quote = 'blah'
 # artist.age  = 1999
 #
 # artist.name   # => "The Artist Formarly Known As Prince"
@@ -23,14 +24,18 @@
 #
 # artist.name   # => "The Artist Formarly Known As Prince"
 # artist.age    # => 47
+# artist.quote  # => "Why don't you purify yourself in the waters of Lake Minnetonka?"
 
 
 class Person
-  attr_accessor :name
+  attr_accessor :name, :age, :quote
 
-  def initialize(&initializer)
-    @initializer = initializer
-    initializer.call self
+  def initialize(options=Hash.new, &initializer)
+    self.name = options[:name]
+    self.age = options[:age]
+    self.quote = options[:quote]
+    @initializer = (initializer || Proc.new { |person|})
+    reinit
   end
 
   def reinit
